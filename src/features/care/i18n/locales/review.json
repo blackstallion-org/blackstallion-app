@@ -1,0 +1,912 @@
+{
+  "common.experience.family": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Header pill / switcher label"
+  },
+  "common.experience.field": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Header pill / switcher label"
+  },
+  "common.signIn.mobileLabel": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Input label on sign-in"
+  },
+  "common.signIn.sendCode": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Primary button"
+  },
+  "common.signIn.useEmail": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Text button"
+  },
+  "common.otp.title": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Screen title"
+  },
+  "common.otp.verify": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Primary button"
+  },
+  "common.otp.resendIn": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Countdown; time like 0:30"
+  },
+  "common.action.back": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Icon button accessibility label"
+  },
+  "common.action.retry": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Button"
+  },
+  "common.action.done": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Button"
+  },
+  "common.action.cancel": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Button"
+  },
+  "common.action.discard": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Destructive button"
+  },
+  "common.state.offline": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Banner; <b> marks the bold lead word"
+  },
+  "common.state.loading": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Screen-reader text for skeletons"
+  },
+  "common.state.denied": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "403 neutral page"
+  },
+  "common.state.error": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Generic error"
+  },
+  "common.status.published": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Status pill"
+  },
+  "common.status.queued": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Status pill"
+  },
+  "common.status.uploading": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Status pill"
+  },
+  "common.status.needsReview": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Status pill"
+  },
+  "common.status.failed": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Status pill"
+  },
+  "common.status.notAssessed": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Roster pill"
+  },
+  "common.status.done": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Sync pill"
+  },
+  "common.status.received": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Care status"
+  },
+  "common.status.accepted": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Care status"
+  },
+  "common.status.due": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Care status (time shown beside it)"
+  },
+  "common.status.waiting": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Sync pill"
+  },
+  "field.tabs.today": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Tab (≤10 chars ideal)"
+  },
+  "field.tabs.cadets": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Tab"
+  },
+  "field.tabs.horses": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Tab"
+  },
+  "field.tabs.sync": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Tab"
+  },
+  "field.tabs.profile": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Tab"
+  },
+  "field.tabs.syncBadge": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Small badge under Sync tab"
+  },
+  "field.today.title": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Screen title"
+  },
+  "field.today.sessions": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Section label"
+  },
+  "field.today.care": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Section label"
+  },
+  "field.today.scanQr": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Primary button"
+  },
+  "field.today.cadetsCount": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Session row meta"
+  },
+  "field.task.morningFeed": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Care task name"
+  },
+  "field.task.hoofGrooming": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Care task name"
+  },
+  "field.task.middayWater": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Care task name"
+  },
+  "field.task.tack": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Care task name"
+  },
+  "field.task.nightFeed": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Care task name"
+  },
+  "field.roster.title": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Header eyebrow"
+  },
+  "field.roster.hint": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Helper line"
+  },
+  "field.roster.checkedIn": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Row meta"
+  },
+  "field.roster.notCheckedIn": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Row meta"
+  },
+  "field.roster.noConsent": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Row meta"
+  },
+  "field.roster.scanAttendance": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Button"
+  },
+  "field.assess.title": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Header eyebrow"
+  },
+  "field.assess.onHorse": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Context line"
+  },
+  "field.assess.riding": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Score name"
+  },
+  "field.assess.ground": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Score name"
+  },
+  "field.assess.stable": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Score name"
+  },
+  "field.assess.skills": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Section label"
+  },
+  "field.assess.clipTitle": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Section label"
+  },
+  "field.assess.record": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Button"
+  },
+  "field.assess.recording": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Live recorder label"
+  },
+  "field.assess.stop": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Button"
+  },
+  "field.assess.retake": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Button"
+  },
+  "field.assess.clipSaved": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Clip row"
+  },
+  "field.assess.noConsentBanner": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Info banner"
+  },
+  "field.assess.saveDraft": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Secondary button (half width)"
+  },
+  "field.assess.publish": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Primary button (half width)"
+  },
+  "field.assess.queuedBanner": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Warning banner"
+  },
+  "field.assess.uploadingBanner": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Info banner"
+  },
+  "field.assess.publishedNote": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Published card"
+  },
+  "field.assess.makeCorrection": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Button"
+  },
+  "field.assess.pickAllScores": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Toast"
+  },
+  "field.assess.finishRecording": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Toast"
+  },
+  "field.assess.draftSaved": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Toast"
+  },
+  "field.assess.queuedToast": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Toast"
+  },
+  "field.assess.publishedTitle": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Seal title"
+  },
+  "field.assess.sealText": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Seal subtitle"
+  },
+  "field.scan.title": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Screen title"
+  },
+  "field.scan.point": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Camera overlay"
+  },
+  "field.scan.ok": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Success banner"
+  },
+  "field.scan.okOffline": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Offline success banner"
+  },
+  "field.scan.duplicate": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Info banner"
+  },
+  "field.scan.unknown": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Error banner"
+  },
+  "field.scan.cameraDenied": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Permission state"
+  },
+  "field.scan.openSettings": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Button"
+  },
+  "field.care.title": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Header eyebrow"
+  },
+  "field.care.takePhoto": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Large button"
+  },
+  "field.care.location": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Location row"
+  },
+  "field.care.submit": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Primary button"
+  },
+  "field.care.received": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Success banner"
+  },
+  "field.care.review": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Review banner"
+  },
+  "field.care.queued": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Queued banner"
+  },
+  "field.care.locationDenied": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Permission state"
+  },
+  "field.care.instructions.middayWater": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Task instructions"
+  },
+  "field.care.weakGpsDemo": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Prototype-only control"
+  },
+  "field.sync.title": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Screen title"
+  },
+  "field.sync.summaryWaiting": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Summary line"
+  },
+  "field.sync.nothing": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Summary line"
+  },
+  "field.sync.allCaught": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Empty state title"
+  },
+  "field.sync.emptyHelp": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Empty state body"
+  },
+  "field.sync.retry": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Item action"
+  },
+  "field.sync.edit": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Item action"
+  },
+  "field.sync.reviewConflict": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Item action"
+  },
+  "field.sync.discardWarning": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Confirm dialog"
+  },
+  "field.sync.assessmentItem": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Item title"
+  },
+  "field.sync.careItem": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Item title"
+  },
+  "field.sync.keptOnPhone": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Item meta"
+  },
+  "field.sync.serverConfirmed": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Item meta"
+  },
+  "field.cadets.consentOn": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Cadet list meta"
+  },
+  "field.cadets.consentOff": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Cadet list meta"
+  },
+  "settings.title": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Screen title"
+  },
+  "settings.appearance": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Section label"
+  },
+  "settings.appearanceHelp": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Helper text"
+  },
+  "settings.light": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Segment"
+  },
+  "settings.dark": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Segment"
+  },
+  "settings.system": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Segment"
+  },
+  "settings.language": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Section label"
+  },
+  "settings.languageHelp": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Helper text"
+  },
+  "settings.switchToField": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Row"
+  },
+  "settings.switchToFamily": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Row"
+  },
+  "settings.privacy": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Row"
+  },
+  "settings.simulateOffline": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Prototype-only control"
+  },
+  "settings.signOut": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Destructive button"
+  },
+  "settings.signOutPending": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Confirm dialog"
+  },
+  "settings.roles": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Profile subtitle"
+  },
+  "field.horses.allOnTime": {
+    "review": "needs-native-review (design draft, not reviewed)",
+    "source": "design/i18n/strings.tsv",
+    "context": "Horse list meta"
+  },
+  "care.taskType.feed": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Task type label"
+  },
+  "care.taskType.water": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Task type label"
+  },
+  "care.taskType.grooming_hoof": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Task type label"
+  },
+  "care.taskType.tack_check": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Task type label (saddle, girth, bridle)"
+  },
+  "care.taskType.medication": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Task type label"
+  },
+  "care.timeline.title": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Section title on Today"
+  },
+  "care.timeline.empty": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Empty state"
+  },
+  "care.timeline.dueAt": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Row subtitle; time in hub timezone"
+  },
+  "care.timeline.stale": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Offline banner on timeline"
+  },
+  "care.status.upcoming": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Task status chip"
+  },
+  "care.status.due": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Task status chip"
+  },
+  "care.status.pastDue": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Local hint only; server has not confirmed overdue"
+  },
+  "care.status.overdue": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Server-confirmed overdue"
+  },
+  "care.status.submitted": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Task status chip"
+  },
+  "care.status.completed": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Task status chip (supervisor accepted)"
+  },
+  "care.evidence.captured": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Evidence state: captured, not yet sent"
+  },
+  "care.evidence.sending": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Evidence state"
+  },
+  "care.evidence.received": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Evidence state: received, NOT verified"
+  },
+  "care.evidence.reviewRequired": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Evidence state"
+  },
+  "care.evidence.accepted": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Evidence state"
+  },
+  "care.evidence.rejected": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Evidence state"
+  },
+  "care.evidence.needsAction": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Evidence state"
+  },
+  "care.medication.notice": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Shown above authorised medication instructions"
+  },
+  "care.capture.alreadyCompleted": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Warning before capture"
+  },
+  "care.capture.weakLocation": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "accuracy like ±120 m"
+  },
+  "care.capture.storageFull": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Disk-full error"
+  },
+  "care.capture.failed": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Capture error"
+  },
+  "care.capture.notAllowed": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Restriction while secure storage is unproven"
+  },
+  "care.checkIn.unavailable": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "D11 unapproved"
+  },
+  "sync.state.ready": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Queue state"
+  },
+  "sync.state.sending": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Queue state"
+  },
+  "sync.state.retryAt": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Queue state"
+  },
+  "sync.state.needsAttention": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Queue state after 8 failures"
+  },
+  "sync.state.needsEdit": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Validation failure"
+  },
+  "sync.state.needsReview": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Conflict"
+  },
+  "sync.state.blocked": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Permission failure"
+  },
+  "sync.state.needsRecapture": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Missing file"
+  },
+  "sync.state.signIn": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Session expired"
+  },
+  "sync.state.acknowledged": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Server receipt saved"
+  },
+  "sync.state.offline": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Network error"
+  },
+  "sync.action.recapture": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Button"
+  },
+  "sync.action.review": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Button"
+  },
+  "sync.action.syncNow": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Button"
+  },
+  "sync.discard.title": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Confirmation dialog title"
+  },
+  "sync.discard.confirm": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Destructive button"
+  },
+  "sync.section.needsAction": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Sync section"
+  },
+  "sync.section.inProgress": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Sync section"
+  },
+  "sync.section.waiting": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Sync section"
+  },
+  "sync.section.sent": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Sync section"
+  },
+  "sync.progress": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Progress line"
+  },
+  "sync.otherAccount": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Never shows the other account's content"
+  },
+  "sync.orphans": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Orphan files"
+  },
+  "signOut.pending": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Sign-out dialog"
+  },
+  "signOut.finish": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Sign-out option"
+  },
+  "signOut.keep": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Sign-out option"
+  },
+  "signOut.discard": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Sign-out option (destructive)"
+  },
+  "reminder.title": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Local notification title (generic)"
+  },
+  "reminder.body": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Local notification body (no horse or person names)"
+  }
+}

@@ -1,0 +1,59 @@
+key	en	hi	te	context	review
+care.taskType.feed	Feed	चारा देना	మేత పెట్టడం	Task type label	needs-native-review
+care.taskType.water	Water	पानी	నీళ్లు	Task type label	needs-native-review
+care.taskType.grooming_hoof	Grooming & hoof check	ग्रूमिंग और खुर जाँच	గ్రూమింగ్ & గిట్టల తనిఖీ	Task type label	needs-native-review
+care.taskType.tack_check	Tack check	साज़-सामान जाँच	జీను సామగ్రి తనిఖీ	Task type label (saddle, girth, bridle)	needs-native-review
+care.taskType.medication	Medication	दवा	మందు	Task type label	needs-native-review
+care.timeline.title	Care tasks	देखभाल के काम	సంరక్షణ పనులు	Section title on Today	needs-native-review
+care.timeline.empty	No care tasks are assigned to you for this day.	इस दिन आपको कोई देखभाल का काम नहीं सौंपा गया है।	ఈ రోజు మీకు ఎలాంటి సంరక్షణ పనులు కేటాయించలేదు.	Empty state	needs-native-review
+care.timeline.dueAt	Due {{time}}	{{time}} तक करना है	{{time}}కి చేయాలి	Row subtitle; time in hub timezone	needs-native-review
+care.timeline.stale	Last updated {{time}}. Showing saved tasks.	आख़िरी अपडेट {{time}}। सेव किए गए काम दिखाए जा रहे हैं।	చివరి అప్‌డేట్ {{time}}. సేవ్ చేసిన పనులు చూపిస్తున్నాం.	Offline banner on timeline	needs-native-review
+care.status.upcoming	Upcoming	आने वाला	రాబోయేది	Task status chip	needs-native-review
+care.status.due	Due now	अभी करना है	ఇప్పుడు చేయాలి	Task status chip	needs-native-review
+care.status.pastDue	Past due time	समय निकल गया	సమయం దాటింది	Local hint only; server has not confirmed overdue	needs-native-review
+care.status.overdue	Overdue	देर हो गई	ఆలస్యమైంది	Server-confirmed overdue	needs-native-review
+care.status.submitted	Proof sent	सबूत भेजा गया	రుజువు పంపబడింది	Task status chip	needs-native-review
+care.status.completed	Completed	पूरा हुआ	పూర్తయింది	Task status chip (supervisor accepted)	needs-native-review
+care.evidence.captured	Saved on this phone	इस फ़ोन में सेव है	ఈ ఫోన్‌లో సేవ్ అయింది	Evidence state: captured, not yet sent	needs-native-review
+care.evidence.sending	Sending…	भेजा जा रहा है…	పంపుతోంది…	Evidence state	needs-native-review
+care.evidence.received	Received by server	सर्वर को मिल गया	సర్వర్‌కు చేరింది	Evidence state: received, NOT verified	needs-native-review
+care.evidence.reviewRequired	A supervisor will review it	सुपरवाइज़र इसकी जाँच करेंगे	సూపర్‌వైజర్ దీన్ని పరిశీలిస్తారు	Evidence state	needs-native-review
+care.evidence.accepted	Accepted by supervisor	सुपरवाइज़र ने स्वीकार किया	సూపర్‌వైజర్ ఆమోదించారు	Evidence state	needs-native-review
+care.evidence.rejected	Rejected. See the supervisor's note.	अस्वीकार किया गया। सुपरवाइज़र का नोट देखें।	తిరస్కరించారు. సూపర్‌వైజర్ గమనిక చూడండి.	Evidence state	needs-native-review
+care.evidence.needsAction	Needs your action	आपको कुछ करना है	మీరు చర్య తీసుకోవాలి	Evidence state	needs-native-review
+care.medication.notice	Follow these instructions exactly. Ask your supervisor if anything is unclear.	इन निर्देशों का ठीक-ठीक पालन करें। कुछ साफ़ न हो तो सुपरवाइज़र से पूछें।	ఈ సూచనలను సరిగ్గా పాటించండి. ఏదైనా అర్థం కాకపోతే సూపర్‌వైజర్‌ను అడగండి.	Shown above authorised medication instructions	needs-native-review
+care.capture.alreadyCompleted	This task is already completed. A new photo will go to your supervisor for review.	यह काम पहले ही पूरा हो चुका है। नई फ़ोटो सुपरवाइज़र के पास जाँच के लिए जाएगी।	ఈ పని ఇప్పటికే పూర్తయింది. కొత్త ఫోటో పరిశీలన కోసం సూపర్‌వైజర్‌కు వెళ్తుంది.	Warning before capture	needs-native-review
+care.capture.weakLocation	Location is weak ({{accuracy}}). You can submit; a supervisor will review it.	लोकेशन कमज़ोर है ({{accuracy}})। आप भेज सकते हैं; सुपरवाइज़र जाँच करेंगे।	లొకేషన్ బలహీనంగా ఉంది ({{accuracy}}). మీరు పంపవచ్చు; సూపర్‌వైజర్ పరిశీలిస్తారు.	accuracy like ±120 m	needs-native-review
+care.capture.storageFull	Phone storage is full. Free some space, then take the photo again. Your earlier saved work is safe.	फ़ोन की स्टोरेज भर गई है। कुछ जगह खाली करें, फिर फ़ोटो दोबारा लें। पहले सेव किया काम सुरक्षित है।	ఫోన్ స్టోరేజ్ నిండిపోయింది. కొంత స్థలం ఖాళీ చేసి, మళ్లీ ఫోటో తీయండి. ముందు సేవ్ చేసిన పని సురక్షితంగా ఉంది.	Disk-full error	needs-native-review
+care.capture.failed	The photo could not be saved. Please take it again.	फ़ोटो सेव नहीं हो सकी। कृपया दोबारा लें।	ఫోటో సేవ్ కాలేదు. దయచేసి మళ్లీ తీయండి.	Capture error	needs-native-review
+care.capture.notAllowed	Saving proof photos on this phone is switched off until device storage protection is approved.	डिवाइस स्टोरेज सुरक्षा मंज़ूर होने तक इस फ़ोन पर सबूत की फ़ोटो सेव करना बंद है।	పరికర స్టోరేజ్ రక్షణ ఆమోదం పొందే వరకు ఈ ఫోన్‌లో రుజువు ఫోటోలను సేవ్ చేయడం ఆపివేయబడింది.	Restriction while secure storage is unproven	needs-native-review
+care.checkIn.unavailable	Staff check-in is not available yet.	स्टाफ़ चेक-इन अभी उपलब्ध नहीं है।	సిబ్బంది చెక్-ఇన్ ఇంకా అందుబాటులో లేదు.	D11 unapproved	needs-native-review
+sync.state.ready	Waiting to send	भेजने का इंतज़ार	పంపడానికి వేచి ఉంది	Queue state	needs-native-review
+sync.state.sending	Sending	भेजा जा रहा है	పంపుతోంది	Queue state	needs-native-review
+sync.state.retryAt	Will try again at {{time}}	{{time}} पर फिर से कोशिश होगी	{{time}}కి మళ్లీ ప్రయత్నిస్తాం	Queue state	needs-native-review
+sync.state.needsAttention	Could not send after several tries.	कई बार कोशिश के बाद भी नहीं भेजा जा सका।	చాలాసార్లు ప్రయత్నించినా పంపలేకపోయాం.	Queue state after 8 failures	needs-native-review
+sync.state.needsEdit	The server could not accept this. Check the details.	सर्वर ने इसे स्वीकार नहीं किया। जानकारी जाँचें।	సర్వర్ దీన్ని అంగీకరించలేదు. వివరాలు తనిఖీ చేయండి.	Validation failure	needs-native-review
+sync.state.needsReview	This needs a supervisor to look at it.	इसे सुपरवाइज़र को देखना होगा।	దీన్ని సూపర్‌వైజర్ చూడాలి.	Conflict	needs-native-review
+sync.state.blocked	Your account can no longer send this. It is kept on this phone.	आपका अकाउंट अब इसे नहीं भेज सकता। यह इस फ़ोन में रखा है।	మీ అకౌంట్ ఇకపై దీన్ని పంపలేదు. ఇది ఈ ఫోన్‌లో ఉంచబడింది.	Permission failure	needs-native-review
+sync.state.needsRecapture	The photo is missing from this phone. Take it again.	फ़ोटो इस फ़ोन में नहीं मिली। दोबारा लें।	ఫోటో ఈ ఫోన్‌లో కనిపించలేదు. మళ్లీ తీయండి.	Missing file	needs-native-review
+sync.state.signIn	Sign in again to send your saved work.	सेव किया काम भेजने के लिए फिर से साइन इन करें।	సేవ్ చేసిన పనిని పంపడానికి మళ్లీ సైన్ ఇన్ చేయండి.	Session expired	needs-native-review
+sync.state.acknowledged	Sent · {{time}}	भेजा गया · {{time}}	పంపబడింది · {{time}}	Server receipt saved	needs-native-review
+sync.state.offline	No connection. Your work is saved on this phone.	कनेक्शन नहीं है। आपका काम इस फ़ोन में सेव है।	కనెక్షన్ లేదు. మీ పని ఈ ఫోన్‌లో సేవ్ అయింది.	Network error	needs-native-review
+sync.action.recapture	Retake photo	फ़ोटो फिर से लें	ఫోటో మళ్లీ తీయండి	Button	needs-native-review
+sync.action.review	View details	विवरण देखें	వివరాలు చూడండి	Button	needs-native-review
+sync.action.syncNow	Send now	अभी भेजें	ఇప్పుడు పంపండి	Button	needs-native-review
+sync.discard.title	Discard this proof?	यह सबूत हटाएँ?	ఈ రుజువును తొలగించాలా?	Confirmation dialog title	needs-native-review
+sync.discard.confirm	Discard permanently	हमेशा के लिए हटाएँ	శాశ్వతంగా తొలగించండి	Destructive button	needs-native-review
+sync.section.needsAction	Needs your action	आपको कुछ करना है	మీరు చర్య తీసుకోవాలి	Sync section	needs-native-review
+sync.section.inProgress	Sending now	अभी भेजे जा रहे हैं	ఇప్పుడు పంపుతున్నవి	Sync section	needs-native-review
+sync.section.waiting	Waiting	इंतज़ार में	వేచి ఉన్నవి	Sync section	needs-native-review
+sync.section.sent	Sent recently	हाल ही में भेजे गए	ఇటీవల పంపినవి	Sync section	needs-native-review
+sync.progress	{{done}} of {{total}} sent	{{total}} में से {{done}} भेजे गए	{{total}}లో {{done}} పంపబడ్డాయి	Progress line	needs-native-review
+sync.otherAccount	{{count}} items belong to another account and stay locked on this phone.	{{count}} आइटम दूसरे अकाउंट के हैं और इस फ़ोन पर लॉक रहेंगे।	{{count}} అంశాలు మరో అకౌంట్‌కు చెందినవి, ఇవి ఈ ఫోన్‌లో లాక్ చేయబడి ఉంటాయి.	Never shows the other account's content	needs-native-review
+sync.orphans	{{count}} photos were found without a task. They are kept until a supervisor decides.	{{count}} फ़ोटो किसी काम से जुड़ी नहीं मिलीं। सुपरवाइज़र के फ़ैसले तक इन्हें रखा गया है।	{{count}} ఫోటోలు ఏ పనికీ జతకాకుండా కనిపించాయి. సూపర్‌వైజర్ నిర్ణయించే వరకు వాటిని ఉంచుతాం.	Orphan files	needs-native-review
+signOut.pending	You have {{count}} items not sent yet.	आपके {{count}} आइटम अभी भेजे नहीं गए हैं।	మీ {{count}} అంశాలు ఇంకా పంపలేదు.	Sign-out dialog	needs-native-review
+signOut.finish	Send them first	पहले इन्हें भेजें	ముందు వాటిని పంపండి	Sign-out option	needs-native-review
+signOut.keep	Keep them locked until I sign in again	दोबारा साइन इन करने तक लॉक रखें	నేను మళ్లీ సైన్ ఇన్ చేసే వరకు లాక్ చేసి ఉంచండి	Sign-out option	needs-native-review
+signOut.discard	Discard them	इन्हें हटा दें	వాటిని తొలగించండి	Sign-out option (destructive)	needs-native-review
+reminder.title	Care task due	देखभाल का काम बाकी है	సంరక్షణ పని చేయాల్సి ఉంది	Local notification title (generic)	needs-native-review
+reminder.body	A care task is due at {{time}}. Open the app to see it.	{{time}} पर एक देखभाल का काम है। देखने के लिए ऐप खोलें।	{{time}}కి ఒక సంరక్షణ పని ఉంది. చూడటానికి యాప్ తెరవండి.	Local notification body (no horse or person names)	needs-native-review

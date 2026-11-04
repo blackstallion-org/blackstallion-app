@@ -1,0 +1,254 @@
+{
+  "common": {
+    "experience": {
+      "family": "Family",
+      "field": "Field Ops"
+    },
+    "signIn": {
+      "mobileLabel": "Mobile number",
+      "sendCode": "Send code",
+      "useEmail": "Use email instead"
+    },
+    "otp": {
+      "title": "Enter the 6-digit code",
+      "verify": "Verify",
+      "resendIn": "Resend code in {{time}}"
+    },
+    "action": {
+      "back": "Back",
+      "retry": "Try again",
+      "done": "Done",
+      "cancel": "Cancel",
+      "discard": "Discard"
+    },
+    "state": {
+      "offline": "<b>Offline.</b> Showing data saved at {{time}}. New work stays on this phone.",
+      "loading": "Loading…",
+      "denied": "This isn't available to your account.",
+      "error": "Something went wrong. Your work is safe."
+    },
+    "status": {
+      "published": "Published",
+      "queued": "Queued",
+      "uploading": "Uploading",
+      "needsReview": "Needs review",
+      "failed": "Failed",
+      "notAssessed": "Not assessed",
+      "done": "Done",
+      "received": "Received",
+      "accepted": "Accepted",
+      "due": "Due",
+      "waiting": "Waiting for connection"
+    }
+  },
+  "field": {
+    "tabs": {
+      "today": "Today",
+      "cadets": "Cadets",
+      "horses": "Horses",
+      "sync": "Sync",
+      "profile": "Profile",
+      "syncBadge": "{{count}} waiting"
+    },
+    "today": {
+      "title": "Today",
+      "sessions": "Sessions",
+      "care": "Care · {{horse}}",
+      "scanQr": "Scan cadet QR",
+      "cadetsCount": "{{count}} cadets"
+    },
+    "task": {
+      "morningFeed": "Morning feed",
+      "hoofGrooming": "Hoof & grooming",
+      "middayWater": "Midday water",
+      "tack": "Tack check",
+      "nightFeed": "Night feed & medication"
+    },
+    "roster": {
+      "title": "Session",
+      "hint": "Tap a cadet to assess",
+      "checkedIn": "checked in",
+      "notCheckedIn": "not checked in",
+      "noConsent": "no video consent",
+      "scanAttendance": "Scan attendance"
+    },
+    "assess": {
+      "title": "Assess",
+      "onHorse": "on {{horse}}",
+      "riding": "Riding",
+      "ground": "Ground",
+      "stable": "Stable",
+      "skills": "Skills",
+      "clipTitle": "10-second clip",
+      "record": "Record 10 s",
+      "recording": "Recording · {{time}} / 0:10",
+      "stop": "Stop",
+      "retake": "Retake",
+      "clipSaved": "Clip {{time}} · saved on this phone",
+      "noConsentBanner": "Recording is off for {{name}} — no training-video consent on file. Scores can still be published.",
+      "saveDraft": "Save draft",
+      "publish": "Publish",
+      "queuedBanner": "<b>Queued.</b> Saved on this phone. It publishes when you're back online — not yet visible to the family.",
+      "uploadingBanner": "Uploading clip and publishing…",
+      "publishedNote": "Riding {{r}} · Ground {{g}} · Stable {{s}}. Changes now need a correction with a reason; the original is kept.",
+      "makeCorrection": "Make a correction",
+      "pickAllScores": "Pick all three scores before publishing.",
+      "finishRecording": "Finish recording before publishing.",
+      "draftSaved": "Draft saved on this phone. Nothing is visible to the family yet.",
+      "queuedToast": "Queued on this phone. It publishes when you are back online.",
+      "publishedTitle": "Published",
+      "sealText": "{{name}} · {{session}}. The family can see it now; the server confirmed it."
+    },
+    "scan": {
+      "title": "Scan attendance",
+      "point": "Point at the cadet's QR card",
+      "ok": "{{name}} checked in · {{time}}",
+      "okOffline": "{{name}} saved — will confirm when online",
+      "duplicate": "Already checked in at {{time}} — nothing changed.",
+      "unknown": "Code not recognised for this session.",
+      "cameraDenied": "Camera access is off. Turn it on in Settings to scan.",
+      "openSettings": "Open Settings"
+    },
+    "care": {
+      "title": "Care task",
+      "takePhoto": "Take proof photo",
+      "location": "Location {{accuracy}}",
+      "submit": "Submit proof",
+      "received": "Received {{time}}. Location {{accuracy}} inside the hub.",
+      "review": "Received — location was weak ({{accuracy}}), so a supervisor will review it. Nothing more to do.",
+      "queued": "Saved on this phone. It sends when you are back online.",
+      "locationDenied": "Location is off. You can still submit; a supervisor will review it.",
+      "instructions": {
+        "middayWater": "Fill the trough and check it is clean"
+      },
+      "weakGpsDemo": "Simulate weak GPS"
+    },
+    "sync": {
+      "title": "Sync",
+      "summaryWaiting": "Items waiting: {{count}} · kept safely on this phone",
+      "nothing": "Nothing waiting",
+      "allCaught": "All caught up",
+      "emptyHelp": "Work you save offline appears here until the server confirms it.",
+      "retry": "Retry",
+      "edit": "Edit",
+      "reviewConflict": "Review conflict",
+      "discardWarning": "Discarding deletes this work from the phone. It was never sent.",
+      "assessmentItem": "{{name}} · assessment",
+      "careItem": "{{horse}} · {{task}} proof",
+      "keptOnPhone": "kept on this phone",
+      "serverConfirmed": "server confirmed"
+    },
+    "cadets": {
+      "consentOn": "Training video consent: on file",
+      "consentOff": "Training video consent: not given"
+    },
+    "horses": {
+      "allOnTime": "All tasks on time"
+    }
+  },
+  "settings": {
+    "title": "Profile & settings",
+    "appearance": "Appearance",
+    "appearanceHelp": "Light is the default. System follows your phone.",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "language": "Language",
+    "languageHelp": "Field Ops screens follow this language. Family screens are English during the pilot.",
+    "switchToField": "Switch to Field Ops · {{hub}}",
+    "switchToFamily": "Switch to Family · {{child}}",
+    "privacy": "Privacy & consents",
+    "simulateOffline": "Simulate offline",
+    "signOut": "Sign out",
+    "signOutPending": "{{count}} item(s) not sent yet. Send them before signing out?",
+    "roles": "Instructor at {{hub}} · Parent of {{child}}"
+  },
+  "care": {
+    "taskType": {
+      "feed": "Feed",
+      "water": "Water",
+      "grooming_hoof": "Grooming & hoof check",
+      "tack_check": "Tack check",
+      "medication": "Medication"
+    },
+    "timeline": {
+      "title": "Care tasks",
+      "empty": "No care tasks are assigned to you for this day.",
+      "dueAt": "Due {{time}}",
+      "stale": "Last updated {{time}}. Showing saved tasks."
+    },
+    "status": {
+      "upcoming": "Upcoming",
+      "due": "Due now",
+      "pastDue": "Past due time",
+      "overdue": "Overdue",
+      "submitted": "Proof sent",
+      "completed": "Completed"
+    },
+    "evidence": {
+      "captured": "Saved on this phone",
+      "sending": "Sending…",
+      "received": "Received by server",
+      "reviewRequired": "A supervisor will review it",
+      "accepted": "Accepted by supervisor",
+      "rejected": "Rejected. See the supervisor's note.",
+      "needsAction": "Needs your action"
+    },
+    "medication": {
+      "notice": "Follow these instructions exactly. Ask your supervisor if anything is unclear."
+    },
+    "capture": {
+      "alreadyCompleted": "This task is already completed. A new photo will go to your supervisor for review.",
+      "weakLocation": "Location is weak ({{accuracy}}). You can submit; a supervisor will review it.",
+      "storageFull": "Phone storage is full. Free some space, then take the photo again. Your earlier saved work is safe.",
+      "failed": "The photo could not be saved. Please take it again.",
+      "notAllowed": "Saving proof photos on this phone is switched off until device storage protection is approved."
+    },
+    "checkIn": {
+      "unavailable": "Staff check-in is not available yet."
+    }
+  },
+  "sync": {
+    "state": {
+      "ready": "Waiting to send",
+      "sending": "Sending",
+      "retryAt": "Will try again at {{time}}",
+      "needsAttention": "Could not send after several tries.",
+      "needsEdit": "The server could not accept this. Check the details.",
+      "needsReview": "This needs a supervisor to look at it.",
+      "blocked": "Your account can no longer send this. It is kept on this phone.",
+      "needsRecapture": "The photo is missing from this phone. Take it again.",
+      "signIn": "Sign in again to send your saved work.",
+      "acknowledged": "Sent · {{time}}",
+      "offline": "No connection. Your work is saved on this phone."
+    },
+    "action": {
+      "recapture": "Retake photo",
+      "review": "View details",
+      "syncNow": "Send now"
+    },
+    "discard": {
+      "title": "Discard this proof?",
+      "confirm": "Discard permanently"
+    },
+    "section": {
+      "needsAction": "Needs your action",
+      "inProgress": "Sending now",
+      "waiting": "Waiting",
+      "sent": "Sent recently"
+    },
+    "progress": "{{done}} of {{total}} sent",
+    "otherAccount": "{{count}} items belong to another account and stay locked on this phone.",
+    "orphans": "{{count}} photos were found without a task. They are kept until a supervisor decides."
+  },
+  "signOut": {
+    "pending": "You have {{count}} items not sent yet.",
+    "finish": "Send them first",
+    "keep": "Keep them locked until I sign in again",
+    "discard": "Discard them"
+  },
+  "reminder": {
+    "title": "Care task due",
+    "body": "A care task is due at {{time}}. Open the app to see it."
+  }
+}
