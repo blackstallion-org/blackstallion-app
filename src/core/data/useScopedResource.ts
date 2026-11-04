@@ -9,6 +9,8 @@ export class ScopedLoadError extends Error {
   constructor(
     message: string,
     readonly reference?: string,
+    /** True when `message` is written for the person using the app (repositories); otherwise a generic text is shown. */
+    readonly showMessage = false,
   ) {
     super(message);
     this.name = 'ScopedLoadError';
@@ -42,11 +44,12 @@ export function useScopedResource<T>(
       .catch((err: unknown) => {
         if (!current) return;
         const reference = err instanceof ScopedLoadError ? err.reference : undefined;
+        const own = err instanceof ScopedLoadError && err.showMessage ? err.message : null;
         setEntry({
           key: requestKey,
           state: {
             status: 'error',
-            message: 'This information could not be loaded. Check your connection and try again.',
+            message: own ?? 'This information could not be loaded. Check your connection and try again.',
             reference,
           },
         });

@@ -1,6 +1,7 @@
 import { createContext, useContext, type ReactNode } from 'react';
 
 import type { FamilyHomeRepository } from '@/features/family/types';
+import type { FieldWorkflowRepository } from '@/features/field/domain/workflow';
 import type { FieldTodayRepository } from '@/features/field/types';
 
 import { ScopedLoadError } from './useScopedResource';
@@ -8,6 +9,8 @@ import { ScopedLoadError } from './useScopedResource';
 export type Repositories = {
   familyHome: FamilyHomeRepository;
   fieldToday: FieldTodayRepository;
+  /** Field commands (check-in, publish). Absent when no backend is connected; screens then say so. */
+  fieldWorkflow?: FieldWorkflowRepository;
 };
 
 /** Default for non-development builds in G2: no backend is connected yet. */

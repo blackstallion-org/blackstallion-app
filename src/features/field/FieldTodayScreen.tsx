@@ -1,3 +1,5 @@
+import { useFocusEffect, useRouter } from 'expo-router';
+import { useCallback, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { useRepositories } from '@/core/data/RepositoryProvider';
@@ -20,13 +22,20 @@ import {
 } from '@/ui/components';
 import { space } from '@/ui/tokens';
 
+import { rememberAssessTarget } from './assessHandoff';
 import type { FieldTodayData } from './types';
 
 export function useFieldToday() {
   const { state, contextKey } = useAuthorizedAccess();
   const { fieldToday } = useRepositories();
   return useScopedResource(`${contextKey}:today`, () =>
-    fieldToday.getToday({ subjectId: state.session.subjectId, experience: 'field' }),
+    fieldToday.getToday({
+      subjectId: state.session.subjectId,
+      experience: 'field',
+      hubId: state.session.scope?.hubId,
+      role: state.session.scope?.role,
+      displayName: state.session.displayName,
+    }),
   );
 }
 
@@ -34,16 +43,46 @@ export function useFieldToday() {
 export function FieldTodayScreen() {
   const { state } = useAuthorizedAccess();
   const today = useFieldToday();
+  const router = useRouter();
+  const firstFocus = useRef(true);
+  const { retry } = today;
+  useFocusEffect(
+    useCallback(() => {
+      if (firstFocus.current) {
+        firstFocus.current = false;
+        return;
+      }
+      retry();
+    }, [retry]),
+  );
+  const { fieldWorkflow } = useRepositories();
+  // UX only: the server refuses check-in/publish for anyone but an INSTRUCTOR with a hub (MIG:340,387).
+  const canRecord = state.session.scope?.capabilities?.recordAssessment === true;
+  const canViewCadets = state.session.scope?.capabilities?.viewHubCadets === true;
+  const scanHint = !fieldWorkflow
+    ? 'Scanning needs a build connected to the academy.'
+    : !canRecord
+      ? 'Only instructors record sessions.'
+      : null;
   return (
     <Screen
       edges={['top', 'left', 'right']}
       testID="field-today"
       footer={
         <View style={{ gap: space.xs }}>
-          <Button size="field" icon="qr-code-outline" label="Scan QR" disabled accessibilityHint="Scanning is built in a later gate" />
-          <AppText variant="caption" tone="muted" align="center">
-            Scanning arrives with the session workflow (G4).
-          </AppText>
+          <Button
+            size="field"
+            icon="qr-code-outline"
+            label="Check in a cadet"
+            disabled={scanHint !== null}
+            onPress={() => router.push('/field/session/scan')}
+            testID="open-scan"
+          />
+          {scanHint ? (
+            <AppText variant="caption" tone="muted" align="center">
+              {scanHint}
+            </AppText>
+          ) : null}
         </View>
       }
     >
@@ -61,7 +100,7 @@ export function FieldTodayScreen() {
       {today.status === 'error' ? (
         <ErrorState message={today.message} onRetry={today.retry} details={today.reference ? `Reference: ${today.reference}` : undefined} />
       ) : null}
-      {today.status === 'ready' ? <TodayBody data={today.data} /> : null}
+      {today.status === 'ready' ? <TodayBody data={today.data} canRecord={canRecord} canViewCadets={canViewCadets} /> : null}
     </Screen>
   );
 }
@@ -69,7 +108,8 @@ export function FieldTodayScreen() {
 const careTone = { done: 'success', due: 'warning', overdue: 'danger' } as const;
 const careLabel = { done: 'Done', due: 'Due', overdue: 'Overdue' } as const;
 
-function TodayBody({ data }: { data: FieldTodayData }) {
+function TodayBody({ data, canRecord, canViewCadets }: { data: FieldTodayData; canRecord: boolean; canViewCadets: boolean }) {
+  const router = useRouter();
   return (
     <>
       {data.source === 'synthetic-preview' ? <PreviewBanner /> : null}
@@ -101,9 +141,43 @@ function TodayBody({ data }: { data: FieldTodayData }) {
           </Card>
         </Section>
       ) : null}
+      {data.checkIns && canViewCadets ? (
+        <Section title="Checked in today">
+          <Card>
+            {data.checkIns.length === 0 ? (
+              <EmptyState icon="people-outline" title="No check-ins yet" message="Check a cadet in to start a session." />
+            ) : (
+              data.checkIns.map((c, i) => (
+                <View key={c.checkInId} style={[styles.careRow, i > 0 && styles.careGap]} testID={`checkin-${c.checkInId}`}>
+                  <View style={{ flex: 1 }}>
+                    <AppText variant="bodyStrong">{c.cadetName}</AppText>
+                    <AppText tone="muted">Checked in {c.time}</AppText>
+                  </View>
+                  {c.published === true ? (
+                    <Badge label="Published" tone="success" />
+                  ) : c.published === null || !canRecord ? null : (
+                    <Button
+                      variant="secondary"
+                      fullWidth={false}
+                      label="Assess"
+                      accessibilityLabel={`Assess ${c.cadetName}`}
+                      onPress={() => {
+                        rememberAssessTarget({ checkInOperationId: c.checkInOperationId, cadetId: c.cadetId, cadetName: c.cadetName });
+                        router.push({ pathname: '/field/session/assess', params: { op: c.checkInOperationId } });
+                      }}
+                    />
+                  )}
+                </View>
+              ))
+            )}
+          </Card>
+        </Section>
+      ) : null}
       <Section title="Care">
         <Card>
-          {data.care.length === 0 ? (
+          {data.careAvailable === false ? (
+            <StatusMessage tone="info" message="Care tasks aren’t connected in this build yet." />
+          ) : data.care.length === 0 ? (
             <EmptyState icon="checkmark-done-outline" title="No care tasks" message="Nothing is assigned to you today." />
           ) : (
             data.care.map((c, i) => (

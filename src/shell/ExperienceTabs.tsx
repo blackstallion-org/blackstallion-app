@@ -7,7 +7,7 @@ import { size } from '@/ui/tokens';
 export type TabSpec = { name: string; title: string; icon: IconName };
 
 /** Shared bottom-tab chrome for both experiences (max five tabs, 07). */
-export function ExperienceTabs({ tabs }: { tabs: readonly TabSpec[] }) {
+export function ExperienceTabs({ tabs, hidden = [] }: { tabs: readonly TabSpec[]; hidden?: readonly string[] }) {
   const { colors } = useTheme();
   return (
     <Tabs
@@ -32,6 +32,9 @@ export function ExperienceTabs({ tabs }: { tabs: readonly TabSpec[] }) {
             tabBarIcon: ({ color }) => <Icon name={t.icon} color={typeof color === 'string' ? color : colors.ink} size={size.tabIcon} />,
           }}
         />
+      ))}
+      {hidden.map((name) => (
+        <Tabs.Screen key={name} name={name} options={{ href: null, tabBarStyle: { display: 'none' } }} />
       ))}
     </Tabs>
   );

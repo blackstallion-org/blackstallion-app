@@ -18,7 +18,13 @@ export type FamilyHomeData = {
   recentAttendance: boolean[];
 };
 
-export type FamilyScope = { subjectId: string; experience: 'family' };
+export type FamilyScope = {
+  subjectId: string;
+  experience: 'family';
+  /** Children linked to this guardian, from the server access snapshot. */
+  children?: readonly { cadetId: string; firstName: string; hubId: string | null }[];
+  displayName?: string;
+};
 
 export interface FamilyHomeRepository {
   getHome(scope: FamilyScope, childId?: string): Promise<FamilyHomeData>;

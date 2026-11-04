@@ -27,7 +27,12 @@ export function FamilyHomeScreen() {
   const { state, contextKey } = useAuthorizedAccess();
   const { familyHome } = useRepositories();
   const [childId, setChildId] = useState<string | undefined>(undefined);
-  const scope = { subjectId: state.session.subjectId, experience: 'family' as const };
+  const scope = {
+    subjectId: state.session.subjectId,
+    experience: 'family' as const,
+    children: state.session.scope?.children,
+    displayName: state.session.displayName,
+  };
   const home = useScopedResource(`${contextKey}:home:${childId ?? 'default'}`, () => familyHome.getHome(scope, childId));
 
   return (

@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+
+import { forgetAssessTargets } from '@/features/field/assessHandoff';
 import { useAccess } from '@/features/identity/AccessProvider';
 import { ExperienceTabs, type TabSpec } from '@/shell/ExperienceTabs';
 
@@ -12,6 +15,7 @@ const FIELD_TABS: readonly TabSpec[] = [
 
 export default function FieldLayout() {
   const { state } = useAccess();
+  useEffect(() => () => forgetAssessTargets(), []);
   if (state.phase !== 'authorized' || state.experience !== 'field') return null;
-  return <ExperienceTabs tabs={FIELD_TABS} />;
+  return <ExperienceTabs tabs={FIELD_TABS} hidden={['session']} />;
 }
