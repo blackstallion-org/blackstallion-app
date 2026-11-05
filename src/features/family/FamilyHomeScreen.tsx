@@ -7,7 +7,7 @@ import { useScopedResource } from '@/core/data/useScopedResource';
 import { useAuthorizedAccess } from '@/features/identity/AccessProvider';
 import { ExperienceSwitchButton } from '@/features/identity/ExperienceSwitch';
 import { AppText, Icon } from '@/ui/components';
-import { editorialArt } from '@/ui/editorialArt';
+import { imageLibrary } from '@/ui/imageLibrary';
 import {
   Chip,
   EmptyState,
@@ -22,6 +22,7 @@ import {
   ScoreTile,
   Skeleton,
   StatusBadge,
+  LiquidDisplayText,
   SyntheticDataBanner,
 } from '@/ui/glass';
 import { useTheme } from '@/ui/theme/ThemeProvider';
@@ -82,11 +83,13 @@ export function FamilyHomeScreen() {
     <GlassScreen edges={['top', 'left', 'right']} testID="family-home">
       <View style={styles.header}>
         <View style={styles.headerText}>
-          <AppText variant="secondary" tone="accent" style={styles.eyebrow}>
-            Family
+          <AppText variant="overline" tone="muted">
+            FAMILY
           </AppText>
-          <AppText variant="title" header>
-            {HOME_COPY.greeting(state.session.displayName)}
+          {/* Script greeting (decorative lettering, one accessible header) + the name in the serif. */}
+          <LiquidDisplayText text="Hello," role="display" accessibilityLabel={HOME_COPY.greeting(state.session.displayName)} />
+          <AppText variant="title" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={styles.greetName}>
+            {state.session.displayName}
           </AppText>
         </View>
       </View>
@@ -114,7 +117,7 @@ function HomeSkeleton() {
   );
 }
 
-const heroHeight = (width: number) => Math.round(Math.min(460, Math.max(300, (Math.min(width, 560) - space.screenInset * 2) * 1.08)));
+const heroHeight = (width: number) => Math.round(Math.min(340, Math.max(190, (Math.min(width, 560) - space.screenInset * 2) * 0.66)));
 
 function FamilyHomeBody({ data, onSelectChild }: { data: FamilyHomeData; onSelectChild: (id: string) => void }) {
   const { width } = useWindowDimensions();
@@ -129,7 +132,7 @@ function FamilyHomeBody({ data, onSelectChild }: { data: FamilyHomeData; onSelec
   return (
     <>
       {data.source === 'synthetic-preview' ? <SyntheticDataBanner /> : null}
-      <GlassCard variant="photo" image={editorialArt.familyHero} height={heroHeight(width)} testID="family-hero" contentStyle={styles.heroContent}>
+      <GlassCard variant="photo" image={imageLibrary.familyCourtyard.source} height={heroHeight(width)} testID="family-hero" contentStyle={styles.heroContent}>
         <View style={styles.heroTop}>
           <Pill label={data.hubName} icon="location-outline" material="thick" />
         </View>
@@ -202,7 +205,7 @@ function FamilyHomeBody({ data, onSelectChild }: { data: FamilyHomeData; onSelec
           </GlassCard>
 
           {spark ? (
-            <GlassCard variant="photo" image={editorialArt.sparkCover} scrim="card" height={220} radius={radius.hero - 4} testID="spark-entry" imageStyle={styles.sparkImage}>
+            <GlassCard variant="photo" image={imageLibrary.sparkHoof.source} cutout block="copper" height={170} testID="spark-entry">
               <View style={styles.sparkTop}>
                 <Pill label={HOME_COPY.sparkEyebrow} icon="sparkles-outline" material="thick" />
               </View>
@@ -304,7 +307,8 @@ const styles = StyleSheet.create({
   headerText: { flex: 1, gap: 2 },
   eyebrow: { fontWeight: '600' },
   heroSkeleton: { borderRadius: radius.hero, overflow: 'hidden' },
-  heroContent: { justifyContent: 'space-between' },
+  heroContent: { gap: space.md },
+  greetName: { marginTop: -space.sm },
   heroTop: { flexDirection: 'row' },
   heroBottom: { gap: space.sm },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm, marginTop: space.xs },
@@ -313,7 +317,6 @@ const styles = StyleSheet.create({
   chipsWrap: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
   sparkTop: { flexDirection: 'row', flex: 1 },
   sparkRow: { flexDirection: 'row', alignItems: 'flex-end', gap: space.md },
-  sparkImage: { top: -60, height: 520 },
   dotsRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, flexWrap: 'wrap' },
   dots: { flexDirection: 'row', gap: space.sm },
   dot: { width: 24, height: 24, borderRadius: 12, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },

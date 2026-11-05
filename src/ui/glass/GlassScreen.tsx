@@ -1,33 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useState, type ReactNode } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets, type Edge } from 'react-native-safe-area-context';
 
 import { AppText } from '@/ui/components/AppText';
+import { toneForScreen } from '@/ui/screenTones';
 import { ThemeScope, useTheme } from '@/ui/theme/ThemeProvider';
-import { rgba, size as sizes, space } from '@/ui/tokens';
+import { size as sizes, space, type Tone } from '@/ui/tokens';
 
 import { floatingTabBottom, useFloatingTabInset, useInFloatingTabs } from './floatingTabInset';
 import { GlassBackdropHost } from './GlassBackdrop';
 import { GlassIconButton } from './GlassIconButton';
-import { GlassSurface } from './GlassSurface';
 
-/** Espresso (or warm paper) canvas with restrained amber light from the top: no full-orange gradients. */
+/** The screen's flat tone colour, edge to edge (no glow, no gradient). Name kept for existing callers. */
 export function AmbientBackdrop() {
-  const { colors, scheme } = useTheme();
-  const a = scheme === 'dark' ? 0.55 : 0.75;
-  return (
-    <View style={[StyleSheet.absoluteFill, { backgroundColor: colors.canvas }]}>
-      <LinearGradient
-        colors={[rgba(colors.canvasGlow, a), rgba(colors.canvasGlow, a * 0.25), rgba(colors.canvasGlow, 0)]}
-        locations={[0, 0.28, 0.6]}
-        start={{ x: 0.1, y: 0 }}
-        end={{ x: 0.55, y: 0.65 }}
-        style={StyleSheet.absoluteFill}
-      />
-    </View>
-  );
+  const { colors } = useTheme();
+  return <View style={[StyleSheet.absoluteFill, { backgroundColor: colors.canvas }]} />;
 }
 
 export type GlassHeaderProps = {
@@ -52,8 +40,10 @@ export type GlassScreenProps = {
   /** 'ambient' (default): canvas + amber light; 'none'; or a node such as <PhotoBackdrop/>. */
   backdrop?: 'ambient' | 'none' | ReactNode;
   header?: GlassHeaderProps;
-  /** Force a scheme for the whole screen (photo-led screens are composed in dark). */
+  /** Force a scheme for the whole screen. Prefer `tone`. */
   scheme?: 'dark' | 'light';
+  /** The screen's ONE dominant flat background (see ui/screenTones.ts for the assignments). Default: white. */
+  tone?: Tone;
   contentStyle?: StyleProp<ViewStyle>;
   /** Content spans the full width (no screen inset). */
   fullBleed?: boolean;
@@ -65,9 +55,10 @@ export type GlassScreenProps = {
  * a GlassIconButton back/close, and an optional floating action footer.
  */
 export function GlassScreen(props: GlassScreenProps) {
-  if (props.scheme) {
+  const tone = props.tone ?? toneForScreen(props.testID);
+  if (props.scheme || tone) {
     return (
-      <ThemeScope scheme={props.scheme}>
+      <ThemeScope scheme={tone ? undefined : props.scheme} tone={tone}>
         <ScreenBody {...props} />
       </ThemeScope>
     );
@@ -126,9 +117,7 @@ function ScreenBody({ children, testID, edges = ['top', 'left', 'right', 'bottom
         ) : null}
         {footer ? (
           <View pointerEvents="box-none" style={[styles.footer, { bottom: footerBottom, left: space.lg + insets.left, right: space.lg + insets.right }]} onLayout={(e) => setFooterH(e.nativeEvent.layout.height)}>
-            <GlassSurface material="thick" borderRadius={sizes.primaryAction / 2 + space.sm} contentStyle={styles.footerContent}>
-              {footer}
-            </GlassSurface>
+            <View style={[styles.footerContent, { backgroundColor: colors.canvas }]}>{footer}</View>
           </View>
         ) : null}
       </GlassBackdropHost>
@@ -143,7 +132,7 @@ export function GlassHeader({ title, onBack, backLabel = 'Back', closeStyle = fa
       {onBack ? <GlassIconButton icon={closeStyle ? 'close' : 'chevron-back'} accessibilityLabel={closeStyle ? 'Close' : backLabel} onPress={onBack} material="thick" testID="header-back" /> : null}
       <View style={styles.headerTitle}>
         {title ? (
-          <AppText variant="bodyStrong" header numberOfLines={1}>
+          <AppText variant="headline" header numberOfLines={1}>
             {title}
           </AppText>
         ) : null}
@@ -162,5 +151,5 @@ const styles = StyleSheet.create({
   headerTitle: { flex: 1 },
   headerTrailing: { flexDirection: 'row', gap: space.sm },
   footer: { position: 'absolute' },
-  footerContent: { padding: space.sm, gap: space.xs },
+  footerContent: { paddingTop: space.sm, gap: space.xs },
 });

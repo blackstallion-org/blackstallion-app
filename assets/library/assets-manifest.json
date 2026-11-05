@@ -1,0 +1,440 @@
+{
+ "generated_by": "Claude (cloud session) for the BSAH visual redesign, 6 Nov 2026",
+ "rules": [
+  "Photorealistic, fictional subjects; generated people are illustrative, never presented as academy records",
+  "No text, logos, crests or insignia baked into images",
+  "Reference images supplied by the owner were used as art direction only, not as inputs (copyright)",
+  "Integration is recorded per asset in integrated_in; derivatives built by mobile/scripts/build-image-library.py; original sources are untracked (mobile/assets/library/source/, recoverable from job_id)"
+ ],
+ "assets": [
+  {
+   "id": "auth-horse",
+   "category": "01 Academy and brand",
+   "screens": [
+    "SH-01 Sign-in",
+    "SH-02 Verify",
+    "SH-03 Account status"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "transparent cut-out",
+   "aspect_ratio": "4:5",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k, background transparent)",
+   "prompt": "Bay Marwari stallion head and neck portrait facing right, plain brown leather snaffle bridle, calm alert expression, mane falling to the left. The horse is a Marwari: distinctive inward-curving ear tips that nearly touch, refined head, arched neck. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame. Isolated subject on a fully transparent background, clean precise cut-out edges, no ground shadow, no backdrop.",
+   "source_path": "mobile/assets/library/source/auth-horse.png",
+   "app_path": "mobile/assets/library/auth-horse.png",
+   "alt": "Bay Marwari horse, head and neck, facing right",
+   "status": "approved by agent review (anatomy, tack and composition reviewed)",
+   "job_id": "9c0cc443-7935-4323-843c-0837ed22768e",
+   "app_width": 960,
+   "app_height": 1200,
+   "app_bytes": 472619,
+   "integrated_in": [
+    "SH-01 Sign-in",
+    "SH-02 Verify code (all states)"
+   ],
+   "owner_approval": "pending"
+  },
+  {
+   "id": "horse-jump",
+   "category": "05 Training and performance",
+   "screens": [
+    "FA-02 Progress (empty)",
+    "FA-05 Passport"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "transparent cut-out",
+   "aspect_ratio": "5:4",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k, background transparent)",
+   "prompt": "Bay horse mid-jump with no rider, full body in profile facing right, forelegs neatly folded, tail flowing, simple brown bridle. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame. Isolated subject on a fully transparent background, clean precise cut-out edges, no ground shadow, no backdrop.",
+   "source_path": "mobile/assets/library/source/horse-jump.png",
+   "app_path": "mobile/assets/library/horse-jump.png",
+   "alt": "Bay horse in mid-jump, no rider",
+   "status": "approved by agent review (anatomy, tack and composition reviewed)",
+   "job_id": "a46aa607-84bc-43c9-be9b-c18cd2e6a13f",
+   "app_width": 1200,
+   "app_height": 923,
+   "app_bytes": 278426,
+   "integrated_in": [],
+   "integration_note": "approved library image, not placed on a screen (sparing use: Field Ops, billing and settings stay typographic); shown in the development component gallery",
+   "owner_approval": "pending"
+  },
+  {
+   "id": "spark-hoof",
+   "category": "07 Daily Spark and editorial",
+   "screens": [
+    "FA-06 Daily Spark"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "transparent cut-out",
+   "aspect_ratio": "3:4",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k, background transparent)",
+   "prompt": "Lower foreleg of a black horse held up and bent at the fetlock, the way a farrier lifts a foot, seen from behind so the sole of the hoof faces the camera: natural dark keratin hoof wall, the V-shaped frog in the centre, and a plain flat steel horseshoe nailed to the underside of the hoof wall with visible nail heads. The shoe sits only on the underside; the hoof wall is not metal. Glossy short coat with fine hair texture, no tack, no straps, no bandage. Photorealistic premium equestrian editorial still life for a luxury heritage publication, soft directional daylight, restrained natural colour, crisp focus, subtle film grain. No text, no letters, no logos, no engraving, no watermark, no frame. Isolated subject on a fully transparent background, clean precise cut-out edges, no ground shadow, no backdrop.",
+   "source_path": "mobile/assets/library/source/spark-hoof.png",
+   "app_path": "mobile/assets/library/spark-hoof.png",
+   "alt": "Black horse foreleg with a polished steel horseshoe",
+   "status": "approved by agent review (anatomy, tack and composition reviewed); second generation (first rejected)",
+   "job_id": "3203e1e9-d370-49e9-b40e-112e5d974266",
+   "rejected_job_id": "e3bec821-e3e8-4da4-a63b-693e2c7c1918",
+   "app_width": 865,
+   "app_height": 1200,
+   "app_bytes": 398756,
+   "integrated_in": [
+    "FA-06 Daily Spark",
+    "FA-01 Family Home (Spark entry block)"
+   ],
+   "owner_approval": "pending"
+  },
+  {
+   "id": "horse-badal",
+   "category": "04 Horse profiles and care",
+   "screens": [
+    "FA-07 Horse",
+    "FO-09 Horse care detail"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "transparent cut-out",
+   "aspect_ratio": "4:3",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k, background transparent)",
+   "prompt": "Bay Marwari horse standing square in full side profile facing right, plain brown halter, glossy coat, black mane and tail, black lower legs. The horse is a Marwari: distinctive inward-curving ear tips that nearly touch, refined head, arched neck. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame. Isolated subject on a fully transparent background, clean precise cut-out edges, no ground shadow, no backdrop.",
+   "source_path": "mobile/assets/library/source/horse-badal.png",
+   "app_path": "mobile/assets/library/horse-badal.png",
+   "alt": "Bay Marwari horse standing in side profile",
+   "status": "approved by agent review (anatomy, tack and composition reviewed)",
+   "job_id": "31637f2e-aa92-4b7a-8ec4-c7ff1566273c",
+   "app_width": 1200,
+   "app_height": 1099,
+   "app_bytes": 351788,
+   "integrated_in": [
+    "FA-07 Horse"
+   ],
+   "owner_approval": "pending"
+  },
+  {
+   "id": "horse-chetak",
+   "category": "04 Horse profiles and care",
+   "screens": [
+    "FA-07 Horse (second child)",
+    "FO-08 Horses (empty)"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "transparent cut-out",
+   "aspect_ratio": "4:3",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k, background transparent)",
+   "prompt": "Black Marwari horse standing in full side profile facing left, small white star on forehead, plain black leather halter, muscular build. The horse is a Marwari: distinctive inward-curving ear tips that nearly touch, refined head, arched neck. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame. Isolated subject on a fully transparent background, clean precise cut-out edges, no ground shadow, no backdrop.",
+   "source_path": "mobile/assets/library/source/horse-chetak.png",
+   "app_path": "mobile/assets/library/horse-chetak.png",
+   "alt": "Black Marwari horse standing in side profile",
+   "status": "approved by agent review (anatomy, tack and composition reviewed)",
+   "job_id": "1615857e-f16b-42b0-a993-0c834d60ed13",
+   "app_width": 1200,
+   "app_height": 1167,
+   "app_bytes": 397858,
+   "integrated_in": [],
+   "integration_note": "approved library image, not placed on a screen (sparing use: Field Ops, billing and settings stay typographic); shown in the development component gallery",
+   "owner_approval": "pending"
+  },
+  {
+   "id": "saddle",
+   "category": "01 Academy and brand",
+   "screens": [
+    "FA-05 Passport & ranks"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "transparent cut-out",
+   "aspect_ratio": "4:3",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k, background transparent)",
+   "prompt": "Dark brown English leather close-contact saddle with one stirrup leather and a polished steel stirrup iron, three-quarter view, fine stitching, no saddle pad, no maker's marks. Photorealistic premium product still life for a luxury equestrian heritage publication, soft directional studio daylight, natural materials, crisp focus, subtle film grain. Only this single object in the frame; no horse, no animal, no people. No text, no letters, no logos, no engraving, no watermark. Isolated object on a fully transparent background, clean precise cut-out edges, no ground shadow, no backdrop.",
+   "source_path": "mobile/assets/library/source/saddle.png",
+   "app_path": "mobile/assets/library/saddle.png",
+   "alt": "Brown leather saddle with steel stirrup",
+   "status": "approved by agent review (anatomy, tack and composition reviewed)",
+   "job_id": "c14bc18e-276e-4da4-996a-0554333b81fb",
+   "app_width": 1200,
+   "app_height": 956,
+   "app_bytes": 517408,
+   "integrated_in": [
+    "FA-05 Passport (credential block)"
+   ],
+   "owner_approval": "pending"
+  },
+  {
+   "id": "horseshoe",
+   "category": "07 Daily Spark and editorial",
+   "screens": [
+    "Empty states (Family/Field)",
+    "SH-11 Not found"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "transparent cut-out",
+   "aspect_ratio": "1:1",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k, background transparent)",
+   "prompt": "Single worn polished steel horseshoe lying flat, seen from above at a slight angle, eight nail holes. Photorealistic premium product still life for a luxury equestrian heritage publication, soft directional studio daylight, natural materials, crisp focus, subtle film grain. Only this single object in the frame; no horse, no animal, no people. No text, no letters, no logos, no engraving, no watermark. Isolated object on a fully transparent background, clean precise cut-out edges, no ground shadow, no backdrop.",
+   "source_path": "mobile/assets/library/source/horseshoe.png",
+   "app_path": "mobile/assets/library/horseshoe.png",
+   "alt": "Polished steel horseshoe",
+   "status": "approved by agent review (anatomy, tack and composition reviewed)",
+   "job_id": "4ae7b3c6-5536-4ebc-b58e-e8e8634882da",
+   "app_width": 1174,
+   "app_height": 1200,
+   "app_bytes": 496452,
+   "integrated_in": [],
+   "integration_note": "approved library image, not placed on a screen (sparing use: Field Ops, billing and settings stay typographic); shown in the development component gallery",
+   "owner_approval": "pending"
+  },
+  {
+   "id": "dressage-rider",
+   "category": "05 Training and performance",
+   "screens": [
+    "FA-02 Progress",
+    "FA-03 Session detail"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "transparent cut-out",
+   "aspect_ratio": "4:3",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k, background transparent)",
+   "prompt": "Rider in navy jacket, white breeches, black boots and black helmet on a dark bay horse in collected trot, side view facing left, rider's face turned away and shaded by the helmet, double bridle, white saddle pad. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame. Isolated subject on a fully transparent background, clean precise cut-out edges, no ground shadow, no backdrop.",
+   "source_path": "mobile/assets/library/source/dressage-rider.png",
+   "app_path": "mobile/assets/library/dressage-rider.png",
+   "alt": "Rider and dark bay horse in collected trot",
+   "status": "approved by agent review (anatomy, tack and composition reviewed); generated person is illustrative only, face not identifiable",
+   "job_id": "0a883982-c21b-45b1-a2c5-2fd6db93aeba",
+   "app_width": 1200,
+   "app_height": 1004,
+   "app_bytes": 318581,
+   "integrated_in": [],
+   "integration_note": "approved library image, not placed on a screen (sparing use: Field Ops, billing and settings stay typographic); shown in the development component gallery",
+   "owner_approval": "pending"
+  },
+  {
+   "id": "family-courtyard",
+   "category": "01 Academy and brand",
+   "screens": [
+    "FA-01 Family home"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "photograph in its own container",
+   "aspect_ratio": "4:3",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k)",
+   "prompt": "Sandstone heritage stable courtyard in Rajasthan with a row of tall arches, morning daylight, swept earth floor, a single bay Marwari horse walking across the courtyard, no people. The horse is a Marwari: distinctive inward-curving ear tips that nearly touch, refined head, arched neck. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame.",
+   "source_path": "mobile/assets/library/source/family-courtyard.jpeg",
+   "app_path": "mobile/assets/library/family-courtyard.jpg",
+   "alt": "Sandstone stable courtyard with arches and a walking bay horse",
+   "status": "approved by agent review (anatomy, tack and composition reviewed); note: horse carries a saddle not named in the prompt (no rider, acceptable)",
+   "job_id": "1b79d017-7e23-42c8-8308-9c5a49b68dc4",
+   "app_width": 1400,
+   "app_height": 1045,
+   "app_bytes": 297329,
+   "integrated_in": [
+    "FA-01 Family Home (hero)"
+   ],
+   "owner_approval": "pending"
+  },
+  {
+   "id": "community-arena",
+   "category": "06 Community and academy life",
+   "screens": [
+    "FA-09 Community",
+    "FA-10 Event detail"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "photograph in its own container",
+   "aspect_ratio": "16:9",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k)",
+   "prompt": "Sand riding arena at golden hour with a white post-and-rail fence, two riders in helmets warming up in the distance, a small group of families watching from a low wooden stand, figures small and unidentifiable, trees behind. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame.",
+   "source_path": "mobile/assets/library/source/community-arena.jpeg",
+   "app_path": "mobile/assets/library/community-arena.jpg",
+   "alt": "Riding arena at golden hour with families watching",
+   "status": "approved by agent review (anatomy, tack and composition reviewed)",
+   "job_id": "4b8f6a4d-52e4-47e2-8ce0-dbb9f9f10d29",
+   "app_width": 1400,
+   "app_height": 792,
+   "app_bytes": 319903,
+   "integrated_in": [
+    "FA-08 Community (hero)"
+   ],
+   "owner_approval": "pending"
+  },
+  {
+   "id": "grooming",
+   "category": "03 Instructor and field operations",
+   "screens": [
+    "FA-10 Event detail (care workshop)"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "photograph in its own container",
+   "aspect_ratio": "16:9",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k)",
+   "prompt": "Close detail of hands brushing the neck of a bay horse with a natural bristle body brush inside a clean stable, soft window light, faces not visible. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame.",
+   "source_path": "mobile/assets/library/source/grooming.jpeg",
+   "app_path": "mobile/assets/library/grooming.jpg",
+   "alt": "Hands brushing a bay horse's neck in a stable",
+   "status": "approved by agent review (anatomy, tack and composition reviewed); hands only, no face",
+   "job_id": "b7e70b6e-d281-48e3-90b8-cd1e20f66855",
+   "app_width": 1400,
+   "app_height": 792,
+   "app_bytes": 192245,
+   "integrated_in": [
+    "FA-10 Event detail (hero)"
+   ],
+   "owner_approval": "pending"
+  },
+  {
+   "id": "groundwork",
+   "category": "02 Cadet and student experience",
+   "screens": [
+    "FA-03 Session detail (header)"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "photograph in its own container",
+   "aspect_ratio": "3:2",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k)",
+   "prompt": "Wide view of an instructor lunging a bay horse in a sand arena on a long line, instructor seen from behind in a cap, horse trotting in a circle, low morning sun, dust in the air. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame.",
+   "source_path": "mobile/assets/library/source/groundwork.jpeg",
+   "app_path": "mobile/assets/library/groundwork.jpg",
+   "alt": "Instructor lunging a bay horse in a sand arena",
+   "status": "approved by agent review (anatomy, tack and composition reviewed)",
+   "job_id": "b18cda4a-2791-4ba5-ac0b-626e661450bc",
+   "app_width": 1400,
+   "app_height": 930,
+   "app_bytes": 277457,
+   "integrated_in": [
+    "FA-02 Progress (rank card)"
+   ],
+   "owner_approval": "pending"
+  },
+  {
+   "id": "stable-aisle",
+   "category": "04 Horse profiles and care",
+   "screens": [
+    "FO-08 Horses (header)",
+    "FO-09 Horse care detail"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "photograph in its own container",
+   "aspect_ratio": "3:2",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k)",
+   "prompt": "Quiet stone stable aisle in morning light, three horses looking over wooden half-doors, swept floor, hay nets, no people. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame.",
+   "source_path": "mobile/assets/library/source/stable-aisle.jpeg",
+   "app_path": "mobile/assets/library/stable-aisle.jpg",
+   "alt": "Stable aisle with horses looking over half-doors",
+   "status": "approved by agent review (anatomy, tack and composition reviewed)",
+   "job_id": "35fbfe07-b544-4a81-a1b8-f56f3ec91f1c",
+   "app_width": 1400,
+   "app_height": 930,
+   "app_bytes": 300190,
+   "integrated_in": [],
+   "integration_note": "approved library image, not placed on a screen (sparing use: Field Ops, billing and settings stay typographic); shown in the development component gallery",
+   "owner_approval": "pending"
+  },
+  {
+   "id": "reins-hands",
+   "category": "07 Daily Spark and editorial",
+   "screens": [
+    "FA-04 Hall of Valour",
+    "FA-13 Clip comparison (empty)"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "photograph in its own container",
+   "aspect_ratio": "4:5",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k)",
+   "prompt": "Close-up of a rider's gloved hands holding plain brown leather reins above the withers of a bay horse, mane in soft focus, shallow depth of field. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame.",
+   "source_path": "mobile/assets/library/source/reins-hands.jpeg",
+   "app_path": "mobile/assets/library/reins-hands.jpg",
+   "alt": "Gloved hands holding reins above a horse's withers",
+   "status": "rejected: model returned a full rider portrait with a visible face instead of a hands-and-reins detail; not used, not regenerated (cost cap)",
+   "job_id": "1de80371-5f14-480f-9360-a4f25680e092",
+   "integrated_in": [],
+   "integration_note": "not shipped",
+   "owner_approval": "n/a"
+  },
+  {
+   "id": "cadet-lead",
+   "category": "02 Cadet and student experience",
+   "screens": [
+    "FA-02 Progress (no sessions)",
+    "FA-12 Consent centre (no child)"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "photograph in its own container",
+   "aspect_ratio": "4:5",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k)",
+   "prompt": "Young rider seen from behind wearing a black riding helmet and navy jacket, leading a bay pony by the reins toward a sunlit arena gate, face not visible, illustrative. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame.",
+   "source_path": "mobile/assets/library/source/cadet-lead.jpeg",
+   "app_path": "mobile/assets/library/cadet-lead.jpg",
+   "alt": "Young rider seen from behind leading a pony",
+   "status": "approved by agent review (anatomy, tack and composition reviewed); generated person seen from behind, illustrative only",
+   "job_id": "5343ccb6-92b0-42ae-90bc-565a07f7ab42",
+   "app_width": 1120,
+   "app_height": 1400,
+   "app_bytes": 325870,
+   "integrated_in": [],
+   "integration_note": "approved library image, not placed on a screen (sparing use: Field Ops, billing and settings stay typographic); shown in the development component gallery",
+   "owner_approval": "pending"
+  },
+  {
+   "id": "mane-detail",
+   "category": "01 Academy and brand",
+   "screens": [
+    "FA-05 Passport (rank history)"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "photograph in its own container",
+   "aspect_ratio": "1:1",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k)",
+   "prompt": "Tight close-up of a black Marwari horse's eye and the curl of its inward-turned ear with the mane falling across the neck, deep but natural shadows. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame.",
+   "source_path": "mobile/assets/library/source/mane-detail.jpeg",
+   "app_path": "mobile/assets/library/mane-detail.jpg",
+   "alt": "Close-up of a black horse's eye, ear and mane",
+   "status": "approved by agent review (anatomy, tack and composition reviewed)",
+   "job_id": "9a3a98dd-d69f-43d2-8c02-931df60e281a",
+   "app_width": 1400,
+   "app_height": 1400,
+   "app_bytes": 273657,
+   "integrated_in": [],
+   "integration_note": "approved library image, not placed on a screen (sparing use: Field Ops, billing and settings stay typographic); shown in the development component gallery",
+   "owner_approval": "pending"
+  },
+  {
+   "id": "leather-tack",
+   "category": "01 Academy and brand",
+   "screens": [
+    "SH-12 Update required",
+    "SH-09 Help & support"
+   ],
+   "purpose": "editorial art (illustrative; never evidence, never a real horse/cadet record)",
+   "composition": "photograph in its own container",
+   "aspect_ratio": "3:4",
+   "treatment": "natural colour, no grading filters, no fades; placed on flat palette colour or in a hard-edged frame",
+   "model": "Higgsfield gpt_image_2_6 (quality high, 2k)",
+   "prompt": "Brown leather saddle and stirrup on a bay horse standing in a stone archway, side detail of the girth and stirrup iron, soft shade. Photorealistic premium equestrian editorial photograph for a luxury heritage publication. Natural, anatomically correct horse (exactly four legs, correct joints and hooves, natural eyes), physically plausible tack and buckles, soft directional daylight, restrained natural colour, crisp focus, subtle film grain, generous negative space. No text, no letters, no logos, no crests, no insignia, no watermark, no frame.",
+   "source_path": "mobile/assets/library/source/leather-tack.jpeg",
+   "app_path": "mobile/assets/library/leather-tack.jpg",
+   "alt": "Saddle and stirrup on a bay horse in a stone archway",
+   "status": "approved by agent review (anatomy, tack and composition reviewed)",
+   "job_id": "3393ea9f-5429-4bde-beea-d46e57312976",
+   "app_width": 1045,
+   "app_height": 1400,
+   "app_bytes": 238483,
+   "integrated_in": [
+    "SH-12 Update required"
+   ],
+   "owner_approval": "pending"
+  }
+ ]
+}

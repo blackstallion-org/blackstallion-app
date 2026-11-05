@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { createMemoryStore } from '@/core/preferences/keyValueStore';
 import { ThemeProvider, ThemeScope } from '@/ui/theme/ThemeProvider';
-import { darkGlass, size } from '@/ui/tokens';
+import { size } from '@/ui/tokens';
 
 import {
   Chip,
@@ -125,8 +125,8 @@ describe('GlassIconButton', () => {
   });
 });
 
-describe('GlassSurface', () => {
-  test('decorative layers are untouchable and hidden; content stays interactive', async () => {
+describe('GlassSurface (flat since the 6 Nov 2026 redesign)', () => {
+  test('content stays interactive; no decorative layers', async () => {
     const onPress = jest.fn();
     await wrap(
       <GlassSurface testID="surface">
@@ -135,38 +135,25 @@ describe('GlassSurface', () => {
     );
     const root = screen.getByTestId('surface');
     const kids = root.children.filter((c): c is typeof root => typeof c !== 'string');
-    const content = kids[kids.length - 1]!;
-    const decor = kids.slice(0, -1);
-    expect(decor.length).toBeGreaterThan(0);
-    for (const layer of decor) {
-      expect(layer.props.pointerEvents).toBe('none');
-      expect(layer.props.importantForAccessibility).toBe('no-hide-descendants');
-    }
-    expect(content.props.pointerEvents).toBe('box-none');
+    expect(kids).toHaveLength(1);
+    expect(kids[0]!.props.pointerEvents).toBe('box-none');
     await fireEvent.press(screen.getByText('Tap me'));
     expect(onPress).toHaveBeenCalled();
   });
 
-  test('Reduce Transparency renders an opaque warm backing and no blur', async () => {
+  test('a surface is the opaque tone colour with a hairline: no blur, no glass effect, no shadow', async () => {
     await wrap(
-      <ThemeScope scheme="dark" reduceTransparency>
-        <GlassSurface testID="surface">
+      <ThemeScope tone="brown" reduceTransparency>
+        <GlassSurface material="thick" testID="surface">
           <Text>Readable</Text>
         </GlassSurface>
       </ThemeScope>,
     );
     const json = JSON.stringify(screen.toJSON());
-    expect(json).toContain(darkGlass.opaque);
+    expect(json).toContain('"backgroundColor":"#4B2C20"');
     expect(json).not.toContain('"intensity"');
-  });
-
-  test('without Reduce Transparency on iOS < 26 it blurs (BlurView with the material intensity)', async () => {
-    await wrap(
-      <ThemeScope scheme="dark">
-        <GlassSurface material="thick" testID="surface" />
-      </ThemeScope>,
-    );
-    expect(JSON.stringify(screen.toJSON())).toContain(`"intensity":${darkGlass.blurIntensity.thick}`);
+    expect(json).not.toContain('ExpoGlassEffect');
+    expect(json).not.toContain('shadow');
   });
 });
 

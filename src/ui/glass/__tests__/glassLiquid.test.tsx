@@ -5,31 +5,19 @@ import { ThemeProvider, ThemeScope } from '@/ui/theme/ThemeProvider';
 
 import { GlassSurface } from '..';
 
-// iOS 26+: Liquid Glass is available → GlassView carries the material (no BlurView, no extra rim).
+// Even where iOS 26 Liquid Glass is available, the redesign (6 Nov 2026) renders flat, opaque surfaces on purpose.
 jest.mock('expo-glass-effect', () => ({ ...jest.requireActual('expo-glass-effect'), isLiquidGlassAvailable: () => true }));
 
-test('iOS 26 renderer: GlassView with the scheme and the material tint', async () => {
+test('iOS 26: no GlassView, no blur — the flat tone surface', async () => {
   await render(
     <ThemeProvider store={createMemoryStore()}>
-      <ThemeScope scheme="dark">
+      <ThemeScope tone="fir">
         <GlassSurface material="thick" testID="surface" />
       </ThemeScope>
     </ThemeProvider>,
   );
   const json = JSON.stringify(screen.toJSON());
-  expect(json).toContain('ExpoGlassEffect');
-  expect(json).toContain('"colorScheme":"dark"');
-  expect(json).toContain('"tintColor":"rgba(26, 13, 6, 0.7)"');
+  expect(json).not.toContain('ExpoGlassEffect');
   expect(json).not.toContain('"intensity"');
-});
-
-test('Reduce Transparency still wins over Liquid Glass', async () => {
-  await render(
-    <ThemeProvider store={createMemoryStore()}>
-      <ThemeScope scheme="dark" reduceTransparency>
-        <GlassSurface testID="surface" />
-      </ThemeScope>
-    </ThemeProvider>,
-  );
-  expect(JSON.stringify(screen.toJSON())).not.toContain('ExpoGlassEffect');
+  expect(json).toContain('"backgroundColor":"#36492E"');
 });

@@ -93,7 +93,7 @@ function TrendRow({ trend }: { trend: ScoreTrend }) {
           : null}
       </View>
       <View style={styles.valueCol}>
-        <AppText variant="section" style={styles.value}>
+        <AppText variant="score" style={styles.value}>
           {trend.latest ?? '–'}
         </AppText>
         <AppText variant="caption" tone="muted">
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   labelCol: { width: 76 },
   plotCol: { flex: 1, position: 'relative' },
   valueCol: { width: 52, flexDirection: 'row', alignItems: 'baseline', justifyContent: 'flex-end', gap: 1 },
-  value: { fontVariant: ['tabular-nums'] },
+  value: { fontSize: 22, lineHeight: 28, fontVariant: ['tabular-nums'] },
   grid: { position: 'absolute', left: 0, right: 0, height: StyleSheet.hairlineWidth },
   segment: { position: 'absolute', height: 2, borderRadius: 1 },
   dot: { position: 'absolute' },

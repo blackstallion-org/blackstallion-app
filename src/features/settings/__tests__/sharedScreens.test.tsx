@@ -62,10 +62,10 @@ describe('SH-13 Settings', () => {
     const store = createMemoryStore();
     const { r } = await signedIn(INSTRUCTOR, { store });
     await go(r, '/settings');
-    expect(screen.getByTestId('appearance-dark')).toBeChecked(); // espresso default
-    await fireEvent.press(screen.getByTestId('appearance-light'));
-    await waitFor(() => expect(screen.getByTestId('appearance-light')).toBeChecked());
-    expect(await store.get('bsah.pref.appearance.v1')).toBe('light');
+    expect(screen.getByTestId('appearance-light')).toBeChecked(); // white default
+    await fireEvent.press(screen.getByTestId('appearance-dark'));
+    await waitFor(() => expect(screen.getByTestId('appearance-dark')).toBeChecked());
+    expect(await store.get('bsah.pref.appearance.v1')).toBe('dark');
 
     await fireEvent.press(screen.getByTestId('language-hi'));
     expect(await screen.findByText('सेटिंग्स')).toBeTruthy();

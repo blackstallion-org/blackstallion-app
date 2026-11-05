@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AppText } from '@/ui/components';
-import { editorialArt } from '@/ui/editorialArt';
+import { imageLibrary } from '@/ui/imageLibrary';
 import { EmptyState, GlassCard, GlassScreen, ListGroup, Pill, Row, StatusBadge } from '@/ui/glass';
 import { useTheme } from '@/ui/theme/ThemeProvider';
 import { radius, rgba, space } from '@/ui/tokens';
@@ -32,7 +32,7 @@ function CommunityLoader() {
   const res = useFamilyResource(['events'], (r) => r.events.list(scope));
   return (
     <>
-      <GlassCard variant="photo" image={editorialArt.communityEvent} height={212} radius={radius.hero - 4} testID="community-hero" contentStyle={styles.heroContent}>
+      <GlassCard variant="photo" image={imageLibrary.communityArena.source} block="fir" height={212} radius={radius.hero - 4} testID="community-hero" contentStyle={styles.heroContent}>
         <View style={styles.row}>
           <Pill label={COMMUNITY_COPY.heroPill} icon="calendar-outline" material="thick" />
         </View>
@@ -137,7 +137,7 @@ function EventCard({ event, onPress }: { event: FamilyEvent; onPress: () => void
 
 const styles = StyleSheet.create({
   row: { flexDirection: 'row' },
-  heroContent: { justifyContent: 'space-between' },
+  heroContent: { gap: space.md },
   section: { gap: space.md },
   sectionTitle: { paddingHorizontal: space.xs },
   card: { flexDirection: 'row', gap: space.lg, alignItems: 'flex-start' },

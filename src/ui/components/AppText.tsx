@@ -3,7 +3,7 @@ import { Text, useWindowDimensions, type TextProps } from 'react-native';
 
 import { fontFor } from '@/ui/theme/fonts';
 import { useTheme } from '@/ui/theme/ThemeProvider';
-import { adjustForScript, displaySize, typography, type ColorTokens, type TextVariant } from '@/ui/tokens';
+import { adjustForScript, displaySize, isIndicScript, typography, type ColorTokens, type TextVariant } from '@/ui/tokens';
 
 export type TextTone =
   | 'default'
@@ -57,15 +57,16 @@ const plainText = (children: ReactNode): string => {
 export function AppText({ variant = 'body', tone = 'default', header, align, style, children, ...rest }: AppTextProps) {
   const { colors } = useTheme();
   const { width } = useWindowDimensions();
-  const { maxFontSizeMultiplier, fontWeight, ...type } = typography[variant];
+  const { maxFontSizeMultiplier, fontWeight, family, ...type } = typography[variant];
   const sized = variant === 'display' ? { ...type, ...displaySize(width) } : type;
-  const scripted = adjustForScript(sized, plainText(children));
+  const text = plainText(children);
+  const scripted = adjustForScript(sized, text);
   return (
     <Text
       accessibilityRole={header ? 'header' : rest.accessibilityRole}
       maxFontSizeMultiplier={maxFontSizeMultiplier}
       {...rest}
-      style={[scripted, fontFor(fontWeight), { color: toneColor(tone, colors), textAlign: align }, style]}
+      style={[scripted, fontFor(fontWeight, family, isIndicScript(text)), { color: toneColor(tone, colors), textAlign: align }, style]}
     >
       {children}
     </Text>

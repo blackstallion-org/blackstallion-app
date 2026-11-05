@@ -11,7 +11,7 @@ export function FloatingTabBarScope({ enabled = true, children }: { enabled?: bo
 }
 
 /** Distance of the floating bar's bottom edge from the screen bottom. */
-export const floatingTabBottom = (safeBottom: number): number => Math.max(safeBottom, space.md);
+export const floatingTabBottom = (safeBottom: number): number => Math.max(safeBottom, space.xs);
 
 /**
  * Bottom padding scroll content needs so the floating tab bar never covers it:

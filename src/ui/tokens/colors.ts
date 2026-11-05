@@ -1,14 +1,13 @@
 /**
- * Semantic colour and glass-material tokens (DESIGN_SYSTEM.md, liquid-glass
- * brief §3). Screens use semantic names only; raw brand values never appear in
- * components. Default theme is espresso/amber ("dark"); "light" is a designed
- * warm-paper variant, not the old white theme.
+ * Semantic colour tokens. Screens use semantic names only; raw palette values never appear in components.
+ * 6 Nov 2026 redesign: flat editorial colour blocking on a white canvas (see TONE_COLORS below). The "glass" types are
+ * kept so existing components compile, but every material now resolves to a flat, opaque surface.
  *
  * Every text pair is asserted in __tests__/contrast.test.ts, including over
  * COMPOSITED colours: glass tint over espresso and over pixels sampled from the
  * editorial photographs.
  */
-import { brand } from './brand';
+import { palette } from './brand';
 import { compositeOver } from './contrast';
 
 export type ColorSchemeName = 'light' | 'dark';
@@ -89,117 +88,177 @@ export type GlassTokens = {
   destructive: { fill: string; alpha: number; text: string; rim: string };
 };
 
-/** Espresso / amber: the default theme. */
-export const darkColors: ColorTokens = {
-  canvas: brand.richEspresso,
-  canvasGlow: brand.deepAmber,
-  surface: '#2A170C',
-  surfaceMuted: '#341E11',
-  ink: '#FFF6EC',
-  inkMuted: '#E2CDBA',
-  border: '#4A3122',
-  borderStrong: '#A8866C',
-  accent: brand.goldenHour,
-  accentText: brand.softAmber,
-  primaryFill: brand.goldenHour,
-  onPrimary: brand.richEspresso,
-  secondaryFill: '#33231A',
-  onSecondary: '#FFF6EC',
-  destructiveFill: '#7C1D10',
-  onDestructive: '#FFE6DD',
-  focus: brand.softAmber,
-  infoBg: '#18222F',
-  infoText: '#BCD5F3',
-  successBg: '#15291B',
-  successText: '#AEE0B7',
-  warningBg: '#3A250E',
-  warningText: '#FFD596',
-  dangerBg: '#3E1710',
-  dangerText: '#FFB8A8',
-  skeleton: '#3A2517',
-  devBannerBg: '#3B2B0D',
-  devBannerText: '#FFE3A8',
-  scrim: brand.richEspresso,
-  onPhoto: '#FFF6EC',
-  onPhotoMuted: '#EAD8C6',
+/**
+ * Screen tones (6 Nov 2026 redesign): ONE flat, fully opaque background per screen, one text colour, at most one
+ * restrained accent. No gradients, glows, fades or translucent layers. Light tones carry dark-brown text; dark tones
+ * carry white text. Pairings are WCAG-tested in __tests__/contrast.test.ts.
+ */
+export type Tone = 'white' | 'pearl' | 'copper' | 'brown' | 'olive' | 'fir' | 'burgundy' | 'night';
+export const TONES: readonly Tone[] = ['white', 'pearl', 'copper', 'brown', 'olive', 'fir', 'burgundy', 'night'];
+export const LIGHT_TONES: readonly Tone[] = ['white', 'pearl'];
+
+/** Deep brown used for the white/pearl tones when the person chooses Dark appearance. */
+const NIGHT = '#24150F';
+
+const mix = (fg: string, alpha: number, bg: string) => compositeOver(fg, alpha, bg);
+
+const lightTone = (canvas: string, o: Partial<ColorTokens> = {}): ColorTokens => ({
+  canvas,
+  canvasGlow: canvas,
+  surface: canvas,
+  surfaceMuted: mix(palette.pearl, 0.35, canvas),
+  ink: palette.brown,
+  inkMuted: '#6A4A3B',
+  border: palette.pearl,
+  borderStrong: '#8C6C5B',
+  accent: palette.copper,
+  accentText: palette.copper,
+  primaryFill: palette.copper,
+  onPrimary: palette.white,
+  secondaryFill: canvas,
+  onSecondary: palette.brown,
+  destructiveFill: palette.burgundy,
+  onDestructive: palette.white,
+  focus: palette.copper,
+  infoBg: mix(palette.pearl, 0.35, canvas),
+  infoText: palette.brown,
+  successBg: mix(palette.fir, 0.08, canvas),
+  successText: palette.fir,
+  warningBg: mix(palette.copper, 0.1, canvas),
+  warningText: '#8A3F18',
+  dangerBg: mix(palette.burgundy, 0.08, canvas),
+  dangerText: palette.burgundy,
+  skeleton: mix(palette.pearl, 0.45, canvas),
+  devBannerBg: mix(palette.pearl, 0.35, canvas),
+  devBannerText: palette.brown,
+  scrim: palette.brown,
+  onPhoto: palette.white,
+  onPhotoMuted: palette.pearl,
+  ...o,
+});
+
+const darkTone = (canvas: string, o: Partial<ColorTokens> = {}): ColorTokens => ({
+  canvas,
+  canvasGlow: canvas,
+  surface: canvas,
+  surfaceMuted: mix(palette.white, 0.08, canvas),
+  ink: palette.white,
+  inkMuted: palette.pearl,
+  border: mix(palette.white, 0.22, canvas),
+  borderStrong: palette.pearl,
+  accent: palette.pearl,
+  accentText: palette.pearl,
+  primaryFill: palette.white,
+  onPrimary: canvas,
+  secondaryFill: canvas,
+  onSecondary: palette.white,
+  destructiveFill: palette.white,
+  onDestructive: palette.burgundy,
+  focus: palette.white,
+  infoBg: mix(palette.white, 0.08, canvas),
+  infoText: palette.white,
+  successBg: mix(palette.white, 0.08, canvas),
+  successText: '#DCE8D3',
+  warningBg: mix(palette.white, 0.08, canvas),
+  warningText: '#F8DCC8',
+  dangerBg: mix(palette.white, 0.08, canvas),
+  dangerText: '#F9D4CF',
+  skeleton: mix(palette.white, 0.12, canvas),
+  devBannerBg: mix(palette.white, 0.08, canvas),
+  devBannerText: palette.white,
+  scrim: canvas,
+  onPhoto: palette.white,
+  onPhotoMuted: palette.pearl,
+  ...o,
+});
+
+/** White-on-copper is 4.87:1, so copper keeps every text white (no muted pearl, which is only 3.4:1). */
+const onCopper = '#FFF7F2';
+
+export const TONE_COLORS: Record<Tone, ColorTokens> = {
+  white: lightTone(palette.white),
+  pearl: lightTone(palette.pearl, {
+    surfaceMuted: mix(palette.white, 0.35, palette.pearl),
+    inkMuted: '#5A3B2E',
+    border: '#CDB3A0',
+    borderStrong: '#7E5F4F',
+    accent: palette.burgundy,
+    accentText: palette.burgundy,
+    primaryFill: palette.brown,
+    warningText: '#7A3412',
+    infoBg: mix(palette.white, 0.35, palette.pearl),
+    successBg: mix(palette.white, 0.35, palette.pearl),
+    warningBg: mix(palette.white, 0.35, palette.pearl),
+    dangerBg: mix(palette.white, 0.35, palette.pearl),
+    skeleton: mix(palette.white, 0.4, palette.pearl),
+    devBannerBg: mix(palette.white, 0.35, palette.pearl),
+  }),
+  copper: darkTone(palette.copper, {
+    // Raised/status panels on copper go slightly DARKER (brown mixed in), never lighter: white needs ≥ 4.5:1.
+    surfaceMuted: mix(palette.brown, 0.15, palette.copper),
+    infoBg: mix(palette.brown, 0.15, palette.copper),
+    successBg: mix(palette.brown, 0.15, palette.copper),
+    warningBg: mix(palette.brown, 0.15, palette.copper),
+    dangerBg: mix(palette.brown, 0.15, palette.copper),
+    devBannerBg: mix(palette.brown, 0.15, palette.copper),
+    skeleton: mix(palette.brown, 0.2, palette.copper),
+    inkMuted: onCopper,
+    accent: palette.white,
+    accentText: palette.white,
+    borderStrong: palette.white,
+    successText: palette.white,
+    warningText: palette.white,
+    dangerText: palette.white,
+    onPhotoMuted: palette.white,
+  }),
+  brown: darkTone(palette.brown),
+  olive: darkTone(palette.olive, {
+    inkMuted: '#F6EEE7',
+    accent: palette.white,
+    accentText: palette.white,
+    borderStrong: palette.white,
+    successText: palette.white,
+    warningText: palette.white,
+    dangerText: palette.white,
+    onPhotoMuted: '#F6EEE7',
+  }),
+  fir: darkTone(palette.fir),
+  burgundy: darkTone(palette.burgundy, { onDestructive: palette.burgundy }),
+  night: darkTone(NIGHT, { accent: palette.copper, accentText: '#E7A57F', primaryFill: palette.copper, onPrimary: palette.white }),
 };
 
-/** Warm paper: the deliberately designed light variant. */
-export const lightColors: ColorTokens = {
-  canvas: '#FBF1E4',
-  canvasGlow: brand.softAmber,
-  surface: '#FFF9F1',
-  surfaceMuted: '#F3E3CF',
-  ink: brand.richEspresso,
-  inkMuted: '#6B4631',
-  border: '#E6D0B8',
-  borderStrong: '#9A7253',
-  accent: brand.burntSienna,
-  accentText: brand.deepAmber,
-  primaryFill: brand.deepAmber,
-  onPrimary: '#FFE9CC',
-  secondaryFill: '#FFF7EC',
-  onSecondary: brand.richEspresso,
-  destructiveFill: '#9A2A1E',
-  onDestructive: '#FFF3EF',
-  focus: brand.deepAmber,
-  infoBg: '#E6EEF8',
-  infoText: '#1F477C',
-  successBg: '#E3F0E4',
-  successText: '#1D5A2B',
-  warningBg: '#FBE9D0',
-  warningText: '#744405',
-  dangerBg: '#FBE4DE',
-  dangerText: '#962A1D',
-  skeleton: '#EEDCC6',
-  devBannerBg: '#FFF0CC',
-  devBannerText: '#5C3D00',
-  scrim: brand.richEspresso,
-  onPhoto: '#FFF6EC',
-  onPhotoMuted: '#EAD8C6',
-};
+/** The tone in effect: in Dark appearance the white/pearl tones become the deep-brown night tone. */
+export const resolveTone = (tone: Tone, scheme: ColorSchemeName): Tone => (scheme === 'dark' && (tone === 'white' || tone === 'pearl') ? 'night' : tone);
+export const isLightTone = (tone: Tone): boolean => LIGHT_TONES.includes(tone);
 
-export const darkGlass: GlassTokens = {
-  shade: brand.richEspresso,
-  shadeAlpha: { thin: 0.2, regular: 0.42, thick: 0.7 },
-  frost: '#FFECD6',
-  frostAlpha: { thin: 0.08, regular: 0.08, thick: 0.07 },
-  opaque: '#2E1A0E',
-  opaqueBorder: '#5A3C28',
-  blurIntensity: { thin: 30, regular: 45, thick: 70 },
-  webBlur: { thin: 14, regular: 22, thick: 30 },
-  webSaturate: 1.35,
-  rim: '#FFE9D2',
-  rimAlpha: 0.2,
-  specular: '#FFF4E6',
-  specularAlpha: 0.38,
-  innerHighlightAlpha: 0.07,
-  shadow: '0px 12px 32px rgba(8, 3, 1, 0.42)',
-  liquidTint: 'rgba(42, 22, 10, 0.35)',
-  action: { fill: brand.goldenHour, alpha: 0.96, text: brand.richEspresso, rim: '#FFE7C2' },
-  destructive: { fill: '#7C1D10', alpha: 0.9, text: '#FFE6DD', rim: '#FFB8A8' },
-};
+export const lightColors: ColorTokens = TONE_COLORS.white;
+export const darkColors: ColorTokens = TONE_COLORS.night;
 
-export const lightGlass: GlassTokens = {
-  shade: '#FFFAF3',
-  shadeAlpha: { thin: 0.4, regular: 0.6, thick: 0.8 },
-  frost: '#FFFFFF',
-  frostAlpha: { thin: 0.1, regular: 0.12, thick: 0.12 },
-  opaque: '#FFF8EF',
-  opaqueBorder: '#D9BFA4',
-  blurIntensity: { thin: 30, regular: 50, thick: 75 },
-  webBlur: { thin: 14, regular: 22, thick: 30 },
-  webSaturate: 1.2,
-  rim: brand.deepAmber,
-  rimAlpha: 0.14,
-  specular: '#FFFFFF',
-  specularAlpha: 0.9,
-  innerHighlightAlpha: 0.5,
-  shadow: '0px 10px 28px rgba(122, 46, 11, 0.12)',
-  liquidTint: 'rgba(255, 246, 234, 0.4)',
-  action: { fill: brand.deepAmber, alpha: 0.97, text: '#FFE9CC', rim: '#C35A1A' },
-  destructive: { fill: '#9A2A1E', alpha: 0.96, text: '#FFF3EF', rim: '#C9584A' },
-};
+/** Flat "glass": every material is the opaque tone surface with a hairline; no blur, no shadow, no sheen. */
+const flatGlass = (c: ColorTokens): GlassTokens => ({
+  shade: c.surface,
+  shadeAlpha: { thin: 1, regular: 1, thick: 1 },
+  frost: c.surface,
+  frostAlpha: { thin: 0, regular: 0, thick: 0 },
+  opaque: c.surface,
+  opaqueBorder: c.border,
+  blurIntensity: { thin: 0, regular: 0, thick: 0 },
+  webBlur: { thin: 0, regular: 0, thick: 0 },
+  webSaturate: 1,
+  rim: c.border,
+  rimAlpha: 1,
+  specular: c.surface,
+  specularAlpha: 0,
+  innerHighlightAlpha: 0,
+  shadow: 'none',
+  liquidTint: 'transparent',
+  action: { fill: c.primaryFill, alpha: 1, text: c.onPrimary, rim: c.primaryFill },
+  destructive: { fill: c.destructiveFill, alpha: 1, text: c.onDestructive, rim: c.destructiveFill },
+});
+
+export const lightGlass: GlassTokens = flatGlass(lightColors);
+export const darkGlass: GlassTokens = flatGlass(darkColors);
+export const glassForColors = flatGlass;
 
 /**
  * Espresso scrims for photographs, as gradient stops (offset 0–1, alpha).
@@ -273,8 +332,8 @@ export const scrimAlphaAt = (stops: readonly ScrimStop[], offset: number): numbe
   return last[1];
 };
 
-export const colorsFor = (scheme: ColorSchemeName): ColorTokens => (scheme === 'dark' ? darkColors : lightColors);
-export const glassFor = (scheme: ColorSchemeName): GlassTokens => (scheme === 'dark' ? darkGlass : lightGlass);
+export const colorsFor = (scheme: ColorSchemeName, tone: Tone = 'white'): ColorTokens => TONE_COLORS[resolveTone(tone, scheme)];
+export const glassFor = (scheme: ColorSchemeName, tone: Tone = 'white'): GlassTokens => flatGlass(colorsFor(scheme, tone));
 
 /** The opaque colour a glass material resolves to over an opaque backdrop (for tests and fallbacks). */
 export const glassComposite = (g: GlassTokens, material: GlassMaterial, backdrop: string): string =>

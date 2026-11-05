@@ -39,3 +39,6 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# Generated image sources (multi-MB originals; app derivatives are tracked, sources are recoverable from the manifest job ids)
+assets/library/source/

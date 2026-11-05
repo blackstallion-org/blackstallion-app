@@ -25,8 +25,8 @@ beforeEach(() => {
   systemScheme = 'light';
 });
 
-test('first launch: espresso (dark) preference and canvas, even when the OS is light', async () => {
-  systemScheme = 'light';
+test('first launch: white (light) preference and canvas, even when the OS is dark', async () => {
+  systemScheme = 'dark';
   let release!: () => void;
   const gate = new Promise<void>((r) => (release = r));
   const memory = createMemoryStore();
@@ -35,20 +35,20 @@ test('first launch: espresso (dark) preference and canvas, even when the OS is l
   // Nothing themed is decided before the stored preference is known.
   expect(screen.getByTestId('probe')).toHaveTextContent('not-ready');
   await act(async () => release());
-  expect(screen.getByTestId('probe')).toHaveTextContent('dark|dark|#1A0D06');
+  expect(screen.getByTestId('probe')).toHaveTextContent('light|light|#FFFFFF');
 });
 
 test('choice persists across a restart (remount on the same store)', async () => {
   const store = createMemoryStore();
   const first = await mount(store);
   await act(async () => undefined);
-  await act(async () => api.setPreference('light'));
-  expect(await store.get(APPEARANCE_KEY)).toBe('light');
+  await act(async () => api.setPreference('dark'));
+  expect(await store.get(APPEARANCE_KEY)).toBe('dark');
   await first.unmount();
 
   await mount(store);
   await act(async () => undefined);
-  expect(screen.getByTestId('probe')).toHaveTextContent('light|light|#FBF1E4');
+  expect(screen.getByTestId('probe')).toHaveTextContent('dark|dark|#24150F');
 });
 
 test('System follows OS appearance changes', async () => {
@@ -62,10 +62,10 @@ test('System follows OS appearance changes', async () => {
       <Probe />
     </ThemeProvider>,
   );
-  expect(screen.getByTestId('probe')).toHaveTextContent('system|dark|#1A0D06');
+  expect(screen.getByTestId('probe')).toHaveTextContent('system|dark|#24150F');
 });
 
-test('unreadable storage falls back to the default (dark); a failed save is reported, not hidden', async () => {
+test('unreadable storage falls back to the default (light); a failed save is reported, not hidden', async () => {
   const broken: KeyValueStore = {
     get: () => Promise.reject(new Error('io')),
     set: () => Promise.reject(new Error('io')),
@@ -73,13 +73,13 @@ test('unreadable storage falls back to the default (dark); a failed save is repo
   };
   await mount(broken);
   await act(async () => undefined);
-  expect(screen.getByTestId('probe')).toHaveTextContent('dark|dark|#1A0D06');
-  await act(async () => api.setPreference('light'));
-  expect(api.scheme).toBe('light');
+  expect(screen.getByTestId('probe')).toHaveTextContent('light|light|#FFFFFF');
+  await act(async () => api.setPreference('dark'));
+  expect(api.scheme).toBe('dark');
   expect(api.saveError).toMatch(/could not be saved/);
 });
 
-test('ThemeScope forces dark over photographs without changing the person’s choice', async () => {
+test('ThemeScope sets a screen tone (dark brown) without changing the person’s choice', async () => {
   const { ThemeScope } = jest.requireActual('@/ui/theme/ThemeProvider') as typeof import('@/ui/theme/ThemeProvider');
   let inner!: ReturnType<typeof useTheme>;
   function Inner() {
@@ -98,7 +98,8 @@ test('ThemeScope forces dark over photographs without changing the person’s ch
   expect(inner.preference).toBe('light');
   expect(inner.appScheme).toBe('light');
   expect(inner.scheme).toBe('dark');
-  expect(inner.colors.canvas).toBe('#1A0D06');
+  expect(inner.colors.canvas).toBe('#4B2C20');
+  expect(inner.colors.ink).toBe('#FFFFFF');
   expect(inner.reduceTransparency).toBe(true);
 });
 

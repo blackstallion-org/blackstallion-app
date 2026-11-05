@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
 
 import { AppText } from '@/ui/components';
-import { editorialArt } from '@/ui/editorialArt';
+import { imageLibrary } from '@/ui/imageLibrary';
 import { EmptyState, GlassCard, GlassScreen, ListGroup, Pill, Row, StatusNote } from '@/ui/glass';
 import { space } from '@/ui/tokens';
 
@@ -53,11 +53,11 @@ function HorseBody({ data, child }: { data: HorseInfo; child: FamilyChild }) {
       </>
     );
   }
-  const heroH = Math.round(Math.min(440, Math.max(300, (Math.min(width, 560) - 40) * 1.15)));
+  const heroH = Math.round(Math.min(300, Math.max(180, (Math.min(width, 560) - 40) * 0.72)));
   return (
     <>
       <SyntheticBanner source={data.source} />
-      <GlassCard variant="photo" image={editorialArt.horsePortrait} height={heroH} testID="horse-hero" contentStyle={styles.heroContent} imageStyle={styles.heroImage}>
+      <GlassCard variant="photo" image={imageLibrary.horseBadal.source} cutout block="fir" height={heroH} testID="horse-hero" contentStyle={styles.heroContent}>
         <View style={styles.heroTop}>
           <Pill label={HORSE_COPY.illustration} icon="color-palette-outline" material="thick" testID="horse-illustration-label" />
         </View>
@@ -92,8 +92,7 @@ function HorseBody({ data, child }: { data: HorseInfo; child: FamilyChild }) {
 }
 
 const styles = StyleSheet.create({
-  heroContent: { justifyContent: 'space-between' },
-  heroImage: { top: -20, bottom: -20 },
+  heroContent: { gap: space.md, paddingHorizontal: 0 },
   heroTop: { flexDirection: 'row' },
   heroBottom: { gap: space.xs },
 });

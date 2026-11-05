@@ -4,7 +4,6 @@ import type { CodeRequestResult, ResetResult, SignInResult } from '@/core/auth/a
 
 import { HelpSheet } from '@/features/settings/HelpSupport';
 import { AppText, Button, StatusMessage, TextField } from '@/ui/components';
-import { useTheme } from '@/ui/theme/ThemeProvider';
 
 import { useAccess } from './AccessProvider';
 import { AuthFrame } from './AuthFrame';
@@ -101,9 +100,8 @@ function SignInFrame({ testID, subtitle, children, after }: { testID: string; su
 }
 
 function ExistingAccountsOnly() {
-  const { scheme } = useTheme();
   return (
-    <AppText variant="secondary" tone={scheme === 'dark' ? 'onPhotoMuted' : 'muted'}>
+    <AppText variant="secondary" tone="muted">
       {SIGN_IN_COPY.existingOnly}
     </AppText>
   );

@@ -3,7 +3,7 @@ import { Animated, Pressable, StyleSheet, View, type StyleProp, type ViewStyle }
 import { AppText } from '@/ui/components/AppText';
 import { Icon, type IconName } from '@/ui/components/Icon';
 import { useTheme } from '@/ui/theme/ThemeProvider';
-import { size as sizes, space, type GlassMaterial } from '@/ui/tokens';
+import { radius as radii, size as sizes, space, type GlassMaterial } from '@/ui/tokens';
 
 import { GlassSurface } from './GlassSurface';
 import { PressDecor, usePressFeedback } from './pressFeedback';
@@ -35,7 +35,7 @@ export function Chip({
 }) {
   const { colors, glass } = useTheme();
   const { scaleStyle, focused, handlers } = usePressFeedback();
-  const r = sizes.minTouch / 2;
+  const r = radii.control;
   const fg = selected ? glass.action.text : colors.ink;
   return (
     <Animated.View style={[scaleStyle, style]}>
@@ -51,7 +51,7 @@ export function Chip({
       >
         {({ pressed }) => (
           <>
-            <GlassSurface pointerEvents="none" fill={selected ? 'action' : 'glass'} material={material} borderRadius={r} elevated={false} style={StyleSheet.absoluteFill} />
+            <GlassSurface pointerEvents="none" fill={selected ? 'action' : 'glass'} material={selected ? material : 'thin'} borderRadius={r} elevated={false} style={[StyleSheet.absoluteFill, selected ? null : { borderWidth: 1, borderColor: colors.borderStrong }]} />
             <PressDecor pressed={pressed} focused={focused} radius={r} />
             <View style={styles.row} pointerEvents="none">
               {icon ? <Icon name={icon} size={18} color={fg} /> : null}
@@ -67,10 +67,10 @@ export function Chip({
 }
 
 /** Non-interactive glass label pill (category tags, "Daily Spark"). */
-export function Pill({ label, icon, material = 'regular', testID }: { label: string; icon?: IconName; material?: GlassMaterial; testID?: string }) {
+export function Pill({ label, icon, material: _material = 'regular', testID }: { label: string; icon?: IconName; material?: GlassMaterial; testID?: string }) {
   const { colors } = useTheme();
   return (
-    <GlassSurface testID={testID} material={material} borderRadius={20} elevated={false} style={styles.pill} contentStyle={styles.pillContent} accessible accessibilityLabel={label}>
+    <GlassSurface testID={testID} material="thin" borderRadius={radii.sm} elevated={false} style={[styles.pill, { borderWidth: 1, borderColor: colors.borderStrong }]} contentStyle={styles.pillContent} accessible accessibilityLabel={label}>
       {icon ? <Icon name={icon} size={16} color={colors.ink} /> : null}
       <AppText variant="secondary" style={{ fontWeight: '500' }}>
         {label}
@@ -83,5 +83,5 @@ const styles = StyleSheet.create({
   chip: { minHeight: sizes.minTouch, minWidth: sizes.minTouch, justifyContent: 'center', paddingHorizontal: space.lg },
   row: { flexDirection: 'row', alignItems: 'center', gap: space.xs + 2 },
   pill: { alignSelf: 'flex-start' },
-  pillContent: { flexDirection: 'row', alignItems: 'center', gap: space.xs + 2, paddingHorizontal: space.lg, paddingVertical: space.sm, minHeight: 40 },
+  pillContent: { flexDirection: 'row', alignItems: 'center', gap: space.xs + 2, paddingHorizontal: space.md, paddingVertical: space.xs, minHeight: 32 },
 });

@@ -10,7 +10,7 @@ import {
   type ResolvedScheme,
 } from '@/core/preferences/appearance';
 import type { KeyValueStore } from '@/core/preferences/keyValueStore';
-import { colorsFor, glassFor, type ColorTokens, type GlassTokens } from '@/ui/tokens';
+import { colorsFor, glassFor, isLightTone, resolveTone, type ColorTokens, type GlassTokens, type Tone } from '@/ui/tokens';
 
 import { readReduceTransparency, subscribeReduceTransparency } from './accessibilityPrefs';
 
@@ -22,6 +22,8 @@ export type ThemeContextValue = {
   scheme: ResolvedScheme;
   /** The app-wide scheme chosen by the person (ignores ThemeScope). */
   appScheme: ResolvedScheme;
+  /** The flat screen tone in effect HERE (after Dark appearance is applied: white/pearl → night). */
+  tone: Tone;
   colors: ColorTokens;
   glass: GlassTokens;
   /** OS Reduce Transparency (or a development override): glass becomes opaque. */
@@ -106,6 +108,7 @@ export function ThemeProvider({ store, children }: { store: KeyValueStore; child
       preference,
       scheme,
       appScheme: scheme,
+      tone: resolveTone('white', scheme),
       colors: colorsFor(scheme),
       glass: glassFor(scheme),
       reduceTransparency,
@@ -120,33 +123,38 @@ export function ThemeProvider({ store, children }: { store: KeyValueStore; child
 }
 
 /**
- * Forces a scheme for a subtree. Photographs are always composed in the dark
- * (espresso) scope so white text and dark glass stay readable over them in
- * both app themes. Development galleries can also force Reduce Transparency.
+ * Sets the flat tone (one dominant background colour) or the scheme for a subtree. `tone` is the redesign's way to
+ * colour-block a screen; `scheme="dark"` (camera stage, legacy callers) maps to the brown tone. Text colours follow the
+ * tone automatically, so a screen never mixes light text on a light block.
  */
 export function ThemeScope({
   scheme,
+  tone,
   reduceTransparency,
   reduceMotion,
   children,
 }: {
   scheme?: ResolvedScheme;
+  tone?: Tone;
   reduceTransparency?: boolean;
   reduceMotion?: boolean;
   children: ReactNode;
 }) {
   const parent = useTheme();
   const value = useMemo<ThemeContextValue>(() => {
-    const s = scheme ?? parent.scheme;
+    const requested: Tone = tone ?? (scheme === 'dark' ? 'brown' : scheme === 'light' ? 'white' : parent.tone);
+    const t = resolveTone(requested, parent.appScheme);
+    const s: ResolvedScheme = isLightTone(t) ? 'light' : 'dark';
     return {
       ...parent,
       scheme: s,
-      colors: colorsFor(s),
-      glass: glassFor(s),
+      tone: t,
+      colors: colorsFor(parent.appScheme, t),
+      glass: glassFor(parent.appScheme, t),
       reduceTransparency: reduceTransparency ?? parent.reduceTransparency,
       reduceMotion: reduceMotion ?? parent.reduceMotion,
     };
-  }, [parent, scheme, reduceTransparency, reduceMotion]);
+  }, [parent, scheme, tone, reduceTransparency, reduceMotion]);
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 

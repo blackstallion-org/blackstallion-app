@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { SparkWaveform } from '@/features/family/spark/SparkWaveform';
 import { AppText, Icon } from '@/ui/components';
 import { editorialArt } from '@/ui/editorialArt';
+import { imageLibrary } from '@/ui/imageLibrary';
 import {
   Chip,
   ConfirmDialog,
@@ -35,7 +36,7 @@ import {
   UnavailableState,
 } from '@/ui/glass';
 import { ThemeScope, useTheme } from '@/ui/theme/ThemeProvider';
-import { brand, radius, space } from '@/ui/tokens';
+import { palette, radius, space } from '@/ui/tokens';
 
 type SchemeChoice = 'dark' | 'light' | 'both';
 
@@ -58,8 +59,8 @@ export function ComponentGallery() {
         value={scheme}
         onChange={setScheme}
         segments={[
-          { value: 'dark', label: 'Espresso' },
-          { value: 'light', label: 'Warm paper' },
+          { value: 'dark', label: 'Dark' },
+          { value: 'light', label: 'White' },
           { value: 'both', label: 'Both' },
         ]}
         testID="gallery-scheme"
@@ -70,7 +71,7 @@ export function ComponentGallery() {
       </View>
       {(scheme === 'both' ? (['dark', 'light'] as const) : [scheme]).map((s) => (
         <ThemeScope key={s} scheme={s} reduceTransparency={rt} reduceMotion={rm}>
-          <GalleryBlock title={`${s === 'dark' ? 'Espresso (default)' : 'Warm paper (light)'}${rt ? ' · Reduce Transparency' : ''}${rm ? ' · Reduce Motion' : ''}`} />
+          <GalleryBlock title={`${s === 'dark' ? 'Dark (night)' : 'White (default)'}${rt ? ' · Reduce Transparency' : ''}${rm ? ' · Reduce Motion' : ''}`} />
         </ThemeScope>
       ))}
     </GlassScreen>
@@ -92,9 +93,9 @@ function GalleryBlock({ title }: { title: string }) {
         {title}
       </AppText>
 
-      <Group title="Brand palette (exact)">
+      <Group title="Palette (exact, 6 Nov 2026)">
         <View style={styles.wrap}>
-          {Object.entries(brand).map(([name, hex]) => (
+          {Object.entries(palette).map(([name, hex]) => (
             <View key={name} style={styles.swatch} accessible accessibilityLabel={`${name} ${hex}`}>
               <View style={[styles.swatchChip, { backgroundColor: hex, borderColor: colors.border }]} />
               <AppText variant="caption">{name}</AppText>
@@ -138,6 +139,21 @@ function GalleryBlock({ title }: { title: string }) {
         </View>
       </Group>
 
+      <Group title="Image library (assets/library — approved, decorative; cut-outs on flat colour)">
+        <View style={styles.wrap}>
+          {Object.entries(imageLibrary).map(([name, img]) => (
+            <View key={name} style={{ width: 150, gap: space.xs }}>
+              <View style={{ height: 120, backgroundColor: img.cutout ? palette.pearl : undefined }}>
+                <PhotoBackdrop source={img.source} resizeMode={img.cutout ? 'contain' : 'cover'} />
+              </View>
+              <AppText variant="caption" tone="muted">
+                {name}
+              </AppText>
+            </View>
+          ))}
+        </View>
+      </Group>
+
       <Group title="Buttons">
         <GlassButton label="Primary (56)" icon="arrow-forward" iconPosition="trailing" onPress={() => undefined} />
         <GlassButton label="Secondary" variant="secondary" onPress={() => undefined} />
@@ -177,7 +193,7 @@ function GalleryBlock({ title }: { title: string }) {
         <GlassCard variant="photo" image={editorialArt.communityEvent} height={220}>
           <Pill label="Photo card (r32)" material="thick" />
           <AppText variant="section" tone="onPhoto">
-            Editorial art with espresso scrim
+            Picture in a frame, copy on a flat block
           </AppText>
         </GlassCard>
         <GlassCard expandable expandedContent={<AppText tone="muted">Expanded content. No drag (disabled by design).</AppText>}>

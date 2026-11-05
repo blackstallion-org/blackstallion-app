@@ -3,7 +3,7 @@ import { ActivityIndicator, Animated, Pressable, StyleSheet, View, type StylePro
 
 import { Icon, type IconName } from '@/ui/components/Icon';
 import { useTheme } from '@/ui/theme/ThemeProvider';
-import { size as sizes, type GlassMaterial } from '@/ui/tokens';
+import { radius as radii, size as sizes, type GlassMaterial } from '@/ui/tokens';
 
 import { GlassSurface } from './GlassSurface';
 import { PressDecor, usePressFeedback } from './pressFeedback';
@@ -50,12 +50,13 @@ export function GlassIconButton({
   const { pending, press } = usePressGuard(onPress);
   const { scaleStyle, focused, handlers } = usePressFeedback();
   const d = Math.max(sizes.minTouch, size);
-  const r = d / 2;
+  // Editorial: square-ish frame, not a disc.
+  const r = radii.control;
   const busy = loading || pending;
   const inactive = disabled || busy;
   // Solid disc: warm white in the dark scope (espresso icon), espresso in light.
-  const solidBg = scheme === 'dark' ? '#FFF6EC' : colors.ink;
-  const solidFg = scheme === 'dark' ? '#1A0D06' : colors.canvas;
+  const solidBg = scheme === 'dark' ? colors.primaryFill : colors.ink;
+  const solidFg = scheme === 'dark' ? colors.onPrimary : colors.canvas;
   const fg = disabled ? colors.inkMuted : appearance === 'solid' ? solidFg : colors.ink;
   return (
     <Animated.View style={[{ width: d, height: d }, scaleStyle, style]}>
@@ -73,9 +74,9 @@ export function GlassIconButton({
         {({ pressed }) => (
           <>
             {appearance === 'glass' ? (
-              <GlassSurface pointerEvents="none" material={material} borderRadius={r} style={StyleSheet.absoluteFill} elevated={false} />
+              <GlassSurface pointerEvents="none" material={material === 'thick' ? 'regular' : 'thin'} borderRadius={r} style={StyleSheet.absoluteFill} elevated={false} />
             ) : appearance === 'solid' ? (
-              <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: r, backgroundColor: disabled ? colors.surfaceMuted : solidBg, boxShadow: '0px 8px 24px rgba(8, 3, 1, 0.35)' }]} />
+              <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: r, backgroundColor: disabled ? colors.surfaceMuted : solidBg}]} />
             ) : null}
             <PressDecor pressed={pressed && !inactive} focused={focused} radius={r} />
             {busy ? (

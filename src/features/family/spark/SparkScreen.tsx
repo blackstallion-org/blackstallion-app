@@ -6,7 +6,7 @@ import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useRepositories } from '@/core/data/RepositoryProvider';
 import { useScopedResource } from '@/core/data/useScopedResource';
 import { AppText, Icon } from '@/ui/components';
-import { editorialArt } from '@/ui/editorialArt';
+import { imageLibrary } from '@/ui/imageLibrary';
 import {
   EmptyState,
   ErrorState,
@@ -39,8 +39,8 @@ const clock = (ms: number) => {
 };
 
 /**
- * FA-06 Daily Spark (full-screen, above the Family tabs). Full-bleed amber artwork with espresso scrim; title and
- * transport sit in the scrim's text zone. Spark is per child (C01). With the G9 source, a listen is acknowledged to the
+ * FA-06 Daily Spark (full-screen, above the Family tabs). 6 Nov 2026 redesign: one flat Burgundy field, the hoof
+ * cut-out standing on the colour at the top (never behind text), then title, waveform and transport in white. Spark is per child (C01). With the G9 source, a listen is acknowledged to the
  * server only when the DEVICE player reports continuous coverage ≥ the policy threshold (seeks never count), and the
  * screen says "Recorded" only after the server answers. Streak numbers appear only when the server's `spark_streaks`
  * flag is on (D18 PROPOSED → off). A simulated (development) player says it plays no sound and is never recorded.
@@ -51,7 +51,7 @@ export function SparkScreen() {
   const feature = familyApp?.spark ?? legacy;
   const close = () => (router.canGoBack() ? router.back() : router.replace('/family'));
   return (
-    <GlassScreen scheme="dark" testID="family-spark" backdrop={<PhotoBackdrop source={editorialArt.sparkCover} scrim="spark" />} header={{ onBack: close, closeStyle: true, title: undefined }}>
+    <GlassScreen tone="burgundy" testID="family-spark" header={{ onBack: close, closeStyle: true, title: undefined }}>
       {feature ? (
         <SparkForChild feature={feature} />
       ) : (
@@ -111,7 +111,6 @@ type AckState = { kind: 'idle' } | { kind: 'done'; at: string } | { kind: 'faile
 
 function SparkPlayer({ content, data, feature, scope, child }: { content: SparkContent; data: SparkToday; feature: SparkFeature; scope: SparkScope; child: FamilyChild | null }) {
   const { colors } = useTheme();
-  const { height } = useWindowDimensions();
   const { state, labels, simulated, coverage, actions } = useSparkPlayback(content, feature.createAudio);
   const progress = state.durationMs > 0 ? state.positionMs / state.durationMs : 0;
   const duration = state.durationMs || content.durationMs;
@@ -153,8 +152,7 @@ function SparkPlayer({ content, data, feature, scope, child }: { content: SparkC
   const showStreak = data.streak?.enabled === true && typeof data.streak.current === 'number';
   return (
     <>
-      {/* Keeps the photograph's glowing silhouette clear: copy starts in the scrim's text zone. */}
-      <View style={{ height: Math.max(0, height * 0.27 - 40) }} />
+      <SparkArt />
       <View style={styles.tags}>
         <Pill label={SPARK_COPY.category} icon="sparkles-outline" material="thick" />
         {data.source === 'synthetic-preview' ? <Pill label={SPARK_COPY.syntheticPill} icon="flask-outline" material="thick" testID="preview-banner" /> : null}
@@ -255,15 +253,25 @@ function SparkPlayer({ content, data, feature, scope, child }: { content: SparkC
   );
 }
 
-/**
- * Non-player states sit where the player's copy sits (inside the scrim's text zone) on thick glass, so they stay
- * legible over the bright amber top of the artwork.
- */
+/** The hoof cut-out on the flat Burgundy field, right-aligned, sized to the window. Decorative. */
+function SparkArt() {
+  const { height, width } = useWindowDimensions();
+  const art = imageLibrary.sparkHoof;
+  const h = Math.round(Math.min(height * 0.26, (width * 0.5) / art.aspect));
+  return (
+    <View style={[styles.art, { height: h }]}>
+      <View style={{ width: Math.round(h * art.aspect), height: h }}>
+        <PhotoBackdrop source={art.source} resizeMode="contain" />
+      </View>
+    </View>
+  );
+}
+
+/** Non-player states sit below the artwork on a flat panel of the same tone. */
 function SparkPanel({ children, before, bare = false }: { children: ReactNode; before?: ReactNode; bare?: boolean }) {
-  const { height } = useWindowDimensions();
   return (
     <>
-      <View style={{ height: Math.max(0, height * 0.27 - 40) }} />
+      <SparkArt />
       {before}
       {bare ? (
         children
@@ -288,6 +296,7 @@ function NoteRow({ icon, color, text, muted, testID }: { icon: 'flame-outline' |
 }
 
 const styles = StyleSheet.create({
+  art: { flexDirection: 'row', justifyContent: 'flex-end' },
   tags: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
   titleBlock: { gap: space.sm },
   timeline: { gap: space.sm },

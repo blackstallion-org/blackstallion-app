@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AppText } from '@/ui/components';
-import { editorialArt } from '@/ui/editorialArt';
+import { imageLibrary } from '@/ui/imageLibrary';
 import { ConfirmDialog, GlassButton, GlassCard, GlassScreen, ListGroup, Pill, Row, StatusBadge, StatusNote, UnavailableState } from '@/ui/glass';
 import { radius, space } from '@/ui/tokens';
 
@@ -137,7 +137,7 @@ function EventBody({
   return (
     <>
       <SyntheticBanner source={detail.source} />
-      <GlassCard variant="photo" image={editorialArt.communityEvent} height={220} radius={radius.hero - 4} contentStyle={styles.heroContent} testID="event-hero">
+      <GlassCard variant="photo" image={imageLibrary.grooming.source} block="brown" height={220} radius={radius.hero - 4} contentStyle={styles.heroContent} testID="event-hero">
         <View style={styles.row}>
           <Pill label={EVENT_COPY.illustration} icon="color-palette-outline" material="thick" />
         </View>
@@ -217,7 +217,7 @@ function ChildAttendance({ event, child, busy, locked, onRsvp, onCancel }: { eve
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   row: { flexDirection: 'row' },
-  heroContent: { justifyContent: 'space-between' },
+  heroContent: { gap: space.md },
   head: { gap: space.xs },
   child: { gap: space.sm, paddingTop: space.sm },
   childHead: { flexDirection: 'row', alignItems: 'center', gap: space.sm },

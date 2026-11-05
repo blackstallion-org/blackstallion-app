@@ -1,51 +1,16 @@
-import {
-  brand,
-  compositeOver,
-  contrastRatio,
-  darkColors,
-  darkGlass,
-  glassComposite,
-  lightColors,
-  lightGlass,
-  PHOTO_TEXT_MIN_SCRIM,
-  SCRIM_TEXT_ZONES,
-  scrimAlphaAt,
-  scrims,
-  type ColorTokens,
-  type GlassMaterial,
-  type ScrimName,
-} from '..';
+import { SCREEN_TONES } from '@/ui/screenTones';
 
-type Pair = [fg: keyof ColorTokens, bg: keyof ColorTokens];
+import { colorsFor, contrastRatio, glassFor, isLightTone, palette, resolveTone, TONE_COLORS, TONES, type ColorTokens } from '..';
 
 /**
- * Pixel samples from mobile/assets/editorial/*.jpg (the actual derivatives in the
- * repo), measured with PIL: `Image.resize((w // 72, h // 72), Image.BOX)` gives
- * the mean of each 72×72 px patch, which approximates what a blurred glass
- * layer sits on. `xy` is the patch's top-left in the derivative. Brightest and
- * darkest patches were taken over the whole image and over the region where UI
- * sits on each screen. Re-measure if an image is replaced.
+ * 6 Nov 2026 redesign: flat colour blocking. Every screen has ONE dominant tone (ui/screenTones.ts); editorial image
+ * cards join a picture to one flat block. Text never sits on a photograph, so every pair below is a flat colour on a
+ * flat colour and can be checked exactly. The pairing table in MOBILE_APP_PLANNING/VISUAL_REDESIGN.md lists
+ * the same numbers.
  */
-const SAMPLES = {
-  authBrightest: { hex: '#FCF4E3', file: 'auth-hero.jpg', xy: [216, 144], note: 'sunset sky, top-left' },
-  authFormBright: { hex: '#7C4C2B', file: 'auth-hero.jpg', xy: [648, 1008], note: 'brightest patch in lower 45% (form area)' },
-  authDarkest: { hex: '#120A07', file: 'auth-hero.jpg', xy: [1008, 1800], note: 'lower right' },
-  familyBrightest: { hex: '#FDF7E7', file: 'family-hero.jpg', xy: [1008, 0], note: 'sun, top-right' },
-  familyCopyBright: { hex: '#A66D41', file: 'family-hero.jpg', xy: [1008, 936], note: 'brightest patch in lower 35% (hero copy)' },
-  familyDarkest: { hex: '#140D08', file: 'family-hero.jpg', xy: [0, 1224], note: 'arena shadow, lower-left' },
-  sparkBrightest: { hex: '#FDEDBC', file: 'spark-cover.jpg', xy: [288, 0], note: 'backlight haze, top' },
-  sparkTitleBright: { hex: '#F7A23B', file: 'spark-cover.jpg', xy: [360, 648], note: 'brightest patch in 35–60% band (title)' },
-  sparkControlsBright: { hex: '#F09633', file: 'spark-cover.jpg', xy: [360, 720], note: 'brightest patch in lower 60% (transport)' },
-  sparkDarkest: { hex: '#090200', file: 'spark-cover.jpg', xy: [1008, 1800], note: 'bottom-right' },
-  horseBrightest: { hex: '#FAE7B9', file: 'horse-portrait.jpg', xy: [216, 216], note: 'window light' },
-  horseDarkest: { hex: '#060301', file: 'horse-portrait.jpg', xy: [288, 1224], note: 'stable floor' },
-  communityBrightest: { hex: '#FDF6D7', file: 'community-event.jpg', xy: [1368, 72], note: 'sky' },
-  passportBrightest: { hex: '#915C34', file: 'passport-art.jpg', xy: [0, 864], note: 'lit walnut' },
-} as const;
+type Pair = [fg: keyof ColorTokens, bg: keyof ColorTokens];
 
-const ALL_SAMPLES = Object.entries(SAMPLES);
-
-// Text pairs on opaque tokens: WCAG AA 4.5:1 for normal-size text.
+// Text pairs: WCAG AA 4.5:1 for normal-size text.
 const TEXT: Pair[] = [
   ['ink', 'canvas'],
   ['ink', 'surface'],
@@ -60,144 +25,97 @@ const TEXT: Pair[] = [
   ['onDestructive', 'destructiveFill'],
   ['infoText', 'infoBg'],
   ['successText', 'successBg'],
+  ['successText', 'canvas'],
   ['warningText', 'warningBg'],
+  ['warningText', 'canvas'],
   ['dangerText', 'dangerBg'],
-  ['dangerText', 'surface'],
+  ['dangerText', 'canvas'],
   ['devBannerText', 'devBannerBg'],
 ];
 
 // Non-text UI boundaries (input borders, focus ring, primary button edge): WCAG 1.4.11 3:1.
 const UI: Pair[] = [
   ['borderStrong', 'canvas'],
-  ['borderStrong', 'surface'],
-  ['focus', 'surface'],
   ['focus', 'canvas'],
   ['primaryFill', 'canvas'],
+  ['accent', 'canvas'],
 ];
 
-describe.each([
-  ['dark (default espresso)', darkColors],
-  ['light (warm paper)', lightColors],
-])('%s theme: opaque token pairs', (_name, colors) => {
+describe.each(TONES.map((t) => [t, TONE_COLORS[t]] as const))('%s tone', (_tone, colors) => {
   test.each(TEXT)('text %s on %s ≥ 4.5:1', (fg, bg) => {
     expect(contrastRatio(colors[fg], colors[bg])).toBeGreaterThanOrEqual(4.5);
   });
   test.each(UI)('ui %s on %s ≥ 3:1', (fg, bg) => {
     expect(contrastRatio(colors[fg], colors[bg])).toBeGreaterThanOrEqual(3);
   });
+  // `onPhoto` text is only used inside dark colour blocks (image cards); on light tones it is never used.
+  if (!isLightTone(_tone)) {
+    test('block text onPhoto and onPhotoMuted on canvas ≥ 4.5:1', () => {
+      expect(contrastRatio(colors.onPhoto, colors.canvas)).toBeGreaterThanOrEqual(4.5);
+      expect(contrastRatio(colors.onPhotoMuted, colors.canvas)).toBeGreaterThanOrEqual(4.5);
+    });
+  }
 });
 
-const MATERIALS: GlassMaterial[] = ['thin', 'regular', 'thick'];
-
-describe.each([
-  ['dark', darkColors, darkGlass],
-  ['light', lightColors, lightGlass],
-])('%s theme: glass composited over its own canvas', (_n, colors, glass) => {
-  test.each(MATERIALS)('%s glass: ink, muted and accent text ≥ 4.5:1', (material) => {
-    const bg = glassComposite(glass, material, colors.canvas);
-    expect(contrastRatio(colors.ink, bg)).toBeGreaterThanOrEqual(4.5);
-    expect(contrastRatio(colors.inkMuted, bg)).toBeGreaterThanOrEqual(4.5);
-    expect(contrastRatio(colors.accentText, bg)).toBeGreaterThanOrEqual(4.5);
-  });
-  test.each(MATERIALS)('%s glass over the opaque surface: ink and muted ≥ 4.5:1', (material) => {
-    const bg = glassComposite(glass, material, colors.surface);
-    expect(contrastRatio(colors.ink, bg)).toBeGreaterThanOrEqual(4.5);
-    expect(contrastRatio(colors.inkMuted, bg)).toBeGreaterThanOrEqual(4.5);
-  });
-  test('action glass: label ≥ 4.5:1 over canvas and over the brightest and darkest photo pixels', () => {
-    for (const backdrop of [colors.canvas, SAMPLES.familyBrightest.hex, SAMPLES.sparkDarkest.hex]) {
-      const fill = compositeOver(glass.action.fill, glass.action.alpha, backdrop);
-      expect(contrastRatio(glass.action.text, fill)).toBeGreaterThanOrEqual(4.5);
-    }
-  });
-  test('destructive glass: label ≥ 4.5:1 over canvas and photo extremes', () => {
-    for (const backdrop of [colors.canvas, SAMPLES.familyBrightest.hex, SAMPLES.sparkDarkest.hex]) {
-      const fill = compositeOver(glass.destructive.fill, glass.destructive.alpha, backdrop);
-      expect(contrastRatio(glass.destructive.text, fill)).toBeGreaterThanOrEqual(4.5);
-    }
-  });
-  test('reduced-transparency backing is opaque and readable', () => {
-    expect(contrastRatio(colors.ink, glass.opaque)).toBeGreaterThanOrEqual(4.5);
-    expect(contrastRatio(colors.inkMuted, glass.opaque)).toBeGreaterThanOrEqual(4.5);
+test('the palette is exact (owner reference board)', () => {
+  expect(palette).toEqual({
+    white: '#FFFFFF',
+    pearl: '#E8D4C3',
+    copper: '#B35727',
+    brown: '#4B2C20',
+    olive: '#60613D',
+    fir: '#36492E',
+    burgundy: '#742321',
   });
 });
 
-/** Photo regions are always rendered in the dark (espresso) scope, in both themes. */
-describe('photographs (dark scope, both themes)', () => {
-  const scrimmed = (hex: string, alpha = PHOTO_TEXT_MIN_SCRIM) => compositeOver(darkColors.scrim, alpha, hex);
-
-  test.each(ALL_SAMPLES)('thick glass is safe anywhere, even unscrimmed: ink on %s ≥ 4.5:1', (_k, s) => {
-    expect(contrastRatio(darkColors.ink, glassComposite(darkGlass, 'thick', s.hex))).toBeGreaterThanOrEqual(4.5);
-  });
-
-  test.each(ALL_SAMPLES)('regular glass inside a text zone (scrim ≥ min): ink and muted on %s ≥ 4.5:1', (_k, s) => {
-    const bg = glassComposite(darkGlass, 'regular', scrimmed(s.hex));
-    expect(contrastRatio(darkColors.ink, bg)).toBeGreaterThanOrEqual(4.5);
-    expect(contrastRatio(darkColors.inkMuted, bg)).toBeGreaterThanOrEqual(4.5);
-  });
-
-  test.each(ALL_SAMPLES)('photo text inside a text zone: onPhoto on %s ≥ 4.5:1', (_k, s) => {
-    expect(contrastRatio(darkColors.onPhoto, scrimmed(s.hex))).toBeGreaterThanOrEqual(4.5);
-  });
-
-  test.each(ALL_SAMPLES)('muted photo text needs scrim ≥ 0.75: onPhotoMuted on %s ≥ 4.5:1', (_k, s) => {
-    expect(contrastRatio(darkColors.onPhotoMuted, scrimmed(s.hex, 0.75))).toBeGreaterThanOrEqual(4.5);
-  });
-
-  test('without a scrim, white text on the bright photo regions fails — scrims are required, not decoration', () => {
-    expect(contrastRatio(darkColors.onPhoto, SAMPLES.sparkTitleBright.hex)).toBeLessThan(3);
-    expect(contrastRatio(darkColors.onPhoto, glassComposite(darkGlass, 'thin', SAMPLES.familyBrightest.hex))).toBeLessThan(4.5);
-  });
-
-  test.each(['auth', 'card', 'spark'] as const)('%s scrim stays ≥ the minimum across its text zone', (name: ScrimName) => {
-    const [from, to] = SCRIM_TEXT_ZONES[name];
-    for (let o = from; o <= to + 1e-9; o += 0.02) {
-      expect(scrimAlphaAt(scrims[name], o)).toBeGreaterThanOrEqual(PHOTO_TEXT_MIN_SCRIM - 1e-9);
-    }
-  });
-
-  test.each([
-    ['dark', darkColors],
-    ['light', lightColors],
-  ] as const)('fade scrim (canvas-coloured) gives readable %s ink across its text zone', (_n, colors) => {
-    const [from, to] = SCRIM_TEXT_ZONES.fade;
-    for (let o = from; o <= to + 1e-9; o += 0.05) {
-      const a = scrimAlphaAt(scrims.fade, o);
-      for (const s of [SAMPLES.authBrightest.hex, SAMPLES.authDarkest.hex, SAMPLES.authFormBright.hex]) {
-        const bg = compositeOver(colors.canvas, a, s);
-        expect(contrastRatio(colors.ink, bg)).toBeGreaterThanOrEqual(4.5);
-        expect(contrastRatio(colors.inkMuted, bg)).toBeGreaterThanOrEqual(4.5);
-      }
-    }
-  });
-
-  test('display title on the Spark title band (scrim at zone start) passes large-text 3:1', () => {
-    const a = scrimAlphaAt(scrims.spark, SCRIM_TEXT_ZONES.spark[0]);
-    expect(contrastRatio(darkColors.onPhoto, compositeOver(darkColors.scrim, a, SAMPLES.sparkTitleBright.hex))).toBeGreaterThanOrEqual(3);
-  });
+test('every tone uses its palette colour as the one dominant background', () => {
+  expect(TONE_COLORS.white.canvas).toBe(palette.white);
+  expect(TONE_COLORS.pearl.canvas).toBe(palette.pearl);
+  expect(TONE_COLORS.copper.canvas).toBe(palette.copper);
+  expect(TONE_COLORS.brown.canvas).toBe(palette.brown);
+  expect(TONE_COLORS.olive.canvas).toBe(palette.olive);
+  expect(TONE_COLORS.fir.canvas).toBe(palette.fir);
+  expect(TONE_COLORS.burgundy.canvas).toBe(palette.burgundy);
 });
 
-test('brand palette is exact (reference 04)', () => {
-  expect(brand).toEqual({
-    softAmber: '#FFD9A3',
-    goldenHour: '#FFB45C',
-    sunsetOrange: '#F28B2C',
-    burntSienna: '#C35A1A',
-    deepAmber: '#7A2E0B',
-    richEspresso: '#1A0D06',
-  });
+test('pairings that fail are not used (why some accents differ per tone)', () => {
+  // Copper text on pearl is 3.4:1 → pearl uses burgundy accents.
+  expect(contrastRatio(palette.copper, palette.pearl)).toBeLessThan(4.5);
+  expect(TONE_COLORS.pearl.accentText).toBe(palette.burgundy);
+  // Pearl text on copper is 3.4:1 → copper keeps every text white.
+  expect(contrastRatio(palette.pearl, palette.copper)).toBeLessThan(4.5);
+  expect(TONE_COLORS.copper.inkMuted).not.toBe(palette.pearl);
+  // Pearl on olive is 4.45:1 (just under) → olive's muted text is a lighter pearl.
+  expect(contrastRatio(palette.pearl, palette.olive)).toBeLessThan(4.5);
+  // Copper/fir/burgundy fills next to dark tones fail 3:1 → primary buttons on dark tones are white.
+  expect(contrastRatio(palette.copper, palette.brown)).toBeLessThan(3);
+  for (const t of ['brown', 'olive', 'fir', 'burgundy'] as const) expect(TONE_COLORS[t].primaryFill).toBe(palette.white);
 });
 
-test('default (dark) canvas is rich espresso and the principal action is golden hour', () => {
-  expect(darkColors.canvas).toBe(brand.richEspresso);
-  expect(darkColors.primaryFill).toBe(brand.goldenHour);
-  expect(darkColors.onPrimary).toBe(brand.richEspresso);
+test('surfaces are flat: every glass material is opaque with no blur and no shadow', () => {
+  for (const t of TONES) {
+    const g = glassFor('light', t);
+    expect(g.shadeAlpha).toEqual({ thin: 1, regular: 1, thick: 1 });
+    expect(g.blurIntensity).toEqual({ thin: 0, regular: 0, thick: 0 });
+    expect(g.shadow).toBe('none');
+    expect(g.specularAlpha).toBe(0);
+  }
 });
 
-test('raw brand swatches are not automatically text colours', () => {
-  // Burnt sienna is decorative on warm paper; components use accentText (deep amber) for text.
-  expect(contrastRatio(lightColors.accent, lightColors.canvas)).toBeLessThan(4.5);
-  expect(contrastRatio(lightColors.accentText, lightColors.canvas)).toBeGreaterThanOrEqual(4.5);
-  // Sunset orange fails as small text on espresso-dark glass over bright photos.
-  expect(contrastRatio(brand.sunsetOrange, SAMPLES.sparkControlsBright.hex)).toBeLessThan(3);
+test('Dark appearance turns only the white/pearl tones into the deep-brown night tone', () => {
+  expect(resolveTone('white', 'dark')).toBe('night');
+  expect(resolveTone('pearl', 'dark')).toBe('night');
+  expect(resolveTone('fir', 'dark')).toBe('fir');
+  expect(colorsFor('dark').canvas).toBe(TONE_COLORS.night.canvas);
+  expect(colorsFor('light').canvas).toBe(palette.white);
+});
+
+test('screen-to-colour assignments use real tones; copper is never a whole-screen tone', () => {
+  const values = Object.values(SCREEN_TONES);
+  for (const t of values) expect(TONES).toContain(t);
+  expect(values).not.toContain('copper');
+  expect(values).not.toContain('night');
+  // The white default dominates: at most a dozen screens carry a strong colour.
+  expect(values.filter((t) => !isLightTone(t)).length).toBeLessThanOrEqual(12);
 });

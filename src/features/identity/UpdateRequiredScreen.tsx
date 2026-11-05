@@ -10,7 +10,8 @@ import type { UpdateDecision } from '@/features/account/domain/version';
 import { useAccountStrings } from '@/features/account/i18n/useAccountStrings';
 import { HelpSheet } from '@/features/settings/HelpSupport';
 import { AppText, Icon } from '@/ui/components';
-import { GlassButton, GlassScreen, GlassSurface, LoadingState, StatusNote, SyntheticDataBanner } from '@/ui/glass';
+import { GlassButton, GlassScreen, GlassSurface, LoadingState, PhotoBackdrop, StatusNote, SyntheticDataBanner } from '@/ui/glass';
+import { imageLibrary } from '@/ui/imageLibrary';
 import { useTheme } from '@/ui/theme/ThemeProvider';
 import { radius, space } from '@/ui/tokens';
 
@@ -73,6 +74,10 @@ function Blocking({ decision, devPreview }: { decision: Extract<UpdateDecision, 
   return (
     <GlassScreen testID="update-required" contentStyle={styles.centred}>
       {devPreview ? <SyntheticDataBanner text={s.t('update.preview')} testID="update-preview-banner" /> : null}
+      {/* Pearl notice screen: one framed tack photograph above the notice (decorative, never behind text). */}
+      <View style={[styles.art, { borderRadius: radius.card }]}>
+        <PhotoBackdrop source={imageLibrary.leatherTack.source} imageStyle={styles.artImage} />
+      </View>
       <Card icon="arrow-up-circle-outline" title={s.t('update.title')} body={s.t('update.body', { installed: decision.installed, minimum: decision.minimum })} />
       {pending.count ? (
         <StatusNote tone={pending.durable ? 'info' : 'warning'} message={s.t(pending.durable ? 'update.pending' : 'update.pendingMemory', { count: pending.count })} testID="update-pending" />
@@ -119,6 +124,8 @@ function Card({ icon, title, body }: { icon: 'arrow-up-circle-outline' | 'checkm
 }
 
 const styles = StyleSheet.create({
+  art: { height: 168, overflow: 'hidden' },
+  artImage: { top: -120, height: 520 },
   centred: { flexGrow: 1, justifyContent: 'center' },
   pad: { paddingHorizontal: space.xs },
   card: { padding: space.xl, gap: space.md },

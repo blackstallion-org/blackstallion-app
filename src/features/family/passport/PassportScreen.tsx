@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import { Linking, StyleSheet, View } from 'react-native';
 
 import { AppText, Icon } from '@/ui/components';
-import { editorialArt } from '@/ui/editorialArt';
+import { imageLibrary } from '@/ui/imageLibrary';
 import { ErrorState, GlassButton, GlassCard, GlassScreen, ListGroup, Pill, Row, StatusBadge, StatusNote } from '@/ui/glass';
 import { useTheme } from '@/ui/theme/ThemeProvider';
 import { space } from '@/ui/tokens';
@@ -67,7 +67,7 @@ function PassportContent({ data, view, child }: { data: PassportData; view: Pass
   return (
     <>
       <SyntheticBanner source={data.source} />
-      <GlassCard variant="photo" image={editorialArt.passportArt} height={300} testID="passport-credential" contentStyle={styles.credential}>
+      <GlassCard variant="photo" image={imageLibrary.saddle.source} cutout block="brown" height={200} testID="passport-credential" contentStyle={styles.credential}>
         <View style={styles.credTop}>
           <Pill label={PASSPORT_COPY.credential} icon="shield-outline" material="thick" />
         </View>
@@ -86,7 +86,7 @@ function PassportContent({ data, view, child }: { data: PassportData; view: Pass
             </View>
           ) : null}
           <View style={styles.rankLine} accessible accessibilityLabel={`${PASSPORT_COPY.rank}: ${view.currentRank?.label ?? '—'}. ${PASSPORT_COPY.rankFromServer}`} testID="passport-rank">
-            <Icon name="ribbon" size={22} color={colors.accent} />
+            <Icon name="ribbon" size={22} color={colors.onPhoto} />
             <View style={styles.flex}>
               <AppText variant="section" tone="onPhoto">
                 {view.currentRank?.label ?? '—'}
@@ -169,7 +169,7 @@ function TimelineBadge({ entry }: { entry: RankTimelineEntry }) {
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  credential: { justifyContent: 'space-between' },
+  credential: { gap: space.md },
   credTop: { flexDirection: 'row' },
   credBottom: { gap: space.md },
   code: { letterSpacing: 1.5, fontVariant: ['tabular-nums'] },

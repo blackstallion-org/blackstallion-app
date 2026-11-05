@@ -11,14 +11,15 @@ export const space = {
   screenInset: 20,
 } as const;
 
+/** Editorial restraint (6 Nov 2026): small, consistent corners; no pills except true chips/toggles. */
 export const radius = {
-  sm: 8,
-  control: 16,
-  /** Regular panels 20–24. */
-  card: 22,
-  /** Hero / photo cards 28–36. */
-  hero: 32,
-  sheet: 32,
+  sm: 4,
+  control: 8,
+  /** Panels and lists. */
+  card: 10,
+  /** Image frames. */
+  hero: 10,
+  sheet: 16,
   pill: 999,
 } as const;
 
@@ -37,7 +38,7 @@ export const size = {
   fieldAction: 56,
   icon: 22,
   tabIcon: 24,
-  /** Floating tab bar pill height (icons + labels). */
+  /** Docked tab bar height (icons + labels). */
   tabBar: 64,
   /** Gap between the floating tab bar and the safe-area bottom. */
   tabBarGap: 8,

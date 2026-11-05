@@ -3,7 +3,7 @@ import { ActivityIndicator, Animated, Pressable, StyleSheet, View, type StylePro
 import { AppText } from '@/ui/components/AppText';
 import { Icon, type IconName } from '@/ui/components/Icon';
 import { useTheme } from '@/ui/theme/ThemeProvider';
-import { size as sizes, space, type GlassMaterial } from '@/ui/tokens';
+import { radius as radii, size as sizes, space, type GlassMaterial } from '@/ui/tokens';
 
 import { GlassSurface } from './GlassSurface';
 import { PressDecor, usePressFeedback } from './pressFeedback';
@@ -62,7 +62,8 @@ export function GlassButton(props: GlassButtonProps) {
   const busy = loading || pending;
   const inactive = disabled || busy;
   const height = (size ?? (variant === 'primary' ? 'large' : 'regular')) === 'large' ? sizes.primaryAction : sizes.minTouch;
-  const r = height / 2;
+  // Editorial: a small, constant corner (not a pill).
+  const r = radii.control;
 
   // Disabled uses opaque muted tokens (inkMuted on surfaceMuted ≥ 4.5:1) rather
   // than opacity, so the label stays legible in sunlight.
@@ -101,7 +102,7 @@ export function GlassButton(props: GlassButtonProps) {
                 material={material}
                 borderRadius={r}
                 elevated={variant === 'primary'}
-                style={StyleSheet.absoluteFill}
+                style={[StyleSheet.absoluteFill, variant === 'secondary' ? { borderWidth: 1, borderColor: colors.borderStrong } : null]}
               />
             )}
             <PressDecor pressed={pressed && !inactive} focused={focused} radius={r} />

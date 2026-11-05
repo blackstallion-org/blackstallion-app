@@ -93,7 +93,7 @@ function Invoice({ order, billing, scope, payer }: { order: OrderWithChild; bill
             <AppText variant="secondary" tone="muted">
               {C.invoiceNumber}
             </AppText>
-            <AppText variant="section" header selectable testID="invoice-number">
+            <AppText variant="bodyStrong" header selectable testID="invoice-number">
               {order.invoice.number}
             </AppText>
           </View>

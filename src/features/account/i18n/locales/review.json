@@ -255,13 +255,13 @@
     "source": "features/account/i18n/locales/en.json"
   },
   "settings.darkHint": {
-    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
-    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "hi": "needs-native-review (machine-assisted first draft, 6 Nov 2026 redesign)",
+    "te": "needs-native-review (machine-assisted first draft, 6 Nov 2026 redesign)",
     "source": "features/account/i18n/locales/en.json"
   },
   "settings.lightHint": {
-    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
-    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "hi": "needs-native-review (machine-assisted first draft, 6 Nov 2026 redesign)",
+    "te": "needs-native-review (machine-assisted first draft, 6 Nov 2026 redesign)",
     "source": "features/account/i18n/locales/en.json"
   },
   "settings.systemHint": {

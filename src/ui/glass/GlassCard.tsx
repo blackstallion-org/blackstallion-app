@@ -4,9 +4,8 @@ import { Animated, Pressable, StyleSheet, View, type DimensionValue, type ImageS
 import { AppText } from '@/ui/components/AppText';
 import { Icon } from '@/ui/components/Icon';
 import { ThemeScope, useTheme } from '@/ui/theme/ThemeProvider';
-import { radius as radii, size as sizes, space, type GlassMaterial, type ScrimName } from '@/ui/tokens';
+import { radius as radii, size as sizes, space, type GlassMaterial, type ScrimName, type Tone } from '@/ui/tokens';
 
-import { GlassBackdropHost } from './GlassBackdrop';
 import { GlassSurface } from './GlassSurface';
 import { PhotoBackdrop } from './PhotoBackdrop';
 import { PressDecor, usePressFeedback } from './pressFeedback';
@@ -33,12 +32,18 @@ type CardBase = {
 export type GlassCardProps =
   | (CardBase & { variant?: 'regular' })
   | (CardBase & {
-      /** Editorial photo card: radius 28–36 (default 32), espresso scrim, content in the dark scope. */
+      /**
+       * Editorial image block: the picture in its own hard-edged frame, joined to ONE flat colour block that carries
+       * the copy (default brown, white text — `onPhoto` tones stay legible). Never text over the picture. `scrim` is
+       * ignored. `cutout` shows a transparent cut-out whole (contain) on the block colour instead of a cropped photo.
+       */
       variant: 'photo';
       image: ImageSourcePropType;
       scrim?: ScrimName;
       height?: DimensionValue;
       imageStyle?: StyleProp<ViewStyle>;
+      block?: Tone;
+      cutout?: boolean;
     });
 
 export function GlassCard(props: GlassCardProps) {
@@ -62,17 +67,12 @@ export function GlassCard(props: GlassCardProps) {
 
   const surface = (pressed: boolean) =>
     photo ? (
-      <ThemeScope scheme="dark">
-        <View style={[styles.photo, { borderRadius: r, height: props.height }, style]} testID={onPress ? undefined : testID}>
-          {/* The photo is the blur source for glass chips on the card (Android BlurTargetView). */}
-          <GlassBackdropHost backdrop={<PhotoBackdrop source={props.image} scrim={props.scrim ?? 'card'} imageStyle={props.imageStyle} style={{ borderRadius: r }} />}>
-            <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.photoRim, { borderRadius: r }]} />
-            <PressDecor pressed={pressed} focused={focused} radius={r} />
-            <View style={[styles.photoContent, contentStyle]} pointerEvents="box-none">
-              {inner}
-            </View>
-          </GlassBackdropHost>
-        </View>
+      // Editorial image block (6 Nov 2026): photograph in its own frame + one flat colour block for the copy.
+      <ThemeScope tone={props.block ?? 'brown'}>
+        <PhotoBlock r={r} height={props.height} image={props.image} imageStyle={props.imageStyle} cutout={props.cutout} style={style} contentStyle={contentStyle} testID={onPress ? undefined : testID}>
+          <PressDecor pressed={pressed} focused={focused} radius={r} />
+          {inner}
+        </PhotoBlock>
       </ThemeScope>
     ) : (
       <GlassSurface material={material} borderRadius={r} style={style} contentStyle={[styles.content, contentStyle]} testID={onPress ? undefined : testID}>
@@ -91,6 +91,20 @@ export function GlassCard(props: GlassCardProps) {
   );
 }
 
+function PhotoBlock({ r, height, image, imageStyle, cutout, style, contentStyle, testID, children }: { r: number; height?: DimensionValue; image: ImageSourcePropType; imageStyle?: StyleProp<ViewStyle>; cutout?: boolean; style?: StyleProp<ViewStyle>; contentStyle?: StyleProp<ViewStyle>; testID?: string; children: ReactNode }) {
+  const { colors } = useTheme();
+  return (
+    <View style={[styles.photo, { borderRadius: r, backgroundColor: colors.canvas }, style]} testID={testID}>
+      <View style={[styles.frame, { height: height ?? 220, backgroundColor: cutout ? colors.canvas : colors.surfaceMuted }]}>
+        <PhotoBackdrop source={image} imageStyle={imageStyle} resizeMode={cutout ? 'contain' : 'cover'} style={cutout ? styles.cutoutPad : undefined} />
+      </View>
+      <View style={[styles.photoContent, contentStyle]} pointerEvents="box-none">
+        {children}
+      </View>
+    </View>
+  );
+}
+
 function ExpandToggle({ expanded, label, onPress }: { expanded: boolean; label: string; onPress: () => void }) {
   const { colors } = useTheme();
   return (
@@ -105,8 +119,9 @@ function ExpandToggle({ expanded, label, onPress }: { expanded: boolean; label: 
 
 const styles = StyleSheet.create({
   content: { padding: space.screenInset, gap: space.md },
-  photo: { overflow: 'hidden', justifyContent: 'flex-end' },
-  photoRim: { borderWidth: 1, borderColor: 'rgba(255, 233, 210, 0.16)' },
-  photoContent: { flexGrow: 1, padding: space.screenInset, gap: space.md, justifyContent: 'flex-end' },
+  photo: { overflow: 'hidden' },
+  frame: { overflow: 'hidden' },
+  cutoutPad: { top: space.md, bottom: 0, left: space.md, right: space.md },
+  photoContent: { gap: space.sm, padding: space.screenInset },
   toggle: { minHeight: sizes.minTouch, flexDirection: 'row', alignItems: 'center', gap: space.xs, alignSelf: 'flex-start' },
 });

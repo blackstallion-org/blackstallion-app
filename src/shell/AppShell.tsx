@@ -10,7 +10,12 @@ import { createConfiguredAccessAdapter, getConfiguredClient } from '@/core/auth/
 import { RepositoryProvider, unconnectedRepositories, type Repositories } from '@/core/data/RepositoryProvider';
 import { asyncStorageStore, type KeyValueStore } from '@/core/preferences/keyValueStore';
 import { AccessProvider, useAccess } from '@/features/identity/AccessProvider';
+import { setBrandFontsReady } from '@/ui/theme/fonts';
 import { ThemeProvider, useTheme } from '@/ui/theme/ThemeProvider';
+import { BodoniModa_400Regular, BodoniModa_400Regular_Italic, BodoniModa_500Medium, BodoniModa_600SemiBold } from '@expo-google-fonts/bodoni-moda';
+import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold } from '@expo-google-fonts/inter';
+import { PinyonScript_400Regular } from '@expo-google-fonts/pinyon-script';
+import { useFonts } from 'expo-font';
 
 import { rememberResume } from './resumeLink';
 import { createServerRepositories } from './serverRepositories';
@@ -63,6 +68,19 @@ export function AppProviders({
 export function RootNavigator() {
   const { ready, scheme, colors } = useTheme();
   const { state } = useAccess();
+  // Brand fonts (OFL). If loading fails the app continues on platform fonts rather than blocking.
+  const [fontsLoaded, fontError] = useFonts({
+    BodoniModa_400Regular,
+    BodoniModa_400Regular_Italic,
+    BodoniModa_500Medium,
+    BodoniModa_600SemiBold,
+    PinyonScript_400Regular,
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+  });
+  const fontsSettled = fontsLoaded || !!fontError;
+  setBrandFontsReady(fontsLoaded && !fontError);
   const pathname = usePathname();
   const url = Linking.useURL();
 
@@ -87,8 +105,8 @@ export function RootNavigator() {
   }, [state.phase, pathname, url]);
 
   useEffect(() => {
-    if (ready) void SplashScreen.hideAsync().catch(() => undefined);
-  }, [ready]);
+    if (ready && fontsSettled) void SplashScreen.hideAsync().catch(() => undefined);
+  }, [ready, fontsSettled]);
 
   useEffect(() => {
     void SystemUI.setBackgroundColorAsync(colors.canvas).catch(() => undefined);
@@ -112,7 +130,7 @@ export function RootNavigator() {
 
   // Keep the splash screen up until the stored appearance is known, so a
   // dark-preference user never sees a white flash of themed UI.
-  if (!ready) return null;
+  if (!ready || !fontsSettled) return null;
 
   return (
     <NavigationThemeProvider value={navigationTheme}>

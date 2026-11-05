@@ -4,15 +4,12 @@ import { Animated, Keyboard, Platform, Pressable, StyleSheet, useWindowDimension
 
 import { AppText } from '@/ui/components/AppText';
 import { useTheme } from '@/ui/theme/ThemeProvider';
-import { motion, size as sizes, space } from '@/ui/tokens';
+import { motion, size as sizes } from '@/ui/tokens';
 
 import { floatingTabBottom } from './floatingTabInset';
-import { GlassSurface } from './GlassSurface';
 import { PressDecor, usePressFeedback } from './pressFeedback';
 
 const useNativeDriver = Platform.OS !== 'web';
-const SIDE = space.lg;
-const SIDE_NARROW = space.sm + 2;
 const PAD = 6;
 
 /** Hides the floating bar while the software keyboard is up (tabBarHideOnKeyboard parity). */
@@ -30,9 +27,8 @@ function useKeyboardShown(): boolean {
 }
 
 /**
- * Floating glass tab bar for expo-router Tabs (`tabBar` prop). Adapts the
- * LiquidNavbar reference to React Native: a pill of glass with a lighter glass
- * capsule that slides to the active item (200 ms; static with Reduce Motion).
+ * Docked editorial tab bar for expo-router Tabs (`tabBar` prop): flat canvas, hairline top rule, a short copper rule
+ * that slides to the active item (200 ms; static with Reduce Motion). Name kept for existing imports.
  * Icons AND labels, real router state (state.index / navigateToTab), tabPress
  * events honoured, safe-area aware, no sound, no WebGL water.
  *
@@ -64,9 +60,9 @@ export function GlassTabBar({ state, descriptors, emitter, navigateToTab, insets
   return (
     <View
       pointerEvents="box-none"
-      style={[styles.host, { bottom: floatingTabBottom(insets.bottom), left: (narrow ? SIDE_NARROW : SIDE) + insets.left, right: (narrow ? SIDE_NARROW : SIDE) + insets.right }]}
+      style={[styles.host, { bottom: 0, left: 0, right: 0, paddingBottom: floatingTabBottom(insets.bottom), paddingLeft: insets.left, paddingRight: insets.right, backgroundColor: colors.canvas, borderTopColor: colors.border }]}
     >
-      <GlassSurface material="thick" borderRadius={sizes.tabBar / 2} style={styles.bar} contentStyle={styles.barContent}>
+      <View style={styles.bar}>
         <View
           accessibilityRole="tablist"
           testID="glass-tab-bar"
@@ -75,14 +71,15 @@ export function GlassTabBar({ state, descriptors, emitter, navigateToTab, insets
         >
           {itemWidth > 0 ? (
             <Animated.View pointerEvents="none" style={[styles.indicator, { width: itemWidth, transform: [{ translateX: x }] }]}>
-              <GlassSurface material="thin" backgroundOpacity={0.16} borderRadius={(sizes.tabBar - PAD * 2) / 2} elevated={false} style={StyleSheet.absoluteFill} />
+              {/* Active tab: a short copper rule above the item (flat; no capsule). */}
+              <View style={[styles.rule, { backgroundColor: colors.accent }]} />
             </Animated.View>
           ) : null}
           {state.routes.map((route, index) => {
             const options = descriptors[route.key]?.options ?? {};
             const focused = index === state.index;
             const label = typeof options.tabBarLabel === 'string' ? options.tabBarLabel : (options.title ?? route.name);
-            const color = focused ? colors.ink : colors.inkMuted;
+            const color = focused ? colors.accentText : colors.inkMuted;
             const onPress = () => {
               const event = emitter.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
               if (!focused && !event.defaultPrevented) navigateToTab(route.key);
@@ -105,7 +102,7 @@ export function GlassTabBar({ state, descriptors, emitter, navigateToTab, insets
             );
           })}
         </View>
-      </GlassSurface>
+      </View>
     </View>
   );
 }
@@ -175,11 +172,11 @@ function TabItem({
 }
 
 const styles = StyleSheet.create({
-  host: { position: 'absolute', alignItems: 'center' },
-  bar: { width: '100%', maxWidth: 480, height: sizes.tabBar },
-  barContent: { padding: PAD },
+  host: { position: 'absolute', alignItems: 'center', borderTopWidth: StyleSheet.hairlineWidth },
+  bar: { width: '100%', maxWidth: 560, height: sizes.tabBar },
   row: { flex: 1, flexDirection: 'row' },
-  indicator: { position: 'absolute', top: 0, bottom: 0, left: 0 },
+  indicator: { position: 'absolute', top: 0, bottom: 0, left: 0, alignItems: 'center' },
+  rule: { width: 28, height: 2 },
   item: { flex: 1, minHeight: sizes.minTouch, alignItems: 'center', justifyContent: 'center', gap: 1 },
   badge: { position: 'absolute', top: 4, right: '22%', minWidth: 16, height: 16, borderRadius: 8, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 },
 });

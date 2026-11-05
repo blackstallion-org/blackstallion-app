@@ -139,16 +139,16 @@ test('tabs and shared Settings: push from Profile, back returns to Profile', asy
   await waitFor(() => expect(r.getPathname()).toBe('/family/profile'));
 });
 
-test('Settings appearance: espresso (Dark) is the default; choosing Light is persisted', async () => {
+test('Settings appearance: White (Light) is the default; choosing Dark is persisted', async () => {
   const r = await boot();
   await signInAs('instructor');
   await waitFor(() => expect(r.getPathname()).toBe('/field'));
   await openSettings(r);
-  const radio = screen.getByTestId('appearance-light');
-  expect(screen.getByTestId('appearance-dark')).toBeChecked();
+  const radio = screen.getByTestId('appearance-dark');
+  expect(screen.getByTestId('appearance-light')).toBeChecked();
   await fireEvent.press(radio);
-  await waitFor(() => expect(screen.getByTestId('appearance-light')).toBeChecked());
-  expect(await AsyncStorage.getItem('bsah.pref.appearance.v1')).toBe('light');
+  await waitFor(() => expect(screen.getByTestId('appearance-dark')).toBeChecked());
+  expect(await AsyncStorage.getItem('bsah.pref.appearance.v1')).toBe('dark');
 });
 
 test('sign out then a different person: no previous names render, history is gone', async () => {

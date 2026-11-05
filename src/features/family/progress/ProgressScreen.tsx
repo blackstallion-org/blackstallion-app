@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AppText, Icon } from '@/ui/components';
-import { editorialArt } from '@/ui/editorialArt';
+import { imageLibrary } from '@/ui/imageLibrary';
 import { EmptyState, GlassButton, GlassCard, GlassScreen, ListGroup, Pill, Row, SegmentedControl, StatusBadge, StatusNote } from '@/ui/glass';
 import { useTheme } from '@/ui/theme/ThemeProvider';
 import { radius, rgba, space } from '@/ui/tokens';
@@ -89,7 +89,7 @@ function SessionsBody({ data, child }: { data: ProgressData; child: FamilyChild 
       <SyntheticBanner source={data.source} />
       <GlassCard
         variant="photo"
-        image={editorialArt.passportArt}
+        image={imageLibrary.groundwork.source}
         height={168}
         radius={radius.hero - 4}
         onPress={() => router.push('/family/passport')}
