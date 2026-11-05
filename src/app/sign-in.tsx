@@ -1,3 +1,4 @@
+import { readBackendConfig } from '@/core/auth/supabaseClient';
 import { SignInScreen } from '@/features/identity/SignInScreen';
 
 const DevPanel = (): React.ReactNode => {
@@ -8,5 +9,6 @@ const DevPanel = (): React.ReactNode => {
 };
 
 export default function SignInRoute() {
-  return <SignInScreen devPanel={__DEV__ ? <DevPanel /> : undefined} />;
+  // The persona panel exists only in development builds with no backend configured.
+  return <SignInScreen devPanel={__DEV__ && !readBackendConfig() ? <DevPanel /> : undefined} />;
 }

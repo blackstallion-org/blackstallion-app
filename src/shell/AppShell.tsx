@@ -5,20 +5,30 @@ import { useEffect, useMemo, type ReactNode } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { unconnectedAccessAdapter, type AccessAdapter } from '@/core/auth/accessAdapter';
+import { createConfiguredAccessAdapter, getConfiguredClient } from '@/core/auth/supabaseClient';
 import { RepositoryProvider, unconnectedRepositories, type Repositories } from '@/core/data/RepositoryProvider';
 import { asyncStorageStore, type KeyValueStore } from '@/core/preferences/keyValueStore';
 import { AccessProvider, useAccess } from '@/features/identity/AccessProvider';
 import { ThemeProvider, useTheme } from '@/ui/theme/ThemeProvider';
 
+import { createServerRepositories } from './serverRepositories';
+
 /**
- * Composition root. Development builds get the synthetic preview adapter and
- * fixtures; every other build gets the unconnected adapter (always signed out)
- * until G3 supplies real authentication. The `__DEV__ ? require(...)` form
- * lets the production bundler drop src/dev entirely.
+ * Composition root. A configured backend → the Supabase adapter (G3). No backend: development builds get the
+ * synthetic preview adapter and fixtures, every other build the unconnected adapter (always signed out). The
+ * `__DEV__ ? require(...)` form lets the production bundler drop src/dev entirely.
  */
 type Composition = { adapter: AccessAdapter; repositories: Repositories };
 
 const defaultComposition = (): Composition => {
+  // G3: a build with a backend configured (EXPO_PUBLIC_SUPABASE_URL + publishable key) always uses the real
+  // adapter, in development too, so synthetic personas never run against a real backend. Repositories use the
+  // same client, so every read and command carries the signed-in session (first workflow slice, G4).
+  const real = createConfiguredAccessAdapter();
+  if (real) {
+    const client = getConfiguredClient();
+    return { adapter: real, repositories: client ? createServerRepositories(client) : unconnectedRepositories };
+  }
   if (__DEV__) {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const dev = require('@/dev/preview') as typeof import('@/dev/preview');

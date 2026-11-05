@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 
-import type { AccessAdapter } from '@/core/auth/accessAdapter';
+import type { AccessAdapter, CodeRequestResult, ResetResult, SignInResult } from '@/core/auth/accessAdapter';
 import type { KeyValueStore } from '@/core/preferences/keyValueStore';
 
 import {
@@ -22,6 +22,12 @@ type AccessContextValue = {
   switchExperience: (target: Experience) => void;
   signOut: () => Promise<void>;
   reload: () => void;
+  /** Present only when the adapter is connected to a real backend (G3). */
+  signInWithPassword?: (email: string, password: string) => Promise<SignInResult>;
+  requestEmailCode?: (email: string) => Promise<CodeRequestResult>;
+  verifyEmailCode?: (email: string, code: string) => Promise<SignInResult>;
+  requestPasswordReset?: (email: string) => Promise<CodeRequestResult>;
+  completePasswordReset?: (email: string, code: string, newPassword: string) => Promise<ResetResult>;
 };
 
 const AccessContext = createContext<AccessContextValue | null>(null);
@@ -94,8 +100,13 @@ export function AccessProvider({
       switchExperience,
       signOut,
       reload,
+      signInWithPassword: adapter.signInWithPassword?.bind(adapter),
+      requestEmailCode: adapter.requestEmailCode?.bind(adapter),
+      verifyEmailCode: adapter.verifyEmailCode?.bind(adapter),
+      requestPasswordReset: adapter.requestPasswordReset?.bind(adapter),
+      completePasswordReset: adapter.completePasswordReset?.bind(adapter),
     }),
-    [state, adapter.name, switchExperience, signOut, reload],
+    [state, adapter, switchExperience, signOut, reload],
   );
 
   return <AccessContext.Provider value={value}>{children}</AccessContext.Provider>;
