@@ -1,0 +1,1177 @@
+{
+  "common.back": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.close": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.cancel": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.retry": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.loading": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.and": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.reference": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.getHelp": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.signOut": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.goHome": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.synthetic": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.loadError": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.loadErrorTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.deniedTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.deniedBody": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.offPolicyTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.offPolicyBody": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.notConnectedTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "common.notConnectedBody": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "experience.family": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "experience.field": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "role.guardian": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "role.instructor": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "role.groom": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "role.hubAdmin": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "role.superAdmin": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "role.admissions": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.viewing": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.roleAtHub": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.guardianOf": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.switchTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.switchHint": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.groupAccount": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.settings": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.settingsValue": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.notifications": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.notificationsValue": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.help": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.helpValue": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.groupFamily": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.billing": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.billingValue": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.detailsError": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.detailsStale": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "profile.loadingLabel": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.appearance": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.dark": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.light": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.system": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.darkHint": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.lightHint": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.systemHint": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.saveFailed": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.language": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.languageHint": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.languageFamily": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.languageDraft": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.experience": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.groupNotifications": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.notifications": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.notificationsValue": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.privacyConsents": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.privacyConsentsValue": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.privacyPolicy": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.privacyPolicyValue": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.groupSupport": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.help": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.helpValue": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.groupAccount": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.signedInAs": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.syntheticAccount": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.deleteAccount": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.deleteAccountValue": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.groupAbout": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.version": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.build": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.buildDevelopment": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.buildRelease": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.adapter": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.gallery": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "settings.galleryValue": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.intro": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.phoneTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.os.granted": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.os.denied": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.os.undetermined": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.os.unknown": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.osBody.granted": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.osBody.denied": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.osBody.undetermined": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.osBody.unknown": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.openSettings": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.openSettingsFailed": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.notLive": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.group.family": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.group.field": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.group.all": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.category.check_in.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.category.check_in.description": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.category.assessment_published.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.category.assessment_published.description": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.category.events.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.category.events.description": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.category.spark_daily.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.category.spark_daily.description": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.category.care_reminders.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.category.care_reminders.description": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.category.review_escalations.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.category.review_escalations.description": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.on": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.off": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.toggleLabel": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.isDefault": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.saving": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.saved": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.failedNetwork": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.failedInvalid": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.failedOther": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.emptyTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.emptyBody": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notifications.loadingLabel": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.intro": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.contactTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.call": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.email": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.website": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.hours": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.notConfigured": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.sample": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.openFailed": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.diagnosticTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.diagnosticBody": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.copy": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.copied": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.copyFailed": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.included": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.includedBody": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.errorReference": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.appVersion": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "help.loadingLabel": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.heading": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.intro": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.whatHappens": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.stepReviewTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.stepReview": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.stepSignInTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.stepSignIn": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.stepChildrenTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.stepChildren": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.stepCancelTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.stepCancel": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.pendingWork": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.reasonLabel": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.reasonHint": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.confirmLabel": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.confirmHint": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.submit": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.keep": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.statusTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.status.requested": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.status.in_review": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.status.completed": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.status.rejected": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.status.cancelled": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.statusBody.requested": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.statusBody.in_review": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.statusBody.completed": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.statusBody.rejected": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.statusBody.cancelled": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.requestReference": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.requestedOn": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.note": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.alreadyOpen": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.cancelRequest": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.cancelTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.cancelBody": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.cancelKeep": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.newRequest": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.errorNetwork": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.errorConflict": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.errorOther": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "deletion.loadingLabel": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.body": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.confirm": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.signingOut": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.pendingTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.pendingCount": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.pendingOffline": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.sendFirst": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.keep": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.keepBody": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.discard": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.discardTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.discardBody": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.eyebrow": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.unknownAccount.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.unknownAccount.body": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.unknownAccount.next": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.disabled.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.disabled.body": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.disabled.next": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.noExperience.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.noExperience.body": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.noExperience.next": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.bootError.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.bootError.body": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "status.bootError.next": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notFound.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notFound.body": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notFound.back": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "notFound.signIn": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.title": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.body": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.pending": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.keepsData": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.updateIos": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.updateAndroid": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.openFailed": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.notConfigured": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.supportedTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.supportedBody": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.continue": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.unknownTitle": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.unknownBody": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.preview": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.checking": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "signOut.keepBodyMemory": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.pendingMemory": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  },
+  "update.keepsDataMemory": {
+    "hi": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "te": "needs-native-review (machine-assisted first draft, 5 Nov 2026)",
+    "source": "features/account/i18n/locales/en.json"
+  }
+}

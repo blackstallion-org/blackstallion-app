@@ -5,207 +5,266 @@ import { StyleSheet, View } from 'react-native';
 import { useRepositories } from '@/core/data/RepositoryProvider';
 import { useScopedResource } from '@/core/data/useScopedResource';
 import { useAuthorizedAccess } from '@/features/identity/AccessProvider';
+import { TodayWork } from '@/features/fieldOps';
 import { ExperienceSwitchButton } from '@/features/identity/ExperienceSwitch';
+import { AppText } from '@/ui/components';
 import {
-  AppText,
-  Badge,
-  Button,
-  Card,
   EmptyState,
-  ErrorState,
-  ListRow,
+  GlassButton,
+  GlassScreen,
+  GlassSurface,
+  ListGroup,
   LoadingState,
-  PreviewBanner,
-  Screen,
-  Section,
-  StatusMessage,
-} from '@/ui/components';
-import { space } from '@/ui/tokens';
+  Row,
+  StatusBadge,
+  StatusNote,
+  SyntheticDataBanner,
+} from '@/ui/glass';
+import { useTheme } from '@/ui/theme/ThemeProvider';
+import { radius, space } from '@/ui/tokens';
 
 import { rememberAssessTarget } from './assessHandoff';
+import { LoadFailure } from './components/LoadStates';
+import { Trailing } from './components/Trailing';
+import type { TodayCheckIn } from './data/repositories';
+import { useFieldStrings, type FieldTranslator } from './i18n';
 import type { FieldTodayData } from './types';
+import { useFieldAccess } from './useFieldAccess';
 
 export function useFieldToday() {
   const { state, contextKey } = useAuthorizedAccess();
   const { fieldToday } = useRepositories();
+  const { scope } = useFieldAccess();
   return useScopedResource(`${contextKey}:today`, () =>
     fieldToday.getToday({
       subjectId: state.session.subjectId,
       experience: 'field',
-      hubId: state.session.scope?.hubId,
-      role: state.session.scope?.role,
+      hubId: scope.hubId,
+      role: scope.role,
       displayName: state.session.displayName,
     }),
   );
 }
 
-/** W01 Today — representative layout on synthetic data (G2). */
+/**
+ * FO-01 Today: sunlight-readable operational layout. The day's numbers first (checked in / published / to assess),
+ * then the cadets who still need an assessment at the top of one flat glass list, then care. Scan sits in the thumb
+ * zone as the floating primary action. Status is always icon + word.
+ */
 export function FieldTodayScreen() {
-  const { state } = useAuthorizedAccess();
-  const today = useFieldToday();
+  const s = useFieldStrings();
   const router = useRouter();
+  const access = useFieldAccess();
+  const { scope, contextKey, canRecord, canViewCadets, fieldApp, workflow } = access;
+  const today = useFieldToday();
+  const { state } = useAuthorizedAccess();
+  // UX only (capability punchIn); hub admins have no shift to punch by default and the server refuses others.
+  const caps = state.session.scope?.capabilities;
+  const canPunch = caps ? caps.punchIn === true : scope.role === 'INSTRUCTOR' || scope.role === 'GROOM';
+
+  // Server Today carries check-ins; fixture Today may not, so they come from the Field repositories then.
+  const needCheckIns = today.status === 'ready' && today.data.checkIns === undefined && canViewCadets && !!fieldApp;
+  const checkIns = useScopedResource(`${contextKey}:today-checkins:${needCheckIns ? 'load' : 'skip'}`, () =>
+    needCheckIns && fieldApp ? fieldApp.checkIns.listToday(scope) : Promise.resolve(null),
+  );
+  const flags = useScopedResource(`${contextKey}:flags`, () => (fieldApp && canViewCadets ? fieldApp.policy.flags(scope) : Promise.resolve({ sessionRoster: false })));
+
   const firstFocus = useRef(true);
-  const { retry } = today;
+  const retryToday = today.retry;
+  const retryCheckIns = checkIns.retry;
   useFocusEffect(
     useCallback(() => {
       if (firstFocus.current) {
         firstFocus.current = false;
         return;
       }
-      retry();
-    }, [retry]),
+      retryToday();
+      retryCheckIns();
+    }, [retryToday, retryCheckIns]),
   );
-  const { fieldWorkflow } = useRepositories();
-  // UX only: the server refuses check-in/publish for anyone but an INSTRUCTOR with a hub (MIG:340,387).
-  const canRecord = state.session.scope?.capabilities?.recordAssessment === true;
-  const canViewCadets = state.session.scope?.capabilities?.viewHubCadets === true;
-  const scanHint = !fieldWorkflow
-    ? 'Scanning needs a build connected to the academy.'
-    : !canRecord
-      ? 'Only instructors record sessions.'
-      : null;
+
+  const scanHint = !canRecord ? (canViewCadets ? s.t('today.notInstructor') : null) : !workflow ? s.t('today.noBackend') : null;
+  const list: TodayCheckIn[] | null =
+    today.status !== 'ready' || !canViewCadets ? null : (today.data.checkIns ?? (checkIns.status === 'ready' ? checkIns.data : null));
+
   return (
-    <Screen
+    <GlassScreen
       edges={['top', 'left', 'right']}
       testID="field-today"
       footer={
-        <View style={{ gap: space.xs }}>
-          <Button
-            size="field"
-            icon="qr-code-outline"
-            label="Check in a cadet"
-            disabled={scanHint !== null}
-            onPress={() => router.push('/field/session/scan')}
-            testID="open-scan"
-          />
-          {scanHint ? (
-            <AppText variant="caption" tone="muted" align="center">
-              {scanHint}
-            </AppText>
-          ) : null}
-        </View>
+        canRecord && workflow ? (
+          <GlassButton size="large" icon="qr-code-outline" label={s.t('today.scanAction')} accessibilityHint={s.t('today.scanHint')} onPress={() => router.push('/field/scan')} testID="open-scan" />
+        ) : undefined
       }
     >
       <View style={styles.header}>
-        <AppText variant="overline" tone="accent">
-          Field Ops
+        <AppText variant="secondary" tone="accent" style={styles.eyebrow}>
+          {s.t('today.eyebrow')}
         </AppText>
         <AppText variant="title" header>
-          Today
+          {s.t('today.title')}
         </AppText>
-        <AppText tone="muted">{state.session.displayName}</AppText>
-        <ExperienceSwitchButton />
+        <AppText tone="muted">{today.status === 'ready' ? `${today.data.hubName} · ${today.data.dateLabel}` : access.scope.displayName}</AppText>
       </View>
-      {today.status === 'loading' ? <LoadingState label="Loading today" testID="field-today-loading" /> : null}
-      {today.status === 'error' ? (
-        <ErrorState message={today.message} onRetry={today.retry} details={today.reference ? `Reference: ${today.reference}` : undefined} />
+      <ExperienceSwitchButton />
+      {scanHint ? <StatusNote tone="info" message={scanHint} testID="scan-hint" /> : null}
+      {today.status === 'loading' ? <LoadingState label={s.t('today.loading')} testID="field-today-loading" /> : null}
+      {today.status === 'error' ? <LoadFailure state={today} onRetry={today.retry} testID="field-today" /> : null}
+      {today.status === 'ready' ? (
+        <TodayBody
+          data={today.data}
+          s={s}
+          canRecord={canRecord && !!workflow}
+          canViewCadets={canViewCadets}
+          checkIns={list}
+          checkInsState={today.data.checkIns !== undefined ? 'ready' : checkIns.status}
+          onRetryCheckIns={checkIns.retry}
+          rosterOn={flags.status === 'ready' && flags.data.sessionRoster}
+          onOpenCadet={(c) => router.push({ pathname: '/field/cadets/[cadetId]', params: { cadetId: c.cadetId } })}
+          onAssess={(c) => {
+            rememberAssessTarget({ checkInOperationId: c.checkInOperationId, cadetId: c.cadetId, cadetName: c.cadetName });
+            router.push({ pathname: '/field/cadets/[cadetId]/assess', params: { cadetId: c.cadetId, op: c.checkInOperationId } });
+          }}
+          onOpenRoster={() => router.push({ pathname: '/field/sessions/[sessionId]', params: { sessionId: 'today' } })}
+        />
       ) : null}
-      {today.status === 'ready' ? <TodayBody data={today.data} canRecord={canRecord} canViewCadets={canViewCadets} /> : null}
-    </Screen>
+      {today.status !== 'loading' ? (
+        <TodayWork
+          canPunch={canPunch}
+          onOpenShift={() => router.push('/field/shift')}
+          onOpenReview={() => router.push('/field/review')}
+          onOpenSync={() => router.navigate('/field/sync')}
+          onOpenTask={(taskId) => router.push({ pathname: '/field/horses/care/[taskId]', params: { taskId } })}
+          onOpenHorses={() => router.navigate('/field/horses')}
+        />
+      ) : null}
+    </GlassScreen>
   );
 }
 
-const careTone = { done: 'success', due: 'warning', overdue: 'danger' } as const;
-const careLabel = { done: 'Done', due: 'Due', overdue: 'Overdue' } as const;
+/** The day's three numbers in one glass panel, large tabular numerals (sunlight-readable). */
+function DayNumbers({ list, s }: { list: TodayCheckIn[]; s: FieldTranslator }) {
+  const { colors } = useTheme();
+  const published = list.filter((c) => c.published === true).length;
+  const known = list.every((c) => c.published !== null);
+  const toAssess = known ? list.length - published : null;
+  const items = [
+    { key: 'in', label: s.t('today.stats.checkedIn'), value: list.length },
+    { key: 'pub', label: s.t('today.stats.published'), value: known ? published : null },
+    { key: 'todo', label: s.t('today.stats.toAssess'), value: toAssess },
+  ];
+  return (
+    <GlassSurface material="regular" borderRadius={radius.card} contentStyle={styles.numbers} accessible accessibilityLabel={items.map((i) => `${i.label} ${i.value ?? '–'}`).join(', ')} testID="today-numbers">
+      {items.map((i) => (
+        <View key={i.key} style={styles.number}>
+          <AppText variant="score" style={i.key === 'todo' && (i.value ?? 0) > 0 ? { color: colors.accentText } : undefined}>
+            {i.value === null ? '–' : s.number(i.value)}
+          </AppText>
+          <AppText variant="secondary" tone="muted" numberOfLines={2}>
+            {i.label}
+          </AppText>
+        </View>
+      ))}
+    </GlassSurface>
+  );
+}
 
-function TodayBody({ data, canRecord, canViewCadets }: { data: FieldTodayData; canRecord: boolean; canViewCadets: boolean }) {
-  const router = useRouter();
+function TodayBody({
+  data,
+  s,
+  canRecord,
+  canViewCadets,
+  checkIns,
+  checkInsState,
+  onRetryCheckIns,
+  rosterOn,
+  onOpenCadet,
+  onAssess,
+  onOpenRoster,
+}: {
+  data: FieldTodayData;
+  s: FieldTranslator;
+  canRecord: boolean;
+  canViewCadets: boolean;
+  checkIns: TodayCheckIn[] | null;
+  checkInsState: 'loading' | 'error' | 'ready';
+  onRetryCheckIns: () => void;
+  rosterOn: boolean;
+  onOpenCadet: (c: TodayCheckIn) => void;
+  onAssess: (c: TodayCheckIn) => void;
+  onOpenRoster: () => void;
+}) {
+  // Priority: still to assess first (oldest check-in first), then published.
+  const ordered = checkIns ? [...checkIns].sort((a, b) => Number(a.published === true) - Number(b.published === true) || a.time.localeCompare(b.time)) : null;
   return (
     <>
-      {data.source === 'synthetic-preview' ? <PreviewBanner /> : null}
-      <View style={styles.meta}>
-        <AppText variant="headline">
-          {data.hubName} · {data.dateLabel}
-        </AppText>
-        <Badge label={`${data.roleLabel}`} tone="neutral" />
-        {data.pendingSyncCount > 0 ? <Badge label={`Sync ${data.pendingSyncCount}`} tone="info" /> : null}
+      {data.source === 'synthetic-preview' ? <SyntheticDataBanner text={s.t('common.synthetic')} /> : null}
+      <View style={styles.badges}>
+        <StatusBadge label={data.roleLabel} tone="neutral" icon="person-circle-outline" />
       </View>
-      {data.overdueCareCount > 0 ? (
-        <StatusMessage
-          tone="warning"
-          message={`${data.overdueCareCount} overdue care task${data.overdueCareCount === 1 ? '' : 's'}`}
-        />
-      ) : null}
-      {data.sessions.length > 0 ? (
-        <Section title="Sessions">
-          <Card>
-            {data.sessions.map((s, i) => (
-              <ListRow
-                key={s.id}
-                label={`${s.time} · ${s.title}`}
-                value={`${s.cadetCount} cadets`}
-                icon="time-outline"
-                divider={i < data.sessions.length - 1}
-              />
-            ))}
-          </Card>
-        </Section>
-      ) : null}
-      {data.checkIns && canViewCadets ? (
-        <Section title="Checked in today">
-          <Card>
-            {data.checkIns.length === 0 ? (
-              <EmptyState icon="people-outline" title="No check-ins yet" message="Check a cadet in to start a session." />
+
+      {canViewCadets ? (
+        checkInsState === 'loading' ? (
+          <LoadingState label={s.t('today.loadingCheckIns')} rows={1} />
+        ) : checkInsState === 'error' || !ordered ? (
+          <View style={styles.section}>
+            <StatusNote tone="warning" message={s.t('today.checkInsUnavailable')} testID="today-checkins-error" />
+            <GlassButton variant="secondary" icon="refresh" label={s.t('common.retry')} onPress={onRetryCheckIns} />
+          </View>
+        ) : (
+          <>
+            <DayNumbers list={ordered} s={s} />
+            {ordered.length === 0 ? (
+              <GlassSurface material="regular" borderRadius={radius.card} contentStyle={styles.emptyCard}>
+                <EmptyState icon="qr-code-outline" title={s.t('today.noCheckInsTitle')} message={s.t('today.noCheckIns')} testID="today-no-checkins" />
+              </GlassSurface>
             ) : (
-              data.checkIns.map((c, i) => (
-                <View key={c.checkInId} style={[styles.careRow, i > 0 && styles.careGap]} testID={`checkin-${c.checkInId}`}>
-                  <View style={{ flex: 1 }}>
-                    <AppText variant="bodyStrong">{c.cadetName}</AppText>
-                    <AppText tone="muted">Checked in {c.time}</AppText>
-                  </View>
-                  {c.published === true ? (
-                    <Badge label="Published" tone="success" />
-                  ) : c.published === null || !canRecord ? null : (
-                    <Button
-                      variant="secondary"
-                      fullWidth={false}
-                      label="Assess"
-                      accessibilityLabel={`Assess ${c.cadetName}`}
-                      onPress={() => {
-                        rememberAssessTarget({ checkInOperationId: c.checkInOperationId, cadetId: c.cadetId, cadetName: c.cadetName });
-                        router.push({ pathname: '/field/session/assess', params: { op: c.checkInOperationId } });
-                      }}
-                    />
-                  )}
-                </View>
-              ))
+              <ListGroup title={s.t('today.checkedIn')} testID="today-checkins">
+                {ordered.map((c) => (
+                  <Row
+                    key={c.checkInId}
+                    testID={`checkin-${c.checkInId}`}
+                    emphasis
+                    label={c.cadetName}
+                    value={s.t('today.checkedInAt', { time: c.time })}
+                    icon="person-outline"
+                    onPress={() => onOpenCadet(c)}
+                    accessibilityHint={s.t('today.openCadetHint')}
+                    trailing={
+                      c.published === true ? (
+                        <Trailing>
+                          <StatusBadge label={s.t('today.published')} tone="success" />
+                        </Trailing>
+                      ) : c.published === null || !canRecord ? undefined : (
+                        <GlassButton variant="secondary" fullWidth={false} label={s.t('today.assess')} accessibilityLabel={s.t('today.assessA11y', { name: c.cadetName })} onPress={() => onAssess(c)} testID={`assess-${c.checkInId}`} />
+                      )
+                    }
+                  />
+                ))}
+              </ListGroup>
             )}
-          </Card>
-        </Section>
+          </>
+        )
       ) : null}
-      <Section title="Care">
-        <Card>
-          {data.careAvailable === false ? (
-            <StatusMessage tone="info" message="Care tasks aren’t connected in this build yet." />
-          ) : data.care.length === 0 ? (
-            <EmptyState icon="checkmark-done-outline" title="No care tasks" message="Nothing is assigned to you today." />
-          ) : (
-            data.care.map((c, i) => (
-              <View
-                key={c.id}
-                style={[styles.careRow, i > 0 && styles.careGap]}
-                accessible
-                accessibilityLabel={`${c.time}, ${c.horse}, ${c.task}, ${careLabel[c.state]}`}
-              >
-                <View style={{ flex: 1 }}>
-                  <AppText variant="bodyStrong">
-                    {c.time} · {c.horse}
-                  </AppText>
-                  <AppText tone="muted">{c.task}</AppText>
-                </View>
-                <Badge label={careLabel[c.state]} tone={careTone[c.state]} />
-              </View>
-            ))
-          )}
-        </Card>
-      </Section>
+
+      {rosterOn ? (
+        <ListGroup title={s.t('today.rosterTitle')}>
+          <Row label={s.t('today.roster')} value={s.t('today.rosterHint')} icon="list-outline" onPress={onOpenRoster} testID="open-roster" />
+        </ListGroup>
+      ) : null}
+
+
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  header: { gap: space.sm },
-  meta: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: space.sm },
-  careRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, minHeight: 48 },
-  careGap: { marginTop: space.sm },
+  header: { gap: space.xs },
+  eyebrow: { fontWeight: '600' },
+  badges: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
+  numbers: { flexDirection: 'row', paddingHorizontal: space.lg, paddingVertical: space.lg, gap: space.md },
+  number: { flex: 1, gap: space.xs },
+  emptyCard: { paddingHorizontal: space.lg },
+  section: { gap: space.sm },
+  sectionTitle: { paddingHorizontal: space.xs },
 });

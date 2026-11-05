@@ -38,6 +38,7 @@ export function createSupabaseFamilyHomeRepository(client: DataClient): FamilyHo
             .from('training_sessions')
             .select('id, session_date, riding_score, ground_score, stable_score, version')
             .eq('cadet_id', selected.cadetId)
+            .eq('brass_stamp_verified', true)
             .order('session_date', { ascending: false })
             .order('id', { ascending: true })
             .limit(5),
@@ -60,6 +61,7 @@ export function createSupabaseFamilyHomeRepository(client: DataClient): FamilyHo
       }
 
       base.latestAssessment = {
+        sessionId: s(latest.id),
         dateLabel: dateLabel(s(latest.session_date)),
         riding: score(latest.riding_score) as number,
         ground: score(latest.ground_score) as number,

@@ -2,7 +2,7 @@
 // "Saved on this phone" may only be shown after captureCareEvidence returns ok.
 import type { Clock, FileVault, SessionPort } from './ports';
 import { StorageFullError } from './ports';
-import type { QueueStore } from './queueStore';
+import type { OutboxStore } from './outboxStore';
 import { payloadHash } from './sha256';
 import type { QueueItem } from './types';
 
@@ -23,7 +23,7 @@ export interface CaptureInput {
 }
 
 export interface CaptureDeps {
-  store: QueueStore;
+  store: OutboxStore;
   files: FileVault;
   session: SessionPort;
   clock: Clock;

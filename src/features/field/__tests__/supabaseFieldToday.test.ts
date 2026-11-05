@@ -62,3 +62,22 @@ it('uses the server clock for "today" and hides publish state from roles that ca
   expect(d.checkIns?.map((c) => [c.checkInId, c.published])).toEqual([['ci-2', null], ['ci-1', null]]);
   expect(calls.some((c) => c.kind === 'from' && c.table === 'training_sessions')).toBe(false);
 });
+
+describe('voided check-ins (G9 field_void_check_in, SD-05 draft)', () => {
+  it('a voided check-in is not "checked in today" and offers no Assess', async () => {
+    const { client } = createFakeSupabase({ tables: { ...tables, cadet_check_in_voids: [{ check_in_id: 'ci-2' }] } });
+    const d = await createSupabaseFieldTodayRepository(client, opts).getToday(scope);
+    expect(d.checkIns?.map((c) => c.checkInId)).toEqual(['ci-1']);
+  });
+
+  it('without the G9 table nothing can be voided, so the list is unchanged', async () => {
+    const { client } = createFakeSupabase({ tables, failTables: { cadet_check_in_voids: pgError('PGRST205', "Could not find the table 'public.cadet_check_in_voids' in the schema cache", 404) } });
+    const d = await createSupabaseFieldTodayRepository(client, opts).getToday(scope);
+    expect(d.checkIns?.map((c) => c.checkInId)).toEqual(['ci-2', 'ci-1']);
+  });
+
+  it('a failed voids read is an error, never "none voided" (no stale Assess for a voided check-in)', async () => {
+    const { client } = createFakeSupabase({ tables, failTables: { cadet_check_in_voids: new TypeError('Network request failed') } });
+    await expect(createSupabaseFieldTodayRepository(client, opts).getToday(scope)).rejects.toMatchObject({ reference: 'OFFLINE' });
+  });
+});

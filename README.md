@@ -18,7 +18,8 @@ Add native modules only with `npx expo install <pkg>`.
 - `src/shell/`: composition root, root navigator and the shared tab chrome.
 - `src/features/*/`: feature screens. `domain/` folders are pure TypeScript (lint-enforced).
 - `src/core/`: the access adapter seam, preferences store, scoped data loading and the repository seam.
-- `src/ui/`: tokens, theme provider, accessible primitives.
+- `src/ui/`: tokens, theme provider, accessible primitives. `src/ui/glass/` holds the amber liquid-glass primitives every screen composes from (see `../design/claude-liquid-glass-brief/IMPLEMENTATION_NOTES.md`); `src/ui/components/` keeps the earlier API and renders through them.
+- Routes that open above the tabs (FA-06 Spark, the Field session) live in the experience Stack (`family/_layout.tsx`, `field/_layout.tsx`); tab screens live in `(tabs)/`.
 - `src/dev/`: development-only synthetic personas, fixtures and the component gallery. Release bundles resolve `@/dev/preview` to an inert stub (`metro.config.js`).
 
 No backend is connected. Non-development builds always start signed out.

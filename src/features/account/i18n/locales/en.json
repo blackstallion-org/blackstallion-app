@@ -1,0 +1,293 @@
+{
+  "common": {
+    "back": "Back",
+    "close": "Close",
+    "cancel": "Cancel",
+    "retry": "Try again",
+    "loading": "Loading…",
+    "and": "and",
+    "reference": "Reference: {{ref}}",
+    "getHelp": "Get help",
+    "signOut": "Sign out",
+    "goHome": "Go to Home",
+    "synthetic": "Synthetic preview data — not real people or records.",
+    "loadError": "This couldn't be loaded. Check your connection and try again.",
+    "loadErrorTitle": "Couldn't load",
+    "deniedTitle": "Not available for your account",
+    "deniedBody": "Your account can't open this. Ask your academy office if you think it should.",
+    "offPolicyTitle": "Not switched on",
+    "offPolicyBody": "The academy hasn't switched this on yet.",
+    "notConnectedTitle": "Not connected in this build",
+    "notConnectedBody": "This part of the app needs a build connected to the academy. Nothing is stored or shown here."
+  },
+  "experience": {
+    "family": "Family",
+    "field": "Field Ops"
+  },
+  "role": {
+    "guardian": "Guardian",
+    "instructor": "Instructor",
+    "groom": "Groom",
+    "hubAdmin": "Hub admin",
+    "superAdmin": "Academy admin",
+    "admissions": "Admissions"
+  },
+  "profile": {
+    "title": "Profile",
+    "viewing": "Viewing {{experience}}",
+    "roleAtHub": "{{role}} at {{hub}}",
+    "guardianOf": "Guardian of {{names}}",
+    "switchTitle": "Experience",
+    "switchHint": "Switching changes what you see. What you're allowed to do stays the same.",
+    "groupAccount": "Account",
+    "settings": "Settings",
+    "settingsValue": "Appearance, language, sign out",
+    "notifications": "Notifications",
+    "notificationsValue": "What the academy tells you about",
+    "help": "Help & support",
+    "helpValue": "Contact the academy, diagnostic ID",
+    "groupFamily": "Family",
+    "billing": "Billing",
+    "billingValue": "Fees, invoices and autopay",
+    "detailsError": "Some profile details couldn't load.",
+    "detailsStale": "Saved details from earlier — they may be out of date.",
+    "loadingLabel": "Loading profile"
+  },
+  "settings": {
+    "title": "Settings",
+    "appearance": "Appearance",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System",
+    "darkHint": "Espresso and amber — the default.",
+    "lightHint": "Warm paper, easier in bright light.",
+    "systemHint": "Follows your phone's light or dark setting.",
+    "saveFailed": "This choice couldn't be saved. It applies until you close the app.",
+    "language": "Language",
+    "languageHint": "Field Ops screens use this language. Until you choose, the app follows your phone.",
+    "languageFamily": "Family screens stay in English during the pilot.",
+    "languageDraft": "Hindi and Telugu text is a first draft waiting for review by native speakers.",
+    "experience": "Experience",
+    "groupNotifications": "Notifications and privacy",
+    "notifications": "Notifications",
+    "notificationsValue": "Categories and phone setting",
+    "privacyConsents": "Privacy and consents",
+    "privacyConsentsValue": "Recording and media permissions",
+    "privacyPolicy": "Privacy policy",
+    "privacyPolicyValue": "Opens the academy website",
+    "groupSupport": "Support",
+    "help": "Help & support",
+    "helpValue": "Contact the academy, diagnostic ID",
+    "groupAccount": "Account",
+    "signedInAs": "Signed in as",
+    "syntheticAccount": "Synthetic development preview. No real account is signed in.",
+    "deleteAccount": "Delete account",
+    "deleteAccountValue": "Ask the academy to close your account",
+    "groupAbout": "About",
+    "version": "Version",
+    "build": "Build",
+    "buildDevelopment": "Development",
+    "buildRelease": "Release",
+    "adapter": "Sign-in service",
+    "gallery": "Component gallery",
+    "galleryValue": "Development only"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "intro": "Choose which updates the academy may send you.",
+    "phoneTitle": "Phone setting",
+    "os": {
+      "granted": "Allowed",
+      "denied": "Turned off",
+      "undetermined": "Not asked yet",
+      "unknown": "Can't check"
+    },
+    "osBody": {
+      "granted": "Your phone allows notifications from BSAH.",
+      "denied": "Your phone blocks notifications from BSAH. Turn them on in your phone's settings to receive them.",
+      "undetermined": "BSAH hasn't asked your phone for permission yet. You'll be asked before the first notification.",
+      "unknown": "This build can't read your phone's notification setting. You can check it in your phone's settings."
+    },
+    "openSettings": "Open phone settings",
+    "openSettingsFailed": "Couldn't open your phone's settings. Open them from the home screen.",
+    "notLive": "Notifications aren't being sent during the pilot yet. Your choices are saved to your account and apply when they start.",
+    "group": {
+      "family": "About your family",
+      "field": "About your work",
+      "all": "For everyone"
+    },
+    "category": {
+      "check_in": {
+        "title": "Arrival check-in",
+        "description": "When your child is checked in at the academy."
+      },
+      "assessment_published": {
+        "title": "New assessment",
+        "description": "When an instructor publishes a session assessment."
+      },
+      "events": {
+        "title": "Academy events",
+        "description": "New events, and changes to events you've joined."
+      },
+      "spark_daily": {
+        "title": "Daily Spark reminder",
+        "description": "A daily reminder to listen to the Spark."
+      },
+      "care_reminders": {
+        "title": "Care task reminders",
+        "description": "When a horse care task is due."
+      },
+      "review_escalations": {
+        "title": "Items waiting for review",
+        "description": "When evidence at your hub needs a decision."
+      }
+    },
+    "on": "On",
+    "off": "Off",
+    "toggleLabel": "{{category}} notifications",
+    "isDefault": "Default",
+    "saving": "Saving…",
+    "saved": "Saved",
+    "failedNetwork": "Not saved — check your connection and try again.",
+    "failedInvalid": "This choice isn't available for your account any more.",
+    "failedOther": "Not saved. Try again.",
+    "emptyTitle": "Nothing to set up",
+    "emptyBody": "There are no notification types for your account yet.",
+    "loadingLabel": "Loading notification choices"
+  },
+  "help": {
+    "title": "Help & support",
+    "intro": "Contact your academy office about your account, a child's records or anything that looks wrong.",
+    "contactTitle": "Academy office",
+    "call": "Call",
+    "email": "E-mail",
+    "website": "Website",
+    "hours": "Hours",
+    "notConfigured": "Contact details aren't set up in this build. Ask your academy office directly.",
+    "sample": "Sample details for the development preview. They don't reach anyone, so they can't be opened.",
+    "openFailed": "Couldn't open this on your phone.",
+    "diagnosticTitle": "Diagnostic ID",
+    "diagnosticBody": "If something went wrong, share this ID with the academy so they can look into it. It contains no names, phone numbers, codes or locations.",
+    "copy": "Copy diagnostic details",
+    "copied": "Copied. Paste it into your message to the academy.",
+    "copyFailed": "Couldn't copy. Read the ID out instead.",
+    "included": "What's included",
+    "includedBody": "App version, build, phone platform, sign-in service, the error reference (if any) and the time in UTC.",
+    "errorReference": "Error reference",
+    "appVersion": "App version",
+    "loadingLabel": "Loading contact details"
+  },
+  "deletion": {
+    "title": "Delete account",
+    "heading": "Ask to delete your account",
+    "intro": "The academy reviews deletion requests and completes them by hand. Nothing is deleted the moment you ask.",
+    "whatHappens": "What happens",
+    "stepReviewTitle": "Reviewed by the academy",
+    "stepReview": "The academy office reviews your request and may contact you.",
+    "stepSignInTitle": "Sign-in closes",
+    "stepSignIn": "When it's completed, you can't sign in with this account any more.",
+    "stepChildrenTitle": "Children's records stay",
+    "stepChildren": "Your children's academy records aren't deleted by this request. The academy keeps what it must under its retention policy, which isn't final yet.",
+    "stepCancelTitle": "You can change your mind",
+    "stepCancel": "You can cancel while the request is waiting for review.",
+    "pendingWork": "Items on this phone that haven't been sent: {{count}}. Send them from Sync first, or they may be lost.",
+    "reasonLabel": "Reason (optional)",
+    "reasonHint": "Helps the academy. Up to 1,000 characters.",
+    "confirmLabel": "Type {{word}} to confirm",
+    "confirmHint": "This makes sure the request is deliberate.",
+    "submit": "Request deletion",
+    "keep": "Keep my account",
+    "statusTitle": "Deletion request",
+    "status": {
+      "requested": "Received",
+      "in_review": "In review",
+      "completed": "Completed",
+      "rejected": "Not completed",
+      "cancelled": "Cancelled"
+    },
+    "statusBody": {
+      "requested": "The academy has your request. You can still cancel it.",
+      "in_review": "The academy is working on your request. To change it, contact the office.",
+      "completed": "The academy completed your request.",
+      "rejected": "The academy didn't complete this request.",
+      "cancelled": "You cancelled this request. Your account stays open."
+    },
+    "requestReference": "Request reference",
+    "requestedOn": "Requested",
+    "note": "Note from the academy",
+    "alreadyOpen": "You already had a request in progress, so no new one was made.",
+    "cancelRequest": "Cancel request",
+    "cancelTitle": "Cancel the deletion request?",
+    "cancelBody": "Your account stays open and the academy stops working on the request.",
+    "cancelKeep": "Keep request",
+    "newRequest": "Make a new request",
+    "errorNetwork": "We couldn't reach the academy. Try again — repeating it is safe and won't send it twice.",
+    "errorConflict": "The request changed in the meantime. Showing its latest status.",
+    "errorOther": "Something went wrong. Try again.",
+    "loadingLabel": "Loading your request"
+  },
+  "signOut": {
+    "title": "Sign out?",
+    "body": "You'll need a new code to sign in again.",
+    "confirm": "Sign out",
+    "signingOut": "Signing out…",
+    "pendingTitle": "Unsent work on this phone",
+    "pendingCount": "Items waiting to send: {{count}}. They haven't reached the academy yet.",
+    "pendingOffline": "If you're offline, they can't be sent right now.",
+    "sendFirst": "Send them first",
+    "keep": "Sign out and keep them",
+    "keepBody": "They stay on this phone for your account only. Nobody else can send them, and they send after you sign in again.",
+    "discard": "Discard and sign out",
+    "discardTitle": "Discard unsent work?",
+    "discardBody": "This deletes {{count}} unsent item(s) from this phone. They will never reach the academy.",
+    "keepBodyMemory": "They stay with your account only while this app stays open: this build doesn't save unsent work when the app closes. Send them first if you can."
+  },
+  "status": {
+    "eyebrow": "Your account",
+    "unknownAccount": {
+      "title": "No academy account found",
+      "body": "This sign-in isn't linked to a BSAH account. Families register on the academy website, and staff are added by the academy.",
+      "next": "If you think this is wrong, contact your academy office."
+    },
+    "disabled": {
+      "title": "Access is paused",
+      "body": "This account isn't active right now.",
+      "next": "Your academy office can review it."
+    },
+    "noExperience": {
+      "title": "Nothing to show yet",
+      "body": "Your account doesn't have family or staff access in the app yet.",
+      "next": "Contact your academy office to have it set up."
+    },
+    "bootError": {
+      "title": "Couldn't check your account",
+      "body": "We couldn't reach the academy to check your access. Nothing private is shown until we can.",
+      "next": "Check your connection and try again."
+    }
+  },
+  "notFound": {
+    "title": "This page isn't available",
+    "body": "It may have moved, or it isn't available to this account.",
+    "back": "Go back",
+    "signIn": "Go to sign-in"
+  },
+  "update": {
+    "title": "Update required",
+    "body": "This version of BSAH ({{installed}}) is no longer supported. Install version {{minimum}} or later to continue.",
+    "pending": "Items waiting to send: {{count}}. They stay on this phone and send after you update.",
+    "keepsData": "Updating from the store keeps your work saved on this phone.",
+    "updateIos": "Update in the App Store",
+    "updateAndroid": "Update on Google Play",
+    "openFailed": "Couldn't open the store. Open it yourself and search for BSAH.",
+    "notConfigured": "The update link isn't set up in this build. Ask your academy office how to get the latest version.",
+    "supportedTitle": "You're up to date",
+    "supportedBody": "This version of BSAH is supported.",
+    "continue": "Continue",
+    "unknownTitle": "Couldn't check for updates",
+    "unknownBody": "You can keep using the app. The academy will refuse anything this version can't send.",
+    "preview": "Development preview of the update gate. This build isn't actually blocked.",
+    "checking": "Checking this version…",
+    "pendingMemory": "Items waiting to send: {{count}}. This build keeps them only while the app is open, so updating would lose them. Connect and send them first.",
+    "keepsDataMemory": "This build keeps unsent work only while the app is open."
+  }
+}

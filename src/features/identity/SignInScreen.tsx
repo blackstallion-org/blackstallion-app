@@ -1,12 +1,21 @@
+import { useRouter } from 'expo-router';
 import { useRef, useState, type ReactNode } from 'react';
 import type { CodeRequestResult, ResetResult, SignInResult } from '@/core/auth/accessAdapter';
-import { View } from 'react-native';
 
-import { AppText, Button, Screen, StatusMessage, TextField } from '@/ui/components';
+import { HelpSheet } from '@/features/settings/HelpSupport';
+import { AppText, Button, StatusMessage, TextField } from '@/ui/components';
 import { useTheme } from '@/ui/theme/ThemeProvider';
-import { space } from '@/ui/tokens';
 
 import { useAccess } from './AccessProvider';
+import { AuthFrame } from './AuthFrame';
+import { pendingVerification, providerEmailOtp, type OtpBoundary } from './otp';
+
+/** SH-01 copy that is new with the glass layout (EN; centralised later with the string catalogue). */
+const SIGN_IN_COPY = {
+  existingOnly: 'No account yet? Families register on the academy website; staff are invited by the academy.',
+  help: 'Need help signing in?',
+  previewCode: 'Preview the code screen (development)',
+} as const;
 
 const isIndianMobile = (digits: string) => /^[6-9]\d{9}$/.test(digits);
 
@@ -57,13 +66,14 @@ function useSingleFlight() {
  * forgotten password with an e-mail code (D07, signed 4 Nov 2026). Phone codes and Google come next. Without a
  * backend the phone layout stays and says plainly that sign-in is not connected.
  */
-export function SignInScreen({ devPanel }: { devPanel?: ReactNode }) {
+export function SignInScreen({ devPanel, devOtpPreview }: { devPanel?: ReactNode; devOtpPreview?: OtpBoundary }) {
   const access = useAccess();
   const [mode, setMode] = useState<'password' | 'code' | 'reset'>('password');
-  // A connected build never shows the synthetic persona panel.
-  if (!access.signInWithPassword) return <PhoneLayoutNotConnected devPanel={devPanel} />;
-  if (mode === 'code' && access.requestEmailCode && access.verifyEmailCode) {
-    return <EmailCodeSignIn request={access.requestEmailCode} verify={access.verifyEmailCode} onBack={() => setMode('password')} />;
+  const emailOtp = providerEmailOtp(access);
+  // A connected build never shows the synthetic persona panel or the synthetic code preview.
+  if (!access.signInWithPassword) return <PhoneLayoutNotConnected devPanel={devPanel} devOtpPreview={emailOtp ? undefined : devOtpPreview} />;
+  if (mode === 'code' && emailOtp) {
+    return <EmailCodeSignIn otp={emailOtp} onBack={() => setMode('password')} />;
   }
   if (mode === 'reset' && access.requestPasswordReset && access.completePasswordReset) {
     return <PasswordReset request={access.requestPasswordReset} complete={access.completePasswordReset} onBack={() => setMode('password')} />;
@@ -77,18 +87,25 @@ export function SignInScreen({ devPanel }: { devPanel?: ReactNode }) {
   );
 }
 
-function Heading({ subtitle }: { subtitle: string }) {
-  const { colors } = useTheme();
+/** SH-01 frame: the shared signed-out frame plus the existing-accounts note and a Help entry (SH-09 public variant). */
+function SignInFrame({ testID, subtitle, children, after }: { testID: string; subtitle: string; children: ReactNode; after?: ReactNode }) {
+  const [help, setHelp] = useState(false);
   return (
-    <View style={{ alignItems: 'center', gap: space.sm, paddingVertical: space.xl }}>
-      <View style={{ width: 56, height: 2, backgroundColor: colors.accent }} />
-      <AppText variant="title" header align="center">
-        Black Stallion Academy
-      </AppText>
-      <AppText tone="muted" align="center">
-        {subtitle}
-      </AppText>
-    </View>
+    <AuthFrame testID={testID} subtitle={subtitle}>
+      {children}
+      <Button testID="sign-in-help" variant="ghost" icon="help-buoy-outline" label={SIGN_IN_COPY.help} onPress={() => setHelp(true)} />
+      {after}
+      <HelpSheet visible={help} onClose={() => setHelp(false)} />
+    </AuthFrame>
+  );
+}
+
+function ExistingAccountsOnly() {
+  const { scheme } = useTheme();
+  return (
+    <AppText variant="secondary" tone={scheme === 'dark' ? 'onPhotoMuted' : 'muted'}>
+      {SIGN_IN_COPY.existingOnly}
+    </AppText>
   );
 }
 
@@ -116,8 +133,7 @@ function CodeField({ value, onChange, onSubmit }: { value: string; onChange: (t:
       label="6-digit code"
       hint="From the e-mail we just sent"
       keyboardType="number-pad"
-      textContentType="oneTimeCode"
-      autoComplete="one-time-code"
+      textContentType="oneTimeCode" // → GlassInput OTP variant: one-time-code (iOS) / sms-otp (Android) autofill
       maxLength={6}
       value={value}
       onChangeText={(t) => onChange(t.replace(/\D/g, ''))}
@@ -152,8 +168,7 @@ function PasswordSignIn({
     else if (r) setError(SIGN_IN_ERRORS[r.reason]);
   };
   return (
-    <Screen keyboard testID="sign-in">
-      <Heading subtitle="Sign in with the e-mail and password you use on the academy website." />
+    <SignInFrame testID="sign-in" subtitle="Sign in with the e-mail and password you use on the academy website.">
       <EmailField value={email} onChange={(t) => { setEmail(t); setError(null); }} />
       <TextField
         testID="password"
@@ -175,61 +190,38 @@ function PasswordSignIn({
       <Button testID="sign-in-submit" label="Sign in" loading={busy} onPress={() => void submit()} />
       {onForgot ? <Button testID="forgot-password" variant="ghost" label="Forgot password?" onPress={onForgot} /> : null}
       {onUseCode ? <Button testID="use-email-code" variant="secondary" label="Sign in with an e-mail code instead" onPress={onUseCode} /> : null}
-      <AppText variant="caption" tone="muted" align="center">
-        No account yet? Families register on the academy website; staff are invited by the academy.
-      </AppText>
-    </Screen>
+      <ExistingAccountsOnly />
+    </SignInFrame>
   );
 }
 
-function EmailCodeSignIn({
-  request,
-  verify,
-  onBack,
-}: {
-  request: (email: string) => Promise<CodeRequestResult>;
-  verify: (email: string, code: string) => Promise<SignInResult>;
-  onBack: () => void;
-}) {
-  const [email, setEmail] = useState('');
-  const [code, setCode] = useState('');
-  const [sentTo, setSentTo] = useState<string | null>(null);
+/**
+ * SH-01 e-mail code request. On "Send code" the address is kept in memory only (never in the URL) and SH-02
+ * `/verify` takes over: code entry, paste/autofill, resend cooldown and safe errors.
+ */
+function EmailCodeSignIn({ otp, onBack }: { otp: OtpBoundary; onBack: () => void }) {
+  const router = useRouter();
+  const pending = pendingVerification.get();
+  // Coming back from SH-02 ("change e-mail"): the address this person just typed, never a previous person's.
+  const [email, setEmail] = useState(pending?.channel === 'email' && pending.boundaryKind === otp.kind ? pending.address : '');
   const [error, setError] = useState<string | null>(null);
   const { busy, run } = useSingleFlight();
   const send = async () => {
     if (!isEmail(email)) return setError('Enter your e-mail address.');
     setError(null);
-    const r = await run(() => request(email));
-    if (r?.ok) setSentTo(email.trim());
-    else if (r) setError(REQUEST_ERRORS[r.reason]);
-  };
-  const submit = async () => {
-    if (!sentTo) return;
-    if (!/^\d{6}$/.test(code)) return setError('Enter the 6-digit code.');
-    setError(null);
-    const r = await run(() => verify(sentTo, code));
-    if (r && !r.ok) setError(CODE_ERRORS[r.reason]); // success: the provider reloads and navigation leaves
+    const r = await run(() => otp.request(email));
+    if (r?.ok) {
+      pendingVerification.set({ channel: 'email', address: email, boundaryKind: otp.kind, sentAt: Date.now() });
+      router.push('/verify');
+    } else if (r) setError(REQUEST_ERRORS[r.reason]);
   };
   return (
-    <Screen keyboard testID="sign-in-code">
-      <Heading subtitle={sentTo ? 'Enter the code from your e-mail.' : "We'll e-mail you a 6-digit code to sign in."} />
-      {sentTo ? (
-        <>
-          <StatusMessage testID="code-sent" tone="info" title="Check your e-mail" message={`If ${sentTo} has an account, we've sent a code to it.`} />
-          <CodeField value={code} onChange={(t) => { setCode(t); setError(null); }} onSubmit={() => void submit()} />
-          {error ? <StatusMessage testID="sign-in-error" tone="danger" title="Not signed in" message={error} /> : null}
-          <Button testID="verify-code" label="Sign in" loading={busy} onPress={() => void submit()} />
-          <Button testID="resend-code" variant="ghost" label="Send a new code" onPress={() => { setCode(''); setSentTo(null); }} />
-        </>
-      ) : (
-        <>
-          <EmailField value={email} onChange={(t) => { setEmail(t); setError(null); }} />
-          {error ? <StatusMessage testID="sign-in-error" tone="danger" title="Code not sent" message={error} /> : null}
-          <Button testID="send-email-code" label="Send code" loading={busy} onPress={() => void send()} />
-        </>
-      )}
+    <SignInFrame testID="sign-in-code" subtitle="We'll e-mail you a 6-digit code to sign in.">
+      <EmailField value={email} onChange={(t) => { setEmail(t); setError(null); }} />
+      {error ? <StatusMessage testID="sign-in-error" tone="danger" title="Code not sent" message={error} /> : null}
+      <Button testID="send-email-code" label="Send code" loading={busy} onPress={() => void send()} />
       <Button testID="back-to-password" variant="ghost" label="Use my password instead" onPress={onBack} />
-    </Screen>
+    </SignInFrame>
   );
 }
 
@@ -269,8 +261,7 @@ function PasswordReset({
     } // success: signed in with the new password; the provider reloads and navigation leaves
   };
   return (
-    <Screen keyboard testID="password-reset">
-      <Heading subtitle={sentTo ? 'Enter the code and choose a new password.' : "We'll e-mail you a code to reset your password."} />
+    <SignInFrame testID="password-reset" subtitle={sentTo ? 'Enter the code and choose a new password.' : "We'll e-mail you a code to reset your password."}>
       {sentTo ? (
         <>
           <StatusMessage testID="reset-sent" tone="info" title="Check your e-mail" message={`If ${sentTo} has an account, we've sent a code to it.`} />
@@ -292,26 +283,18 @@ function PasswordReset({
         </>
       )}
       <Button testID="back-to-password" variant="ghost" label="Back to sign in" onPress={onBack} />
-    </Screen>
+    </SignInFrame>
   );
 }
 
-function PhoneLayoutNotConnected({ devPanel }: { devPanel?: ReactNode }) {
-  const { colors } = useTheme();
-  const [number, setNumber] = useState('');
+function PhoneLayoutNotConnected({ devPanel, devOtpPreview }: { devPanel?: ReactNode; devOtpPreview?: OtpBoundary }) {
+  const router = useRouter();
+  const pending = pendingVerification.get();
+  const [number, setNumber] = useState(pending?.channel === 'phone' && devOtpPreview ? pending.address.replace(/^\+91\s?/, '') : '');
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState(false);
   return (
-    <Screen keyboard testID="sign-in">
-      <View style={{ alignItems: 'center', gap: space.sm, paddingVertical: space.xl }}>
-        <View style={{ width: 56, height: 2, backgroundColor: colors.accent }} />
-        <AppText variant="title" header align="center">
-          Black Stallion Academy
-        </AppText>
-        <AppText tone="muted" align="center">
-          Sign in with the mobile number your academy has on file.
-        </AppText>
-      </View>
+    <SignInFrame testID="sign-in" subtitle="Sign in with the mobile number your academy has on file." after={devPanel}>
       <TextField
         testID="mobile-number"
         label="Mobile number"
@@ -348,10 +331,22 @@ function PhoneLayoutNotConnected({ devPanel }: { devPanel?: ReactNode }) {
           message="Codes are not sent yet. Real sign-in arrives in the next gate (G3)."
         />
       ) : null}
-      <AppText variant="caption" tone="muted" align="center">
-        No account yet? Families register on the academy website; staff are invited by the academy.
-      </AppText>
-      {devPanel}
-    </Screen>
+      {notice && devOtpPreview ? (
+        <Button
+          testID="preview-verify"
+          variant="secondary"
+          icon="flask-outline"
+          label={SIGN_IN_COPY.previewCode}
+          onPress={async () => {
+            // Development only: the synthetic boundary sends nothing; SH-02 says so on screen.
+            const r = await devOtpPreview.request(`+91 ${number}`);
+            if (!r.ok) return;
+            pendingVerification.set({ channel: 'phone', address: `+91 ${number}`, boundaryKind: devOtpPreview.kind, sentAt: Date.now() });
+            router.push('/verify');
+          }}
+        />
+      ) : null}
+      <ExistingAccountsOnly />
+    </SignInFrame>
   );
 }

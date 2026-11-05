@@ -792,7 +792,7 @@
   "sync.state.needsReview": {
     "review": "needs-native-review",
     "source": "strings.g5.tsv",
-    "context": "Conflict"
+    "context": "Conflict (409/404): the owner reviews it on FO-15"
   },
   "sync.state.blocked": {
     "review": "needs-native-review",
@@ -908,5 +908,150 @@
     "review": "needs-native-review",
     "source": "strings.g5.tsv",
     "context": "Local notification body (no horse or person names)"
+  },
+  "sync.waitingCount": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-12 summary line (no durability claim)"
+  },
+  "sync.needsYou": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-12 summary badge"
+  },
+  "sync.durability.durable": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Durable SQLite outbox"
+  },
+  "sync.durability.memory": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Memory-only outbox (no durable driver in this build)"
+  },
+  "sync.savedAt": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Row meta: device time of the work"
+  },
+  "sync.rowHint": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Accessibility hint"
+  },
+  "sync.item.punchIn": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Item title"
+  },
+  "sync.badge.blocked": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Status badge for blocked items"
+  },
+  "sync.sheet.status": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 detail label"
+  },
+  "sync.sheet.saved": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 detail label"
+  },
+  "sync.sheet.received": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 detail label (server time)"
+  },
+  "sync.sheet.attempts": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 detail label"
+  },
+  "sync.sheet.why": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 detail label"
+  },
+  "sync.sheet.reference": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 detail label (operation id prefix)"
+  },
+  "sync.consequence.retry": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 action consequence"
+  },
+  "sync.consequence.reviewBlocked": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 consequence for a blocked item (no Retry)"
+  },
+  "sync.consequence.edit": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 action consequence"
+  },
+  "sync.consequence.review": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 action consequence"
+  },
+  "sync.consequence.reviewReceipt": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 action consequence"
+  },
+  "sync.consequence.recapture": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 action consequence"
+  },
+  "sync.consequence.discard": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 action consequence"
+  },
+  "sync.consequence.signIn": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 action consequence"
+  },
+  "sync.consequence.none": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 when no action applies"
+  },
+  "sync.consequence.inProgress": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-13 while a worker holds the item"
+  },
+  "sync.waitingLabel": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "FO-12 label under the big count"
+  },
+  "sync.badge.conflict": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Status badge for needs_review items"
+  },
+  "sync.item.careProof": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Item title when the task label is not available"
+  },
+  "sync.state.offlineMemory": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Offline message for a memory-only queue"
+  },
+  "sync.badge.retry": {
+    "review": "needs-native-review",
+    "source": "strings.g5.tsv",
+    "context": "Badge for retry_wait"
   }
 }

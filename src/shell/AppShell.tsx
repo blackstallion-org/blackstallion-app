@@ -1,7 +1,8 @@
-import { DarkTheme, DefaultTheme, SplashScreen, Stack, ThemeProvider as NavigationThemeProvider } from 'expo-router';
+import { DarkTheme, DefaultTheme, SplashScreen, Stack, ThemeProvider as NavigationThemeProvider, usePathname } from 'expo-router';
+import * as Linking from 'expo-linking';
 import { StatusBar } from 'expo-status-bar';
 import * as SystemUI from 'expo-system-ui';
-import { useEffect, useMemo, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, type ReactNode } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { unconnectedAccessAdapter, type AccessAdapter } from '@/core/auth/accessAdapter';
@@ -11,6 +12,7 @@ import { asyncStorageStore, type KeyValueStore } from '@/core/preferences/keyVal
 import { AccessProvider, useAccess } from '@/features/identity/AccessProvider';
 import { ThemeProvider, useTheme } from '@/ui/theme/ThemeProvider';
 
+import { rememberResume } from './resumeLink';
 import { createServerRepositories } from './serverRepositories';
 
 /**
@@ -61,6 +63,28 @@ export function AppProviders({
 export function RootNavigator() {
   const { ready, scheme, colors } = useTheme();
   const { state } = useAccess();
+  const pathname = usePathname();
+  const url = Linking.useURL();
+
+  // A deep link that ARRIVES while nobody is authorized (cold start, or opened from the sign-in screen) is remembered
+  // once and resumed by the boot gate. Values already seen while someone was signed in (the route they were on, the
+  // link that opened the app earlier) are never re-armed for the next person.
+  const seen = useRef<{ url: string | null; pathname: string | null }>({ url: null, pathname: null });
+  useEffect(() => {
+    const last = seen.current;
+    seen.current = { url, pathname };
+    if (state.phase === 'authorized' || state.phase === 'unavailable') return;
+    if (pathname !== last.pathname) rememberResume(pathname);
+    if (url && url !== last.url) {
+      try {
+        const u = Linking.parse(url);
+        const path = /^https?$/.test(u.scheme ?? '') ? u.path : [u.hostname, u.path].filter(Boolean).join('/');
+        rememberResume(path ? `/${path}` : null);
+      } catch {
+        // not a URL this app understands: nothing to resume
+      }
+    }
+  }, [state.phase, pathname, url]);
 
   useEffect(() => {
     if (ready) void SplashScreen.hideAsync().catch(() => undefined);

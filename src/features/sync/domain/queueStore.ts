@@ -1,5 +1,6 @@
 // Durable outbox on SQLite. Everything the worker knows lives here, so a killed process loses nothing it acknowledged.
 import type { SqlDriver, SqlValue } from './ports';
+import type { LeasedPatch, NewQueueItem, OutboxStore } from './outboxStore';
 import { ACTIVE_STATES, type QueueItem, type QueueState, type ServerReceipt, type Tombstone } from './types';
 
 const SCHEMA_VERSION = 1;
@@ -59,37 +60,12 @@ function toItem(r: Row): QueueItem {
   };
 }
 
-export interface NewQueueItem {
-  operationId: string;
-  actorId: string;
-  hubId: string;
-  aggregateId: string;
-  commandType: QueueItem['commandType'];
-  payloadVersion: number;
-  payload: Record<string, unknown>;
-  payloadHash: string;
-  dependencyIds?: string[];
-  localFileRefs: string[];
-  observedAt: number;
-}
-
-/** Fields the worker may change while it holds the lease. */
-export interface LeasedPatch {
-  state?: QueueState;
-  attemptCount?: number;
-  nextAttemptAt?: number | null;
-  lastErrorCode?: string | null;
-  lastErrorDetail?: string | null;
-  uploadMediaPath?: string | null;
-  uploadDone?: boolean;
-  payload?: Record<string, unknown>;
-  payloadHash?: string;
-  localFileRefs?: string[];
-}
+export type { LeasedPatch, NewQueueItem } from './outboxStore';
 
 const ACTIVE_SQL = ACTIVE_STATES.map((s) => `'${s}'`).join(',');
 
-export class QueueStore {
+export class QueueStore implements OutboxStore {
+  readonly durability = 'durable' as const;
   constructor(private readonly db: SqlDriver) {}
 
   migrate(): void {

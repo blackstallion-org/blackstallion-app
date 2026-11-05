@@ -41,17 +41,36 @@ export function resolveLocale(preferred: readonly string[] | undefined): Locale 
   return 'en';
 }
 
+export type { Catalog };
+
+/** Deep-merge catalogues (later wins). Used by features that add their own namespace on top of the care/sync one. */
+export function mergeCatalogs(...cats: Catalog[]): Catalog {
+  const out: Catalog = {};
+  for (const c of cats) {
+    for (const [k, v] of Object.entries(c)) {
+      const prev = out[k];
+      out[k] = typeof v === 'object' && typeof prev === 'object' ? mergeCatalogs(prev, v) : v;
+    }
+  }
+  return out;
+}
+
 export function createTranslator(locale: Locale): Translator {
+  return createTranslatorFrom(CATALOGS, locale);
+}
+
+/** Same runtime over other catalogues (English is always the fallback). */
+export function createTranslatorFrom(catalogs: Record<Locale, Catalog>, locale: Locale): Translator {
   const missing = new Set<string>();
   const tag = INTL_TAG[locale];
   return {
     locale,
     missing,
     t(key, params) {
-      let s = lookup(CATALOGS[locale], key);
+      let s = lookup(catalogs[locale], key);
       if (s === undefined) {
         missing.add(key);
-        s = lookup(CATALOGS.en, key) ?? key;
+        s = lookup(catalogs.en, key) ?? key;
       }
       return s.replace(/\{\{\s*(\w+)\s*\}\}/g, (_m, name: string) => {
         const v = params?.[name];
@@ -64,6 +83,8 @@ export function createTranslator(locale: Locale): Translator {
     number: (n) => new Intl.NumberFormat(tag).format(n),
   };
 }
+
+export const CARE_CATALOGS: Readonly<Record<Locale, Catalog>> = CATALOGS;
 
 /** Strip the design kit's <b> markers for plain Text rendering (bold handled by the component). */
 export function plain(s: string): string {

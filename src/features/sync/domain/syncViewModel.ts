@@ -16,6 +16,14 @@ export interface SyncRow {
   /** shown when the user picks Discard: the work was never sent and the photo will be deleted */
   discardWarningKey: 'field.sync.discardWarning' | null;
   observedAt: number;
+  /** FO-13 details: what it is, how often it was tried, why it has not gone, and the server receipt */
+  commandType: QueueItem['commandType'];
+  createdAt: number;
+  attemptCount: number;
+  lastErrorCode: string | null;
+  acknowledgedAt: number | null;
+  receivedAt: string | null;
+  reviewRequired: boolean;
 }
 
 export interface SyncSection {
@@ -65,7 +73,9 @@ export function actionsFor(it: QueueItem): SyncAction[] {
     case 'needs_review':
       return ['review', 'discard'];
     case 'blocked':
-      return ['review', 'retry', 'discard'];
+      // FO-13 acceptance: blocked items offer no Retry. The grant was refused; the item is kept for review or an
+      // explicit discard, never resent by a tap that could look like a way around the refusal.
+      return ['review', 'discard'];
     case 'needs_recapture':
       return ['recapture', 'discard'];
     case 'ready':
@@ -99,17 +109,25 @@ export function buildSyncScreenModel(input: {
       if (messageKey === 'sync.state.retryAt' && it.nextAttemptAt) messageParams.time = input.formatTime(it.nextAttemptAt);
       if (messageKey === 'sync.state.acknowledged') messageParams.time = input.formatTime(it.acknowledgedAt ?? input.now);
       const actions = actionsFor(it);
+      const punch = it.commandType === 'shift.punchIn';
       return {
         operationId: it.operationId,
         aggregateId: it.aggregateId,
-        titleKey: 'field.sync.careItem',
-        titleParams: { horse: lbl?.horse ?? '—', task: lbl?.taskKey ?? 'care.timeline.title' },
+        titleKey: punch ? 'sync.item.punchIn' : 'field.sync.careItem',
+        titleParams: punch ? { time: input.formatTime(it.observedAt) } : { horse: lbl?.horse ?? '—', task: lbl?.taskKey ?? 'care.timeline.title' },
         state: it.state,
         messageKey,
         messageParams,
         actions,
         discardWarningKey: actions.includes('discard') ? 'field.sync.discardWarning' : null,
         observedAt: it.observedAt,
+        commandType: it.commandType,
+        createdAt: it.createdAt,
+        attemptCount: it.attemptCount,
+        lastErrorCode: it.lastErrorCode,
+        acknowledgedAt: it.acknowledgedAt,
+        receivedAt: typeof it.serverReceipt?.receivedAt === 'string' ? it.serverReceipt.receivedAt : null,
+        reviewRequired: it.serverReceipt?.reviewState === 'review_required',
       };
     });
   const by = (pred: (r: SyncRow) => boolean) => rows.filter(pred).sort((a, b) => a.observedAt - b.observedAt);

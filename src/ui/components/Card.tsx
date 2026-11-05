@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
-import { Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 
-import { useTheme } from '@/ui/theme/ThemeProvider';
-import { border, radius, space } from '@/ui/tokens';
+import { GlassCard } from '@/ui/glass/GlassCard';
 
 type CardProps = {
   children: ReactNode;
@@ -10,39 +9,13 @@ type CardProps = {
   onPress?: () => void;
   accessibilityLabel?: string;
   accessibilityHint?: string;
+  /** muted = thicker glass (denser panels). */
   tone?: 'surface' | 'muted';
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };
 
-export function Card({ children, onPress, accessibilityLabel, accessibilityHint, tone = 'surface', style, testID }: CardProps) {
-  const { colors } = useTheme();
-  const base = [
-    styles.card,
-    { backgroundColor: tone === 'muted' ? colors.surfaceMuted : colors.surface, borderColor: colors.border },
-    style,
-  ];
-  if (!onPress) {
-    return (
-      <View style={base} testID={testID}>
-        {children}
-      </View>
-    );
-  }
-  return (
-    <Pressable
-      testID={testID}
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={accessibilityLabel}
-      accessibilityHint={accessibilityHint}
-      style={({ pressed }) => [base, { opacity: pressed ? 0.85 : 1 }]}
-    >
-      {children}
-    </Pressable>
-  );
+/** Pre-glass API kept for existing screens; renders a regular GlassCard (radius 22). */
+export function Card({ tone = 'surface', ...rest }: CardProps) {
+  return <GlassCard {...rest} material={tone === 'muted' ? 'thick' : 'regular'} />;
 }
-
-const styles = StyleSheet.create({
-  card: { borderRadius: radius.card, borderWidth: border.hairline, padding: space.screenInset, gap: space.md },
-});

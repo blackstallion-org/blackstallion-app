@@ -1,32 +1,75 @@
-import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
 
 import { useRepositories } from '@/core/data/RepositoryProvider';
 import { useScopedResource } from '@/core/data/useScopedResource';
 import { useAuthorizedAccess } from '@/features/identity/AccessProvider';
 import { ExperienceSwitchButton } from '@/features/identity/ExperienceSwitch';
+import { AppText, Icon } from '@/ui/components';
+import { editorialArt } from '@/ui/editorialArt';
 import {
-  AppText,
-  Badge,
-  Card,
+  Chip,
   EmptyState,
   ErrorState,
+  GlassButton,
+  GlassCard,
+  GlassScreen,
+  ListGroup,
   LoadingState,
-  OptionGroup,
-  PreviewBanner,
-  Screen,
-  Section,
-} from '@/ui/components';
+  Pill,
+  Row,
+  ScoreTile,
+  Skeleton,
+  StatusBadge,
+  SyntheticDataBanner,
+} from '@/ui/glass';
 import { useTheme } from '@/ui/theme/ThemeProvider';
-import { space } from '@/ui/tokens';
+import { radius, space } from '@/ui/tokens';
 
+import type { FamilyEvent } from './data/repositories';
+import { dateTile, eventWhen } from './domain/format';
+import { useFamily } from './FamilyContext';
+import { useFamilyResource } from './hooks';
+import { HOME_LINKS } from './strings';
 import type { FamilyHomeData } from './types';
 
-/** F01 Family home — representative layout on synthetic data (G2). */
+/** FA-01 copy (EN). Kept here until the shared string catalogue step. */
+const HOME_COPY = {
+  greeting: (name: string) => `Hello, ${name}`,
+  showing: 'Progress for',
+  welcome: 'Welcome to the academy',
+  childGroup: 'Child',
+  latest: 'Latest assessment',
+  corrected: 'Corrected',
+  noAssessmentsTitle: 'No assessments yet',
+  noAssessments: (child: string) => `They appear here after ${child}'s first session.`,
+  noChildTitle: 'No linked child yet',
+  noChild: 'When your academy links your child to this account, their progress appears here. Contact your academy office if this looks wrong.',
+  attendance: (n: number, of: number) => `Attended ${n} of the last ${of} sessions`,
+  recent: 'Recent sessions',
+  sparkEyebrow: 'Daily Spark',
+  sparkTitle: 'Today’s Spark',
+  sparkBody: 'A short listen to share before the next ride.',
+  sparkAction: 'Listen',
+  loading: 'Loading family home',
+} as const;
+
+/**
+ * FA-01 Family home: editorial hero (family-hero art, child selector), the
+ * latest PUBLISHED assessment, and one clear next action. No schedule is shown:
+ * no schedule source exists yet (16 §3), so nothing is invented.
+ */
 export function FamilyHomeScreen() {
   const { state, contextKey } = useAuthorizedAccess();
   const { familyHome } = useRepositories();
-  const [childId, setChildId] = useState<string | undefined>(undefined);
+  const { selected, select } = useFamily();
+  const params = useLocalSearchParams<{ cadet?: string }>();
+  // Deep link /family?cadet=<id> (check-in push): honoured only for a linked child; anything else is ignored.
+  useEffect(() => {
+    if (typeof params.cadet === 'string') select(params.cadet);
+  }, [params.cadet, select]);
+  const childId = selected?.id;
   const scope = {
     subjectId: state.session.subjectId,
     experience: 'family' as const,
@@ -36,118 +79,156 @@ export function FamilyHomeScreen() {
   const home = useScopedResource(`${contextKey}:home:${childId ?? 'default'}`, () => familyHome.getHome(scope, childId));
 
   return (
-    <Screen edges={['top', 'left', 'right']} testID="family-home">
+    <GlassScreen edges={['top', 'left', 'right']} testID="family-home">
       <View style={styles.header}>
-        <AppText variant="overline" tone="accent">
-          Family
-        </AppText>
-        <AppText variant="title" header>
-          Hello, {state.session.displayName}
-        </AppText>
-        <ExperienceSwitchButton />
+        <View style={styles.headerText}>
+          <AppText variant="secondary" tone="accent" style={styles.eyebrow}>
+            Family
+          </AppText>
+          <AppText variant="title" header>
+            {HOME_COPY.greeting(state.session.displayName)}
+          </AppText>
+        </View>
       </View>
-      {home.status === 'loading' ? <LoadingState label="Loading family home" testID="family-home-loading" /> : null}
+      <ExperienceSwitchButton />
+      {home.status === 'loading' ? <HomeSkeleton /> : null}
       {home.status === 'error' ? (
-        <ErrorState
-          testID="family-home-error"
-          message={home.message}
-          onRetry={home.retry}
-          details={home.reference ? `Reference: ${home.reference}` : undefined}
-        />
+        <GlassCard>
+          <ErrorState testID="family-home-error" message={home.message} onRetry={home.retry} details={home.reference ? `Reference: ${home.reference}` : undefined} />
+        </GlassCard>
       ) : null}
-      {home.status === 'ready' ? <FamilyHomeBody data={home.data} onSelectChild={setChildId} /> : null}
-    </Screen>
+      {home.status === 'ready' ? <FamilyHomeBody data={home.data} onSelectChild={select} /> : null}
+    </GlassScreen>
   );
 }
 
+function HomeSkeleton() {
+  const { width } = useWindowDimensions();
+  return (
+    <View style={{ gap: space.lg }} testID="family-home-loading">
+      <View style={[styles.heroSkeleton, { height: heroHeight(width) }]}>
+        <Skeleton height={heroHeight(width)} />
+      </View>
+      <LoadingState label={HOME_COPY.loading} rows={1} />
+    </View>
+  );
+}
+
+const heroHeight = (width: number) => Math.round(Math.min(460, Math.max(300, (Math.min(width, 560) - space.screenInset * 2) * 1.08)));
+
 function FamilyHomeBody({ data, onSelectChild }: { data: FamilyHomeData; onSelectChild: (id: string) => void }) {
-  const { colors } = useTheme();
+  const { width } = useWindowDimensions();
+  const { spark: legacySpark, familyApp } = useRepositories();
+  const spark = familyApp?.spark ?? legacySpark;
+  const router = useRouter();
+  const openLatest = () =>
+    data.latestAssessment?.sessionId
+      ? router.push({ pathname: '/family/sessions/[recordId]', params: { recordId: data.latestAssessment.sessionId } })
+      : router.push('/family/progress');
   const selected = data.children.find((c) => c.id === data.selectedChildId);
   return (
     <>
-      {data.source === 'synthetic-preview' ? <PreviewBanner /> : null}
-      <AppText tone="muted">{data.hubName}</AppText>
+      {data.source === 'synthetic-preview' ? <SyntheticDataBanner /> : null}
+      <GlassCard variant="photo" image={editorialArt.familyHero} height={heroHeight(width)} testID="family-hero" contentStyle={styles.heroContent}>
+        <View style={styles.heroTop}>
+          <Pill label={data.hubName} icon="location-outline" material="thick" />
+        </View>
+        <View style={styles.heroBottom}>
+          {selected ? (
+            <>
+              <AppText variant="secondary" tone="onPhotoMuted">
+                {HOME_COPY.showing}
+              </AppText>
+              <AppText variant="title" tone="onPhoto" numberOfLines={2}>
+                {selected.name}
+              </AppText>
+            </>
+          ) : (
+            <AppText variant="title" tone="onPhoto">
+              {HOME_COPY.welcome}
+            </AppText>
+          )}
+          {selected && data.children.length > 1 ? (
+            <View testID="child-switcher" accessibilityRole="radiogroup" accessibilityLabel={HOME_COPY.childGroup} style={styles.chips}>
+              {data.children.map((c) => (
+                <Chip key={c.id} role="radio" label={c.name} selected={c.id === selected.id} onPress={() => onSelectChild(c.id)} material="thick" testID={`child-switcher-${c.id}`} />
+              ))}
+            </View>
+          ) : null}
+        </View>
+      </GlassCard>
+
       {!selected ? (
-        <Card>
-          <EmptyState
-            testID="family-home-empty"
-            icon="people-outline"
-            title="No linked child yet"
-            message="When your academy links your child to this account, their progress appears here. Contact your academy office if this looks wrong."
-          />
-        </Card>
+        <GlassCard>
+          <EmptyState testID="family-home-empty" icon="people-outline" title={HOME_COPY.noChildTitle} message={HOME_COPY.noChild} />
+        </GlassCard>
       ) : (
         <>
-          {data.children.length > 1 ? (
-            <OptionGroup
-              testID="child-switcher"
-              label="Child"
-              options={data.children.map((c) => ({ value: c.id, label: c.name }))}
-              value={selected.id}
-              onChange={onSelectChild}
-            />
-          ) : null}
-          <Section title="Next session">
-            <Card testID="next-session">
-              {data.nextSession ? (
-                <>
-                  <AppText variant="headline">{data.nextSession.label}</AppText>
-                  <AppText tone="muted">{data.nextSession.detail}</AppText>
-                </>
-              ) : (
-                <AppText tone="muted">No session scheduled.</AppText>
-              )}
-            </Card>
-          </Section>
-          <Section title="Latest assessment">
-            <Card testID="latest-assessment">
-              {data.latestAssessment ? (
-                <>
-                  <View style={styles.rowBetween}>
-                    <AppText variant="label">{data.latestAssessment.dateLabel}</AppText>
-                    {data.latestAssessment.corrected ? <Badge label="Corrected" tone="info" /> : null}
-                  </View>
-                  <View style={styles.scores}>
-                    <Score label="Riding" value={data.latestAssessment.riding} />
-                    <Score label="Ground" value={data.latestAssessment.ground} />
-                    <Score label="Stable" value={data.latestAssessment.stable} />
-                  </View>
-                  <View style={styles.chips}>
+          <GlassCard testID="latest-assessment">
+            <View style={styles.rowBetween}>
+              <View style={{ gap: 2 }}>
+                <AppText variant="secondary" tone="muted" header>
+                  {HOME_COPY.latest}
+                </AppText>
+                {data.latestAssessment ? <AppText variant="section">{data.latestAssessment.dateLabel}</AppText> : null}
+              </View>
+              {data.latestAssessment?.corrected ? <StatusBadge label={HOME_COPY.corrected} tone="info" icon="create-outline" /> : null}
+            </View>
+            {data.latestAssessment ? (
+              <>
+                <View style={styles.scores}>
+                  <ScoreTile label="Riding" value={data.latestAssessment.riding} />
+                  <ScoreTile label="Ground" value={data.latestAssessment.ground} />
+                  <ScoreTile label="Stable" value={data.latestAssessment.stable} />
+                </View>
+                {data.latestAssessment.skills.length > 0 ? (
+                  <View style={styles.chipsWrap}>
                     {data.latestAssessment.skills.map((s) => (
-                      <Badge key={s} label={`✓ ${s}`} tone="success" />
+                      <StatusBadge key={s} label={s} tone="success" />
                     ))}
                   </View>
-                </>
-              ) : (
-                <EmptyState
-                  testID="assessment-empty"
-                  icon="ribbon-outline"
-                  title="No assessments yet"
-                  message={`They appear here after ${selected.name}'s first session.`}
+                ) : null}
+                <GlassButton
+                  variant="secondary"
+                  icon="document-text-outline"
+                  label={data.latestAssessment.sessionId ? HOME_LINKS.viewSession : HOME_LINKS.allSessions}
+                  onPress={openLatest}
+                  testID="view-latest-session"
                 />
-              )}
-            </Card>
-          </Section>
-          {data.recentAttendance.length > 0 ? (
-            <Section title="Recent sessions">
-              <Card>
-                <View
-                  style={styles.dots}
-                  accessible
-                  accessibilityLabel={`Attended ${data.recentAttendance.filter(Boolean).length} of the last ${data.recentAttendance.length} sessions`}
-                >
-                  {data.recentAttendance.map((attended, i) => (
-                    <View
-                      key={i}
-                      style={[
-                        styles.dot,
-                        { backgroundColor: attended ? colors.ink : 'transparent', borderColor: colors.borderStrong },
-                      ]}
-                    />
-                  ))}
+              </>
+            ) : (
+              <EmptyState testID="assessment-empty" icon="ribbon-outline" title={HOME_COPY.noAssessmentsTitle} message={HOME_COPY.noAssessments(selected.name)} />
+            )}
+          </GlassCard>
+
+          {spark ? (
+            <GlassCard variant="photo" image={editorialArt.sparkCover} scrim="card" height={220} radius={radius.hero - 4} testID="spark-entry" imageStyle={styles.sparkImage}>
+              <View style={styles.sparkTop}>
+                <Pill label={HOME_COPY.sparkEyebrow} icon="sparkles-outline" material="thick" />
+              </View>
+              <View style={styles.sparkRow}>
+                <View style={{ flex: 1, gap: 2 }}>
+                  <AppText variant="section" tone="onPhoto">
+                    {HOME_COPY.sparkTitle}
+                  </AppText>
+                  <AppText variant="secondary" tone="onPhoto">
+                    {HOME_COPY.sparkBody}
+                  </AppText>
                 </View>
-              </Card>
-            </Section>
+                <GlassButton label={HOME_COPY.sparkAction} icon="headset-outline" fullWidth={false} onPress={() => router.push('/family/spark')} testID="open-spark" />
+              </View>
+            </GlassCard>
+          ) : null}
+
+          <NextEvent />
+
+          {data.recentAttendance.length > 0 ? <Attendance attended={data.recentAttendance} /> : null}
+
+          {familyApp ? (
+            <ListGroup title={HOME_LINKS.title} testID="home-links">
+              <Row icon="ribbon-outline" label={HOME_LINKS.passport} value={HOME_LINKS.passportHint} onPress={() => router.push('/family/passport')} testID="home-open-passport" />
+              <Row icon="shield-checkmark-outline" label={HOME_LINKS.consent} value={HOME_LINKS.consentHint} onPress={() => router.push('/family/consents')} testID="home-open-consents" />
+            </ListGroup>
           ) : null}
         </>
       )}
@@ -155,23 +236,88 @@ function FamilyHomeBody({ data, onSelectChild }: { data: FamilyHomeData; onSelec
   );
 }
 
-function Score({ label, value }: { label: string; value: number }) {
+/** The next published event with open replies (real date from the server). Hidden when there is none or it can't load. */
+function NextEvent() {
+  const router = useRouter();
+  const { scope, linked } = useFamily();
+  const { colors } = useTheme();
+  const res = useFamilyResource(['events'], (r) => r.events.list(scope));
+  const [now] = useState(() => Date.now());
+  if (res.status !== 'ready' || linked.length === 0) return null;
+  const next: FamilyEvent | undefined = res.data.events.find((e) => e.status === 'published' && Date.parse(e.startsAt) > now);
+  if (!next) return null;
+  const tile = dateTile(next.startsAt);
+  const going = next.children.filter((c) => c.status === 'confirmed').map((c) => c.firstName);
   return (
-    <View style={styles.score} accessible accessibilityLabel={`${label} ${value} out of 10`}>
-      <AppText variant="display">{value}</AppText>
-      <AppText variant="caption" tone="muted">
-        {label}
+    <GlassCard
+      onPress={() => router.push({ pathname: '/family/events/[eventId]', params: { eventId: next.id } })}
+      accessibilityLabel={`${HOME_LINKS.nextEvent}: ${next.title}, ${eventWhen(next.startsAt, next.endsAt)}. ${HOME_LINKS.openEvent}`}
+      testID="home-next-event"
+      contentStyle={styles.eventCard}
+    >
+      <View style={[styles.eventTile, { backgroundColor: colors.surfaceMuted, borderColor: colors.border }]}>
+        <AppText variant="caption" tone="accent" style={styles.eyebrow}>
+          {tile?.month}
+        </AppText>
+        <AppText variant="section">{tile?.day}</AppText>
+      </View>
+      <View style={styles.eventText}>
+        <AppText variant="secondary" tone="muted">
+          {HOME_LINKS.nextEvent}
+        </AppText>
+        <AppText variant="bodyStrong">{next.title}</AppText>
+        <AppText variant="secondary" tone="muted">
+          {eventWhen(next.startsAt, next.endsAt)}
+        </AppText>
+        {going.length > 0 ? <StatusBadge label={`${going.join(', ')} going`} tone="success" /> : null}
+      </View>
+    </GlassCard>
+  );
+}
+
+function Attendance({ attended }: { attended: boolean[] }) {
+  const { colors } = useTheme();
+  const n = attended.filter(Boolean).length;
+  return (
+    <GlassCard>
+      <AppText variant="secondary" tone="muted" header>
+        {HOME_COPY.recent}
       </AppText>
-    </View>
+      <View style={styles.dotsRow} accessible accessibilityLabel={HOME_COPY.attendance(n, attended.length)}>
+        <View style={styles.dots}>
+          {attended.map((a, i) => (
+            <View key={i} style={[styles.dot, { backgroundColor: a ? colors.accent : 'transparent', borderColor: a ? colors.accent : colors.borderStrong }]}>
+              {a ? <Icon name="checkmark" size={14} color={colors.onPrimary} /> : null}
+            </View>
+          ))}
+        </View>
+        <AppText variant="secondary" tone="muted" style={{ flex: 1 }}>
+          {HOME_COPY.attendance(n, attended.length)}
+        </AppText>
+      </View>
+    </GlassCard>
   );
 }
 
 const styles = StyleSheet.create({
-  header: { gap: space.sm },
-  rowBetween: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: space.sm },
-  scores: { flexDirection: 'row', flexWrap: 'wrap', gap: space.xl },
-  score: { minWidth: 64, gap: 2 },
-  chips: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
-  dots: { flexDirection: 'row', gap: space.md },
-  dot: { width: 20, height: 20, borderRadius: 10, borderWidth: 2 },
+  header: { flexDirection: 'row', alignItems: 'flex-end', gap: space.md },
+  headerText: { flex: 1, gap: 2 },
+  eyebrow: { fontWeight: '600' },
+  heroSkeleton: { borderRadius: radius.hero, overflow: 'hidden' },
+  heroContent: { justifyContent: 'space-between' },
+  heroTop: { flexDirection: 'row' },
+  heroBottom: { gap: space.sm },
+  chips: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm, marginTop: space.xs },
+  rowBetween: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: space.sm },
+  scores: { flexDirection: 'row', gap: space.lg },
+  chipsWrap: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
+  sparkTop: { flexDirection: 'row', flex: 1 },
+  sparkRow: { flexDirection: 'row', alignItems: 'flex-end', gap: space.md },
+  sparkImage: { top: -60, height: 520 },
+  dotsRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, flexWrap: 'wrap' },
+  dots: { flexDirection: 'row', gap: space.sm },
+  dot: { width: 24, height: 24, borderRadius: 12, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },
+  eventCard: { flexDirection: 'row', gap: space.lg, alignItems: 'flex-start' },
+  eventTile: { width: 56, borderRadius: radius.control, borderWidth: 1, alignItems: 'center', paddingVertical: space.sm },
+  eventText: { flex: 1, gap: 2 },
 });

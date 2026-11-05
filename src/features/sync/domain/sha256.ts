@@ -29,7 +29,11 @@ function utf8(input: string): Uint8Array {
 }
 
 export function sha256Hex(input: string): string {
-  const msg = utf8(input);
+  return sha256BytesHex(utf8(input));
+}
+
+/** SHA-256 of raw bytes (evidence files read through a URI when no native hashing port exists). */
+export function sha256BytesHex(msg: Uint8Array): string {
   const bitLen = msg.length * 8;
   const padded = new Uint8Array(((msg.length + 9 + 63) >> 6) << 6);
   padded.set(msg);

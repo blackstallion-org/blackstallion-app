@@ -41,7 +41,13 @@ export const ATTENTION_STATES: readonly QueueState[] = [
 ];
 export const TERMINAL_STATES: readonly QueueState[] = ['acknowledged', 'discarded'];
 
-export type CommandType = 'care.submitEvidence';
+/**
+ * care.submitEvidence  G5 field.submit_care_evidence (photo upload first)
+ * shift.punchIn        merged delta field_punch_in (no file; observed time + location are evidence, server time decides)
+ * Punch-out is deliberately NOT queued: field_punch_out stamps the server's receive time, so a late send would
+ * record the wrong time. It is an online-only action.
+ */
+export type CommandType = 'care.submitEvidence' | 'shift.punchIn';
 
 export interface UploadProgress {
   /** server object path returned by the upload intent */

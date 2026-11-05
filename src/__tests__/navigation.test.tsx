@@ -4,7 +4,9 @@
  * This is a JS-level test (jest-expo); it does not replace native checks.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from 'expo-constants';
 import path from 'path';
+import { router } from 'expo-router';
 import { act, fireEvent, renderRouter, screen, testRouter, waitFor } from 'expo-router/testing-library';
 
 import type { PersonaId } from '@/dev/personas';
@@ -78,17 +80,30 @@ test('instructor lands on Field Ops Today', async () => {
   const r = await boot();
   await signInAs('instructor');
   await waitFor(() => expect(r.getPathname()).toBe('/field'));
-  await screen.findByText('Sessions');
-  expect(screen.getByText('09:30 · Riding A')).toBeTruthy();
+  // FO-01: today's real check-ins (no fictional schedule), plus the person's own shift row
+  await screen.findByTestId('today-checkins');
+  await screen.findByTestId('today-open-shift');
+  expect(screen.queryByText('Sessions')).toBeNull();
   expect(textOf()).not.toMatch(/Aarav|Priya/);
 });
 
-test('groom sees care, overdue warning, and no sessions section', async () => {
+test('groom sees care, overdue warning, and never cadet data', async () => {
   const r = await boot();
   await signInAs('groom');
   await waitFor(() => expect(r.getPathname()).toBe('/field'));
-  await screen.findByText('1 overdue care task');
+  await screen.findByTestId('today-care');
+  expect(screen.getByTestId('today-overdue')).toBeTruthy();
+  expect(screen.queryByTestId('today-checkins')).toBeNull();
+  expect(screen.queryByTestId('tab-cadets')).toBeNull();
   expect(screen.queryByText('Sessions')).toBeNull();
+});
+
+test('hub admin Today shows check-ins and the review queue entry', async () => {
+  const r = await boot();
+  await signInAs('hubAdmin');
+  await waitFor(() => expect(r.getPathname()).toBe('/field'));
+  await screen.findByTestId('today-open-review');
+  expect(screen.queryByTestId('open-scan')).toBeNull();
 });
 
 test('dual-role switch changes experience, removes the other history, and leaks nothing', async () => {
@@ -99,7 +114,7 @@ test('dual-role switch changes experience, removes the other history, and leaks 
 
   await fireEvent.press(screen.getByTestId('experience-switch'));
   await waitFor(() => expect(r.getPathname()).toBe('/field'));
-  await screen.findByText('07:00 · Riding C');
+  await screen.findByText(/Demo Hub Two/);
   expect(textOf()).not.toContain('Isha');
   expect(screen.queryByTestId('family-home')).toBeNull();
   // Back must not return into the Family experience.
@@ -124,16 +139,16 @@ test('tabs and shared Settings: push from Profile, back returns to Profile', asy
   await waitFor(() => expect(r.getPathname()).toBe('/family/profile'));
 });
 
-test('Settings appearance choice is persisted (Dark)', async () => {
+test('Settings appearance: espresso (Dark) is the default; choosing Light is persisted', async () => {
   const r = await boot();
   await signInAs('instructor');
   await waitFor(() => expect(r.getPathname()).toBe('/field'));
   await openSettings(r);
-  const radio = screen.getByTestId('appearance-dark');
-  expect(screen.getByTestId('appearance-light')).toBeChecked();
+  const radio = screen.getByTestId('appearance-light');
+  expect(screen.getByTestId('appearance-dark')).toBeChecked();
   await fireEvent.press(radio);
-  await waitFor(() => expect(screen.getByTestId('appearance-dark')).toBeChecked());
-  expect(await AsyncStorage.getItem('bsah.pref.appearance.v1')).toBe('dark');
+  await waitFor(() => expect(screen.getByTestId('appearance-light')).toBeChecked());
+  expect(await AsyncStorage.getItem('bsah.pref.appearance.v1')).toBe('light');
 });
 
 test('sign out then a different person: no previous names render, history is gone', async () => {
@@ -144,6 +159,10 @@ test('sign out then a different person: no previous names render, history is gon
   await act(async () => {
     await fireEvent.press(screen.getByTestId('sign-out'));
   });
+  // SH-06: sign-out asks first
+  await act(async () => {
+    await fireEvent.press(await screen.findByTestId('sign-out-confirm'));
+  });
   await waitFor(() => expect(r.getPathname()).toBe('/sign-in'));
   for (const n of FAMILY_A_NAMES) expect(textOf()).not.toContain(n);
   expect(testRouter.canGoBack()).toBe(false);
@@ -152,6 +171,54 @@ test('sign out then a different person: no previous names render, history is gon
   await waitFor(() => expect(r.getPathname()).toBe('/family'));
   await screen.findByTestId('family-home-empty');
   for (const n of FAMILY_A_NAMES) expect(textOf()).not.toContain(n);
+});
+
+test('a deep link opened while signed out resumes after sign-in (same experience only)', async () => {
+  const r = await renderRouter(APP_DIR, { initialUrl: '/family/passport' });
+  await waitFor(() => expect(r.getPathname()).toBe('/sign-in'));
+  await signInAs('guardian');
+  await waitFor(() => expect(r.getPathname()).toBe('/family/passport'));
+
+  // single use, one account: after signing out (from Settings), the next person starts at their own home
+  await act(async () => router.push('/settings'));
+  await waitFor(() => expect(r.getPathname()).toBe('/settings'));
+  await act(async () => {
+    await fireEvent.press(screen.getByTestId('sign-out'));
+  });
+  await act(async () => {
+    await fireEvent.press(await screen.findByTestId('sign-out-confirm'));
+  });
+  await waitFor(() => expect(r.getPathname()).toBe('/sign-in'));
+  await signInAs('guardianNoChild');
+  await waitFor(() => expect(r.getPathname()).toBe('/family'));
+});
+
+test('a deep link into the other experience is not resumed: the person lands on their own home', async () => {
+  const r = await renderRouter(APP_DIR, { initialUrl: '/field/cadets' });
+  await waitFor(() => expect(r.getPathname()).toBe('/sign-in'));
+  await signInAs('guardian');
+  await waitFor(() => expect(r.getPathname()).toBe('/family'));
+  expect(screen.queryByTestId('field-cadets')).toBeNull();
+});
+
+test('SH-12: below the minimum version, sign-in and later deep links both land on Update required', async () => {
+  const policy = dev.devRepositories.account!.versionPolicy!;
+  const spy = jest.spyOn(policy, 'get').mockResolvedValue({ minimumVersion: '99.0.0', source: 'synthetic-preview' } as never);
+  // jest has no app.json version; give the build one so the gate can compare
+  const config = Constants.expoConfig as { version?: string };
+  const before = config.version;
+  config.version = '0.1.0';
+  try {
+    const r = await boot();
+    await signInAs('guardian');
+    await waitFor(() => expect(r.getPathname()).toBe('/update-required'));
+    await act(async () => router.push('/family/passport'));
+    await waitFor(() => expect(r.getPathname()).toBe('/update-required'));
+    expect(screen.queryByTestId('fa05-passport')).toBeNull();
+  } finally {
+    spy.mockRestore();
+    config.version = before;
+  }
 });
 
 test('error state with retry when family data fails', async () => {
@@ -182,4 +249,28 @@ test('sign-in form validates locally and states that sign-in is not connected', 
   await fireEvent.changeText(screen.getByTestId('mobile-number'), '98765 43210');
   await fireEvent.press(screen.getByTestId('send-code'));
   expect(screen.getByTestId('sign-in-not-connected')).toBeTruthy();
+});
+
+test('non-tab routes open above the tabs (SDK 58 redirects hidden tab routes): Field session and Family Spark', async () => {
+  const r = await boot();
+  await signInAs('instructor');
+  await waitFor(() => expect(r.getPathname()).toBe('/field'));
+  await act(async () => router.push('/field/session/scan'));
+  await waitFor(() => expect(r.getPathname()).toBe('/field/session/scan'));
+  expect(await screen.findByTestId('field-scan')).toBeTruthy();
+  expect(screen.queryByTestId('tab-profile')).toBeNull();
+  await act(async () => testRouter.back());
+  await waitFor(() => expect(r.getPathname()).toBe('/field'));
+  expect(screen.getByTestId('tab-profile')).toBeTruthy();
+});
+
+test('the floating glass tab bar drives real router state', async () => {
+  const r = await boot();
+  await signInAs('guardian');
+  await waitFor(() => expect(r.getPathname()).toBe('/family'));
+  expect(screen.getByTestId('tab-index')).toBeSelected();
+  await fireEvent.press(screen.getByTestId('tab-community'));
+  await waitFor(() => expect(r.getPathname()).toBe('/family/community'));
+  expect(screen.getByTestId('tab-community')).toBeSelected();
+  expect(screen.getByTestId('tab-index')).not.toBeSelected();
 });

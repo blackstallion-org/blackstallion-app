@@ -35,21 +35,29 @@ async function renderSync(locale: Locale, items: QueueItem[], extra: { otherAcco
 describe('Sync screen (rendered)', () => {
   test.each(['en', 'hi', 'te'] as const)('S01 %s: statuses, messages and actions are translated; nothing untranslated', async (locale) => {
     const { t } = await renderSync(locale, [item('blk', 'blocked', { lastErrorCode: 'access_revoked' }), item('rw', 'retry_wait', { nextAttemptAt: T0 + 120_000 })], { otherAccountPending: 2 });
-    expect(await screen.findByText(t.t('sync.state.blocked'))).toBeTruthy();
+    expect(await screen.findByText(t.t('sync.state.blocked'), { exact: false })).toBeTruthy();
     expect(screen.getByText(t.t('sync.otherAccount', { count: 2 }))).toBeTruthy();
     expect(screen.getAllByText(t.t('field.sync.careItem', { horse: 'Toofan', task: t.t('care.taskType.water') }))).toHaveLength(2);
-    expect(screen.getAllByText(t.t('common.action.discard')).length).toBe(2);
+    // FO-13: each row opens its sheet; both offer Discard with its consequence stated
+    for (const id of ['blk', 'rw']) {
+      await fireEvent.press(screen.getByTestId(`sync-row-${id}`));
+      expect(await screen.findByTestId(`sync-discard-${id}`)).toBeTruthy();
+      expect(screen.getByText(t.t('sync.consequence.discard'))).toBeTruthy();
+      await fireEvent.press(screen.getByTestId('modal-scrim', { includeHiddenElements: true }));
+    }
     expect(t.missing.size).toBe(0);
   });
 
   test('S02 discard needs an explicit second step that states the consequence', async () => {
     const { calls } = await renderSync('en', [item('x', 'needs_recapture')]);
+    await fireEvent.press(await screen.findByTestId('sync-row-x'));
     await fireEvent.press(await screen.findByTestId('sync-discard-x'));
     expect(calls.discard).toEqual([]);
     expect(screen.getByText('Discarding deletes this work from the phone. It was never sent.')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('discard-confirm-no'));
     expect(calls.discard).toEqual([]);
-    await fireEvent.press(screen.getByTestId('sync-discard-x'));
+    await fireEvent.press(screen.getByTestId('sync-row-x'));
+    await fireEvent.press(await screen.findByTestId('sync-discard-x'));
     await fireEvent.press(screen.getByTestId('discard-confirm-yes'));
     expect(calls.discard).toEqual(['x']);
   });
@@ -57,6 +65,35 @@ describe('Sync screen (rendered)', () => {
   test('S03 empty queue shows the explanatory empty state', async () => {
     await renderSync('te', []);
     expect(await screen.findByTestId('sync-empty')).toBeTruthy();
+  });
+
+  test('S04 blocked items offer no Retry (FO-13); acknowledged work offers nothing destructive', async () => {
+    const { t, calls } = await renderSync('en', [
+      item('blk', 'blocked', { lastErrorCode: 'access_revoked' }),
+      item('ack', 'acknowledged', { acknowledgedAt: T0, serverReceipt: { receiptId: 'r', replayed: false, reviewState: 'received' } }),
+    ]);
+    await fireEvent.press(await screen.findByTestId('sync-row-blk'));
+    expect(await screen.findByTestId('sync-review-blk')).toBeTruthy();
+    expect(screen.queryByTestId('sync-retry-blk')).toBeNull();
+    expect(screen.getByText(t.t('sync.consequence.reviewBlocked'))).toBeTruthy();
+    await fireEvent.press(screen.getByTestId('sync-review-blk'));
+    expect(calls.action).toEqual(['review:blk']);
+    await fireEvent.press(screen.getByTestId('sync-row-ack'));
+    expect(await screen.findByTestId('sync-sheet-no-actions')).toBeTruthy();
+    expect(screen.queryByTestId('sync-discard-ack')).toBeNull();
+    expect(JSON.stringify(screen.toJSON())).not.toMatch(/\bDone\b|[Vv]erified/);
+  });
+
+  test('S05 a memory-only queue says so instead of "saved on this phone"', async () => {
+    const t = createTranslator('en');
+    const model = buildSyncScreenModel({ items: [item('m', 'ready')], now: T0, formatTime: () => '11:30', label: () => null, otherAccountPending: 0, orphanFiles: 0, online: true });
+    await render(
+      <ThemeProvider store={createMemoryStore()}>
+        <SyncScreen model={model} t={t} durability="memory" onSyncNow={() => undefined} onAction={() => undefined} onConfirmDiscard={() => undefined} />
+      </ThemeProvider>,
+    );
+    expect(await screen.findByText(t.t('sync.durability.memory'))).toBeTruthy();
+    expect(screen.queryByText(t.t('sync.durability.durable'))).toBeNull();
   });
 });
 

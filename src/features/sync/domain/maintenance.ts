@@ -1,6 +1,6 @@
 // Local retention and cleanup. Rule: never delete the only copy of unsynced evidence without an explicit owner action.
 import type { Clock, FileVault } from './ports';
-import type { QueueStore } from './queueStore';
+import type { OutboxStore } from './outboxStore';
 import type { Tombstone } from './types';
 
 export interface RetentionPolicy {
@@ -23,7 +23,7 @@ export interface CleanupReport {
 }
 
 export async function runCleanup(
-  d: { store: QueueStore; files: FileVault; clock: Clock },
+  d: { store: OutboxStore; files: FileVault; clock: Clock },
   policy: RetentionPolicy = DEFAULT_RETENTION,
 ): Promise<CleanupReport> {
   const now = d.clock.now();
@@ -47,7 +47,7 @@ export async function runCleanup(
  * explicit confirmation. Tombstone is committed before the file is removed.
  */
 export async function discardItem(
-  d: { store: QueueStore; files: FileVault; clock: Clock },
+  d: { store: OutboxStore; files: FileVault; clock: Clock },
   operationId: string,
   actorId: string,
   confirmation: { confirmed: true; reason: string },
@@ -61,7 +61,7 @@ export async function discardItem(
 }
 
 /** Sign-out summary (10 §Experience/account lifecycle): count first, then finish sync, keep locked, or discard. */
-export function signOutSummary(store: QueueStore, actorId: string): { pending: number; options: ('finish_sync' | 'keep_locked' | 'discard')[] } {
+export function signOutSummary(store: OutboxStore, actorId: string): { pending: number; options: ('finish_sync' | 'keep_locked' | 'discard')[] } {
   const pending = store.countPendingForOwner(actorId);
   return { pending, options: pending === 0 ? [] : ['finish_sync', 'keep_locked', 'discard'] };
 }

@@ -7,6 +7,8 @@ export type FamilyHomeData = {
   selectedChildId: string | null;
   nextSession: { label: string; detail: string } | null;
   latestAssessment: {
+    /** training_sessions.id, for "View session" (FA-03). Absent in older sources: the action falls back to Progress. */
+    sessionId?: string;
     dateLabel: string;
     riding: number;
     ground: number;

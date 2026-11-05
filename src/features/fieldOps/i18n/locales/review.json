@@ -1,0 +1,1912 @@
+{
+  "fo.common.fieldOps": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Eyebrow"
+  },
+  "fo.common.back": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Header back button"
+  },
+  "fo.common.synthetic": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Fixture banner"
+  },
+  "fo.common.notConnectedTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Unavailable state title"
+  },
+  "fo.common.notConnected": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Unavailable state body"
+  },
+  "fo.common.deniedTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Permission denied title"
+  },
+  "fo.common.denied": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Permission denied body"
+  },
+  "fo.common.notFoundTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Not found title"
+  },
+  "fo.common.notFound": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Not found body"
+  },
+  "fo.common.offline": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Offline body"
+  },
+  "fo.common.signedOutTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Signed out title"
+  },
+  "fo.common.signedOut": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Signed out body"
+  },
+  "fo.common.errorTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Error title"
+  },
+  "fo.common.error": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Error body"
+  },
+  "fo.common.reference": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Support reference"
+  },
+  "fo.common.staleSince": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Offline cached copy"
+  },
+  "fo.horses.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Tab screen title"
+  },
+  "fo.horses.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Loading label"
+  },
+  "fo.horses.denied": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "42501"
+  },
+  "fo.horses.emptyTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Empty title"
+  },
+  "fo.horses.empty": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Empty body"
+  },
+  "fo.horses.workGroup": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Group title (shift, review)"
+  },
+  "fo.horses.shiftHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "A11y hint"
+  },
+  "fo.horses.shiftPending": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Shift row value"
+  },
+  "fo.horses.shiftUnknown": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Shift row value"
+  },
+  "fo.horses.shiftNone": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Shift row value"
+  },
+  "fo.horses.shiftOpen": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Shift row value"
+  },
+  "fo.horses.reviewOpen": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review row value"
+  },
+  "fo.horses.reviewBadge": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review row badge"
+  },
+  "fo.horses.summaryOk": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Summary"
+  },
+  "fo.horses.summaryOverdue": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Summary part"
+  },
+  "fo.horses.summaryAction": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Summary part"
+  },
+  "fo.horses.summaryDue": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Summary part"
+  },
+  "fo.horses.careForAssigned": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Hub admin note"
+  },
+  "fo.horses.listTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "List title"
+  },
+  "fo.horses.inactiveTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "List title"
+  },
+  "fo.horses.progress": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value (accepted tasks)"
+  },
+  "fo.horses.sent": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.horses.next": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.horses.noDetails": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.horses.status.overdue": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.horses.status.overdueCount": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.horses.status.needsAction": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.horses.status.due": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.horses.status.onTime": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.horses.status.allDone": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge (all accepted)"
+  },
+  "fo.horses.status.noTasks": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.horses.status.notAssigned": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.horses.status.inactive": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.horse.screenTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Header title"
+  },
+  "fo.horse.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Loading label"
+  },
+  "fo.horse.notFound": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Not found"
+  },
+  "fo.horse.hands": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Height"
+  },
+  "fo.horse.emptyTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Empty title"
+  },
+  "fo.horse.empty": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Empty body"
+  },
+  "fo.horse.today": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Day group title"
+  },
+  "fo.horse.medicationRow": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.task.screenTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Header title"
+  },
+  "fo.task.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Loading label"
+  },
+  "fo.task.notFound": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Not found"
+  },
+  "fo.task.notAssignedTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Hub admin opened a task"
+  },
+  "fo.task.notAssigned": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Hub admin body"
+  },
+  "fo.task.instructionsTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Group title"
+  },
+  "fo.task.noInstructions": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Empty instructions"
+  },
+  "fo.task.photoNeeded": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.task.photoLive": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.task.photoTaken": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Photo state"
+  },
+  "fo.task.photoAt": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Photo meta"
+  },
+  "fo.task.takePhoto": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Button"
+  },
+  "fo.task.retake": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Button"
+  },
+  "fo.task.capturePurpose": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Shown on the capture screen"
+  },
+  "fo.task.notesUnavailable": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Notes unsupported by G5"
+  },
+  "fo.task.send": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Primary button"
+  },
+  "fo.task.sendHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "A11y hint"
+  },
+  "fo.task.sendNeedsPhoto": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Helper"
+  },
+  "fo.task.sendError.no_session": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Capture error"
+  },
+  "fo.task.sendError.storage_full": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Capture error"
+  },
+  "fo.task.sendError.capture_failed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Capture error"
+  },
+  "fo.task.sendError.not_allowed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Capture error"
+  },
+  "fo.task.phase.saved": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Phase"
+  },
+  "fo.task.phase.sending": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Phase"
+  },
+  "fo.task.phase.received": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Phase (NOT accepted)"
+  },
+  "fo.task.phase.review": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Phase"
+  },
+  "fo.task.phase.completed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Phase"
+  },
+  "fo.task.phase.rejected": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Phase"
+  },
+  "fo.task.phase.cancelled": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Phase"
+  },
+  "fo.task.phase.needsAction": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Phase"
+  },
+  "fo.task.savedDurable": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Durable outbox"
+  },
+  "fo.task.savedMemory": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Memory outbox"
+  },
+  "fo.task.sendingBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Sending body"
+  },
+  "fo.task.receivedAt": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Server receive time"
+  },
+  "fo.task.receivedBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Received body"
+  },
+  "fo.task.completedBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Completed body"
+  },
+  "fo.task.rejectedBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Rejected body"
+  },
+  "fo.task.cancelledBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Cancelled body"
+  },
+  "fo.task.needsActionBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Needs action body"
+  },
+  "fo.task.openSync": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Button"
+  },
+  "fo.task.resendTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Dialog title"
+  },
+  "fo.task.resendBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Dialog body"
+  },
+  "fo.task.resendConfirm": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Dialog confirm"
+  },
+  "fo.location.label": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.location.getting": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Busy"
+  },
+  "fo.location.off": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Denied"
+  },
+  "fo.location.notAsked": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Undetermined"
+  },
+  "fo.location.failed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Fix failed"
+  },
+  "fo.location.none": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Value"
+  },
+  "fo.location.good": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Accuracy within the hint"
+  },
+  "fo.location.weak": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Weak accuracy"
+  },
+  "fo.location.unknownAccuracy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Missing accuracy"
+  },
+  "fo.location.badge.good": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.location.badge.review": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.location.again": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Button"
+  },
+  "fo.location.allow": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Button (opens primer)"
+  },
+  "fo.location.openSettings": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Button"
+  },
+  "fo.location.primerTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Primer title"
+  },
+  "fo.location.purposeCare": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Primer body (care)"
+  },
+  "fo.location.purposeShift": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Primer body (shift)"
+  },
+  "fo.location.primerContinue": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Primer: then the OS dialog"
+  },
+  "fo.location.primerNotNow": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Primer cancel"
+  },
+  "fo.shift.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Header / row title"
+  },
+  "fo.shift.heading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Screen heading"
+  },
+  "fo.shift.subtitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Subtitle"
+  },
+  "fo.shift.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Loading"
+  },
+  "fo.shift.denied": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Denied"
+  },
+  "fo.shift.current": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Card label"
+  },
+  "fo.shift.notIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Card value"
+  },
+  "fo.shift.notInBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Card body"
+  },
+  "fo.shift.pendingTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Card value"
+  },
+  "fo.shift.pendingDurable": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Pending (durable)"
+  },
+  "fo.shift.pendingMemory": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Pending (memory)"
+  },
+  "fo.shift.pendingStuck": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Pending stuck"
+  },
+  "fo.shift.openBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Open shift body"
+  },
+  "fo.shift.badge.pending": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.shift.badge.recorded": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge (never \"verified\")"
+  },
+  "fo.shift.badge.needs_review": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.shift.badge.review_accepted": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.shift.badge.review_rejected": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.shift.evidenceTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Group title"
+  },
+  "fo.shift.accuracy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.shift.distance": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.shift.distanceUnknown": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.shift.meters": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Distance"
+  },
+  "fo.shift.recordedBy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.shift.reason.lowAccuracy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.shift.reason.outsideRadius": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.shift.reason.noLocation": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.shift.reason.hubUnknown": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.shift.reason.reviewAll": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason (policy off)"
+  },
+  "fo.shift.reason.aboveThreshold": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.shift.reviewDecisionBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Decision body"
+  },
+  "fo.shift.locationTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Group title (location + photo rule + review rule)"
+  },
+  "fo.shift.photoProof": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.shift.photo.not_supported": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Photo proof unsupported"
+  },
+  "fo.shift.photo.optional": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Photo proof optional"
+  },
+  "fo.shift.photo.required": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Photo proof required"
+  },
+  "fo.shift.reviewRule": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.shift.reviewAllBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Policy off"
+  },
+  "fo.shift.reviewThresholdBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Policy on"
+  },
+  "fo.shift.punchIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Primary button"
+  },
+  "fo.shift.punchInHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Helper"
+  },
+  "fo.shift.punchOut": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Button"
+  },
+  "fo.shift.punchOutHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Helper"
+  },
+  "fo.shift.punchOutOffline": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Offline helper"
+  },
+  "fo.shift.recentTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Group title"
+  },
+  "fo.conflict.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Header title"
+  },
+  "fo.conflict.heading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Note title"
+  },
+  "fo.conflict.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Loading"
+  },
+  "fo.conflict.goneTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Gone title"
+  },
+  "fo.conflict.gone": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Gone body"
+  },
+  "fo.conflict.notConflict": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Not a conflict"
+  },
+  "fo.conflict.careGone": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Care 404"
+  },
+  "fo.conflict.careReused": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Care idempotency conflict"
+  },
+  "fo.conflict.careHasProof": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Care already submitted"
+  },
+  "fo.conflict.punchOpen": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Punch already open"
+  },
+  "fo.conflict.punchReused": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Punch idempotency conflict"
+  },
+  "fo.conflict.unknown": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Unknown conflict"
+  },
+  "fo.conflict.phone": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Side title"
+  },
+  "fo.conflict.academy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Side title"
+  },
+  "fo.conflict.photo": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.conflict.punchIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.conflict.takenAt": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.conflict.serverSaid": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.conflict.answerConflict": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.conflict.answerUnknown": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.conflict.openShift": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.conflict.noOpenShift": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.conflict.noTask": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.conflict.kept": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge: server record is never changed here"
+  },
+  "fo.conflict.occ.pending": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Occurrence status"
+  },
+  "fo.conflict.occ.submitted": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Occurrence status"
+  },
+  "fo.conflict.occ.completed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Occurrence status"
+  },
+  "fo.conflict.occ.cancelled": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Occurrence status"
+  },
+  "fo.conflict.sub.none": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Submission state"
+  },
+  "fo.conflict.sub.received": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Submission state"
+  },
+  "fo.conflict.sub.review_required": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Submission state"
+  },
+  "fo.conflict.sub.accepted": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Submission state"
+  },
+  "fo.conflict.sub.rejected": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Submission state"
+  },
+  "fo.conflict.noOverwrite": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Explanation"
+  },
+  "fo.conflict.path.send_as_new": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Path button"
+  },
+  "fo.conflict.path.keep_server": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Path button (discards the local copy)"
+  },
+  "fo.conflict.path.open_shift": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Path button"
+  },
+  "fo.conflict.path.later": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Path button"
+  },
+  "fo.conflict.pathBody.send_as_new": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Path consequence"
+  },
+  "fo.conflict.pathBody.keep_server": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Path consequence"
+  },
+  "fo.conflict.pathBody.open_shift": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Path consequence"
+  },
+  "fo.conflict.pathBody.later": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Path consequence"
+  },
+  "fo.review.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Header / row title"
+  },
+  "fo.review.heading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Screen heading"
+  },
+  "fo.review.subtitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Subtitle"
+  },
+  "fo.review.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Loading"
+  },
+  "fo.review.denied": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "42501"
+  },
+  "fo.review.nothing": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Empty title"
+  },
+  "fo.review.segmentsLabel": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Segmented control a11y label"
+  },
+  "fo.review.segment.care_evidence": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Segment"
+  },
+  "fo.review.segment.shift_attendance": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Segment"
+  },
+  "fo.review.segment.rank_proposal": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Segment"
+  },
+  "fo.review.empty.care_evidence": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Empty body"
+  },
+  "fo.review.empty.shift_attendance": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Empty body"
+  },
+  "fo.review.empty.rank_proposal": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Empty body"
+  },
+  "fo.review.listTitle.care_evidence": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "List title"
+  },
+  "fo.review.listTitle.shift_attendance": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "List title"
+  },
+  "fo.review.listTitle.rank_proposal": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "List title"
+  },
+  "fo.review.offlineDecisions": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Offline"
+  },
+  "fo.review.someone": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Unknown name"
+  },
+  "fo.review.receivedAt": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row meta"
+  },
+  "fo.review.punchLabel": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.review.proposedBy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.review.ownRecord": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.review.toCheck": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reason.location_missing": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.weak_location_accuracy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.outside_geofence": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.observed_in_future": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.task_already_completed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.task_already_submitted": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.task_cancelled": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.low_accuracy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.outside_radius": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.no_location": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.hub_location_unknown": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.review_all_policy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.accuracy_above_threshold": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.rank_change": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reason.other": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Review reason"
+  },
+  "fo.reasonShort.location_missing": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.weak_location_accuracy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.outside_geofence": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.observed_in_future": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.task_already_completed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.task_already_submitted": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.task_cancelled": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.low_accuracy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.outside_radius": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.no_location": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.hub_location_unknown": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.review_all_policy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.accuracy_above_threshold": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.rank_change": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reasonShort.other": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reason.label": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Input label"
+  },
+  "fo.reason.hint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Input hint"
+  },
+  "fo.reason.sheetAccept": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-16 sheet title"
+  },
+  "fo.reason.sheetReject": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-16 sheet title"
+  },
+  "fo.reason.sheetBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-16 sheet body"
+  },
+  "fo.reason.problem.too_short": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Validation"
+  },
+  "fo.reason.problem.too_long": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Validation"
+  },
+  "fo.reason.serverRefused": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "PT422"
+  },
+  "fo.reviewItem.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Header title"
+  },
+  "fo.reviewItem.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Loading"
+  },
+  "fo.reviewItem.notFound": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "PT404"
+  },
+  "fo.reviewItem.evidence": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Group title"
+  },
+  "fo.reviewItem.photoLoading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Photo loading"
+  },
+  "fo.reviewItem.photoSynthetic": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Fixture placeholder"
+  },
+  "fo.reviewItem.photoUnavailable": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "No storage access"
+  },
+  "fo.reviewItem.photoA11y": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Image a11y"
+  },
+  "fo.reviewItem.dueAt": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.reviewItem.noPhotoShift": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.reviewItem.sessions": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.reviewItem.sessionsCount": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.reviewItem.provenance": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Group title"
+  },
+  "fo.reviewItem.staff": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.reviewItem.proposedBy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.reviewItem.you": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Value"
+  },
+  "fo.reviewItem.observed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label (device clock, evidence only)"
+  },
+  "fo.reviewItem.received": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label (server receive time)"
+  },
+  "fo.reviewItem.proposedAt": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.reviewItem.late": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.reviewItem.lateBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.reviewItem.why": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.reviewItem.accept": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Button"
+  },
+  "fo.reviewItem.approve": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Button"
+  },
+  "fo.reviewItem.reject": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Destructive button"
+  },
+  "fo.reviewItem.acceptWithReason": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Sheet submit"
+  },
+  "fo.reviewItem.rejectWithReason": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Sheet submit"
+  },
+  "fo.reviewItem.acceptNotVerified": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Shift accept note"
+  },
+  "fo.reviewItem.version": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.reviewItem.ownRecord": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Self review blocked"
+  },
+  "fo.reviewItem.cannotDecide": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "can_decide false"
+  },
+  "fo.reviewItem.otherReviewer": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Value"
+  },
+  "fo.reviewItem.decided.accepted": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Decided title"
+  },
+  "fo.reviewItem.decided.rejected": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Decided title"
+  },
+  "fo.reviewItem.done.accepted": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Success title (after server ack)"
+  },
+  "fo.reviewItem.done.rejected": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Success title (after server ack)"
+  },
+  "fo.reviewItem.doneAt": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Success body"
+  },
+  "fo.reviewItem.conflictTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "PT409 title"
+  },
+  "fo.reviewItem.conflict": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "PT409 body"
+  },
+  "fo.rank.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Header title"
+  },
+  "fo.rank.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Loading"
+  },
+  "fo.rank.notFound": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "PT404"
+  },
+  "fo.rank.offTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Flag off title"
+  },
+  "fo.rank.off": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Flag off body"
+  },
+  "fo.rank.notProposer": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Role not in proposer_roles"
+  },
+  "fo.rank.current": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Subtitle"
+  },
+  "fo.rank.authority": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Authority note"
+  },
+  "fo.rank.noEvidenceTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Empty title"
+  },
+  "fo.rank.noEvidence": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Empty body"
+  },
+  "fo.rank.toLabel": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Group label"
+  },
+  "fo.rank.evidenceTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Group title"
+  },
+  "fo.rank.scores": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.rank.selected": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge"
+  },
+  "fo.rank.notSelected": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "A11y"
+  },
+  "fo.rank.noteLabel": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Input label"
+  },
+  "fo.rank.noteHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Input hint"
+  },
+  "fo.rank.problem.no_rank": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Validation"
+  },
+  "fo.rank.problem.same_rank": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Validation"
+  },
+  "fo.rank.problem.evidence_count": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Validation"
+  },
+  "fo.rank.problem.note_too_long": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Validation"
+  },
+  "fo.rank.submit": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Primary button"
+  },
+  "fo.rank.offline": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Offline helper"
+  },
+  "fo.rank.conflict": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "PT409"
+  },
+  "fo.rank.sentTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Success title (after ack)"
+  },
+  "fo.rank.sent": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Success body"
+  },
+  "fo.rank.name.CADET_SQUIRE": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Rank label"
+  },
+  "fo.rank.name.CADET_RIDER": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Rank label"
+  },
+  "fo.rank.name.CADET_KNIGHT": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Rank label"
+  },
+  "fo.rank.name.SOVEREIGN_LANCER": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Rank label"
+  },
+  "fo.rank.name.none": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Rank label"
+  },
+  "fo.rank.role.SUPER_ADMIN": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Approver role"
+  },
+  "fo.rank.role.SCHOOL_ADMIN": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Approver role"
+  },
+  "fo.rank.role.none": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Approver role"
+  },
+  "fo.posture.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Header title"
+  },
+  "fo.posture.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Loading"
+  },
+  "fo.posture.denied": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "42501"
+  },
+  "fo.posture.unavailableTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Unavailable title"
+  },
+  "fo.posture.reason.feature_disabled": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Reason"
+  },
+  "fo.posture.reason.provider_not_configured": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Reason"
+  },
+  "fo.posture.reason.provider_not_integrated": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Reason"
+  },
+  "fo.posture.reason.unknown": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Reason"
+  },
+  "fo.posture.whatTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Group title"
+  },
+  "fo.posture.clip": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.posture.clipKept": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.posture.clipUnknown": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.posture.grading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.posture.gradingBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.posture.noResult": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.posture.noResultBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.posture.decision": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row label"
+  },
+  "fo.posture.decisionBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Row value"
+  },
+  "fo.conflict.blocked": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-15 for a blocked item"
+  },
+  "fo.task.evidenceTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Group title (photo + location)"
+  },
+  "fo.task.leaveTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Back with an unsent photo"
+  },
+  "fo.task.leaveBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Dialog body"
+  },
+  "fo.task.leaveStay": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Default (safe) action"
+  },
+  "fo.task.leaveConfirm": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Destructive confirm"
+  },
+  "fo.review.lateBadge": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Badge: proof arrived after due time + grace (kept apart from the review reason)"
+  },
+  "fo.horses.searchLabel": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Search label (long lists only)"
+  },
+  "fo.horses.searchPlaceholder": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Search placeholder"
+  },
+  "fo.horses.searchEmptyTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Search empty title"
+  },
+  "fo.horses.searchEmpty": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "Search empty body"
+  },
+  "fo.today.workTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 work group title"
+  },
+  "fo.today.careTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 care group title"
+  },
+  "fo.today.careNone": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 care empty"
+  },
+  "fo.today.careNotAssigned": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 care for non-assigned roles"
+  },
+  "fo.today.careMore": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 link to Horses tab"
+  },
+  "fo.today.careOverdue": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 overdue note (D20)"
+  },
+  "fo.today.syncTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 sync row label"
+  },
+  "fo.today.syncValue": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 sync row value"
+  },
+  "fo.today.syncHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 sync row a11y hint"
+  },
+  "fo.today.reviewHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 review row a11y hint"
+  },
+  "fo.today.loadingCare": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 care loading"
+  },
+  "fo.today.careFailed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 care error"
+  },
+  "fo.today.retry": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "strings.fo.tsv",
+    "context": "FO-01 care retry button"
+  }
+}

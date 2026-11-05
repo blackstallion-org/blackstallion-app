@@ -63,5 +63,25 @@ export function validateAssessment(d: AssessmentDraft):
 }
 
 /** Stable key of what will be sent; a changed payload must get a new operation id (server: same id + new hash = 409). */
-export const assessmentPayloadKey = (checkInOperationId: string, v: ValidAssessment): string =>
-  JSON.stringify([checkInOperationId, v.riding, v.ground, v.stable, v.notes ?? '', v.skillIds ?? []]);
+export const assessmentPayloadKey = (checkInOperationId: string, v: ValidAssessment, videoObject?: string | null): string =>
+  JSON.stringify([checkInOperationId, v.riding, v.ground, v.stable, v.notes ?? '', v.skillIds ?? [], videoObject ?? '']);
+
+/** Correction rules mirrored from field_correct_session (MIG:455-490): reason 3..500 characters, something must change. */
+export const REASON_MIN = 3;
+export const REASON_MAX = 500;
+export type ReasonError = 'short' | 'long' | null;
+export function validateReason(raw: string): ReasonError {
+  const n = codePointLength(raw.trim());
+  return n < REASON_MIN ? 'short' : n > REASON_MAX ? 'long' : null;
+}
+
+export type CorrectionValues = { riding: number; ground: number; stable: number; notes: string | null };
+/** Server compares trimmed notes with empty → null; identical values are refused as "nothing to correct". */
+export function correctionChanges(before: CorrectionValues, after: CorrectionValues): boolean {
+  const norm = (n: string | null) => (n ?? '').trim() || null;
+  return before.riding !== after.riding || before.ground !== after.ground || before.stable !== after.stable || norm(before.notes) !== norm(after.notes);
+}
+
+/** Stable key of a correction request (same idea as assessmentPayloadKey: new payload → new operation id). */
+export const correctionPayloadKey = (sessionId: string, expectedVersion: number, v: CorrectionValues, reason: string): string =>
+  JSON.stringify([sessionId, expectedVersion, v.riding, v.ground, v.stable, (v.notes ?? '').trim(), reason.trim()]);

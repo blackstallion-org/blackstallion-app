@@ -7,7 +7,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "backgroundColor": "#FFFFFF",
+    "backgroundColor": "#1A0D06",
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "dev.bsah.mobile.local"
@@ -28,14 +28,33 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#FFFFFF",
+          "backgroundColor": "#1A0D06",
           "image": "./assets/splash-icon.png",
           "imageWidth": 160
         }
       ],
       "expo-font",
       "expo-asset",
-      "expo-secure-store"
+      "expo-secure-store",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "BSAH uses the camera to read a cadet's passport QR code, record a short silent session clip, and take care-proof photos. Nothing is recorded until you press the button.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "BSAH checks your location only when you punch in or send care proof, so the hub can see the work was done at the yard.",
+          "locationAlwaysAndWhenInUsePermission": false,
+          "locationAlwaysPermission": false,
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false,
+          "isAndroidForegroundServiceEnabled": false
+        }
+      ]
     ]
   }
 }

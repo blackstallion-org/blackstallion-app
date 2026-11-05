@@ -1,47 +1,61 @@
-import { View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 
-import { AppText, Button, Card, Screen } from '@/ui/components';
-import { space } from '@/ui/tokens';
+import { useAccountStrings } from '@/features/account/i18n/useAccountStrings';
+import { HelpSheet } from '@/features/settings/HelpSupport';
+import { AppText, Icon, type IconName } from '@/ui/components';
+import { GlassButton, GlassScreen, GlassSurface, Pill } from '@/ui/glass';
+import { useTheme } from '@/ui/theme/ThemeProvider';
+import { radius, space } from '@/ui/tokens';
 
 import { useAccess } from './AccessProvider';
 import type { UnavailableReason } from './domain/access';
 
-const COPY: Record<UnavailableReason, { title: string; message: string }> = {
-  unknownAccount: {
-    title: 'No BSAH account found',
-    message: 'This sign-in is not linked to an academy account. Contact your academy office for help.',
-  },
-  disabled: {
-    title: 'Access is paused',
-    message: 'This account is not active right now. Your academy office can review it.',
-  },
-  noExperience: {
-    title: 'Nothing to show yet',
-    message: 'Your account has no family or staff access assigned. Contact your academy office.',
-  },
-  bootError: {
-    title: 'Could not start',
-    message: 'We could not check your access. Check your connection and try again.',
-  },
+const ICON: Record<UnavailableReason, IconName> = {
+  unknownAccount: 'person-remove-outline',
+  disabled: 'pause-circle-outline',
+  noExperience: 'hourglass-outline',
+  bootError: 'cloud-offline-outline',
 };
 
-/** Neutral no-access/blocked/unavailable screen (07 boot states). Shows no private data. */
+/**
+ * SH-03 Account status (`/unavailable`, 07 boot states). ONE reason, its next step and a support path. It shows
+ * nothing about the account beyond the reason — no name, e-mail, role or children — and no action here grants
+ * access: Try again re-runs the boot sequence (server snapshot), Sign out ends the session.
+ */
 export function UnavailableScreen() {
   const access = useAccess();
-  const reason = access.state.phase === 'unavailable' ? access.state.reason : 'bootError';
-  const copy = COPY[reason];
+  const s = useAccountStrings();
+  const { colors } = useTheme();
+  const [help, setHelp] = useState(false);
+  const reason: UnavailableReason = access.state.phase === 'unavailable' ? access.state.reason : 'bootError';
+  const tone = reason === 'bootError' ? colors.inkMuted : reason === 'disabled' ? colors.warningText : colors.accent;
   return (
-    <Screen testID={`unavailable-${reason}`}>
-      <Card>
-        <AppText variant="headline" header>
-          {copy.title}
-        </AppText>
-        <AppText tone="muted">{copy.message}</AppText>
-        <View style={{ gap: space.sm }}>
-          {reason === 'bootError' ? <Button testID="retry" label="Retry" onPress={access.reload} /> : null}
-          <Button testID="unavailable-sign-out" variant="secondary" label="Sign out" onPress={() => void access.signOut()} />
+    <GlassScreen testID={`unavailable-${reason}`} contentStyle={styles.centred}>
+      <Pill label={s.t('status.eyebrow')} icon="person-circle-outline" material="thick" />
+      <GlassSurface material="thick" borderRadius={radius.hero} contentStyle={styles.card}>
+        <View style={[styles.iconDisc, { backgroundColor: colors.surfaceMuted, borderColor: colors.border }]}>
+          <Icon name={ICON[reason]} size={30} color={tone} />
         </View>
-      </Card>
-    </Screen>
+        <AppText variant="title" header accessibilityRole="header">
+          {s.t(`status.${reason}.title`)}
+        </AppText>
+        <AppText>{s.t(`status.${reason}.body`)}</AppText>
+        <AppText tone="muted">{s.t(`status.${reason}.next`)}</AppText>
+      </GlassSurface>
+      <View style={styles.actions}>
+        <GlassButton testID="retry" variant={reason === 'bootError' ? 'primary' : 'secondary'} icon="refresh" label={s.t('common.retry')} onPress={access.reload} />
+        <GlassButton testID="unavailable-help" variant="secondary" icon="help-buoy-outline" label={s.t('common.getHelp')} onPress={() => setHelp(true)} />
+        <GlassButton testID="unavailable-sign-out" variant="ghost" icon="log-out-outline" label={s.t('common.signOut')} onPress={() => access.signOut()} />
+      </View>
+      <HelpSheet visible={help} onClose={() => setHelp(false)} reference={reason === 'bootError' ? 'BOOT' : null} />
+    </GlassScreen>
   );
 }
+
+const styles = StyleSheet.create({
+  centred: { flexGrow: 1, justifyContent: 'center' },
+  card: { padding: space.xl, gap: space.md },
+  iconDisc: { width: 64, height: 64, borderRadius: 32, borderWidth: 1, alignItems: 'center', justifyContent: 'center', marginBottom: space.xs },
+  actions: { gap: space.sm },
+});

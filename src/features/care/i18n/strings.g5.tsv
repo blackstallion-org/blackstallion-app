@@ -33,7 +33,7 @@ sync.state.sending	Sending	भेजा जा रहा है	పంపుత�
 sync.state.retryAt	Will try again at {{time}}	{{time}} पर फिर से कोशिश होगी	{{time}}కి మళ్లీ ప్రయత్నిస్తాం	Queue state	needs-native-review
 sync.state.needsAttention	Could not send after several tries.	कई बार कोशिश के बाद भी नहीं भेजा जा सका।	చాలాసార్లు ప్రయత్నించినా పంపలేకపోయాం.	Queue state after 8 failures	needs-native-review
 sync.state.needsEdit	The server could not accept this. Check the details.	सर्वर ने इसे स्वीकार नहीं किया। जानकारी जाँचें।	సర్వర్ దీన్ని అంగీకరించలేదు. వివరాలు తనిఖీ చేయండి.	Validation failure	needs-native-review
-sync.state.needsReview	This needs a supervisor to look at it.	इसे सुपरवाइज़र को देखना होगा।	దీన్ని సూపర్‌వైజర్ చూడాలి.	Conflict	needs-native-review
+sync.state.needsReview	The academy refused it because it clashes with its record. Review it before anything is sent again.	अकादमी ने इसे मना किया क्योंकि यह उसके रिकॉर्ड से टकराता है। फिर से कुछ भेजने से पहले इसे देखें।	ఇది అకాడమీ రికార్డుతో ఢీకొంటున్నందున అకాడమీ తిరస్కరించింది. మళ్లీ ఏదైనా పంపే ముందు దీన్ని సమీక్షించండి.	Conflict (409/404): the owner reviews it on FO-15	needs-native-review
 sync.state.blocked	Your account can no longer send this. It is kept on this phone.	आपका अकाउंट अब इसे नहीं भेज सकता। यह इस फ़ोन में रखा है।	మీ అకౌంట్ ఇకపై దీన్ని పంపలేదు. ఇది ఈ ఫోన్‌లో ఉంచబడింది.	Permission failure	needs-native-review
 sync.state.needsRecapture	The photo is missing from this phone. Take it again.	फ़ोटो इस फ़ोन में नहीं मिली। दोबारा लें।	ఫోటో ఈ ఫోన్‌లో కనిపించలేదు. మళ్లీ తీయండి.	Missing file	needs-native-review
 sync.state.signIn	Sign in again to send your saved work.	सेव किया काम भेजने के लिए फिर से साइन इन करें।	సేవ్ చేసిన పనిని పంపడానికి మళ్లీ సైన్ ఇన్ చేయండి.	Session expired	needs-native-review
@@ -49,7 +49,7 @@ sync.section.inProgress	Sending now	अभी भेजे जा रहे ह�
 sync.section.waiting	Waiting	इंतज़ार में	వేచి ఉన్నవి	Sync section	needs-native-review
 sync.section.sent	Sent recently	हाल ही में भेजे गए	ఇటీవల పంపినవి	Sync section	needs-native-review
 sync.progress	{{done}} of {{total}} sent	{{total}} में से {{done}} भेजे गए	{{total}}లో {{done}} పంపబడ్డాయి	Progress line	needs-native-review
-sync.otherAccount	{{count}} items belong to another account and stay locked on this phone.	{{count}} आइटम दूसरे अकाउंट के हैं और इस फ़ोन पर लॉक रहेंगे।	{{count}} అంశాలు మరో అకౌంట్‌కు చెందినవి, ఇవి ఈ ఫోన్‌లో లాక్ చేయబడి ఉంటాయి.	Never shows the other account's content	needs-native-review
+sync.otherAccount	Unsent work from another account on this phone: {{count}}. It stays locked and is never shown here.	{{count}} आइटम दूसरे अकाउंट के हैं और इस फ़ोन पर लॉक रहेंगे।	{{count}} అంశాలు మరో అకౌంట్‌కు చెందినవి, ఇవి ఈ ఫోన్‌లో లాక్ చేయబడి ఉంటాయి.	Never shows the other account's content	needs-native-review
 sync.orphans	{{count}} photos were found without a task. They are kept until a supervisor decides.	{{count}} फ़ोटो किसी काम से जुड़ी नहीं मिलीं। सुपरवाइज़र के फ़ैसले तक इन्हें रखा गया है।	{{count}} ఫోటోలు ఏ పనికీ జతకాకుండా కనిపించాయి. సూపర్‌వైజర్ నిర్ణయించే వరకు వాటిని ఉంచుతాం.	Orphan files	needs-native-review
 signOut.pending	You have {{count}} items not sent yet.	आपके {{count}} आइटम अभी भेजे नहीं गए हैं।	మీ {{count}} అంశాలు ఇంకా పంపలేదు.	Sign-out dialog	needs-native-review
 signOut.finish	Send them first	पहले इन्हें भेजें	ముందు వాటిని పంపండి	Sign-out option	needs-native-review
@@ -57,3 +57,32 @@ signOut.keep	Keep them locked until I sign in again	दोबारा साइ
 signOut.discard	Discard them	इन्हें हटा दें	వాటిని తొలగించండి	Sign-out option (destructive)	needs-native-review
 reminder.title	Care task due	देखभाल का काम बाकी है	సంరక్షణ పని చేయాల్సి ఉంది	Local notification title (generic)	needs-native-review
 reminder.body	A care task is due at {{time}}. Open the app to see it.	{{time}} पर एक देखभाल का काम है। देखने के लिए ऐप खोलें।	{{time}}కి ఒక సంరక్షణ పని ఉంది. చూడటానికి యాప్ తెరవండి.	Local notification body (no horse or person names)	needs-native-review
+sync.waitingCount	{{count}} waiting to send	{{count}} भेजने के लिए बाकी	{{count}} పంపడానికి వేచి ఉన్నాయి	FO-12 summary line (no durability claim)	needs-native-review
+sync.needsYou	{{count}} need you	{{count}} पर आपका ध्यान चाहिए	{{count}} మీ చర్య కోసం	FO-12 summary badge	needs-native-review
+sync.durability.durable	Saved on this phone until the academy confirms it.	अकादमी की पुष्टि तक इस फ़ोन में सेव है।	అకాడమీ నిర్ధారించే వరకు ఈ ఫోన్‌లో సేవ్ అయి ఉంటుంది.	Durable SQLite outbox	needs-native-review
+sync.durability.memory	Kept only while the app is open. Keep it open until each item says Received.	सिर्फ़ ऐप खुला रहने तक रखा है। हर आइटम पर "मिल गया" दिखने तक ऐप खुला रखें।	యాప్ తెరిచి ఉన్నంత వరకే ఉంచుతాం. ప్రతి అంశం "అందింది" అని చూపే వరకు యాప్ తెరిచి ఉంచండి.	Memory-only outbox (no durable driver in this build)	needs-native-review
+sync.savedAt	saved {{time}}	{{time}} पर सेव	{{time}}కి సేవ్	Row meta: device time of the work	needs-native-review
+sync.rowHint	Opens details and what you can do	विवरण और आप क्या कर सकते हैं, खोलता है	వివరాలు, మీరు ఏం చేయగలరో తెరుస్తుంది	Accessibility hint	needs-native-review
+sync.item.punchIn	Shift punch-in · {{time}}	शिफ़्ट पंच-इन · {{time}}	షిఫ్ట్ పంచ్-ఇన్ · {{time}}	Item title	needs-native-review
+sync.badge.blocked	Blocked	रुका हुआ	నిలిపివేయబడింది	Status badge for blocked items	needs-native-review
+sync.sheet.status	Status	स्थिति	స్థితి	FO-13 detail label	needs-native-review
+sync.sheet.saved	Saved on the phone	फ़ोन पर सेव हुआ	ఫోన్‌లో సేవ్ అయింది	FO-13 detail label	needs-native-review
+sync.sheet.received	Received by the academy	अकादमी को मिला	అకాడమీకి అందింది	FO-13 detail label (server time)	needs-native-review
+sync.sheet.attempts	Tries so far	अब तक कोशिशें	ఇప్పటి వరకు ప్రయత్నాలు	FO-13 detail label	needs-native-review
+sync.sheet.why	Why it has not gone	यह क्यों नहीं गया	ఇది ఎందుకు వెళ్లలేదు	FO-13 detail label	needs-native-review
+sync.sheet.reference	Reference	संदर्भ	సూచన	FO-13 detail label (operation id prefix)	needs-native-review
+sync.consequence.retry	Sends it again now. Safe to repeat: the academy ignores a duplicate.	अभी फिर से भेजता है। दोहराना सुरक्षित है: अकादमी दोहराव को नज़रअंदाज़ करती है।	ఇప్పుడే మళ్లీ పంపుతుంది. మళ్లీ చేయడం సురక్షితం: అకాడమీ నకలును పట్టించుకోదు.	FO-13 action consequence	needs-native-review
+sync.consequence.reviewBlocked	Your account can no longer send this, so it is not retried. It stays on this phone for you and your hub admin to look at.	आपका अकाउंट अब इसे नहीं भेज सकता, इसलिए दोबारा कोशिश नहीं होगी। यह इस फ़ोन पर आपके और हब एडमिन के देखने के लिए रहेगा।	మీ అకౌంట్ ఇకపై దీన్ని పంపలేదు, కాబట్టి మళ్లీ ప్రయత్నించం. ఇది మీరు, మీ హబ్ అడ్మిన్ చూడటానికి ఈ ఫోన్‌లోనే ఉంటుంది.	FO-13 consequence for a blocked item (no Retry)	needs-native-review
+sync.consequence.edit	Opens the task so you can fix what the academy refused.	काम खोलता है ताकि आप वह ठीक कर सकें जो अकादमी ने नहीं माना।	అకాడమీ తిరస్కరించిన దాన్ని సరిచేయడానికి పనిని తెరుస్తుంది.	FO-13 action consequence	needs-native-review
+sync.consequence.review	Compares your copy with the academy's. Nothing is overwritten.	आपकी कॉपी की तुलना अकादमी वाली से करता है। कुछ भी बदला नहीं जाता।	మీ కాపీని అకాడమీ దానితో పోలుస్తుంది. ఏదీ మార్చబడదు.	FO-13 action consequence	needs-native-review
+sync.consequence.reviewReceipt	Opens the record to see what the academy said about it.	रिकॉर्ड खोलता है ताकि आप देख सकें अकादमी ने क्या कहा।	అకాడమీ ఏమి చెప్పిందో చూడటానికి రికార్డు తెరుస్తుంది.	FO-13 action consequence	needs-native-review
+sync.consequence.recapture	The photo is missing from this phone. Opens the task to take it again.	फ़ोटो इस फ़ोन में नहीं है। दोबारा लेने के लिए काम खोलता है।	ఫోటో ఈ ఫోన్‌లో లేదు. మళ్లీ తీయడానికి పనిని తెరుస్తుంది.	FO-13 action consequence	needs-native-review
+sync.consequence.discard	Deletes this work from the phone. It was never sent. You will be asked to confirm.	यह काम फ़ोन से मिटा देता है। यह कभी भेजा नहीं गया। आपसे पुष्टि माँगी जाएगी।	ఈ పనిని ఫోన్ నుంచి తొలగిస్తుంది. ఇది ఎప్పుడూ పంపబడలేదు. మిమ్మల్ని నిర్ధారించమని అడుగుతాం.	FO-13 action consequence	needs-native-review
+sync.consequence.signIn	Sign in again. Your work stays here and sends afterwards.	फिर से साइन इन करें। आपका काम यहीं रहेगा और बाद में भेजा जाएगा।	మళ్లీ సైన్ ఇన్ చేయండి. మీ పని ఇక్కడే ఉండి, తర్వాత పంపబడుతుంది.	FO-13 action consequence	needs-native-review
+sync.consequence.none	The academy has it. Nothing else to do here.	यह अकादमी के पास है। यहाँ और कुछ नहीं करना है।	ఇది అకాడమీ వద్ద ఉంది. ఇక్కడ ఇంకేమీ చేయాల్సిన పని లేదు.	FO-13 when no action applies	needs-native-review
+sync.consequence.inProgress	Sending now. Actions come back if it stops.	अभी भेजा जा रहा है। रुकने पर विकल्प फिर दिखेंगे।	ఇప్పుడు పంపుతోంది. ఆగితే చర్యలు మళ్లీ కనిపిస్తాయి.	FO-13 while a worker holds the item	needs-native-review
+sync.waitingLabel	waiting to send	भेजने के लिए बाकी	పంపడానికి వేచి ఉన్నాయి	FO-12 label under the big count	needs-native-review
+sync.badge.conflict	Conflict	टकराव	వైరుధ్యం	Status badge for needs_review items	needs-native-review
+sync.item.careProof	Care proof	देखभाल का सबूत	సంరక్షణ రుజువు	Item title when the task label is not available	needs-native-review
+sync.state.offlineMemory	No connection. It is kept while the app stays open.	कनेक्शन नहीं है। ऐप खुला रहने तक यह रखा है।	కనెక్షన్ లేదు. యాప్ తెరిచి ఉన్నంత వరకు ఇది ఉంచబడుతుంది.	Offline message for a memory-only queue	needs-native-review
+sync.badge.retry	Will retry	फिर कोशिश होगी	మళ్లీ ప్రయత్నిస్తాం	Badge for retry_wait	needs-native-review

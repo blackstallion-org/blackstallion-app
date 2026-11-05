@@ -17,7 +17,13 @@ export type CheckInResult = {
   isToday: boolean;
 };
 
-export type PublishRequest = { checkInOperationId: string; assessment: ValidAssessment; operationId: string };
+export type PublishRequest = {
+  checkInOperationId: string;
+  assessment: ValidAssessment;
+  operationId: string;
+  /** Object path of an uploaded clip in `session-videos` (`<hub>/<cadet>/<file>`); omitted/null = no clip. */
+  videoObject?: string | null;
+};
 export type PublishResult = { sessionId: string; version: number; sessionDate: string; duplicate: boolean };
 
 export interface FieldWorkflowRepository {

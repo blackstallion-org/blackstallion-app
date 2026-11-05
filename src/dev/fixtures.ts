@@ -4,9 +4,19 @@
  * the fixture repositories refuse any other scope, mirroring server scoping.
  */
 import { ScopedLoadError } from '@/core/data/useScopedResource';
+import { createAccountFixtures } from './fixtures/account';
+import { createBillingFixtures } from './fixtures/billing';
+import { createFamilyAppFixtures } from './fixtures/familyApp';
+import { createFieldAppFixtures } from './fixtures/fieldApp';
+import { createFieldOpsFixtures } from './fixtures/fieldOps';
+import { createOutboxPendingWork } from '@/features/fieldOps/data/pendingWork';
+import type { FieldOpsRepositories } from '@/features/fieldOps/data/repositories';
+import type { AccountRepositories } from '@/features/account/data/repositories';
 import type { Repositories } from '@/core/data/RepositoryProvider';
 import type { FamilyHomeData } from '@/features/family/types';
 import type { FieldTodayData } from '@/features/field/types';
+
+import { createSparkFixture } from './sparkFixture';
 
 type FamilyRecord = Omit<FamilyHomeData, 'selectedChildId' | 'latestAssessment' | 'nextSession' | 'recentAttendance'> & {
   perChild: Record<string, Pick<FamilyHomeData, 'latestAssessment' | 'nextSession' | 'recentAttendance'>>;
@@ -59,10 +69,7 @@ const FIELD: Record<string, FieldTodayData> = {
     dateLabel: 'Tue 10 Nov',
     pendingSyncCount: 2,
     overdueCareCount: 0,
-    sessions: [
-      { id: 'syn-s1', time: '09:30', title: 'Riding A', cadetCount: 6 },
-      { id: 'syn-s2', time: '11:00', title: 'Ground B', cadetCount: 4 },
-    ],
+    sessions: [],
     care: [{ id: 'syn-c1', time: '12:00', horse: 'Badal (sample)', task: 'Tack check', state: 'due' }],
     cadets: [
       { id: 'syn-f1', name: 'Kabir (sample)', group: 'Riding A' },
@@ -86,6 +93,30 @@ const FIELD: Record<string, FieldTodayData> = {
     ],
     cadets: [],
   },
+  'syn-hub-admin': {
+    source: 'synthetic-preview',
+    staffFirstName: 'Meena (sample)',
+    roleLabel: 'Hub admin',
+    hubName: 'Demo Hub One',
+    dateLabel: 'Tue 10 Nov',
+    pendingSyncCount: 0,
+    overdueCareCount: 0,
+    sessions: [],
+    care: [],
+    cadets: [],
+  },
+  'syn-field-offline': {
+    source: 'synthetic-preview',
+    staffFirstName: 'Kavya (sample)',
+    roleLabel: 'Groom',
+    hubName: 'Demo Hub One',
+    dateLabel: 'Tue 10 Nov',
+    pendingSyncCount: 0,
+    overdueCareCount: 0,
+    sessions: [],
+    care: [],
+    cadets: [],
+  },
   'syn-dual': {
     source: 'synthetic-preview',
     staffFirstName: 'Anil (sample)',
@@ -94,7 +125,7 @@ const FIELD: Record<string, FieldTodayData> = {
     dateLabel: 'Tue 10 Nov',
     pendingSyncCount: 0,
     overdueCareCount: 0,
-    sessions: [{ id: 'syn-s9', time: '07:00', title: 'Riding C', cadetCount: 5 }],
+    sessions: [],
     care: [],
     cadets: [{ id: 'syn-f9', name: 'Tara (sample)', group: 'Riding C' }],
   },
@@ -102,7 +133,33 @@ const FIELD: Record<string, FieldTodayData> = {
 
 const wait = (ms: number) => (ms > 0 ? new Promise((r) => setTimeout(r, ms)) : Promise.resolve());
 
-export const createFixtureRepositories = ({ latencyMs = 450 }: { latencyMs?: number } = {}): Repositories => ({
+/** Unsent work = the account preview's synthetic count plus the Field Ops outbox on this phone (SH-06/SH-10/SH-12). */
+function withOutbox(account: AccountRepositories, fieldOps: FieldOpsRepositories | undefined): AccountRepositories {
+  const base = account.pendingWork;
+  if (!fieldOps) return account;
+  const outbox = createOutboxPendingWork(fieldOps.outbox);
+  return {
+    ...account,
+    pendingWork: {
+      durable: outbox.durable,
+      count: async (subjectId) => (base ? await base.count(subjectId) : 0) + (await outbox.count(subjectId)),
+      async discard(subjectId) {
+        await base?.discard?.(subjectId);
+        await outbox.discard?.(subjectId);
+      },
+    },
+  };
+}
+
+export const createFixtureRepositories = ({ latencyMs = 450 }: { latencyMs?: number } = {}): Repositories => {
+  const fieldOps = createFieldOpsFixtures();
+  return {
+  spark: createSparkFixture({ latencyMs }),
+  account: withOutbox(createAccountFixtures({ latencyMs }), fieldOps),
+  familyApp: createFamilyAppFixtures(),
+  fieldApp: createFieldAppFixtures(),
+  fieldOps,
+  billing: createBillingFixtures(),
   familyHome: {
     async getHome(scope, childId) {
       await wait(latencyMs);
@@ -132,4 +189,5 @@ export const createFixtureRepositories = ({ latencyMs = 450 }: { latencyMs?: num
       return structuredClone(rec);
     },
   },
-});
+  };
+};

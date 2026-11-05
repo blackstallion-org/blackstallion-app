@@ -1,14 +1,16 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 
+import { GlassSurface } from '@/ui/glass/GlassSurface';
+import { PressDecor, usePressFeedback } from '@/ui/glass/pressFeedback';
 import { useTheme } from '@/ui/theme/ThemeProvider';
-import { border, radius, size as sizes, space } from '@/ui/tokens';
+import { radius, size as sizes, space } from '@/ui/tokens';
 
 import { AppText } from './AppText';
 import { Icon } from './Icon';
 
 export type Option<T extends string> = { value: T; label: string; description?: string };
 
-/** Single-choice group exposed as radio buttons to assistive technology. */
+/** Single-choice group exposed as radio buttons; flat rows inside one glass group. */
 export function OptionGroup<T extends string>({
   label,
   options,
@@ -24,57 +26,53 @@ export function OptionGroup<T extends string>({
 }) {
   const { colors } = useTheme();
   return (
-    <View testID={testID} accessibilityRole="radiogroup" accessibilityLabel={label} style={styles.group}>
-      {options.map((opt) => {
-        const selected = opt.value === value;
-        return (
-          <Pressable
-            key={opt.value}
-            testID={testID ? `${testID}-${opt.value}` : undefined}
-            accessibilityRole="radio"
-            accessibilityLabel={opt.label}
-            accessibilityHint={opt.description}
-            accessibilityState={{ checked: selected, selected }}
-            onPress={() => onChange(opt.value)}
-            style={({ pressed }) => [
-              styles.option,
-              {
-                borderColor: selected ? colors.ink : colors.border,
-                borderWidth: selected ? border.strong : border.hairline,
-                backgroundColor: colors.surface,
-                opacity: pressed ? 0.8 : 1,
-              },
-            ]}
-          >
-            <Icon
-              name={selected ? 'radio-button-on' : 'radio-button-off'}
-              color={selected ? colors.ink : colors.inkMuted}
-            />
-            <View style={styles.text}>
-              <AppText variant="bodyStrong">{opt.label}</AppText>
-              {opt.description ? (
-                <AppText variant="caption" tone="muted">
-                  {opt.description}
-                </AppText>
-              ) : null}
-            </View>
-          </Pressable>
-        );
-      })}
-    </View>
+    <GlassSurface testID={testID} accessibilityRole="radiogroup" accessibilityLabel={label} borderRadius={radius.card} contentStyle={styles.group}>
+      {options.map((opt, i) => (
+        <View key={opt.value}>
+          {i > 0 ? <View style={[styles.divider, { backgroundColor: colors.border }]} /> : null}
+          <OptionRow opt={opt} selected={opt.value === value} onPress={() => onChange(opt.value)} testID={testID ? `${testID}-${opt.value}` : undefined} />
+        </View>
+      ))}
+    </GlassSurface>
+  );
+}
+
+function OptionRow<T extends string>({ opt, selected, onPress, testID }: { opt: Option<T>; selected: boolean; onPress: () => void; testID?: string }) {
+  const { colors } = useTheme();
+  const { focused, handlers } = usePressFeedback();
+  return (
+    <Pressable
+      testID={testID}
+      accessibilityRole="radio"
+      accessibilityLabel={opt.label}
+      accessibilityHint={opt.description}
+      accessibilityState={{ checked: selected, selected }}
+      onPress={onPress}
+      onFocus={handlers.onFocus}
+      onBlur={handlers.onBlur}
+      style={styles.option}
+    >
+      {({ pressed }) => (
+        <>
+          <PressDecor pressed={pressed} focused={focused} radius={radius.control} />
+          <Icon name={selected ? 'radio-button-on' : 'radio-button-off'} color={selected ? colors.accent : colors.inkMuted} />
+          <View style={styles.text}>
+            <AppText variant="bodyStrong">{opt.label}</AppText>
+            {opt.description ? (
+              <AppText variant="secondary" tone="muted">
+                {opt.description}
+              </AppText>
+            ) : null}
+          </View>
+        </>
+      )}
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  group: { gap: space.sm },
-  option: {
-    minHeight: sizes.minTouch + 8,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: space.md,
-    paddingHorizontal: space.lg,
-    paddingVertical: space.md,
-    borderRadius: radius.control,
-  },
+  group: { paddingHorizontal: space.lg, paddingVertical: space.xs },
+  divider: { height: StyleSheet.hairlineWidth },
+  option: { minHeight: sizes.minTouch + 8, flexDirection: 'row', alignItems: 'center', gap: space.md, paddingVertical: space.md },
   text: { flex: 1, gap: 2 },
 });

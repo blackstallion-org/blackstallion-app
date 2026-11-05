@@ -5,6 +5,7 @@ import type { FieldScope, FieldTodayData, FieldTodayRepository } from '../types'
 import { readRows } from './net';
 import type { ServerClock } from './serverClock';
 import type { DataClient } from './supabaseFieldWorkflowRepository';
+import { voidedCheckIns } from './voids';
 
 const ROLE_LABEL: Record<string, string> = { INSTRUCTOR: 'Instructor', GROOM: 'Groom', SCHOOL_ADMIN: 'Hub admin' };
 /** Keeps `.in()` id lists well under URL limits (~37 chars per uuid). */
@@ -13,7 +14,7 @@ const s = (v: unknown) => (typeof v === 'string' ? v : '');
 
 /**
  * Field "Today" from the server. Sources (all under RLS, SLICE_CONTRACT §B): school_hubs (name), cadet_check_ins
- * (today, this hub), cadets (names), training_sessions (instructors only: which check-ins are already published).
+ * (today, this hub, voided ones left out), cadets (names), training_sessions (instructors only: which check-ins are already published).
  * There are no schedule, roster or care-assignment sources yet, so those stay empty and are labelled not connected.
  */
 export function createSupabaseFieldTodayRepository(
@@ -31,7 +32,7 @@ export function createSupabaseFieldTodayRepository(
       const day = hubDate(new Date(localNow() + offset));
       const canReadSessions = scope.role === 'INSTRUCTOR';
 
-      const [hub, checkIns] = await Promise.all([
+      const [hub, allCheckIns] = await Promise.all([
         readRows(client.from('school_hubs').select('school_name').eq('id', hubId).limit(1), opts.timeoutMs),
         readRows(
           client
@@ -45,6 +46,9 @@ export function createSupabaseFieldTodayRepository(
         ),
       ]);
 
+      // a voided check-in (G9, SD-05 draft) is not "checked in today"
+      const voided = await voidedCheckIns(client, allCheckIns.map((c) => s(c.id)).filter(Boolean), opts.timeoutMs);
+      const checkIns = allCheckIns.filter((c) => !voided.has(s(c.id)));
       const cadetIds = Array.from(new Set(checkIns.map((c) => s(c.cadet_id)).filter(Boolean)));
       const checkInIds = checkIns.map((c) => s(c.id)).filter(Boolean);
       const [cadets, sessions] = await Promise.all([

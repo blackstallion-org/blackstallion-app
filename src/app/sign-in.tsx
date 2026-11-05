@@ -1,5 +1,11 @@
 import { readBackendConfig } from '@/core/auth/supabaseClient';
+import type { OtpBoundary } from '@/features/identity/otp';
 import { SignInScreen } from '@/features/identity/SignInScreen';
+
+/** Development builds with no backend only: the synthetic code preview (sends nothing; SH-02 says so). */
+const devOtpPreview = (): OtpBoundary =>
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  (require('@/dev/fixtures/account') as typeof import('@/dev/fixtures/account')).syntheticOtpPreview;
 
 const DevPanel = (): React.ReactNode => {
   if (!__DEV__) return null;
@@ -9,6 +15,7 @@ const DevPanel = (): React.ReactNode => {
 };
 
 export default function SignInRoute() {
-  // The persona panel exists only in development builds with no backend configured.
-  return <SignInScreen devPanel={__DEV__ && !readBackendConfig() ? <DevPanel /> : undefined} />;
+  // The persona panel and the synthetic code preview exist only in development builds with no backend configured.
+  const dev = __DEV__ && !readBackendConfig();
+  return <SignInScreen devPanel={dev ? <DevPanel /> : undefined} devOtpPreview={dev ? devOtpPreview() : undefined} />;
 }

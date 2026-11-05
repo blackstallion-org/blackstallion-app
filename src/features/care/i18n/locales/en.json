@@ -215,12 +215,13 @@
       "retryAt": "Will try again at {{time}}",
       "needsAttention": "Could not send after several tries.",
       "needsEdit": "The server could not accept this. Check the details.",
-      "needsReview": "This needs a supervisor to look at it.",
+      "needsReview": "The academy refused it because it clashes with its record. Review it before anything is sent again.",
       "blocked": "Your account can no longer send this. It is kept on this phone.",
       "needsRecapture": "The photo is missing from this phone. Take it again.",
       "signIn": "Sign in again to send your saved work.",
       "acknowledged": "Sent · {{time}}",
-      "offline": "No connection. Your work is saved on this phone."
+      "offline": "No connection. Your work is saved on this phone.",
+      "offlineMemory": "No connection. It is kept while the app stays open."
     },
     "action": {
       "recapture": "Retake photo",
@@ -238,8 +239,46 @@
       "sent": "Sent recently"
     },
     "progress": "{{done}} of {{total}} sent",
-    "otherAccount": "{{count}} items belong to another account and stay locked on this phone.",
-    "orphans": "{{count}} photos were found without a task. They are kept until a supervisor decides."
+    "otherAccount": "Unsent work from another account on this phone: {{count}}. It stays locked and is never shown here.",
+    "orphans": "{{count}} photos were found without a task. They are kept until a supervisor decides.",
+    "waitingCount": "{{count}} waiting to send",
+    "needsYou": "{{count}} need you",
+    "durability": {
+      "durable": "Saved on this phone until the academy confirms it.",
+      "memory": "Kept only while the app is open. Keep it open until each item says Received."
+    },
+    "savedAt": "saved {{time}}",
+    "rowHint": "Opens details and what you can do",
+    "item": {
+      "punchIn": "Shift punch-in · {{time}}",
+      "careProof": "Care proof"
+    },
+    "badge": {
+      "blocked": "Blocked",
+      "conflict": "Conflict",
+      "retry": "Will retry"
+    },
+    "sheet": {
+      "status": "Status",
+      "saved": "Saved on the phone",
+      "received": "Received by the academy",
+      "attempts": "Tries so far",
+      "why": "Why it has not gone",
+      "reference": "Reference"
+    },
+    "consequence": {
+      "retry": "Sends it again now. Safe to repeat: the academy ignores a duplicate.",
+      "reviewBlocked": "Your account can no longer send this, so it is not retried. It stays on this phone for you and your hub admin to look at.",
+      "edit": "Opens the task so you can fix what the academy refused.",
+      "review": "Compares your copy with the academy's. Nothing is overwritten.",
+      "reviewReceipt": "Opens the record to see what the academy said about it.",
+      "recapture": "The photo is missing from this phone. Opens the task to take it again.",
+      "discard": "Deletes this work from the phone. It was never sent. You will be asked to confirm.",
+      "signIn": "Sign in again. Your work stays here and sends afterwards.",
+      "none": "The academy has it. Nothing else to do here.",
+      "inProgress": "Sending now. Actions come back if it stops."
+    },
+    "waitingLabel": "waiting to send"
   },
   "signOut": {
     "pending": "You have {{count}} items not sent yet.",

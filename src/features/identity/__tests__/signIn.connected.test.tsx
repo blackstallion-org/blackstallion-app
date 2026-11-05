@@ -1,14 +1,18 @@
 /**
- * G3: sign-in on the real route tree when a backend IS configured. The composition root is given a mockState connected
- * adapter (same interface as the Supabase adapter), so this is a JS-level check of the app's behaviour; real
- * server enforcement is in foundations/client-auth/integration (local Supabase stack).
+ * G3: sign-in on the real SH-01/SH-02 route files and the real shell when a backend IS configured. The composition
+ * root is given a mockState connected adapter (same interface as the Supabase adapter), so this is a JS-level check
+ * of the app's behaviour; real server enforcement is in foundations/client-auth/integration (local Supabase stack).
+ * Other workstreams' home screens are stubbed (sharedRouterHarness) so this suite tests sign-in only.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import path from 'path';
-import { act, fireEvent, renderRouter, screen, testRouter, waitFor } from 'expo-router/testing-library';
+import { act, fireEvent, screen, testRouter, waitFor } from 'expo-router/testing-library';
 
 import type { AccessAdapter, ResetResult, SignInResult } from '@/core/auth/accessAdapter';
 import type { AccessSnapshot } from '@/features/identity/domain/access';
+import { pendingVerification } from '@/features/identity/otp';
+import { renderSharedApp } from '@/features/settings/testing/sharedRouterHarness';
+
+jest.mock('expo-audio', () => ({ createAudioPlayer: jest.fn(), setAudioModeAsync: jest.fn() }));
 
 const mockState = {
   snapshot: { kind: 'signedOut' } as AccessSnapshot,
@@ -83,9 +87,9 @@ jest.mock('@/core/auth/supabaseClient', () => ({
   readBackendConfig: () => ({ url: 'http://127.0.0.1:55421', publishableKey: 'test-publishable' }),
 }));
 
-const APP_DIR = path.resolve(__dirname, '../../../app');
 const boot = async () => {
-  const r = await renderRouter(APP_DIR, { initialUrl: '/' });
+  const { createConfiguredAccessAdapter } = jest.requireMock('@/core/auth/supabaseClient') as { createConfiguredAccessAdapter: () => AccessAdapter };
+  const r = await renderSharedApp({ adapter: createConfiguredAccessAdapter() });
   await waitFor(() => expect(r.getPathname()).toBe('/sign-in'));
   return r;
 };
@@ -100,6 +104,7 @@ beforeEach(async () => {
   mockState.resetRequests = [];
   mockState.resets = [];
   mockState.resetResult = { ok: true };
+  pendingVerification.clear();
   await AsyncStorage.clear();
 });
 
@@ -162,23 +167,25 @@ test('connected build never shows the persona panel, even on the phone layout (r
   expect(screen.queryByTestId('dev-preview-panel')).toBeNull();
 });
 
-test('e-mail code: generic "if an account exists" message, wrong code refused, right code signs in', async () => {
+test('e-mail code: SH-01 sends, SH-02 /verify checks; generic message, wrong code refused, right code signs in', async () => {
   const r = await boot();
   await fireEvent.press(screen.getByTestId('use-email-code'));
   await fireEvent.press(screen.getByTestId('send-email-code'));
   expect(await screen.findByTestId('sign-in-error')).toHaveTextContent(/Enter your e-mail/);
   await fireEvent.changeText(screen.getByTestId('email'), 'someone@g3.test');
   await fireEvent.press(screen.getByTestId('send-email-code'));
-  expect(await screen.findByTestId('code-sent')).toHaveTextContent(/If someone@g3.test has an account/);
+  await waitFor(() => expect(r.getPathname()).toBe('/verify'));
+  expect(r.getPathnameWithParams()).toBe('/verify'); // the address never travels in the URL
+  expect(screen.getByTestId('verify')).toHaveTextContent(/If someone@g3.test has an account/);
   expect(mockState.codeRequests).toEqual(['someone@g3.test']);
   await fireEvent.changeText(screen.getByTestId('code'), '999999');
-  await fireEvent.press(screen.getByTestId('verify-code'));
-  expect(await screen.findByTestId('sign-in-error')).toHaveTextContent(/didn't work/);
-  expect(r.getPathname()).toBe('/sign-in');
-  await fireEvent.changeText(screen.getByTestId('code'), '12a34-56');
-  expect(screen.getByTestId('code').props.value).toBe('123456'); // digits only
-  await fireEvent.press(screen.getByTestId('verify-code'));
+  expect(await screen.findByTestId('verify-error')).toHaveTextContent(/didn't work/);
+  expect(r.getPathname()).toBe('/verify');
+  await fireEvent.changeText(screen.getByTestId('code'), '12a-3');
+  expect(screen.getByTestId('code').props.value).toBe('123'); // digits only
+  await fireEvent.changeText(screen.getByTestId('code'), 'Your code: 12a34-56'); // a pasted message; complete → verifies at once
   await waitFor(() => expect(r.getPathname()).toBe('/family'));
+  expect(pendingVerification.get()).toBeNull(); // the address is not kept after sign-in
 });
 
 test('reset by code: checks before spending the code, then signs in with the new password', async () => {

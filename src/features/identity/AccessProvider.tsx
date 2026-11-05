@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 
 import type { AccessAdapter, CodeRequestResult, ResetResult, SignInResult } from '@/core/auth/accessAdapter';
+import { runSignOutCleanups } from '@/core/auth/signOutCleanup';
 import type { KeyValueStore } from '@/core/preferences/keyValueStore';
 
 import {
@@ -44,17 +45,34 @@ export function AccessProvider({
   const [state, setState] = useState<AccessState>({ phase: 'loading' });
   const generation = useRef(0);
   const memory = useMemo(() => lastExperienceStore(store), [store]);
+  /** Subject of the last authorized state, to detect a user switch or an ended session (cache cleanup). */
+  const lastSubject = useRef<string | null>(null);
 
   // Each load supersedes earlier ones; a late result from an older load
   // (e.g. a previous person) is discarded and can never render.
   const run = useCallback(
     async (id: number) => {
+      let next: AccessState;
       try {
         const [snapshot, last] = await Promise.all([adapter.load(), memory.read()]);
-        if (id === generation.current) setState(resolveAccess(snapshot, last));
+        next = resolveAccess(snapshot, last);
       } catch {
-        if (id === generation.current) setState({ phase: 'unavailable', reason: 'bootError' });
+        next = { phase: 'unavailable', reason: 'bootError' };
       }
+      if (id !== generation.current) return;
+      const subject = next.phase === 'authorized' ? next.session.subjectId : null;
+      // A boot error is transient (same session, retry): it neither clears nor changes who was last signed in.
+      const transient = next.phase === 'unavailable' && next.reason === 'bootError';
+      if (!transient) {
+        // A different person, or the session ended on its own: drop the previous person's cached private data
+        // BEFORE anything of the new state renders (SEC-001; registered caches — React state is keyed per subject).
+        if (lastSubject.current !== null && subject !== lastSubject.current) {
+          await runSignOutCleanups();
+          if (id !== generation.current) return;
+        }
+        lastSubject.current = subject;
+      }
+      setState(next);
     },
     [adapter, memory],
   );
@@ -87,7 +105,10 @@ export function AccessProvider({
     generation.current++;
     // Drop private state first so nothing of this person stays rendered.
     setState({ phase: 'signedOut' });
+    lastSubject.current = null;
     await memory.clear();
+    // App caches of this person (profile header, the address a code was sent to, …): see core/auth/signOutCleanup.
+    await runSignOutCleanups();
     await adapter.signOut();
   }, [adapter, memory]);
 

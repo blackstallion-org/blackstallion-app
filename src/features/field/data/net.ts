@@ -1,6 +1,6 @@
 import { ScopedLoadError } from '@/core/data/useScopedResource';
 
-import { toCommandError } from '../domain/commandErrors';
+import { toCommandError, type FieldCommandError } from '../domain/commandErrors';
 
 /** Upper bound for one request. Android's default HTTP client has no read timeout, so a half-open socket would hang. */
 export const REQUEST_TIMEOUT_MS = 20_000;
@@ -36,12 +36,19 @@ export async function readRows(q: Abortable<QueryResult>, ms?: number): Promise<
   try {
     r = await withTimeout(q, ms);
   } catch (e) {
-    const ce = toCommandError(e, 'load');
-    throw new ScopedLoadError(ce.message, ce.reference, true);
+    throw loadError(toCommandError(e, 'load'));
   }
-  if (r.error) {
-    const ce = toCommandError(r.error, 'load', r.status);
-    throw new ScopedLoadError(ce.message, ce.reference, true);
-  }
+  if (r.error) throw loadError(toCommandError(r.error, 'load', r.status));
   return Array.isArray(r.data) ? (r.data as Row[]) : r.data ? [r.data as Row] : [];
+}
+
+/** Reference carried by load errors that come from no connection, so screens can show the offline state. */
+export const OFFLINE_REFERENCE = 'OFFLINE';
+/** Neutral "not found or not at your hub" (the server makes both look the same on purpose). */
+export const NOT_FOUND_REFERENCE = 'NOT-FOUND';
+
+export function loadError(ce: FieldCommandError): ScopedLoadError {
+  if (ce.kind === 'network') return new ScopedLoadError(ce.message, OFFLINE_REFERENCE, true);
+  if (ce.kind === 'notFound') return new ScopedLoadError(ce.message, NOT_FOUND_REFERENCE, true);
+  return new ScopedLoadError(ce.message, ce.reference, true);
 }

@@ -1,0 +1,499 @@
+{
+  "common": {
+    "back": "Back",
+    "cancel": "Cancel",
+    "close": "Close",
+    "retry": "Retry",
+    "errorTitle": "Something went wrong",
+    "loadError": "This information couldn’t be loaded. Try again.",
+    "offline": "You’re offline. Connect to load the latest information.",
+    "reference": "Reference: {{ref}}",
+    "noHubTitle": "No hub linked",
+    "noHub": "Your account isn’t linked to a hub. Ask your hub admin.",
+    "notFoundTitle": "Not available",
+    "notFound": "This isn’t available at your hub, or the link is out of date.",
+    "notConnectedTitle": "Not connected",
+    "notConnected": "This build isn’t connected to the academy, so this can’t be shown.",
+    "synthetic": "Synthetic preview data — not real people or records."
+  },
+  "tabs": {
+    "today": "Today",
+    "cadets": "Cadets",
+    "horses": "Horses",
+    "sync": "Sync",
+    "profile": "Profile"
+  },
+  "ranks": {
+    "CADET_SQUIRE": "Cadet Squire",
+    "CADET_RIDER": "Cadet Rider",
+    "CADET_KNIGHT": "Cadet Knight",
+    "SOVEREIGN_LANCER": "Sovereign Lancer",
+    "none": "No rank yet"
+  },
+  "scores": {
+    "riding": "Riding",
+    "ground": "Ground",
+    "stable": "Stable",
+    "a11y": "{{label}} score",
+    "notSet": "Not set",
+    "of": "{{value}} of {{max}}",
+    "lower": "Lower {{label}}",
+    "raise": "Raise {{label}}"
+  },
+  "today": {
+    "eyebrow": "Field Ops",
+    "title": "Today",
+    "loading": "Loading today",
+    "loadingCheckIns": "Loading today’s check-ins",
+    "scanAction": "Scan passport",
+    "scanHint": "Opens the camera to check a cadet in",
+    "noBackend": "Scanning needs a build connected to the academy.",
+    "notInstructor": "Only instructors record check-ins and sessions.",
+    "stats": {
+      "checkedIn": "Checked in",
+      "published": "Published",
+      "toAssess": "To assess"
+    },
+    "checkedIn": "Checked in today",
+    "checkedInAt": "Checked in {{time}}",
+    "noCheckInsTitle": "No cadets checked in yet",
+    "noCheckIns": "Scan a passport to start.",
+    "checkInsUnavailable": "Today’s check-ins couldn’t be loaded.",
+    "published": "Published",
+    "assess": "Assess",
+    "assessA11y": "Assess {{name}}",
+    "openCadetHint": "Opens the cadet’s profile",
+    "rosterTitle": "Roster",
+    "roster": "Today’s roster",
+    "rosterHint": "Every cadet at your hub with today’s attendance",
+    "sessions": "Sessions",
+    "cadets": {
+      "one": "{{count}} cadet",
+      "other": "{{count}} cadets"
+    },
+    "care": "Care",
+    "careOff": "Care tasks aren’t connected in this build yet.",
+    "noCareTitle": "No care tasks",
+    "noCare": "Nothing is assigned to you today.",
+    "careState": {
+      "done": "Done",
+      "due": "Due",
+      "overdue": "Overdue"
+    },
+    "syncWaiting": {
+      "one": "{{count}} waiting to sync",
+      "other": "{{count}} waiting to sync"
+    },
+    "overdue": {
+      "one": "{{count}} overdue care task",
+      "other": "{{count}} overdue care tasks"
+    }
+  },
+  "scan": {
+    "title": "Check in",
+    "torchOn": "Turn torch on",
+    "torchOff": "Turn torch off",
+    "cameraA11y": "Camera view for scanning the passport QR",
+    "frameHint": "Hold the passport QR inside the frame.",
+    "starting": "Starting the camera…",
+    "checking": "Checking in…",
+    "notPassport": "This QR isn’t a Black Stallion passport.",
+    "typeCode": "Type the code instead",
+    "useCamera": "Use the camera",
+    "codeLabel": "Passport code",
+    "codeHint": "Printed under the QR on the passport.",
+    "checkInAction": "Check in",
+    "codeEmpty": "Enter the passport code.",
+    "codeFormat": "That doesn’t look like a passport code, for example BSAH-26-F3A00001.",
+    "unconnected": "This build isn’t connected to the academy, so check-ins can’t be recorded.",
+    "notInstructorTitle": "Instructors only",
+    "primerReason": "The camera reads the QR on the cadet’s leather passport. Nothing from the camera is recorded or saved.",
+    "cameraNeeded": "Scanning uses the back camera.",
+    "allowCamera": "Allow camera",
+    "cameraBlockedTitle": "Camera is off for Black Stallion",
+    "cameraBlocked": "Turn the camera on in your phone’s settings to scan, or type the code printed under the QR.",
+    "cameraUnavailableTitle": "Camera not available here",
+    "cameraUnavailable": "This device can’t open a camera here. On a phone with the app, scanning uses the back camera. You can type the code instead.",
+    "cameraFailedTitle": "The camera couldn’t start",
+    "cameraFailed": "Close the scanner and open it again, or type the code.",
+    "devTitle": "Development: simulate a scan",
+    "devHint": "Synthetic codes for the preview data only. Not in release builds.",
+    "result": {
+      "checkedIn": "Checked in",
+      "already": "Already checked in",
+      "receivedAt": "{{date}} · received {{time}}",
+      "firstAt": "First check-in {{time}} · {{date}}",
+      "assess": "Assess {{name}}",
+      "viewProfile": "Open profile",
+      "scanNext": "Scan next cadet",
+      "scanAgain": "Scan again",
+      "retry": "Try again",
+      "notOnListTitle": "Not on your hub’s list",
+      "notOnList": "No cadet with this passport code at your hub. Check the passport, or ask your hub admin.",
+      "wrongDayTitle": "Not today’s check-in",
+      "wrongDay": "This check-in is filed under {{date}}, not today, so it can’t be assessed here. Check this phone’s date and ask your hub admin.",
+      "failedTitle": "Not confirmed"
+    },
+    "devPrimer": "Preview the camera explainer"
+  },
+  "assess": {
+    "title": "Assessment",
+    "loading": "Loading the session",
+    "draftBadge": "Draft · not sent",
+    "draftKept": "Kept on this phone while the app is open. Families see nothing until you publish.",
+    "scoreMissing": "Give a {{label}} score from 1 to 10.",
+    "notesLabel": "Notes for the family (optional)",
+    "notesCount": "{{count}} / {{max}}",
+    "notesLong": "Notes are limited to {{max}} characters.",
+    "skills": "Skills shown today",
+    "skillsLoading": "Loading the skills list",
+    "skillsMax": "Choose at most {{max}} skills.",
+    "skillsNone": "No skills are set up yet",
+    "skillsNoneBody": "The skills list is waiting for academy approval (D16). Scores and notes publish without it.",
+    "skillsFailed": "The skills list couldn’t be loaded. Scores and notes publish without it.",
+    "category": {
+      "RIDING": "Riding",
+      "GROUND": "Ground",
+      "STABLE": "Stable"
+    },
+    "clip": "Session clip",
+    "clipBody": "Up to 10 seconds, silent. Shown only to this cadet’s family.",
+    "recordClip": "Record clip",
+    "consentChecking": "Checking video consent…",
+    "recordingOff": "Recording is off — no training-video consent",
+    "recordingOffBody": "Scores and notes still publish.",
+    "consentUnknown": "Video consent couldn’t be checked, so recording stays off. Scores and notes still publish.",
+    "consentWithdrawn": "Video consent is no longer given, so the clip was removed and not sent.",
+    "noVideoRole": "Your account can’t record session clips.",
+    "clipNoUpload": "Clip upload isn’t connected in this build. Scores and notes still publish.",
+    "clipSaved": "Clip {{duration}} · saved on this phone",
+    "clipNotSent": "Sent with the scores when you publish.",
+    "clipRetake": "Record again",
+    "clipRemove": "Remove clip",
+    "uploading": "Uploading clip…",
+    "publish": "Publish to family",
+    "retryPublish": "Retry publishing",
+    "openFromToday": "Open this cadet from Today",
+    "openFromTodayBody": "Check the cadet in first, then choose Assess.",
+    "notConnected": "This build isn’t connected to the academy, so sessions can’t be published.",
+    "backToToday": "Back to Today",
+    "seal": {
+      "title": "Published",
+      "body": "{{name}}’s family can see this session now.",
+      "receipt": "Confirmed by the academy · version {{version}}",
+      "next": "Next cadet",
+      "done": "Done"
+    },
+    "record": {
+      "title": "Published session",
+      "published": "Published",
+      "legacy": "Recorded before the app (no seal)",
+      "version": "Version {{version}}",
+      "corrected": "Corrected",
+      "noNotes": "No notes.",
+      "clip": "Includes a clip",
+      "makeCorrection": "Make a correction",
+      "notRecorder": "Only the instructor who recorded this session can correct it.",
+      "history": "Correction history",
+      "historyRow": "Version {{version}} · {{date}}",
+      "previous": "Before: riding {{riding}}, ground {{ground}}, stable {{stable}}"
+    },
+    "correct": {
+      "title": "Correct this session",
+      "body": "Change the scores or notes. The original stays in the history and the family sees that it was corrected.",
+      "save": "Save correction",
+      "retry": "Retry correction",
+      "cancel": "Cancel correction",
+      "unchanged": "Change a score or the notes first.",
+      "done": "Correction saved",
+      "doneBody": "Version {{version}} is what the family sees now."
+    },
+    "conflict": {
+      "title": "This record changed",
+      "body": "Someone changed this session after you opened it (now version {{version}}). Your correction was not saved and nothing was overwritten.",
+      "server": "At the academy now · version {{version}}",
+      "yours": "Your correction (not saved)",
+      "reapply": "Correct the latest version with my values",
+      "discard": "Discard my correction",
+      "reloadFailed": "The latest version couldn’t be loaded. Your correction is still not saved."
+    }
+  },
+  "reason": {
+    "correctionTitle": "Reason for the correction",
+    "correctionBody": "The family sees that this session was corrected. Your reason is kept in the academy’s history.",
+    "label": "Reason",
+    "count": "{{count}} / {{max}} characters",
+    "short": "Give a reason of at least {{min}} characters.",
+    "long": "Keep the reason under {{max}} characters.",
+    "submit": "Save with this reason"
+  },
+  "cadets": {
+    "title": "Cadets",
+    "subtitle": {
+      "one": "{{hub}} · {{count}} enrolled cadet",
+      "other": "{{hub}} · {{count}} enrolled cadets"
+    },
+    "loading": "Loading cadets",
+    "search": "Search",
+    "searchPlaceholder": "Cadet name",
+    "filterLabel": "Show",
+    "filterAll": "All",
+    "filterCheckedIn": "Checked in",
+    "filterToAssess": "To assess",
+    "todayIn": "In {{time}}",
+    "published": "Published",
+    "notToday": "Not checked in today",
+    "openHint": "Opens the cadet’s profile",
+    "emptyTitle": "No enrolled cadets",
+    "empty": "No enrolled cadets at {{hub}}.",
+    "noMatchTitle": "No match",
+    "noMatch": "No cadet at your hub matches “{{query}}”.",
+    "noFilterMatch": "No cadets in this view.",
+    "clear": "Clear search",
+    "deniedTitle": "Cadet records are for instructors",
+    "denied": "Your role doesn’t include cadet records. Ask your hub admin if you need them.",
+    "unavailable": "Cadet records aren’t connected in this build."
+  },
+  "profile": {
+    "title": "Cadet",
+    "loading": "Loading the cadet",
+    "passport": "Passport {{hint}}",
+    "passportA11y": "Passport code, partly hidden",
+    "today": "Today",
+    "todayIn": "Checked in {{time}}",
+    "todayPublished": "Published",
+    "todayNotAssessed": "Not assessed yet",
+    "todayNone": "Not checked in today.",
+    "assessNow": "Assess now",
+    "viewToday": "View today’s session",
+    "scan": "Scan passport",
+    "consentTitle": "Media consent",
+    "consentSessionVideo": "Session video",
+    "consentCarePhoto": "Care photos",
+    "consentPosture": "Posture suggestions",
+    "consentNote": "Set by the family. “Couldn’t check” counts as off.",
+    "consent": {
+      "allowed": "Allowed",
+      "off": "Off",
+      "unknown": "Couldn’t check"
+    },
+    "history": "Assessments",
+    "historyNone": "No sessions yet",
+    "historyNoneBody": "Published sessions appear here.",
+    "historyHidden": "Assessment history is visible to instructors.",
+    "scoresLine": "Riding {{riding}} · Ground {{ground}} · Stable {{stable}}",
+    "noScores": "No scores recorded",
+    "attendance": "Attendance",
+    "attendanceNone": "No check-ins yet.",
+    "attendanceRow": "{{date}} · {{time}}",
+    "notAssessed": "Not assessed",
+    "notFoundTitle": "Cadet not found",
+    "notFound": "This cadet isn’t at your hub, or the link is out of date.",
+    "void": "Void today’s check-in",
+    "voidHint": "Use this when the wrong passport was scanned. The cadet is then not checked in today.",
+    "voidTitle": "Reason for voiding",
+    "voidBody": "The check-in stays in the academy’s history, marked void with your reason. Only today’s unassessed check-ins can be voided.",
+    "voidSubmit": "Void check-in",
+    "voiding": "Voiding…",
+    "voided": "Check-in voided. {{name}} is not checked in today.",
+    "voidNotOffered": "Voiding isn’t available in this build.",
+    "rankPropose": "Propose a rank change",
+    "rankProposeHint": "Sent to the rank authority for a decision. Nothing changes until it is approved."
+  },
+  "capture": {
+    "mode": {
+      "sessionVideo": "Session clip",
+      "carePhoto": "Care photo",
+      "shiftSelfie": "Shift selfie"
+    },
+    "purpose": {
+      "sessionVideo": "Session clip · {{name}}"
+    },
+    "primer": {
+      "sessionVideo": "The camera records a silent clip of up to 10 seconds for this cadet’s family. Nothing is recorded until you press record.",
+      "carePhoto": "The camera takes a live proof photo for this care task. Photos can’t be picked from the gallery.",
+      "shiftSelfie": "The front camera takes one photo for your punch-in, if your hub asks for it."
+    },
+    "starting": "Starting the camera…",
+    "clipHint": "Silent, up to {{max}} seconds. Recording stops by itself.",
+    "photoHint": "Frame the task and take the photo.",
+    "noGallery": "Live camera only — photos can’t be picked from the gallery.",
+    "record": "Start recording",
+    "stop": "Stop recording",
+    "shutter": "Take photo",
+    "recording": "Recording · {{seconds}} s left",
+    "reviewClip": "Clip {{duration}} · saved on this phone",
+    "reviewPhoto": "Photo · saved on this phone",
+    "notUploaded": "Not sent yet. It goes with the task when you submit.",
+    "useClip": "Use clip",
+    "usePhoto": "Use photo",
+    "retake": "Retake",
+    "failed": {
+      "interrupted": "Recording stopped before it finished. Nothing was kept; record again.",
+      "capture": "The photo couldn’t be taken. Try again.",
+      "mount": "The camera couldn’t start. Close and try again."
+    },
+    "expiredTitle": "This capture has ended",
+    "expired": "Go back and start again from the task.",
+    "consentTitle": "Recording is off",
+    "consent": "This cadet’s family hasn’t allowed training videos, so the camera won’t record.",
+    "unavailableTitle": "Camera not available here",
+    "unavailable": "Capture runs in the phone app. This device or preview can’t open the camera.",
+    "blockedTitle": "Camera is off for Black Stallion",
+    "blocked": "Turn the camera on in your phone’s settings, then come back.",
+    "devPlaceholder": "Development: attach a synthetic placeholder (no real media)"
+  },
+  "roster": {
+    "title": "Session roster",
+    "loading": "Loading the roster",
+    "subtitle": {
+      "one": "{{count}} cadet at your hub",
+      "other": "{{count}} cadets at your hub"
+    },
+    "offTitle": "Session roster is switched off",
+    "off": "Your academy hasn’t turned on session rosters (decision Q7/D31 pending). Use Today and Cadets instead.",
+    "emptyTitle": "No cadets on this roster",
+    "empty": "Cadets appear here when they are enrolled at your hub.",
+    "scan": "Scan attendance",
+    "rowIn": "In {{time}}",
+    "rowPublished": "Published",
+    "rowNot": "Not in",
+    "recordingOff": "Recording off — no consent",
+    "horse": "Horse {{name}}"
+  },
+  "permissions": {
+    "continue": "Continue",
+    "notNow": "Not now",
+    "openSettings": "Open phone settings",
+    "close": "Close",
+    "osNext": "Your phone asks next. You can change this later in its settings.",
+    "camera": {
+      "ask": {
+        "title": "Allow the camera?",
+        "body": "The camera is used for passport scans and for evidence you choose to capture.",
+        "point1": "Used only while a scan or capture screen is open.",
+        "point2": "Photos and clips stay private to the academy."
+      },
+      "blocked": {
+        "title": "Camera is off for Black Stallion",
+        "body": "Turn the camera on in your phone’s settings to continue. Nothing else changes."
+      },
+      "unavailable": {
+        "title": "Camera not available",
+        "body": "This device or preview can’t use a camera here."
+      }
+    },
+    "microphone": {
+      "ask": {
+        "title": "Allow the microphone?",
+        "body": "The microphone is used only while you record, and only if your academy turns sound on.",
+        "point1": "Used only while recording.",
+        "point2": "Recordings stay private to the academy."
+      },
+      "blocked": {
+        "title": "Microphone is off for Black Stallion",
+        "body": "Turn the microphone on in your phone’s settings to continue."
+      },
+      "unavailable": {
+        "title": "Microphone not available",
+        "body": "This device or preview can’t use a microphone here."
+      }
+    },
+    "location": {
+      "ask": {
+        "title": "Allow location?",
+        "body": "Your location is attached to this record so your hub can confirm where it happened.",
+        "point1": "Read once, when you submit — never in the background.",
+        "point2": "Weak or missing location goes to your hub for review; it never blocks your work."
+      },
+      "blocked": {
+        "title": "Location is off for Black Stallion",
+        "body": "Turn location on in your phone’s settings, or continue without it and your hub will review the record."
+      },
+      "unavailable": {
+        "title": "Location not available",
+        "body": "This device can’t provide a location here."
+      }
+    }
+  },
+  "errors": {
+    "clockSkew": "This phone’s date or time is wrong, so nothing was recorded. Set the date and time to automatic, then try again.",
+    "shape": "The academy sent an answer this app doesn’t understand. Nothing is confirmed.",
+    "clipRead": "The clip on this phone couldn’t be read. Record it again.",
+    "known": {
+      "notAllowed": "Your account can’t do this. Ask your hub admin if you think it should.",
+      "noCadetAtHub": "No cadet with this passport code at your hub. Check the code or ask your hub admin.",
+      "clockRefused": "This phone’s clock looks wrong, so the check-in was refused. Set the date and time automatically, then try again.",
+      "opReused": "This request clashed with an earlier one. Try again.",
+      "checkInGone": "This check-in isn’t at your hub any more.",
+      "alreadyPublished": "This session was already published.",
+      "cadetMoved": "This cadet has moved to another hub, so the session can’t be published here.",
+      "scoresRange": "Riding, ground and stable scores must be whole numbers from 1 to 10.",
+      "notesLong": "Notes are limited to 2000 characters.",
+      "skillsMax": "Choose at most 20 skills.",
+      "skillRetired": "One of the skills is no longer in use. Remove it and try again.",
+      "videoMissing": "The video must finish uploading first.",
+      "reasonLength": "Give a reason of 3 to 500 characters.",
+      "sessionNotFound": "This record isn’t available at your hub.",
+      "nothingToCorrect": "Nothing changed, so there is nothing to correct.",
+      "notRecorder": "Only the instructor who recorded this session can correct it. Ask your hub admin.",
+      "staleVersion": "Someone changed this record since you opened it. Nothing was overwritten.",
+      "voidPastDay": "Only today’s check-ins can be voided here. Ask your hub admin about older ones.",
+      "alreadyVoided": "This check-in was already voided.",
+      "voidPublished": "An assessment is already published for this check-in. Make a correction instead.",
+      "checkInVoided": "This check-in was voided, so it can’t be assessed.",
+      "checkInVoidedToday": "This cadet’s check-in today was voided, so they can’t be checked in again today. Ask your hub admin."
+    },
+    "generic": {
+      "forbidden": {
+        "checkIn": "Your account can’t record check-ins. Ask your hub admin.",
+        "publish": "Your account can’t publish sessions. Ask your hub admin.",
+        "correct": "Your account can’t correct this session. Ask your hub admin.",
+        "load": "Your account can’t see this.",
+        "void": "Your account can’t void check-ins. Ask your hub admin."
+      },
+      "notFound": {
+        "checkIn": "Not found at your hub.",
+        "publish": "This check-in isn’t at your hub any more.",
+        "correct": "This record isn’t available at your hub.",
+        "load": "Not found.",
+        "void": "This check-in isn’t at your hub any more."
+      },
+      "conflict": {
+        "checkIn": "This clashed with another change. Try again.",
+        "publish": "This clashed with another change. Reload and try again.",
+        "correct": "This record changed since you opened it. Nothing was overwritten.",
+        "load": "Reload and try again.",
+        "void": "This check-in changed since you opened it. Reload and check again."
+      },
+      "invalid": {
+        "checkIn": "The check-in was refused. Check the code and try again.",
+        "publish": "The session was refused. Check the scores and try again.",
+        "correct": "The correction was refused. Check the scores and reason.",
+        "load": "Something isn’t right with this request.",
+        "void": "The void was refused. Check the reason and try again."
+      },
+      "network": {
+        "checkIn": "We couldn’t confirm the check-in. Try again — repeating it is safe and won’t check the cadet in twice.",
+        "publish": "We couldn’t confirm publishing. Try again — repeating it is safe and won’t publish twice.",
+        "correct": "We couldn’t confirm the correction. Try again — repeating it is safe and won’t apply it twice.",
+        "load": "We couldn’t reach the academy. Check your connection and try again.",
+        "void": "We couldn’t confirm the void. Try again — repeating it is safe and won’t void twice."
+      },
+      "signedOut": {
+        "checkIn": "Your session ended. Sign in again.",
+        "publish": "Your session ended. Sign in again, then re-enter the scores.",
+        "correct": "Your session ended. Sign in again, then make the correction again.",
+        "load": "Your session ended. Sign in again.",
+        "void": "Your session ended. Sign in again, then void the check-in again."
+      },
+      "unexpected": {
+        "checkIn": "Something went wrong. Nothing is confirmed yet; try again.",
+        "publish": "Something went wrong. Nothing is confirmed yet; try again.",
+        "correct": "Something went wrong. Nothing is confirmed yet; try again.",
+        "load": "Something went wrong. Try again.",
+        "void": "Something went wrong. Nothing is confirmed yet; try again."
+      }
+    }
+  }
+}

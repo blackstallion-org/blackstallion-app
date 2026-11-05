@@ -3,11 +3,11 @@
 import { backoffDelayMs, DEFAULT_RETRY_POLICY, type RetryPolicy } from './retry';
 import type { Clock, FileVault, SessionPort, Transport, UploadTarget } from './ports';
 import { TransportError } from './ports';
-import type { QueueStore } from './queueStore';
+import type { OutboxStore } from './outboxStore';
 import type { QueueItem, QueueState, ServerReceipt } from './types';
 
 export interface WorkerDeps {
-  store: QueueStore;
+  store: OutboxStore;
   transport: Transport;
   files: FileVault;
   session: SessionPort;
@@ -98,7 +98,7 @@ export class SyncWorker {
     return this.d.clock.now();
   }
 
-  private patch(item: QueueItem, p: Parameters<QueueStore['updateLeased']>[2], extend = true): void {
+  private patch(item: QueueItem, p: Parameters<OutboxStore['updateLeased']>[2], extend = true): void {
     const ok = this.d.store.updateLeased(item.operationId, this.d.workerId, p, this.now(), extend ? this.leaseMs : undefined);
     if (!ok) throw new LeaseLost();
   }

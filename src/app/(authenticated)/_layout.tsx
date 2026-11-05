@@ -1,6 +1,7 @@
-import { Stack } from 'expo-router';
+import { Redirect, Stack } from 'expo-router';
 
 import { useAccess } from '@/features/identity/AccessProvider';
+import { useUpdateGate } from '@/features/identity/updateGate';
 import { useTheme } from '@/ui/theme/ThemeProvider';
 
 /**
@@ -12,8 +13,11 @@ import { useTheme } from '@/ui/theme/ThemeProvider';
 export default function AuthenticatedLayout() {
   const { state, contextKey } = useAccess();
   const { colors } = useTheme();
+  // SH-12 also here, not only at boot: a deep link or notification must not open the app on a build below the minimum.
+  const gate = useUpdateGate();
   // Render nothing (not even the previous tree) unless authorized.
   if (state.phase !== 'authorized') return null;
+  if (gate.decision?.kind === 'required') return <Redirect href="/update-required" />;
   return (
     <Stack
       key={state.session.subjectId}
@@ -31,7 +35,8 @@ export default function AuthenticatedLayout() {
       <Stack.Protected guard={state.experience === 'field'}>
         <Stack.Screen name="field" key={`${contextKey}-field`} />
       </Stack.Protected>
-      <Stack.Screen name="settings/index" options={{ headerShown: true, title: 'Settings', headerBackTitle: 'Back' }} />
+      {/* SH-13 draws its own glass header with Back */}
+      <Stack.Screen name="settings/index" options={{ headerShown: false, title: 'Settings' }} />
       <Stack.Protected guard={__DEV__}>
         <Stack.Screen name="settings/gallery" options={{ headerShown: true, title: 'Component gallery' }} />
       </Stack.Protected>
