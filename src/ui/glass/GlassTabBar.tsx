@@ -4,13 +4,16 @@ import { Animated, Keyboard, Platform, Pressable, StyleSheet, useWindowDimension
 
 import { AppText } from '@/ui/components/AppText';
 import { useTheme } from '@/ui/theme/ThemeProvider';
-import { motion, size as sizes } from '@/ui/tokens';
+import { rgba, size as sizes } from '@/ui/tokens';
 
 import { floatingTabBottom } from './floatingTabInset';
 import { PressDecor, usePressFeedback } from './pressFeedback';
+import { WaterGlass } from './WaterGlass';
 
 const useNativeDriver = Platform.OS !== 'web';
 const PAD = 6;
+/** Active-tab drop: tint strength behind the label (label contrast with this tint is covered in waterGlass.test). */
+export const TAB_DROP_TINT = 0.04;
 
 /** Hides the floating bar while the software keyboard is up (tabBarHideOnKeyboard parity). */
 function useKeyboardShown(): boolean {
@@ -27,10 +30,10 @@ function useKeyboardShown(): boolean {
 }
 
 /**
- * Docked editorial tab bar for expo-router Tabs (`tabBar` prop): flat canvas, hairline top rule, a short copper rule
- * that slides to the active item (200 ms; static with Reduce Motion). Name kept for existing imports.
+ * Docked editorial tab bar for expo-router Tabs (`tabBar` prop): flat canvas, hairline top rule, and a glass water-drop
+ * (Waterline, adapted from Nimbus) that springs and stretches to the active item (static with Reduce Motion). Name kept for existing imports.
  * Icons AND labels, real router state (state.index / navigateToTab), tabPress
- * events honoured, safe-area aware, no sound, no WebGL water.
+ * events honoured, safe-area aware, no sound; the water is drawn with plain Views, not WebGL.
  *
  * Absolutely positioned so scenes run underneath; screens reserve its height
  * with useFloatingTabInset(). Routes hidden by `href: null` never reach this
@@ -42,6 +45,8 @@ export function GlassTabBar({ state, descriptors, emitter, navigateToTab, insets
   const keyboard = useKeyboardShown();
   const [rowWidth, setRowWidth] = useState(0);
   const [x] = useState(() => new Animated.Value(0));
+  // Water-drop travel: the pill stretches while it moves, then settles (Nimbus head/tail, simplified).
+  const [stretch] = useState(() => new Animated.Value(1));
   const count = state.routes.length;
   const itemWidth = count > 0 ? rowWidth / count : 0;
   const focusedRoute = state.routes[state.index];
@@ -51,9 +56,19 @@ export function GlassTabBar({ state, descriptors, emitter, navigateToTab, insets
 
   useEffect(() => {
     const to = state.index * itemWidth;
-    if (reduceMotion || itemWidth === 0) x.setValue(to);
-    else Animated.timing(x, { toValue: to, duration: motion.base, useNativeDriver }).start();
-  }, [state.index, itemWidth, reduceMotion, x]);
+    if (reduceMotion || itemWidth === 0) {
+      x.setValue(to);
+      stretch.setValue(1);
+    } else {
+      Animated.parallel([
+        Animated.spring(x, { toValue: to, damping: 16, stiffness: 190, mass: 0.8, useNativeDriver }),
+        Animated.sequence([
+          Animated.timing(stretch, { toValue: 1.28, duration: 110, useNativeDriver }),
+          Animated.spring(stretch, { toValue: 1, damping: 9, stiffness: 160, useNativeDriver }),
+        ]),
+      ]).start();
+    }
+  }, [state.index, itemWidth, reduceMotion, x, stretch]);
 
   if (hiddenByScreen || keyboard || count === 0) return null;
 
@@ -70,9 +85,14 @@ export function GlassTabBar({ state, descriptors, emitter, navigateToTab, insets
           onLayout={(e: LayoutChangeEvent) => setRowWidth(e.nativeEvent.layout.width)}
         >
           {itemWidth > 0 ? (
-            <Animated.View pointerEvents="none" style={[styles.indicator, { width: itemWidth, transform: [{ translateX: x }] }]}>
-              {/* Active tab: a short copper rule above the item (flat; no capsule). */}
-              <View style={[styles.rule, { backgroundColor: colors.accent }]} />
+            <Animated.View pointerEvents="none" accessible={false} importantForAccessibility="no-hide-descendants" style={[styles.indicator, { width: itemWidth, transform: [{ translateX: x }] }]}>
+              {/* Active tab: a glass water-drop that slides and stretches to the chosen item. */}
+              <Animated.View
+                testID="tab-drop"
+                style={[styles.drop, { width: itemWidth - 12, height: sizes.tabBar - 12, borderRadius: (sizes.tabBar - 12) / 2, backgroundColor: rgba(colors.accent, TAB_DROP_TINT), borderColor: rgba(colors.accent, 0.5), transform: [{ scaleX: stretch }] }]}
+              >
+                <WaterGlass radius={(sizes.tabBar - 12) / 2} level="gloss" />
+              </Animated.View>
             </Animated.View>
           ) : null}
           {state.routes.map((route, index) => {
@@ -175,8 +195,8 @@ const styles = StyleSheet.create({
   host: { position: 'absolute', alignItems: 'center', borderTopWidth: StyleSheet.hairlineWidth },
   bar: { width: '100%', maxWidth: 560, height: sizes.tabBar },
   row: { flex: 1, flexDirection: 'row' },
-  indicator: { position: 'absolute', top: 0, bottom: 0, left: 0, alignItems: 'center' },
-  rule: { width: 28, height: 2 },
+  indicator: { position: 'absolute', top: 0, bottom: 0, left: 0, alignItems: 'center', justifyContent: 'center' },
+  drop: { borderWidth: StyleSheet.hairlineWidth, overflow: 'hidden' },
   item: { flex: 1, minHeight: sizes.minTouch, alignItems: 'center', justifyContent: 'center', gap: 1 },
   badge: { position: 'absolute', top: 4, right: '22%', minWidth: 16, height: 16, borderRadius: 8, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 },
 });

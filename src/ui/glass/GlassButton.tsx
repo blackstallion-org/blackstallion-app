@@ -8,6 +8,7 @@ import { radius as radii, size as sizes, space, type GlassMaterial } from '@/ui/
 import { GlassSurface } from './GlassSurface';
 import { PressDecor, usePressFeedback } from './pressFeedback';
 import { usePressGuard, type PressHandler } from './usePressGuard';
+import { useWaterTrigger, WaterRipple } from './WaterGlass';
 
 export type GlassButtonVariant = 'primary' | 'secondary' | 'ghost' | 'destructive';
 
@@ -59,6 +60,7 @@ export function GlassButton(props: GlassButtonProps) {
   const { colors, glass } = useTheme();
   const { pending, press } = usePressGuard(onPress);
   const { scaleStyle, focused, handlers } = usePressFeedback();
+  const water = useWaterTrigger();
   const busy = loading || pending;
   const inactive = disabled || busy;
   const height = (size ?? (variant === 'primary' ? 'large' : 'regular')) === 'large' ? sizes.primaryAction : sizes.minTouch;
@@ -89,6 +91,10 @@ export function GlassButton(props: GlassButtonProps) {
         disabled={inactive}
         onPress={press}
         {...handlers}
+        onPressIn={(e) => {
+          handlers.onPressIn();
+          water.onPressIn(e);
+        }}
         style={[styles.base, { minHeight: height, minWidth: height, borderRadius: r, paddingHorizontal: variant === 'ghost' ? space.md : space.xl }]}
       >
         {({ pressed }) => (
@@ -105,6 +111,7 @@ export function GlassButton(props: GlassButtonProps) {
                 style={[StyleSheet.absoluteFill, variant === 'secondary' ? { borderWidth: 1, borderColor: colors.borderStrong } : null]}
               />
             )}
+            {variant === 'ghost' || disabled ? null : <WaterRipple point={water.point} radius={r} />}
             <PressDecor pressed={pressed && !inactive} focused={focused} radius={r} />
             <View style={styles.row} pointerEvents="none">
               {busy ? (

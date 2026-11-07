@@ -8,6 +8,7 @@ import { radius as radii, size as sizes, type GlassMaterial } from '@/ui/tokens'
 import { GlassSurface } from './GlassSurface';
 import { PressDecor, usePressFeedback } from './pressFeedback';
 import { usePressGuard, type PressHandler } from './usePressGuard';
+import { useWaterTrigger, WaterGlass, WaterRipple } from './WaterGlass';
 
 export type GlassIconButtonProps = {
   icon: IconName;
@@ -49,6 +50,7 @@ export function GlassIconButton({
   const { colors, scheme } = useTheme();
   const { pending, press } = usePressGuard(onPress);
   const { scaleStyle, focused, handlers } = usePressFeedback();
+  const water = useWaterTrigger();
   const d = Math.max(sizes.minTouch, size);
   // Editorial: square-ish frame, not a disc.
   const r = radii.control;
@@ -69,6 +71,10 @@ export function GlassIconButton({
         disabled={inactive}
         onPress={press}
         {...handlers}
+        onPressIn={(e) => {
+          handlers.onPressIn();
+          water.onPressIn(e);
+        }}
         style={[styles.base, { width: d, height: d, borderRadius: r }]}
       >
         {({ pressed }) => (
@@ -76,8 +82,11 @@ export function GlassIconButton({
             {appearance === 'glass' ? (
               <GlassSurface pointerEvents="none" material={material === 'thick' ? 'regular' : 'thin'} borderRadius={r} style={StyleSheet.absoluteFill} elevated={false} />
             ) : appearance === 'solid' ? (
-              <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: r, backgroundColor: disabled ? colors.surfaceMuted : solidBg}]} />
+              <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: r, backgroundColor: disabled ? colors.surfaceMuted : solidBg }]}>
+                {disabled ? null : <WaterGlass radius={r} level="gloss" />}
+              </View>
             ) : null}
+            {appearance !== 'plain' && !disabled ? <WaterRipple point={water.point} radius={r} /> : null}
             <PressDecor pressed={pressed && !inactive} focused={focused} radius={r} />
             {busy ? (
               <ActivityIndicator color={fg} accessibilityElementsHidden importantForAccessibility="no" />

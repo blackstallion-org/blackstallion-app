@@ -9,6 +9,7 @@ import { radius as radii, size as sizes, space, type GlassMaterial, type ScrimNa
 import { GlassSurface } from './GlassSurface';
 import { PhotoBackdrop } from './PhotoBackdrop';
 import { PressDecor, usePressFeedback } from './pressFeedback';
+import { useWaterTrigger, WaterGlass, WaterRipple } from './WaterGlass';
 
 type CardBase = {
   children?: ReactNode;
@@ -52,6 +53,7 @@ export function GlassCard(props: GlassCardProps) {
   const r = props.radius ?? (photo ? radii.hero : radii.card);
   const [expanded, setExpanded] = useState(defaultExpanded);
   const { scaleStyle, focused, handlers } = usePressFeedback();
+  const water = useWaterTrigger();
 
   const inner = (
     <>
@@ -71,12 +73,14 @@ export function GlassCard(props: GlassCardProps) {
       <ThemeScope tone={props.block ?? 'brown'}>
         <PhotoBlock r={r} height={props.height} image={props.image} imageStyle={props.imageStyle} cutout={props.cutout} style={style} contentStyle={contentStyle} testID={onPress ? undefined : testID}>
           <PressDecor pressed={pressed} focused={focused} radius={r} />
+          {onPress ? <WaterRipple point={water.point} radius={r} /> : null}
           {inner}
         </PhotoBlock>
       </ThemeScope>
     ) : (
       <GlassSurface material={material} borderRadius={r} style={style} contentStyle={[styles.content, contentStyle]} testID={onPress ? undefined : testID}>
         <PressDecor pressed={pressed} focused={focused} radius={r} />
+        {onPress ? <WaterRipple point={water.point} radius={r} /> : null}
         {inner}
       </GlassSurface>
     );
@@ -84,7 +88,10 @@ export function GlassCard(props: GlassCardProps) {
   if (!onPress) return surface(false);
   return (
     <Animated.View style={scaleStyle}>
-      <Pressable testID={testID} onPress={onPress} accessibilityRole="button" accessibilityLabel={accessibilityLabel} accessibilityHint={accessibilityHint} {...handlers}>
+      <Pressable testID={testID} onPress={onPress} accessibilityRole="button" accessibilityLabel={accessibilityLabel} accessibilityHint={accessibilityHint} {...handlers} onPressIn={(e) => {
+          handlers.onPressIn();
+          water.onPressIn(e);
+        }}>
         {({ pressed }) => surface(pressed)}
       </Pressable>
     </Animated.View>
@@ -97,6 +104,7 @@ function PhotoBlock({ r, height, image, imageStyle, cutout, style, contentStyle,
     <View style={[styles.photo, { borderRadius: r, backgroundColor: colors.canvas }, style]} testID={testID}>
       <View style={[styles.frame, { height: height ?? 220, backgroundColor: cutout ? colors.canvas : colors.surfaceMuted }]}>
         <PhotoBackdrop source={image} imageStyle={imageStyle} resizeMode={cutout ? 'contain' : 'cover'} style={cutout ? styles.cutoutPad : undefined} />
+        {cutout ? null : <WaterGlass radius={0} level="pane" />}
       </View>
       <View style={[styles.photoContent, contentStyle]} pointerEvents="box-none">
         {children}

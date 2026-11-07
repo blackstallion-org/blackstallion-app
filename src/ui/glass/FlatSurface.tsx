@@ -4,14 +4,15 @@ import { useTheme } from '@/ui/theme/ThemeProvider';
 import { radius as radii } from '@/ui/tokens';
 
 import type { GlassSurfaceProps } from './GlassSurface.types';
+import { WaterGlass } from './WaterGlass';
 
 /** Restraint: no surface is rounder than this (editorial blocks, not pills). */
 export const MAX_SURFACE_RADIUS = radii.card;
 
 /**
- * Flat editorial surface (6 Nov 2026 redesign) behind the historic GlassSurface API, on every platform:
+ * Flat editorial surface (6 Nov 2026 redesign) with the Waterline rim (7 Nov 2026, see WaterGlass) behind the historic GlassSurface API, on every platform:
  * an opaque fill from the current screen tone and a hairline rule. No blur, translucency, sheen, refraction or
- * shadow — `material`, `elevated`, `refraction` and `backgroundOpacity` are accepted for compatibility and ignored.
+ * shadow; only a lit rim and, on action/destructive fills, a gloss band — `material`, `elevated`, `refraction` and `backgroundOpacity` are accepted for compatibility and ignored.
  *  glass   → `thin`: no fill, hairline only; `regular`/`thick`: tone surface + hairline
  *  action  → primary fill (copper on white, white on dark tones)
  *  destructive → destructive fill
@@ -55,6 +56,7 @@ export function GlassSurface({
       {...a11y}
       style={[styles.box, look, { borderRadius: r, width, height }, style]}
     >
+      <WaterGlass radius={r} level={fill === 'action' || fill === 'destructive' ? 'gloss' : 'rim'} />
       <View pointerEvents="box-none" style={[styles.content, contentStyle]}>
         {children}
       </View>

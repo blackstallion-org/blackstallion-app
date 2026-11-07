@@ -126,7 +126,7 @@ describe('GlassIconButton', () => {
 });
 
 describe('GlassSurface (flat since the 6 Nov 2026 redesign)', () => {
-  test('content stays interactive; no decorative layers', async () => {
+  test('content stays interactive; the only extra layer is the decorative Waterline rim', async () => {
     const onPress = jest.fn();
     await wrap(
       <GlassSurface testID="surface">
@@ -135,8 +135,10 @@ describe('GlassSurface (flat since the 6 Nov 2026 redesign)', () => {
     );
     const root = screen.getByTestId('surface');
     const kids = root.children.filter((c): c is typeof root => typeof c !== 'string');
-    expect(kids).toHaveLength(1);
-    expect(kids[0]!.props.pointerEvents).toBe('box-none');
+    const content = kids.filter((k) => k.props.testID !== 'water-glass');
+    expect(kids.length - content.length).toBe(1);
+    expect(content).toHaveLength(1);
+    expect(content[0]!.props.pointerEvents).toBe('box-none');
     await fireEvent.press(screen.getByText('Tap me'));
     expect(onPress).toHaveBeenCalled();
   });
