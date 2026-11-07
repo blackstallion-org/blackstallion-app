@@ -2,7 +2,7 @@
 // Durability is whatever the injected store declares; today that is MemoryQueueStore because expo-sqlite and
 // expo-file-system are not installed (owner decision). Screens read `durability` and never claim more.
 import { captureCareEvidence } from '@/features/sync/domain/capture';
-import { discardItem } from '@/features/sync/domain/maintenance';
+import { discardItem, runCleanup } from '@/features/sync/domain/maintenance';
 import type { OutboxStore } from '@/features/sync/domain/outboxStore';
 import type { Clock, FileVault, SessionPort, StoredFile, Transport, UploadTarget } from '@/features/sync/domain/ports';
 import { TransportError } from '@/features/sync/domain/ports';
@@ -63,6 +63,8 @@ export function createFieldOutbox(d: FieldOutboxDeps): FieldOutbox {
     }
   });
   d.store.migrate();
+  // Purge acknowledged evidence and expired rows on start (shared staff phones; review M1).
+  void runCleanup({ store: d.store, files: d.files, clock }).catch(() => undefined);
 
   const session: SessionPort = {
     current: () => who,
@@ -103,7 +105,8 @@ export function createFieldOutbox(d: FieldOutboxDeps): FieldOutbox {
   };
 
   const api: FieldOutbox = {
-    durability: d.store.durability,
+    // Durable only if BOTH the queue rows and the files they reference survive a restart (review H1, 8 Nov 2026).
+    durability: d.store.durability === 'durable' && d.files.durability !== 'memory' ? ('durable' as const) : ('memory' as const),
     offlineEvidenceAllowed: d.offlineEvidenceAllowed,
 
     setSession(next) {
@@ -278,6 +281,7 @@ export function createUriFileVault(io: {
     }
   };
   return {
+    durability: 'memory' as const, // refs live in this Map and point at camera temp files (review H1, 8 Nov 2026)
     freeBytes: async () => Number.MAX_SAFE_INTEGER,
     async finalize(tempRef, finalRef) {
       refs.set(finalRef, tempRef);

@@ -19,6 +19,8 @@ export interface StoredFile {
 
 /** App-private evidence files. Never a public/shared directory. */
 export interface FileVault {
+  /** 'memory' when file references don't survive an app restart (outbox then reports memory too). Default durable. */
+  readonly durability?: 'durable' | 'memory';
   freeBytes(): Promise<number>;
   /** Close and atomically move a finished temp capture to its final private path; returns hash and size. */
   finalize(tempRef: string, finalRef: string): Promise<StoredFile>;

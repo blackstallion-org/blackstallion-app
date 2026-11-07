@@ -441,7 +441,9 @@
       "alreadyVoided": "यह चेक-इन पहले ही रद्द हो चुकी है।",
       "voidPublished": "इस चेक-इन का आकलन पहले ही प्रकाशित है। इसके बजाय सुधार करें।",
       "checkInVoided": "यह चेक-इन रद्द कर दी गई थी, इसलिए इसका आकलन नहीं हो सकता।",
-      "checkInVoidedToday": "इस कैडेट की आज की चेक-इन रद्द की गई थी, इसलिए आज दोबारा चेक-इन नहीं हो सकता। अपने हब एडमिन से पूछें।"
+      "checkInVoidedToday": "इस कैडेट की आज की चेक-इन रद्द की गई थी, इसलिए आज दोबारा चेक-इन नहीं हो सकता। अपने हब एडमिन से पूछें।",
+      "noVideoConsent": "This child’s guardian hasn’t allowed session videos, so the clip can’t be kept. Publish the scores without the clip.",
+      "videoWrongCadet": "That clip belongs to a different cadet. Record the clip again for this cadet."
     },
     "generic": {
       "forbidden": {

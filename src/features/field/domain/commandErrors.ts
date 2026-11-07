@@ -29,6 +29,8 @@ export class FieldCommandError extends Error {
 
 /** Server text (exact) → [catalogue key, English]. */
 const KNOWN: Record<string, [string, string]> = {
+  'session video consent is not allowed for this cadet': ['noVideoConsent', 'This child’s guardian hasn’t allowed session videos, so the clip can’t be kept. Publish the scores without the clip.'],
+  'the video does not belong to this cadet': ['videoWrongCadet', 'That clip belongs to a different cadet. Record the clip again for this cadet.'],
   'not allowed for this account': ['notAllowed', 'Your account can’t do this. Ask your hub admin if you think it should.'],
   'no cadet with this passport code at your hub': ['noCadetAtHub', 'No cadet with this passport code at your hub. Check the code or ask your hub admin.'],
   'observed time must be within the last 7 days and not in the future': [

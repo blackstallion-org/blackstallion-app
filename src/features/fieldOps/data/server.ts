@@ -12,7 +12,7 @@ import { withTimeout } from '@/features/field/data/net';
 import type { DataClient } from '@/features/field/data/supabaseFieldWorkflowRepository';
 import { FieldCommandError, toCommandError } from '@/features/field/domain/commandErrors';
 import { newOperationId } from '@/features/field/domain/operation';
-import { MemoryQueueStore } from '@/features/sync/domain/memoryQueueStore';
+import { openQueueStore } from '@/features/sync/data/openQueueStore';
 import type { SubmitRequest, Transport, UploadIntentRequest, UploadTarget } from '@/features/sync/domain/ports';
 import { TransportError } from '@/features/sync/domain/ports';
 
@@ -303,8 +303,8 @@ export function createFieldOpsServer(client: DataClient, opts: { timeoutMs?: num
   const outbox =
     opts.outbox ??
     createFieldOutbox({
-      // No durable driver is installed (expo-sqlite): the queue is honest about being memory-only.
-      store: new MemoryQueueStore(),
+      // Phones: SQLite (survives restart). Browser preview: memory only, and the screens say so.
+      store: openQueueStore(),
       files: createUriFileVault({ read: readUri, put: signedPut(c) }),
       transport: createSupabaseFieldTransport(c, () => hub, t),
       offlineEvidenceAllowed: evaluateDevicePolicy({

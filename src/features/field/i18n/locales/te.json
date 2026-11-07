@@ -441,7 +441,9 @@
       "alreadyVoided": "ఈ చెక్-ఇన్ ఇప్పటికే రద్దు చేయబడింది.",
       "voidPublished": "ఈ చెక్-ఇన్‌కు అంచనా ఇప్పటికే ప్రచురించబడింది. బదులుగా సవరణ చేయండి.",
       "checkInVoided": "ఈ చెక్-ఇన్ రద్దు చేయబడింది, కాబట్టి దీనిని అంచనా వేయలేరు.",
-      "checkInVoidedToday": "ఈ క్యాడెట్ ఈరోజు చెక్-ఇన్ రద్దు చేయబడింది, కాబట్టి ఈరోజు మళ్లీ చెక్-ఇన్ చేయలేరు. మీ హబ్ అడ్మిన్‌ను అడగండి."
+      "checkInVoidedToday": "ఈ క్యాడెట్ ఈరోజు చెక్-ఇన్ రద్దు చేయబడింది, కాబట్టి ఈరోజు మళ్లీ చెక్-ఇన్ చేయలేరు. మీ హబ్ అడ్మిన్‌ను అడగండి.",
+      "noVideoConsent": "This child’s guardian hasn’t allowed session videos, so the clip can’t be kept. Publish the scores without the clip.",
+      "videoWrongCadet": "That clip belongs to a different cadet. Record the clip again for this cadet."
     },
     "generic": {
       "forbidden": {

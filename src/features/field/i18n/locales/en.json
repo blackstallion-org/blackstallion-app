@@ -442,7 +442,9 @@
       "alreadyVoided": "This check-in was already voided.",
       "voidPublished": "An assessment is already published for this check-in. Make a correction instead.",
       "checkInVoided": "This check-in was voided, so it can’t be assessed.",
-      "checkInVoidedToday": "This cadet’s check-in today was voided, so they can’t be checked in again today. Ask your hub admin."
+      "checkInVoidedToday": "This cadet’s check-in today was voided, so they can’t be checked in again today. Ask your hub admin.",
+      "noVideoConsent": "This child’s guardian hasn’t allowed session videos, so the clip can’t be kept. Publish the scores without the clip.",
+      "videoWrongCadet": "That clip belongs to a different cadet. Record the clip again for this cadet."
     },
     "generic": {
       "forbidden": {

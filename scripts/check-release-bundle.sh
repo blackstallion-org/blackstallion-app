@@ -4,7 +4,8 @@
 set -euo pipefail
 OUT="$(mktemp -d)"
 trap 'rm -rf "$OUT"' EXIT
-MARKERS=("syn-guardian-a" "Priya (sample)" "createFixtureRepositories" "selectPersona" "development synthetic preview" "Synthetic personas simulate")
+# Also: no secret-key prefix and no local-stack address may ever reach a release bundle.
+MARKERS=("sb_secret_" "127.0.0.1:55421" "syn-guardian-a" "Priya (sample)" "createFixtureRepositories" "selectPersona" "development synthetic preview" "Synthetic personas simulate")
 status=0
 for platform in ios android; do
   npx expo export --platform "$platform" --no-bytecode --output-dir "$OUT/$platform" >/dev/null

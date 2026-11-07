@@ -1,11 +1,11 @@
 import 'react-native-url-polyfill/auto';
 
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import * as SecureStore from 'expo-secure-store';
 import { AppState, type AppStateStatus } from 'react-native';
 
 import type { AccessAdapter } from './accessAdapter';
-import { createChunkedSecureStorage, type KeystoreLike } from './supabase/chunkedSecureStorage';
+import { keystore } from './keystore';
+import { createChunkedSecureStorage } from './supabase/chunkedSecureStorage';
 import { createSupabaseAccessAdapter } from './supabase/supabaseAccessAdapter';
 
 /**
@@ -52,15 +52,6 @@ export function readBackendConfig(
   return { url: url.replace(/\/$/, ''), publishableKey };
 }
 
-/**
- * Tokens live only in the platform keystore. WHEN_UNLOCKED_THIS_DEVICE_ONLY: readable only while the device is
- * unlocked and never migrated to another device by a backup restore.
- */
-const keystore: KeystoreLike = {
-  getItemAsync: (k) => SecureStore.getItemAsync(k, { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY }),
-  setItemAsync: (k, v) => SecureStore.setItemAsync(k, v, { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY }),
-  deleteItemAsync: (k) => SecureStore.deleteItemAsync(k, { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY }),
-};
 
 export function createAppSupabaseClient(config: BackendConfig): SupabaseClient {
   const client = createClient(config.url, config.publishableKey, {

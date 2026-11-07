@@ -125,10 +125,14 @@ export function createFieldOpsFixtures({ latencyMs = 300, now: nowAt = Date.now(
     { horse: 'syn-horse-badal', task: 'feed', offsetMin: -300, status: 'pending', latest: null, day: 1 },
     { horse: 'syn-horse-toofan', task: 'medication', offsetMin: 300, status: 'completed', latest: 'accepted', day: -1 },
   ];
+  // Anchor the sample day inside the hub's working hours (06:00–18:00 IST), so "today" always holds every sample task —
+  // near midnight a −5 h offset would otherwise fall on yesterday and the overdue sample would vanish (time-of-day flake).
+  const dayStart = Date.parse(`${today}T00:00:00+05:30`);
+  const anchor = Math.min(Math.max(nowAt, dayStart + 6 * 3_600_000), dayStart + 18 * 3_600_000);
   for (const p of plan) {
     const h = HORSES.find((x) => x.horseId === p.horse)!;
     const day = p.day ?? 0;
-    const due = round15(nowAt + p.offsetMin * 60_000) + day * 86_400_000;
+    const due = round15(anchor + p.offsetMin * 60_000) + day * 86_400_000;
     const id = `syn-occ-${p.horse.slice(10)}-${p.task.replace('_', '')}-${day + 1}`;
     occs.set(id, {
       occurrenceId: id, horseId: h.horseId, horseName: h.name, taskType: p.task, slotKey: p.task, localDate: localDateIn(due, TZ), dueAt: due,
