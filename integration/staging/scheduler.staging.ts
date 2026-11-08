@@ -17,7 +17,7 @@ test('pg_cron jobs are scheduled: daily generation 00:05 IST, overdue check ever
     'bsah-care-generate=35 18 * * *;bsah-care-overdue=*/5 * * * *',
   );
   expect(sql(`select schedule from cron.job where jobname = 'bsah-cron-history-purge'`)).toBe('50 18 * * *');
-  expect(sql(`select count(*) from cron.job where jobname like 'bsah-%'`)).toBe('3'
+  expect(sql(`select count(*) from cron.job where jobname like 'bsah-%'`)).toBe('4'
   );
 });
 
