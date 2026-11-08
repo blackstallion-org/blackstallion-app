@@ -16,6 +16,7 @@ import type { Repositories } from '@/core/data/RepositoryProvider';
 import type { FamilyHomeData } from '@/features/family/types';
 import type { FieldTodayData } from '@/features/field/types';
 
+import { createNotificationFixtures } from './fixtures/notifications';
 import { createSparkFixture } from './sparkFixture';
 
 type FamilyRecord = Omit<FamilyHomeData, 'selectedChildId' | 'latestAssessment' | 'nextSession' | 'recentAttendance'> & {
@@ -160,6 +161,7 @@ export const createFixtureRepositories = ({ latencyMs = 450 }: { latencyMs?: num
   fieldApp: createFieldAppFixtures(),
   fieldOps,
   billing: createBillingFixtures(),
+  notifications: createNotificationFixtures({ latencyMs }),
   familyHome: {
     async getHome(scope, childId) {
       await wait(latencyMs);

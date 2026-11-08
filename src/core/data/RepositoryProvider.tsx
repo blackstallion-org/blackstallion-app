@@ -9,6 +9,7 @@ import type { FieldAppRepositories } from '@/features/field/data/repositories';
 import type { FieldWorkflowRepository } from '@/features/field/domain/workflow';
 import type { FieldTodayRepository } from '@/features/field/types';
 import type { FieldOpsRepositories } from '@/features/fieldOps/data/repositories';
+import type { NotificationRepositories } from '@/features/notifications/data/repositories';
 
 import { ScopedLoadError } from './useScopedResource';
 
@@ -29,6 +30,8 @@ export type Repositories = {
   fieldApp?: FieldAppRepositories;
   fieldOps?: FieldOpsRepositories;
   billing?: BillingRepositories;
+  /** G14 push notification token registration (D05: flag OFF). Absent = not connected; hook is inert. */
+  notifications?: NotificationRepositories;
 };
 
 /** Default for non-development builds in G2: no backend is connected yet. */
