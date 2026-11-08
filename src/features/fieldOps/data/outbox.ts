@@ -1,6 +1,6 @@
 // Field outbox runtime: the G5 queue (store + worker + capture + maintenance) behind the FieldOutbox interface.
-// Durability is whatever the injected store declares; today that is MemoryQueueStore because expo-sqlite and
-// expo-file-system are not installed (owner decision). Screens read `durability` and never claim more.
+// Durability depends on the injected store and file vault; on native, both use durable storage (expo-sqlite +
+// expo-file-system). The browser preview falls back to memory. Screens read `durability` and never claim more.
 import { captureCareEvidence } from '@/features/sync/domain/capture';
 import { discardItem, runCleanup } from '@/features/sync/domain/maintenance';
 import type { OutboxStore } from '@/features/sync/domain/outboxStore';
