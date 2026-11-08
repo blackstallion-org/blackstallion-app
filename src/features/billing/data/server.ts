@@ -22,6 +22,7 @@ import type {
   BillingScope,
   BlockedReason,
   ChildMonth,
+  InvoiceDocumentRepository,
   OrderWithChild,
 } from './repositories';
 
@@ -34,6 +35,7 @@ export const BILLING_RPC = {
   listOrders: 'billing_list_orders',
   noteClientReturn: 'billing_note_client_return',
   cancelOrder: 'billing_cancel_order',
+  getInvoicePdf: 'billing_get_invoice_pdf',
 } as const;
 
 /** Page sizes: the overview reads the newest 50 (the server's cap) to find this month's orders; BI-02 pages by 20. */
@@ -210,5 +212,17 @@ export function createBillingServer(client: DataClient, opts: BillingServerOptio
     },
   };
 
-  return { source: 'server', orders };
+  const invoices: InvoiceDocumentRepository = {
+    async getPdf(scope, orderId) {
+      family(scope);
+      if (!isBillingOrderId(orderId)) throw NOT_FOUND();
+      const json = await call(BILLING_RPC.getInvoicePdf, { p_order: orderId });
+      if (!json || typeof json !== 'object') throw shapeError('invoice_pdf');
+      const { url, expires_at } = json as Record<string, unknown>;
+      if (typeof url !== 'string' || typeof expires_at !== 'string') throw shapeError('invoice_pdf');
+      return { url, expiresAt: expires_at };
+    },
+  };
+
+  return { source: 'server', orders, invoices };
 }
