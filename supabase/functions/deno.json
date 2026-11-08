@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "strict": true
+  },
+  "imports": {
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.49.1"
+  },
+  "tasks": {
+    "test": "deno test --allow-env _shared/__tests__/"
+  }
+}
