@@ -1,10 +1,10 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { useEffect, useRef, useState } from 'react';
-import { Animated, Easing, Platform, StyleSheet, View, type GestureResponderEvent, type LayoutChangeEvent } from 'react-native';
+import { Animated, Platform, StyleSheet, View, type GestureResponderEvent, type LayoutChangeEvent } from 'react-native';
 
 import { useReducedMotion } from '@/ui/hooks/useReducedMotion';
 import { useTheme } from '@/ui/theme/ThemeProvider';
-import { rgba, type Tone } from '@/ui/tokens';
+import { motion, rgba, type Tone } from '@/ui/tokens';
 
 const useNativeDriver = Platform.OS !== 'web';
 
@@ -89,7 +89,7 @@ export function WaterRipple({ point, radius }: { point: RipplePoint; radius: num
   useEffect(() => {
     if (reduced || point.id === 0) return;
     t.setValue(0);
-    Animated.timing(t, { toValue: 1, duration: 520, easing: Easing.out(Easing.cubic), useNativeDriver }).start();
+    Animated.timing(t, { toValue: 1, duration: motion.ripple, easing: motion.easing.decel, useNativeDriver }).start();
   }, [point.id, reduced, t]);
   if (reduced) return null;
   const d = Math.max(size.w, size.h, 40) * 1.8;

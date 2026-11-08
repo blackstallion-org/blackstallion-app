@@ -4,7 +4,7 @@ import { Animated, Keyboard, Platform, Pressable, StyleSheet, useWindowDimension
 
 import { AppText } from '@/ui/components/AppText';
 import { useTheme } from '@/ui/theme/ThemeProvider';
-import { rgba, size as sizes } from '@/ui/tokens';
+import { motion, rgba, size as sizes } from '@/ui/tokens';
 
 import { floatingTabBottom } from './floatingTabInset';
 import { PressDecor, usePressFeedback } from './pressFeedback';
@@ -61,10 +61,10 @@ export function GlassTabBar({ state, descriptors, emitter, navigateToTab, insets
       stretch.setValue(1);
     } else {
       Animated.parallel([
-        Animated.spring(x, { toValue: to, damping: 16, stiffness: 190, mass: 0.8, useNativeDriver }),
+        Animated.spring(x, { toValue: to, ...motion.spring.tab, useNativeDriver }),
         Animated.sequence([
-          Animated.timing(stretch, { toValue: 1.28, duration: 110, useNativeDriver }),
-          Animated.spring(stretch, { toValue: 1, damping: 9, stiffness: 160, useNativeDriver }),
+          Animated.timing(stretch, { toValue: 1.28, duration: motion.tabStretch, useNativeDriver }),
+          Animated.spring(stretch, { toValue: 1, ...motion.spring.tabStretch, useNativeDriver }),
         ]),
       ]).start();
     }

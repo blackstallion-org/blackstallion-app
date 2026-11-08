@@ -106,13 +106,13 @@ export type GlassDialogProps = {
 
 /** Centred modal dialog on thick glass (same focus/escape/back rules as the sheet). */
 export function GlassDialog({ visible, onClose, title, message, children, actions, dismissible = true, testID }: GlassDialogProps) {
-  const { scheme } = useTheme();
+  const { reduceMotion, scheme } = useTheme();
   const titleRef = useInitialFocus(visible);
   const close = () => {
     if (dismissible) onClose();
   };
   return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={close} statusBarTranslucent>
+    <Modal visible={visible} transparent animationType={reduceMotion ? 'none' : 'fade'} onRequestClose={close} statusBarTranslucent>
       <ThemeScope scheme={scheme}>
         <View style={styles.dialogRoot}>
           <Scrim onPress={close} label="Close" dismissible={dismissible} />
