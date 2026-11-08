@@ -56,7 +56,8 @@
           "isAndroidForegroundServiceEnabled": false
         }
       ],
-      "expo-sqlite"
+      "expo-sqlite",
+      "./plugins/withIosBackupExclusion"
     ]
   }
 }
