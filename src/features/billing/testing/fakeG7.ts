@@ -213,6 +213,14 @@ export function createFakeG7(opts: FakeG7Options) {
       o.cancelledAt = now();
       return ok(json(o));
     },
+    billing_get_invoice_pdf: ({ p_order }) => {
+      const e = signedIn();
+      if (e) return e;
+      const o = orders.find((x) => x.id === p_order && x.payer === uid);
+      if (!o) return fail('PT404', 'not_found', 'not found');
+      if (!o.invoice) return fail('PT409', 'no_invoice', 'no invoice issued');
+      return ok({ url: `https://example.test/invoices/${p_order}.pdf`, expires_at: new Date(now() + 120_000).toISOString() });
+    },
   };
 
   /** Service-role side (Edge Functions / webhook route). The app never has these. */

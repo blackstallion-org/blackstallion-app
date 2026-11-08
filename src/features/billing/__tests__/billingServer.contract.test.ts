@@ -82,6 +82,7 @@ const SERVICE_ONLY = /foreach f in array array\[([^\]]*)\] loop\s+execute format
     [BILLING_RPC.listOrders]: ['p_before', 'p_limit'],
     [BILLING_RPC.noteClientReturn]: ['p_order', 'p_gateway_payment_id'],
     [BILLING_RPC.cancelOrder]: ['p_order'],
+    [BILLING_RPC.getInvoicePdf]: ['p_order'],
   };
   test('the grant blocks were found', () => {
     expect(GRANTED_AUTHENTICATED).toContain('public.billing_get_order(uuid)');
@@ -383,10 +384,27 @@ describe('history and cancellation', () => {
     await expectBillingError(p, 'network');
   });
 
-  test('the server build connects no checkout, invoice PDF or autopay (G7-D13, G7-D07, G7-D11)', () => {
+  test('the server build connects invoice PDF but no checkout or autopay (G7-D13, G7-D11)', () => {
     const { repo } = setup();
     expect(repo.checkout).toBeUndefined();
-    expect(repo.invoices).toBeUndefined();
+    expect(repo.invoices).toBeDefined();
     expect(repo.autopay).toBeUndefined();
+  });
+
+  test('invoice PDF: payer gets signed URL; unpaid order gets conflict; stranger gets notFound', async () => {
+    const { repo, g7 } = setup();
+    const { order } = await repo.orders.createOrder(scopeA, { cadetId: 'cadet-a1', items: [{ type: 'tuition', month: MONTH }], operationId: OP1 });
+    // unpaid order has no invoice issued yet -> conflict
+    await expectBillingError(repo.invoices!.getPdf(scopeA, order.orderId), 'conflict');
+    // attach and ingest payment capture -> issued invoice
+    g7.service.attach(order.orderId, 'order_TEST000001');
+    g7.service.ingest('evt_TEST0001', 'payment.captured', 'order_TEST000001', 'pay_TEST000001', 1003000, 'INR');
+    // payer gets signed URL
+    const pdf = await repo.invoices!.getPdf(scopeA, order.orderId);
+    expect(pdf.url).toContain(order.orderId);
+    expect(typeof pdf.expiresAt).toBe('string');
+    // cross-guardian isolation: guardian B cannot get A’s invoice PDF
+    g7.signInAs(B);
+    await expectBillingError(repo.invoices!.getPdf(scopeB, order.orderId), 'notFound');
   });
 });
