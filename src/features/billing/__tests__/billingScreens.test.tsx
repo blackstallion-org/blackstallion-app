@@ -94,9 +94,9 @@ describe('BI-01 Billing', () => {
     await fireEvent.press(await screen.findByTestId(`invoice-row-${SAMPLE_ORDER_IDS.meeraThisPaid}`));
     await waitFor(() => expect(r.getPathname()).toBe(`/family/billing/invoices/${SAMPLE_ORDER_IDS.meeraThisPaid}`));
     expect(await screen.findByTestId('invoice-number')).toHaveTextContent(/^\d{2}-\d{2}\/000017$/);
-    expect(screen.getByTestId('invoice-download')).toBeDisabled();
-    expect(screen.getByTestId('invoice-share')).toBeDisabled();
-    expect(screen.getByTestId('invoice-pdf-unavailable')).toHaveTextContent(C.pdfUnavailableTitle, { exact: false });
+    expect(screen.getByTestId('invoice-download')).toBeEnabled();
+    expect(screen.getByTestId('invoice-share')).toBeEnabled();
+    expect(screen.queryByTestId('invoice-pdf-unavailable')).toBeNull();
     await fireEvent.press(screen.getByTestId('header-back'));
     await waitFor(() => expect(r.getPathname()).toBe('/family/billing/invoices'));
     // A non-settled row opens the payment status instead of an invoice.

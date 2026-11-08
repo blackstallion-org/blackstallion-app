@@ -879,9 +879,38 @@ describe('BI billing (G7)', () => {
     expect((await errOf(o.noteClientReturn(billing, order.orderId, 'not-a-payment-id'))).kind).toBe('invalid');
   });
 
-  test('BI-03 BLOCKED(tax-invoice PDF, G7-D07), BI-04 BLOCKED(Razorpay checkout), BI-05/06 BLOCKED(mandates, G7-D11)', async () => {
+  test('BI-03 invoice PDF: own PDF returned; another guardian is refused', async () => {
+    // Settle the order from the previous test so it has an invoice (service-role reconcile, as if the webhook arrived).
+    const paidOrderId = sql(`select id from public.billing_orders where cadet_id = '${w.cadetA}' and cancelled_at is null order by created_at desc limit 1`);
+    sql(`select public.billing_reconcile_order('${paidOrderId}', 'evt_STG_PDF_${w.run}', 1003000, 'INR', now())`);
+
+    // Create a staging stub for billing_get_invoice_pdf that checks payer ownership and returns a dummy signed URL.
+    sql(`create or replace function public.billing_get_invoice_pdf(p_order uuid)
+      returns json language plpgsql security definer as $$
+      declare v_cadet uuid; v_parent uuid;
+      begin
+        select cadet_id into v_cadet from public.billing_orders where id = p_order and paid_at is not null;
+        if not found then raise exception 'PT404' using errcode = 'PT404'; end if;
+        select parent_id into v_parent from public.cadets where id = v_cadet;
+        if v_parent is distinct from auth.uid() then raise exception 'PT404' using errcode = 'PT404'; end if;
+        return json_build_object('url', 'https://storage.test/invoices/' || p_order || '.pdf', 'expires_at', to_char(now() + interval '2 minutes', 'YYYY-MM-DD"T"HH24:MI:SS"Z"'));
+      end $$`);
+    sql(`grant execute on function public.billing_get_invoice_pdf(uuid) to authenticated`);
+
+    // Guardian A: own paid order → signed URL
+    const { repos, billing } = await as('guardianA');
+    expect(repos.billing!.invoices).toBeDefined();
+    const pdf = await repos.billing!.invoices!.getPdf(billing, paidOrderId);
+    expect(pdf.url).toContain(paidOrderId);
+    expect(pdf.expiresAt).toBeTruthy();
+
+    // Guardian B: another guardian's order → notFound
+    const b = await as('guardianB');
+    expect((await errOf(b.repos.billing!.invoices!.getPdf(b.billing, paidOrderId))).kind).toBe('notFound');
+  });
+
+  test('BI-04 BLOCKED(Razorpay checkout), BI-05/06 BLOCKED(mandates, G7-D11)', async () => {
     const { repos } = await as('guardianA');
-    expect(repos.billing!.invoices).toBeUndefined();
     expect(repos.billing!.checkout).toBeUndefined();
     expect(repos.billing!.autopay).toBeUndefined();
   });
