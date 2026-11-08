@@ -80,6 +80,7 @@ describe('static contract: the app calls only guardian functions of the G7 SQL, 
     [BILLING_RPC.listOrders]: ['p_before', 'p_limit'],
     [BILLING_RPC.noteClientReturn]: ['p_order', 'p_gateway_payment_id'],
     [BILLING_RPC.cancelOrder]: ['p_order'],
+    [BILLING_RPC.getInvoicePdf]: ['p_order'],
   };
   test('the grant blocks were found', () => {
     expect(GRANTED_AUTHENTICATED).toContain('public.billing_get_order(uuid)');
@@ -381,10 +382,10 @@ describe('history and cancellation', () => {
     await expectBillingError(p, 'network');
   });
 
-  test('the server build connects no checkout, invoice PDF or autopay (G7-D13, G7-D07, G7-D11)', () => {
+  test('the server build connects invoice PDF but no checkout or autopay (G7-D13, G7-D11)', () => {
     const { repo } = setup();
     expect(repo.checkout).toBeUndefined();
-    expect(repo.invoices).toBeUndefined();
+    expect(repo.invoices).toBeDefined();
     expect(repo.autopay).toBeUndefined();
   });
 });
