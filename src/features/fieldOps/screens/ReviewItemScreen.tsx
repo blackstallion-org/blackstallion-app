@@ -4,7 +4,8 @@
 // Nobody can decide their own record (server rule, repeated here so a stale row can never offer it).
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image } from 'expo-image';
+import { StyleSheet, View } from 'react-native';
 
 import { FieldCommandError } from '@/features/field/domain/commandErrors';
 import { latchOperation, newOperationId, type OperationLatch } from '@/features/field/domain/operation';
@@ -171,7 +172,7 @@ function Evidence({ it, t, photo, photoLoading, source }: { it: ReviewItem; t: T
     return (
       <ListGroup title={t.t('fo.reviewItem.evidence')} testID="fo18-evidence">
         {photo ? (
-          <Image source={{ uri: photo }} style={styles.photo} resizeMode="cover" accessibilityLabel={t.t('fo.reviewItem.photoA11y', { horse: it.horseName ?? '' })} />
+          <Image source={{ uri: photo }} style={styles.photo} contentFit="cover" accessibilityLabel={t.t('fo.reviewItem.photoA11y', { horse: it.horseName ?? '' })} />
         ) : (
           <View style={[styles.noPhoto, { borderColor: colors.borderStrong }]} accessible accessibilityLabel={photoLoading ? t.t('fo.reviewItem.photoLoading') : t.t(source === 'synthetic-preview' ? 'fo.reviewItem.photoSynthetic' : 'fo.reviewItem.photoUnavailable')}>
             <AppText tone="muted" align="center">

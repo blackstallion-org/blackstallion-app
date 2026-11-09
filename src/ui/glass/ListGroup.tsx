@@ -1,4 +1,4 @@
-import { Children, isValidElement, type ReactNode } from 'react';
+import { Children, isValidElement, memo, type ReactNode } from 'react';
 import { Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 
 import { AppText } from '@/ui/components/AppText';
@@ -65,7 +65,7 @@ export type RowProps = {
 };
 
 /** A flat row: label + value, optional icon and trailing content; pressable rows show a chevron. */
-export function Row({ label, value, icon, trailing, onPress, accessibilityLabel, accessibilityHint, testID, emphasis = false }: RowProps) {
+export const Row = memo(function Row({ label, value, icon, trailing, onPress, accessibilityLabel, accessibilityHint, testID, emphasis = false }: RowProps) {
   const { colors } = useTheme();
   const { focused, handlers } = usePressFeedback();
   const name = accessibilityLabel ?? [label, value].filter(Boolean).join(', ');
@@ -120,7 +120,7 @@ export function Row({ label, value, icon, trailing, onPress, accessibilityLabel,
       {trailing}
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   wrap: { gap: space.sm },

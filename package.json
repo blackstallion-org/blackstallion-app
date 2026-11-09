@@ -43,6 +43,7 @@
     "react-native-web": "^0.21.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.0",
     "@testing-library/react-native": "^14.1.0",
     "@types/jest": "30.0.0",
     "@types/node": "^26.6.6",
@@ -61,7 +62,9 @@
     "lint": "expo lint",
     "test": "jest",
     "check": "npm run typecheck && npm run lint && npm test -- --ci",
-    "check:release-bundle": "bash scripts/check-release-bundle.sh"
+    "check:release-bundle": "bash scripts/check-release-bundle.sh",
+    "test:staging": "jest -c jest.staging.config.js",
+    "test:playwright": "npx playwright test -c integration/playwright/playwright.config.ts"
   },
   "private": true,
   "jest": {
@@ -72,7 +75,9 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/ios/",
-      "/android/"
+      "/android/",
+      "/integration/",
+      "/supabase/"
     ]
   }
 }

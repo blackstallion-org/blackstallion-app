@@ -1,5 +1,5 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
 
 import { useRepositories } from '@/core/data/RepositoryProvider';
@@ -124,10 +124,11 @@ function FamilyHomeBody({ data, onSelectChild }: { data: FamilyHomeData; onSelec
   const { spark: legacySpark, familyApp } = useRepositories();
   const spark = familyApp?.spark ?? legacySpark;
   const router = useRouter();
-  const openLatest = () =>
-    data.latestAssessment?.sessionId
-      ? router.push({ pathname: '/family/sessions/[recordId]', params: { recordId: data.latestAssessment.sessionId } })
-      : router.push('/family/progress');
+  const latestSessionId = data.latestAssessment?.sessionId;
+  const openLatest = useCallback(
+    () => latestSessionId ? router.push({ pathname: '/family/sessions/[recordId]', params: { recordId: latestSessionId } }) : router.push('/family/progress'),
+    [router, latestSessionId],
+  );
   const selected = data.children.find((c) => c.id === data.selectedChildId);
   return (
     <>

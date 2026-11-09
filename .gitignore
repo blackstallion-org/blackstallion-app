@@ -32,6 +32,7 @@ yarn-error.*
 *.pem
 
 # local env files
+.env
 .env*.local
 
 # typescript
@@ -43,3 +44,4 @@ yarn-error.*
 
 # Generated image sources (multi-MB originals; app derivatives are tracked, sources are recoverable from the manifest job ids)
 assets/library/source/
+.jest-cache

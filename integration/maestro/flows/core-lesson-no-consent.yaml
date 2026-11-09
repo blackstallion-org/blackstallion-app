@@ -1,0 +1,54 @@
+# J25: No video consent -> scores publish, clip disabled
+# Status: untested on device
+appId: ${MAESTRO_APP_ID}
+---
+- launchApp
+
+# Sign in as instructor
+- tapOn:
+    id: "email-input"
+- inputText: ${INSTRUCTOR_EMAIL}
+- tapOn:
+    id: "password-input"
+- inputText: ${INSTRUCTOR_PASSWORD}
+- tapOn:
+    id: "sign-in-button"
+- assertVisible:
+    id: "field-today"
+    timeout: 15000
+
+# Scan cadet without consent
+- tapOn:
+    id: "scan-button"
+- tapOn:
+    id: "scan-manual-entry"
+- tapOn:
+    id: "passport-code-input"
+- inputText: ${PASSPORT_CODE}
+- tapOn:
+    id: "submit-scan"
+
+# Fill grade form
+- assertVisible:
+    id: "grade-form"
+    timeout: 10000
+- tapOn:
+    id: "riding-score"
+- inputText: "7"
+- tapOn:
+    id: "ground-score"
+- inputText: "7"
+- tapOn:
+    id: "stable-score"
+- inputText: "7"
+
+# Publish scores (should succeed)
+- tapOn:
+    id: "publish-button"
+- assertVisible:
+    id: "publish-success"
+    timeout: 10000
+
+# Clip upload should be disabled
+- assertNotVisible:
+    id: "clip-upload-button"

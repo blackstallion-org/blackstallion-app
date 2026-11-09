@@ -87,6 +87,13 @@ export function FieldTodayScreen() {
   const list: TodayCheckIn[] | null =
     today.status !== 'ready' || !canViewCadets ? null : (today.data.checkIns ?? (checkIns.status === 'ready' ? checkIns.data : null));
 
+  const onOpenCadet = useCallback((c: TodayCheckIn) => router.push({ pathname: '/field/cadets/[cadetId]', params: { cadetId: c.cadetId } }), [router]);
+  const onAssess = useCallback((c: TodayCheckIn) => {
+    rememberAssessTarget({ checkInOperationId: c.checkInOperationId, cadetId: c.cadetId, cadetName: c.cadetName });
+    router.push({ pathname: '/field/cadets/[cadetId]/assess', params: { cadetId: c.cadetId, op: c.checkInOperationId } });
+  }, [router]);
+  const onOpenRoster = useCallback(() => router.push({ pathname: '/field/sessions/[sessionId]', params: { sessionId: 'today' } }), [router]);
+
   return (
     <GlassScreen
       edges={['top', 'left', 'right']}
@@ -120,12 +127,9 @@ export function FieldTodayScreen() {
           checkInsState={today.data.checkIns !== undefined ? 'ready' : checkIns.status}
           onRetryCheckIns={checkIns.retry}
           rosterOn={flags.status === 'ready' && flags.data.sessionRoster}
-          onOpenCadet={(c) => router.push({ pathname: '/field/cadets/[cadetId]', params: { cadetId: c.cadetId } })}
-          onAssess={(c) => {
-            rememberAssessTarget({ checkInOperationId: c.checkInOperationId, cadetId: c.cadetId, cadetName: c.cadetName });
-            router.push({ pathname: '/field/cadets/[cadetId]/assess', params: { cadetId: c.cadetId, op: c.checkInOperationId } });
-          }}
-          onOpenRoster={() => router.push({ pathname: '/field/sessions/[sessionId]', params: { sessionId: 'today' } })}
+          onOpenCadet={onOpenCadet}
+          onAssess={onAssess}
+          onOpenRoster={onOpenRoster}
         />
       ) : null}
       {today.status !== 'loading' ? (

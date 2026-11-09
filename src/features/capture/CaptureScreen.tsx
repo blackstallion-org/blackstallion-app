@@ -3,7 +3,8 @@ import { useEventListener } from 'expo';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Image, Platform, StyleSheet, View } from 'react-native';
+import { Image } from 'expo-image';
+import { ActivityIndicator, Platform, StyleSheet, View } from 'react-native';
 
 import { CameraStage } from '@/features/field/components/CameraStage';
 import { useFieldStrings } from '@/features/field/i18n';
@@ -238,7 +239,7 @@ export function CaptureScreen() {
             phase.kind === 'review' && mode === 'session_video' ? (
               <ClipPreview uri={phase.result.uri} onDuration={(ms) => setPhase((p) => (p.kind === 'review' ? { kind: 'review', result: { ...p.result, durationMs: Math.min(ms, CLIP_MAX_SECONDS * 1000) } } : p))} />
             ) : phase.kind === 'review' ? (
-              <Image source={{ uri: phase.result.uri }} style={StyleSheet.absoluteFill} resizeMode="cover" accessibilityIgnoresInvertColors />
+              <Image source={{ uri: phase.result.uri }} style={StyleSheet.absoluteFill} contentFit="cover" accessibilityIgnoresInvertColors />
             ) : (
               <CameraView
                 ref={camera}

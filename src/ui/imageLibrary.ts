@@ -1,5 +1,5 @@
 // Static image assets for Metro (require keeps them in the bundle).
-import type { ImageSourcePropType } from 'react-native';
+import type { ImageSource } from 'expo-image';
 
 /**
  * Editorial image library (6 Nov 2026 redesign). Source of truth: assets/library/assets-manifest.json (prompt, screens,
@@ -14,18 +14,18 @@ import type { ImageSourcePropType } from 'react-native';
  * `cutout` = transparent PNG shown whole on a flat palette colour (resizeMode contain). Otherwise a photograph shown
  * in a hard-edged frame (cover). Never under text, never faded or tinted.
  */
-export type LibraryImage = { source: ImageSourcePropType; cutout: boolean; aspect: number; alt: string };
+export type LibraryImage = { source: ImageSource; cutout: boolean; aspect: number; alt: string };
 
-const img = (source: ImageSourcePropType, cutout: boolean, w: number, h: number, alt: string): LibraryImage => ({ source, cutout, aspect: w / h, alt });
+const img = (source: ImageSource, cutout: boolean, w: number, h: number, alt: string): LibraryImage => ({ source, cutout, aspect: w / h, alt });
 
 export const imageLibrary = {
   // 01 Academy and brand
-  authHorse: img(require('../../assets/library/auth-horse.png'), true, 960, 1200, 'Bay Marwari horse, head and neck'),
+  authHorse: img(require('../../assets/library/marwari-black-portrait.png'), true, 658, 800, 'Black Marwari horse, head and neck'),
   // 02 Horses
-  horseBadal: img(require('../../assets/library/horse-badal.png'), true, 1200, 1099, 'Bay Marwari horse in side profile'),
+  horseBadal: img(require('../../assets/library/marwari-chestnut-rearing.png'), true, 668, 800, 'Chestnut Marwari horse rearing'),
   // 03 Tack and objects
-  saddle: img(require('../../assets/library/saddle.png'), true, 1200, 956, 'Brown leather saddle with stirrup'),
-  sparkHoof: img(require('../../assets/library/spark-hoof.png'), true, 865, 1200, 'Horse hoof with a steel shoe'),
+  saddle: img(require('../../assets/library/saddle.png'), true, 600, 478, 'Brown leather saddle with stirrup'),
+  sparkHoof: img(require('../../assets/library/spark-hoof.png'), true, 432, 600, 'Horse hoof with a steel shoe'),
   leatherTack: img(require('../../assets/library/leather-tack.jpg'), false, 1045, 1400, 'Saddled bay horse in a stone archway'),
   // 04 Training
   groundwork: img(require('../../assets/library/groundwork.jpg'), false, 1400, 930, 'Instructor lunging a horse in a sand arena'),

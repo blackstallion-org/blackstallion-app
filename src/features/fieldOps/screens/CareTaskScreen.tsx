@@ -3,7 +3,8 @@
 // "Done" until a supervisor accepted it (occurrence completed).
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image } from 'expo-image';
+import { StyleSheet, View } from 'react-native';
 
 import { registerCapture, type CaptureResult } from '@/features/capture/contract';
 import { AppText } from '@/ui/components/AppText';

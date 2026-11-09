@@ -1,4 +1,5 @@
-import { Image, StyleSheet, View, type DimensionValue, type ImageSourcePropType, type StyleProp, type ViewStyle } from 'react-native';
+import { Image, type ImageSource } from 'expo-image';
+import { StyleSheet, View, type DimensionValue, type StyleProp, type ViewStyle } from 'react-native';
 
 import type { ScrimName } from '@/ui/tokens';
 
@@ -15,7 +16,7 @@ export function PhotoBackdrop({
   resizeMode = 'cover',
   testID,
 }: {
-  source: ImageSourcePropType;
+  source: ImageSource;
   scrim?: ScrimName;
   height?: DimensionValue;
   style?: StyleProp<ViewStyle>;
@@ -32,7 +33,7 @@ export function PhotoBackdrop({
       accessibilityElementsHidden
       style={[height === undefined ? StyleSheet.absoluteFill : { position: 'absolute', top: 0, left: 0, right: 0, height }, { overflow: 'hidden' }, style]}
     >
-      <Image source={source} resizeMode={resizeMode} style={[StyleSheet.absoluteFill, styles.image, imageStyle as object]} accessibilityIgnoresInvertColors />
+      <Image source={source} contentFit={resizeMode} style={[StyleSheet.absoluteFill, styles.image, imageStyle as object]} accessibilityIgnoresInvertColors />
     </View>
   );
 }

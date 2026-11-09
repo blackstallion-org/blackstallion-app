@@ -1,0 +1,1574 @@
+{
+  "assess.backToToday": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.category.GROUND": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.category.RIDING": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.category.STABLE": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.clip": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.clipBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.clipNoUpload": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.clipNotSent": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.clipRemove": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.clipRetake": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.clipSaved": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.conflict.body": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.conflict.discard": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.conflict.reapply": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.conflict.reloadFailed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.conflict.server": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.conflict.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.conflict.yours": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.consentChecking": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.consentUnknown": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.consentWithdrawn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.correct.body": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.correct.cancel": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.correct.done": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.correct.doneBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.correct.retry": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.correct.save": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.correct.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.correct.unchanged": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.draftBadge": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.draftKept": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.noVideoRole": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.notConnected": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.notesCount": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.notesLabel": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.notesLong": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.openFromToday": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.openFromTodayBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.publish": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.record.clip": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.record.corrected": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.record.history": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.record.historyRow": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.record.legacy": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.record.makeCorrection": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.record.noNotes": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.record.notRecorder": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.record.previous": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.record.published": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.record.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.record.version": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.recordClip": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.recordingOff": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.recordingOffBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.retryPublish": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.scoreMissing": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.seal.body": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.seal.done": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.seal.next": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.seal.receipt": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.seal.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.skills": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.skillsFailed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.skillsLoading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.skillsMax": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.skillsNone": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.skillsNoneBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "assess.uploading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.clear": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.denied": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.deniedTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.empty": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.emptyTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.filterAll": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.filterCheckedIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.filterLabel": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.filterToAssess": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.noFilterMatch": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.noMatch": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.noMatchTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.notToday": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.openHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.published": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.search": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.searchPlaceholder": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.subtitle.one": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.subtitle.other": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.todayIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "cadets.unavailable": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.blocked": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.blockedTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.clipHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.consent": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.consentTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.devPlaceholder": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.expired": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.expiredTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.failed.capture": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.failed.interrupted": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.failed.mount": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.mode.carePhoto": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.mode.sessionVideo": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.mode.shiftSelfie": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.noGallery": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.notUploaded": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.photoHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.primer.carePhoto": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.primer.sessionVideo": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.primer.shiftSelfie": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.purpose.sessionVideo": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.record": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.recording": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.retake": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.reviewClip": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.reviewPhoto": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.shutter": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.starting": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.stop": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.unavailable": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.unavailableTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.useClip": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "capture.usePhoto": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.back": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.cancel": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.close": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.errorTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.loadError": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.noHub": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.noHubTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.notConnected": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.notConnectedTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.notFound": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.notFoundTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.offline": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.reference": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.retry": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "common.synthetic": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.clipRead": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.clockSkew": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.conflict.checkIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.conflict.correct": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.conflict.load": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.conflict.publish": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.conflict.void": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.forbidden.checkIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.forbidden.correct": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.forbidden.load": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.forbidden.publish": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.forbidden.void": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.invalid.checkIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.invalid.correct": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.invalid.load": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.invalid.publish": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.invalid.void": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.network.checkIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.network.correct": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.network.load": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.network.publish": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.network.void": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.notFound.checkIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.notFound.correct": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.notFound.load": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.notFound.publish": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.notFound.void": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.signedOut.checkIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.signedOut.correct": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.signedOut.load": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.signedOut.publish": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.signedOut.void": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.unexpected.checkIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.unexpected.correct": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.unexpected.load": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.unexpected.publish": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.generic.unexpected.void": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.alreadyPublished": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.alreadyVoided": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.cadetMoved": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.checkInGone": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.checkInVoided": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.checkInVoidedToday": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.clockRefused": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.noCadetAtHub": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.noVideoConsent": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.notAllowed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.notRecorder": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.notesLong": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.nothingToCorrect": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.opReused": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.reasonLength": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.scoresRange": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.sessionNotFound": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.skillRetired": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.skillsMax": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.staleVersion": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.videoMissing": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.videoWrongCadet": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.voidPastDay": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.known.voidPublished": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "errors.shape": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.camera.ask.body": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.camera.ask.point1": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.camera.ask.point2": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.camera.ask.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.camera.blocked.body": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.camera.blocked.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.camera.unavailable.body": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.camera.unavailable.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.close": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.continue": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.location.ask.body": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.location.ask.point1": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.location.ask.point2": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.location.ask.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.location.blocked.body": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.location.blocked.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.location.unavailable.body": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.location.unavailable.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.microphone.ask.body": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.microphone.ask.point1": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.microphone.ask.point2": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.microphone.ask.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.microphone.blocked.body": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.microphone.blocked.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.microphone.unavailable.body": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.microphone.unavailable.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.notNow": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.openSettings": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "permissions.osNext": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.assessNow": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.attendance": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.attendanceNone": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.attendanceRow": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.consent.allowed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.consent.off": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.consent.unknown": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.consentCarePhoto": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.consentNote": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.consentPosture": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.consentSessionVideo": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.consentTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.history": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.historyHidden": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.historyNone": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.historyNoneBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.noScores": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.notAssessed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.notFound": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.notFoundTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.passport": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.passportA11y": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.rankPropose": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.rankProposeHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.scan": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.scoresLine": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.today": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.todayIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.todayNone": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.todayNotAssessed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.todayPublished": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.viewToday": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.void": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.voidBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.voidHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.voidNotOffered": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.voidSubmit": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.voidTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.voided": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "profile.voiding": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "ranks.CADET_KNIGHT": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "ranks.CADET_RIDER": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "ranks.CADET_SQUIRE": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "ranks.SOVEREIGN_LANCER": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "ranks.none": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "reason.correctionBody": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "reason.correctionTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "reason.count": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "reason.label": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "reason.long": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "reason.short": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "reason.submit": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.empty": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.emptyTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.horse": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.off": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.offTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.recordingOff": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.rowIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.rowNot": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.rowPublished": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.scan": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.subtitle.one": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.subtitle.other": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "roster.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.allowCamera": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.cameraA11y": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.cameraBlocked": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.cameraBlockedTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.cameraFailed": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.cameraFailedTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.cameraNeeded": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.cameraUnavailable": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.cameraUnavailableTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.checkInAction": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.checking": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.codeEmpty": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.codeFormat": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.codeHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.codeLabel": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.devHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.devPrimer": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.devTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.frameHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.notInstructorTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.notPassport": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.primerReason": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.already": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.assess": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.checkedIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.failedTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.firstAt": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.notOnList": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.notOnListTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.receivedAt": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.retry": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.scanAgain": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.scanNext": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.viewProfile": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.wrongDay": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.result.wrongDayTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.starting": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.torchOff": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.torchOn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.typeCode": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.unconnected": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scan.useCamera": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scores.a11y": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scores.ground": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scores.lower": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scores.notSet": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scores.of": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scores.raise": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scores.riding": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "scores.stable": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "tabs.cadets": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "tabs.horses": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "tabs.profile": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "tabs.sync": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "tabs.today": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.assess": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.assessA11y": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.cadets.one": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.cadets.other": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.care": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.careOff": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.careState.done": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.careState.due": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.careState.overdue": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.checkInsUnavailable": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.checkedIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.checkedInAt": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.eyebrow": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.loading": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.loadingCheckIns": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.noBackend": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.noCare": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.noCareTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.noCheckIns": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.noCheckInsTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.notInstructor": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.openCadetHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.overdue.one": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.overdue.other": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.published": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.roster": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.rosterHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.rosterTitle": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.scanAction": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.scanHint": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.sessions": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.stats.checkedIn": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.stats.published": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.stats.toAssess": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.syncWaiting.one": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.syncWaiting.other": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  },
+  "today.title": {
+    "review": "needs-native-review (machine-assisted draft)",
+    "source": "field/i18n/locales"
+  }
+}

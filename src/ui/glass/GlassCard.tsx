@@ -1,5 +1,6 @@
-import { useState, type ReactNode } from 'react';
-import { Animated, Pressable, StyleSheet, View, type DimensionValue, type ImageSourcePropType, type StyleProp, type ViewStyle } from 'react-native';
+import type { ImageSource } from 'expo-image';
+import { memo, useState, type ReactNode } from 'react';
+import { Animated, Pressable, StyleSheet, View, type DimensionValue, type StyleProp, type ViewStyle } from 'react-native';
 
 import { AppText } from '@/ui/components/AppText';
 import { Icon } from '@/ui/components/Icon';
@@ -39,7 +40,7 @@ export type GlassCardProps =
        * ignored. `cutout` shows a transparent cut-out whole (contain) on the block colour instead of a cropped photo.
        */
       variant: 'photo';
-      image: ImageSourcePropType;
+      image: ImageSource;
       scrim?: ScrimName;
       height?: DimensionValue;
       imageStyle?: StyleProp<ViewStyle>;
@@ -47,7 +48,7 @@ export type GlassCardProps =
       cutout?: boolean;
     });
 
-export function GlassCard(props: GlassCardProps) {
+export const GlassCard = memo(function GlassCard(props: GlassCardProps) {
   const { children, onPress, accessibilityLabel, accessibilityHint, expandable, expandedContent, defaultExpanded = false, expandLabel = 'Show more', collapseLabel = 'Show less', material = 'regular', style, contentStyle, testID } = props;
   const photo = props.variant === 'photo';
   const r = props.radius ?? (photo ? radii.hero : radii.card);
@@ -96,9 +97,9 @@ export function GlassCard(props: GlassCardProps) {
       </Pressable>
     </Animated.View>
   );
-}
+});
 
-function PhotoBlock({ r, height, image, imageStyle, cutout, style, contentStyle, testID, children }: { r: number; height?: DimensionValue; image: ImageSourcePropType; imageStyle?: StyleProp<ViewStyle>; cutout?: boolean; style?: StyleProp<ViewStyle>; contentStyle?: StyleProp<ViewStyle>; testID?: string; children: ReactNode }) {
+function PhotoBlock({ r, height, image, imageStyle, cutout, style, contentStyle, testID, children }: { r: number; height?: DimensionValue; image: ImageSource; imageStyle?: StyleProp<ViewStyle>; cutout?: boolean; style?: StyleProp<ViewStyle>; contentStyle?: StyleProp<ViewStyle>; testID?: string; children: ReactNode }) {
   const { colors } = useTheme();
   return (
     <View style={[styles.photo, { borderRadius: r, backgroundColor: colors.canvas }, style]} testID={testID}>

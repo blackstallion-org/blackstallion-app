@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AppText } from '@/ui/components/AppText';
@@ -25,7 +26,7 @@ export const toneColors = (tone: StatusTone, c: ColorTokens): { bg: string; fg: 
   })[tone];
 
 /** Status as icon + word, never colour alone. Editorial: no pill or fill — coloured icon and word on the screen tone. */
-export function StatusBadge({ label, tone = 'neutral', icon, testID }: { label: string; tone?: StatusTone; icon?: IconName | null; testID?: string }) {
+export const StatusBadge = memo(function StatusBadge({ label, tone = 'neutral', icon, testID }: { label: string; tone?: StatusTone; icon?: IconName | null; testID?: string }) {
   const { colors } = useTheme();
   const { fg } = toneColors(tone, colors);
   const glyph = icon === null ? null : (icon ?? TONE_ICON[tone]);
@@ -37,7 +38,7 @@ export function StatusBadge({ label, tone = 'neutral', icon, testID }: { label: 
       </AppText>
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   badge: {

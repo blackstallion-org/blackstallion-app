@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Animated, Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 
 import { AppText } from '@/ui/components/AppText';
@@ -12,7 +13,7 @@ import { PressDecor, usePressFeedback } from './pressFeedback';
  * Selectable glass pill (filters, child selector). 48 pt high. Exposed as a
  * radio when it is one choice of a group, otherwise as a toggle button.
  */
-export function Chip({
+export const Chip = memo(function Chip({
   label,
   selected = false,
   onPress,
@@ -64,7 +65,7 @@ export function Chip({
       </Pressable>
     </Animated.View>
   );
-}
+});
 
 /** Non-interactive glass label pill (category tags, "Daily Spark"). */
 export function Pill({ label, icon, material: _material = 'regular', testID }: { label: string; icon?: IconName; material?: GlassMaterial; testID?: string }) {

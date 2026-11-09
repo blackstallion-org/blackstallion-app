@@ -1,5 +1,5 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AppText, Icon } from '@/ui/components';
@@ -30,7 +30,7 @@ export function ProgressScreen() {
   const params = useLocalSearchParams<{ view?: string }>();
   const router = useRouter();
   const view: View_ = params.view === 'clips' ? 'clips' : 'sessions';
-  const setView = (v: View_) => router.setParams({ view: v === 'clips' ? 'clips' : undefined });
+  const setView = useCallback((v: View_) => router.setParams({ view: v === 'clips' ? 'clips' : undefined }), [router]);
   return (
     <GlassScreen edges={['top', 'left', 'right']} testID="family-progress">
       {/* With several children the chips name the child; with one, the eyebrow does. */}
@@ -205,7 +205,7 @@ function ClipsView({ child }: { child: FamilyChild }) {
   );
 }
 
-function ClipTile({ clip, locked, onPress }: { clip: SessionSummary; locked: boolean; onPress: () => void }) {
+const ClipTile = memo(function ClipTile({ clip, locked, onPress }: { clip: SessionSummary; locked: boolean; onPress: () => void }) {
   const { colors } = useTheme();
   return (
     <View style={styles.tileCell}>
@@ -227,7 +227,7 @@ function ClipTile({ clip, locked, onPress }: { clip: SessionSummary; locked: boo
       </GlassCard>
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },

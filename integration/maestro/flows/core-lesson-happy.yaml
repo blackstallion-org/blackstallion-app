@@ -1,0 +1,86 @@
+# J21: Scan -> grade -> clip -> publish (happy path)
+# Status: untested on device
+appId: ${MAESTRO_APP_ID}
+---
+- launchApp
+
+# Sign in as instructor
+- tapOn:
+    id: "email-input"
+- inputText: ${INSTRUCTOR_EMAIL}
+- tapOn:
+    id: "password-input"
+- inputText: ${INSTRUCTOR_PASSWORD}
+- tapOn:
+    id: "sign-in-button"
+- assertVisible:
+    id: "field-today"
+    timeout: 15000
+
+# Navigate to scan
+- tapOn:
+    id: "scan-button"
+- assertVisible:
+    id: "scan-manual-entry"
+
+# Use manual passport entry (no physical card in CI)
+- tapOn:
+    id: "scan-manual-entry"
+- tapOn:
+    id: "passport-code-input"
+- inputText: ${PASSPORT_CODE}
+- tapOn:
+    id: "submit-scan"
+
+# Fill grade form
+- assertVisible:
+    id: "grade-form"
+    timeout: 10000
+- tapOn:
+    id: "riding-score"
+- inputText: "8"
+- tapOn:
+    id: "ground-score"
+- inputText: "7"
+- tapOn:
+    id: "stable-score"
+- inputText: "9"
+- tapOn:
+    id: "notes-input"
+- inputText: "Maestro J21 happy path"
+
+# Publish
+- tapOn:
+    id: "publish-button"
+- assertVisible:
+    id: "publish-success"
+    timeout: 10000
+
+# Sign out
+- tapOn:
+    id: "account-tab"
+- tapOn:
+    id: "sign-out-button"
+- assertVisible:
+    id: "email-input"
+    timeout: 10000
+
+# Sign in as guardian to verify
+- tapOn:
+    id: "email-input"
+- inputText: ${GUARDIAN_EMAIL}
+- tapOn:
+    id: "password-input"
+- inputText: ${GUARDIAN_PASSWORD}
+- tapOn:
+    id: "sign-in-button"
+- assertVisible:
+    id: "family-home"
+    timeout: 15000
+
+# Check progress shows the published session
+- tapOn:
+    id: "progress-tab"
+- assertVisible:
+    id: "session-list"
+    timeout: 10000

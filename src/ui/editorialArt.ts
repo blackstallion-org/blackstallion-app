@@ -1,5 +1,5 @@
 // Compatibility aliases: the 6 Nov 2026 redesign replaced the earlier editorial set with ui/imageLibrary.ts.
-import type { ImageSourcePropType } from 'react-native';
+import type { ImageSource } from 'expo-image';
 
 import { imageLibrary } from './imageLibrary';
 
@@ -11,4 +11,4 @@ export const editorialArt = {
   sparkCover: imageLibrary.sparkHoof.source,
   communityEvent: imageLibrary.communityArena.source,
   passportArt: imageLibrary.saddle.source,
-} as const satisfies Record<string, ImageSourcePropType>;
+} as const satisfies Record<string, ImageSource>;
