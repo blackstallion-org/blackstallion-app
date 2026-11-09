@@ -141,3 +141,228 @@ describe('19 original probes, over HTTP on staging (each asserts the fixed behav
     expect(JSON.stringify(snap.data ?? {})).not.toContain('"field"');
   });
 });
+
+/**
+ * G15 hardening probes — DB-level and HTTP-level security checks beyond the original 19.
+ * Each probe tests a control that SHOULD hold; a failure means a gap.
+ */
+describe('G15 hardening probes', () => {
+  // ── RLS coverage ──────────────────────────────────────────────────
+
+  test('G15-R1 every public-schema app table has RLS enabled', () => {
+    const unprotected = sql(
+      `select tablename from pg_tables where schemaname = 'public' and tablename not in ('schema_migrations','spatial_ref_sys') and tablename not like 'pg_%' and tablename not like '_realtime%' and tablename not like 'supabase_%' and tablename not like 'mfa_%' and tablename not like 'refresh_tokens%' and not exists (select 1 from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = 'public' and c.relname = pg_tables.tablename and c.relrowsecurity = true)`,
+    );
+    expect(unprotected).toBe('');
+  });
+
+  test('G15-R2 every field-schema table has RLS enabled', () => {
+    const hasFieldSchema = sql(`select count(*) from pg_namespace where nspname = 'field'`);
+    if (hasFieldSchema === '0') return; // no field schema — skip
+    const unprotected = sql(
+      `select tablename from pg_tables where schemaname = 'field' and not exists (select 1 from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = 'field' and c.relname = pg_tables.tablename and c.relrowsecurity = true)`,
+    );
+    expect(unprotected).toBe('');
+  });
+
+  // ── SECURITY DEFINER without pinned search_path ───────────────────
+
+  test('G15-D1 no SECURITY DEFINER function without pinned search_path', () => {
+    const unsafe = sql(
+      `select p.proname from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname in ('public','field') and p.prosecdef = true and not (p.proconfig::text[] @> array['search_path='])`,
+    );
+    expect(unsafe).toBe('');
+  });
+
+  // ── Anon grants ───────────────────────────────────────────────────
+
+  test('G15-A1 anon cannot SELECT application tables', () => {
+    const readable = sql(
+      `select string_agg(table_name, ',') from information_schema.role_table_grants where grantee = 'anon' and privilege_type = 'SELECT' and table_schema = 'public' and table_name not in ('schema_migrations')`,
+    );
+    // PostgREST needs some tables readable for anon endpoints — but sensitive tables should not be
+    const sensitive = ['users', 'cadets', 'training_sessions', 'staff_attendance', 'consent_records', 'rank_history', 'achievements', 'groom_daily_logs', 'billing_orders', 'billing_line_items'];
+    for (const t of sensitive) {
+      expect(readable).not.toContain(t);
+    }
+  });
+
+  test('G15-A2 anon cannot EXECUTE sensitive app RPCs', async () => {
+    const c = appClient();
+    const rpcs = ['app_access_snapshot', 'field_punch_in', 'billing_list_orders', 'app_notification_preferences'] as const;
+    for (const fn of rpcs) {
+      const r = await c.rpc(fn, fn === 'field_punch_in' ? { p_latitude: 0, p_longitude: 0, p_accuracy_m: 1, p_observed_at: new Date().toISOString(), p_operation_id: randomUUID() } : {});
+      expect(r.error).not.toBeNull();
+    }
+  });
+
+  test('G15-A3 anon cannot list or download from any storage bucket', async () => {
+    const c = appClient();
+    for (const bucket of ['session-videos', 'proof-photos', 'app-content']) {
+      const list = await c.storage.from(bucket).list();
+      expect(list.error !== null || (list.data ?? []).length === 0).toBe(true);
+    }
+  });
+
+  // ── TRUNCATE ──────────────────────────────────────────────────────
+
+  test('G15-T1 no non-admin role has TRUNCATE on app tables', () => {
+    const grants = sql(
+      `select string_agg(grantee || ':' || table_name, ',') from information_schema.role_table_grants where privilege_type = 'TRUNCATE' and table_schema = 'public' and grantee in ('anon','authenticated','service_role')`,
+    );
+    expect(grants).toBe('');
+  });
+
+  // ── Storage policies ──────────────────────────────────────────────
+
+  test('G15-S1 all three buckets have at least one storage policy', () => {
+    for (const bucket of ['session-videos', 'proof-photos', 'app-content']) {
+      const count = sql(`select count(*) from storage.policies p join storage.buckets b on b.id = p.bucket_id where b.name = '${bucket}'`);
+      expect(Number(count)).toBeGreaterThanOrEqual(1);
+    }
+  });
+
+  test('G15-S2 stranger cannot upload to proof-photos', async () => {
+    const c = await as(stranger);
+    const bytes = Buffer.from('fake-proof', 'utf8');
+    const r = await c.storage.from('proof-photos').upload(`some-hub/${stranger.id}/${randomUUID()}.jpg`, bytes, { contentType: 'image/jpeg' });
+    expect(r.error).not.toBeNull();
+  });
+
+  test('G15-S3 hub-A instructor cannot upload to proof-photos under hub-B path', async () => {
+    const c = await as(w.instructorA);
+    const bytes = Buffer.from('fake-proof', 'utf8');
+    const r = await c.storage.from('proof-photos').upload(`${w.hubB}/${w.instructorA.id}/${randomUUID()}.jpg`, bytes, { contentType: 'image/jpeg' });
+    expect(r.error).not.toBeNull();
+  });
+
+  test('G15-S4 path traversal blocked in proof-photos', async () => {
+    const c = await as(w.instructorA);
+    const bytes = Buffer.from('fake-proof', 'utf8');
+    const r = await c.storage.from('proof-photos').upload(`${w.hubA}/../${randomUUID()}.jpg`, bytes, { contentType: 'image/jpeg' });
+    expect(r.error).not.toBeNull();
+  });
+
+  test('G15-S5 app-content is read-only for authenticated (no uploads)', async () => {
+    const c = await as(w.instructorA);
+    const bytes = Buffer.from('injected', 'utf8');
+    const r = await c.storage.from('app-content').upload(`injected-${randomUUID()}.html`, bytes, { contentType: 'text/html' });
+    expect(r.error).not.toBeNull();
+  });
+
+  // ── Authenticated function allow-list ─────────────────────────────
+
+  test('G15-F1 authenticated-executable functions match known allow-list', () => {
+    const KNOWN = new Set([
+      'app_access_snapshot', 'app_notification_preferences', 'app_set_notification_preference',
+      'app_account_deletion_status', 'app_request_account_deletion', 'app_cancel_account_deletion',
+      'app_consent_centre', 'app_consent_history', 'app_set_media_consent',
+      'app_spark_today', 'app_ack_spark', 'app_stream_capability',
+      'app_list_events', 'app_event_detail', 'app_rsvp_event', 'app_cancel_rsvp', 'app_policy_flags',
+      'field_record_check_in', 'field_publish_session', 'field_correct_session', 'field_void_check_in',
+      'field_cadet_media_consent', 'field_session_roster', 'field_punch_in', 'field_punch_out',
+      'field_review_queue', 'field_review_item', 'field_review_decide',
+      'field_decide_rank_proposal', 'field_propose_rank', 'field_posture_capability',
+      'hub_horses',
+      'billing_checkout_status', 'billing_quote', 'billing_create_order', 'billing_get_order',
+      'billing_list_orders', 'billing_note_client_return', 'billing_cancel_order',
+    ]);
+    const rows = sql(
+      `select p.proname from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname in ('public','field') and has_function_privilege('authenticated', p.oid, 'EXECUTE') and p.proname not like 'pg_%' and p.proname not like 'st_%' and p.proname not like '_st_%' and p.proname not like 'postgis_%' and p.proname not in ('uuid_generate_v4')`,
+    );
+    const funcs = rows.split('\n').map((f) => f.trim()).filter(Boolean);
+    const extra = funcs.filter((f) => !KNOWN.has(f));
+    expect(extra).toEqual([]);
+  });
+
+  // ── Billing cross-family isolation ────────────────────────────────
+
+  test('G15-B1 guardian A cannot see guardian B orders', async () => {
+    // Create an order for family B via service context
+    sql(`insert into public.billing_orders (parent_id, cadet_id, hub_id, status, total_cents) values ('${w.guardianB.id}', '${w.cadetB}', '${w.hubB}', 'paid', 5000) on conflict do nothing`);
+    const c = await as(w.guardianA);
+    const r = await c.rpc('billing_list_orders', { p_operation_id: randomUUID() });
+    const ids = JSON.stringify(r.data ?? {});
+    expect(ids).not.toContain(w.cadetB);
+  });
+
+  test('G15-B2 stranger cannot create orders for others children', async () => {
+    const c = await as(stranger);
+    const r = await c.rpc('billing_create_order', {
+      p_cadet_id: w.cadetA,
+      p_hub_id: w.hubA,
+      p_line_items: JSON.stringify([{ sku: 'FAKE', qty: 1 }]),
+      p_operation_id: randomUUID(),
+    });
+    expect(r.error).not.toBeNull();
+  });
+
+  // ── Consent isolation ─────────────────────────────────────────────
+
+  test('G15-C1 stranger cannot read consent records', async () => {
+    const c = await as(stranger);
+    const r = await c.from('consent_records').select('id');
+    expect(r.error !== null || (r.data ?? []).length === 0).toBe(true);
+  });
+
+  test('G15-C2 guardian A cannot modify consent for guardian B child', async () => {
+    const c = await as(w.guardianA);
+    const r = await c.rpc('app_set_media_consent', {
+      p_cadet_id: w.cadetB,
+      p_purpose: 'session_video',
+      p_granted: true,
+      p_policy_version: 'draft-1',
+      p_operation_id: randomUUID(),
+    });
+    expect(r.error).not.toBeNull();
+  });
+
+  // ── Role-based RPC restrictions ───────────────────────────────────
+
+  test('G15-P1 parent cannot field_punch_in (W6 re-verified via RPC error code)', async () => {
+    const c = await as(w.guardianA);
+    const r = await c.rpc('field_punch_in', { p_latitude: 16.5, p_longitude: 80.6, p_accuracy_m: 10, p_observed_at: new Date().toISOString(), p_operation_id: randomUUID() });
+    expect(r.error).not.toBeNull();
+  });
+
+  test('G15-P2 groom cannot field_review_decide', async () => {
+    const c = await as(w.groomA);
+    const r = await c.rpc('field_review_decide', {
+      p_check_in_id: randomUUID(),
+      p_decision: 'approved',
+      p_reason: 'Synthetic G15-P2',
+      p_operation_id: randomUUID(),
+    });
+    expect(r.error).not.toBeNull();
+  });
+
+  test('G15-P3 groom cannot field_propose_rank', async () => {
+    const c = await as(w.groomA);
+    const r = await c.rpc('field_propose_rank', {
+      p_cadet_id: w.cadetA,
+      p_to_rank: 'CADET_KNIGHT',
+      p_reason: 'Synthetic G15-P3',
+      p_operation_id: randomUUID(),
+    });
+    expect(r.error).not.toBeNull();
+  });
+
+  // ── Users table protection ────────────────────────────────────────
+
+  test('G15-V1 authenticated cannot UPDATE another user row', async () => {
+    const c = await as(w.instructorA);
+    await c.from('users').update({ full_name: 'HACKED' }).eq('id', w.guardianA.id);
+    const name = sql(`select full_name from public.users where id = '${w.guardianA.id}'`);
+    expect(name).not.toBe('HACKED');
+  });
+
+  test('G15-V2 authenticated cannot read other users email or phone', async () => {
+    const c = await as(w.instructorA);
+    const r = await c.from('users').select('email, phone').neq('id', w.instructorA.id);
+    if (r.error) return; // access denied entirely — pass
+    for (const row of r.data ?? []) {
+      expect(row.email).toBeNull();
+      expect(row.phone).toBeNull();
+    }
+  });
+});
