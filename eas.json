@@ -1,43 +1,59 @@
 {
   "cli": {
-    "version": ">= 16.0.0",
+    "version": ">= 12.0.0",
     "appVersionSource": "remote"
   },
   "build": {
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "android": {
-        "buildType": "apk"
-      },
       "env": {
-        "EXPO_PUBLIC_SUPABASE_URL": "https://YOUR-STAGING-PROJECT.supabase.co",
-        "EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY": "YOUR_STAGING_PUBLISHABLE_KEY"
-      }
-    },
-    "development-simulator": {
-      "developmentClient": true,
-      "distribution": "internal",
+        "EXPO_PUBLIC_SUPABASE_URL": "https://tgwadczrfbljnepoaqtb.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_sOPyHp1fDex0QJmHXaIbSg_2QvMs5Am",
+        "EXPO_PUBLIC_SUPPORT_ACADEMY_NAME": "Black Stallion Academy of Horsemanship",
+        "EXPO_PUBLIC_SUPPORT_EMAIL": "support@bsah.in",
+        "EXPO_PUBLIC_SUPPORT_PHONE": "+91-000-000-0000",
+        "EXPO_PUBLIC_SUPPORT_HOURS": "Mon-Sat 9am-6pm IST",
+        "EXPO_PUBLIC_SUPPORT_WEBSITE": "https://bsah.in",
+        "EXPO_PUBLIC_WEBSITE_URL": "https://bsah.in",
+        "EXPO_PUBLIC_PRIVACY_POLICY_URL": "https://bsah.in/privacy"
+      },
       "ios": {
         "simulator": true
       },
-      "env": {
-        "EXPO_PUBLIC_SUPABASE_URL": "https://YOUR-STAGING-PROJECT.supabase.co",
-        "EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY": "YOUR_STAGING_PUBLISHABLE_KEY"
+      "android": {
+        "buildType": "apk"
       }
     },
     "preview": {
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_SUPABASE_URL": "https://YOUR-STAGING-PROJECT.supabase.co",
-        "EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY": "YOUR_STAGING_PUBLISHABLE_KEY"
+        "EXPO_PUBLIC_SUPABASE_URL": "https://tgwadczrfbljnepoaqtb.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_sOPyHp1fDex0QJmHXaIbSg_2QvMs5Am",
+        "EXPO_PUBLIC_SUPPORT_ACADEMY_NAME": "Black Stallion Academy of Horsemanship",
+        "EXPO_PUBLIC_SUPPORT_EMAIL": "support@bsah.in",
+        "EXPO_PUBLIC_SUPPORT_PHONE": "+91-000-000-0000",
+        "EXPO_PUBLIC_SUPPORT_HOURS": "Mon-Sat 9am-6pm IST",
+        "EXPO_PUBLIC_SUPPORT_WEBSITE": "https://bsah.in",
+        "EXPO_PUBLIC_WEBSITE_URL": "https://bsah.in",
+        "EXPO_PUBLIC_PRIVACY_POLICY_URL": "https://bsah.in/privacy"
+      },
+      "android": {
+        "buildType": "apk"
       }
     },
     "production": {
       "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_SUPABASE_URL": "https://YOUR-PRODUCTION-PROJECT.supabase.co",
-        "EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY": "YOUR_PRODUCTION_PUBLISHABLE_KEY"
+        "EXPO_PUBLIC_SUPABASE_URL": "https://tgwadczrfbljnepoaqtb.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_sOPyHp1fDex0QJmHXaIbSg_2QvMs5Am",
+        "EXPO_PUBLIC_SUPPORT_ACADEMY_NAME": "Black Stallion Academy of Horsemanship",
+        "EXPO_PUBLIC_SUPPORT_EMAIL": "support@bsah.in",
+        "EXPO_PUBLIC_SUPPORT_PHONE": "+91-000-000-0000",
+        "EXPO_PUBLIC_SUPPORT_HOURS": "Mon-Sat 9am-6pm IST",
+        "EXPO_PUBLIC_SUPPORT_WEBSITE": "https://bsah.in",
+        "EXPO_PUBLIC_WEBSITE_URL": "https://bsah.in",
+        "EXPO_PUBLIC_PRIVACY_POLICY_URL": "https://bsah.in/privacy"
       }
     }
   },
