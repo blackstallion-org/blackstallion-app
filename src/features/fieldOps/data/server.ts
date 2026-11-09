@@ -12,6 +12,7 @@ import { withTimeout } from '@/features/field/data/net';
 import type { DataClient } from '@/features/field/data/supabaseFieldWorkflowRepository';
 import { FieldCommandError, toCommandError } from '@/features/field/domain/commandErrors';
 import { newOperationId } from '@/features/field/domain/operation';
+import { createDurableFileVault } from '@/features/sync/data/durableFileVault';
 import { openQueueStore } from '@/features/sync/data/openQueueStore';
 import type { SubmitRequest, Transport, UploadIntentRequest, UploadTarget } from '@/features/sync/domain/ports';
 import { TransportError } from '@/features/sync/domain/ports';
@@ -30,7 +31,7 @@ import {
   type ShiftRecord,
   type VerificationState,
 } from '../domain/types';
-import { createFieldOutbox, createUriFileVault } from './outbox';
+import { createFieldOutbox } from './outbox';
 import type { FieldOpsRepositories, FieldOutbox } from './repositories';
 
 type Obj = Record<string, unknown>;
@@ -274,11 +275,6 @@ export function createSupabaseFieldTransport(c: FieldOpsClient, hubOf: () => str
   };
 }
 
-async function readUri(uri: string): Promise<Uint8Array> {
-  const res = await fetch(uri);
-  return new Uint8Array(await res.arrayBuffer());
-}
-
 function signedPut(c: FieldOpsClient) {
   return async (target: UploadTarget, bytes: Uint8Array) => {
     if (target.url.startsWith('already-uploaded:')) return;
@@ -305,7 +301,7 @@ export function createFieldOpsServer(client: DataClient, opts: { timeoutMs?: num
     createFieldOutbox({
       // Phones: SQLite (survives restart). Browser preview: memory only, and the screens say so.
       store: openQueueStore(),
-      files: createUriFileVault({ read: readUri, put: signedPut(c) }),
+      files: createDurableFileVault({ put: signedPut(c) }),
       transport: createSupabaseFieldTransport(c, () => hub, t),
       offlineEvidenceAllowed: evaluateDevicePolicy({
         buildProfile: 'production',
