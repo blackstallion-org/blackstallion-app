@@ -21,8 +21,8 @@ import { appClient, clipUri, seedWorld, signIn, sql, type World } from './stack'
 
 jest.setTimeout(120_000);
 
-const MIGRATION_PATH = path.resolve(__dirname, '../../../consent-investigation/server/live-delta/g13-consent-withdrawal/migration.sql');
-const ROLLBACK_PATH = path.resolve(__dirname, '../../../consent-investigation/server/live-delta/g13-consent-withdrawal/rollback.sql');
+const MIGRATION_PATH = path.resolve(__dirname, '../../../server/live-delta/g13-consent-withdrawal/migration.sql');
+const ROLLBACK_PATH = path.resolve(__dirname, '../../../server/live-delta/g13-consent-withdrawal/rollback.sql');
 
 const lit = (s: string) => `'${s.replace(/'/g, "''")}'`;
 
@@ -30,15 +30,18 @@ let w: World;
 
 beforeAll(async () => {
   w = await seedWorld();
-  // Apply G13 migration to local staging database
-  sql(fs.readFileSync(MIGRATION_PATH, 'utf8'));
+  // Apply G13 migration if not already present (load_staging.sh now includes it)
+  const hasG13 = sql(`select to_regclass('app_private.consent_withdrawal_policy') is not null`);
+  if (hasG13 !== 't') sql(fs.readFileSync(MIGRATION_PATH, 'utf8'));
 });
 
 afterAll(() => {
-  try {
-    sql(fs.readFileSync(ROLLBACK_PATH, 'utf8'));
-  } catch (e) {
-    /* ignore if already rolled back */
+  // Test 6 runs the rollback to verify it works; re-apply so later suites (scheduler, consent-cleanup) still pass
+  const hasG13 = sql(`select to_regclass('app_private.consent_withdrawal_policy') is not null`);
+  if (hasG13 !== 't') {
+    sql(fs.readFileSync(MIGRATION_PATH, 'utf8'));
+    const cleanupPath = path.resolve(__dirname, 'g13/20261108000100_consent_cleanup.sql');
+    sql(fs.readFileSync(cleanupPath, 'utf8'));
   }
 });
 

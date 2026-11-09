@@ -46,7 +46,10 @@ AS $$
 DECLARE
   grace INTERVAL;
 BEGIN
-  IF NEW.consent_type <> 'session_video' THEN
+  IF NEW.consent_type <> 'MEDIA_SESSION_VIDEO' THEN
+    RETURN NEW;
+  END IF;
+  IF NEW.is_active THEN
     RETURN NEW;
   END IF;
 
@@ -54,9 +57,9 @@ BEGIN
   IF EXISTS (
     SELECT 1 FROM public.consent_records cr
     WHERE cr.cadet_id = NEW.cadet_id
-      AND cr.consent_type = 'session_video'
+      AND cr.consent_type = 'MEDIA_SESSION_VIDEO'
       AND cr.id <> NEW.id
-      AND cr.created_at > NEW.created_at
+      AND cr.consented_at > NEW.consented_at
   ) THEN
     RETURN NEW;
   END IF;
@@ -82,6 +85,7 @@ BEGIN
 END;
 $$;
 
+DROP TRIGGER IF EXISTS g13_on_consent_withdrawal ON public.consent_records;
 CREATE TRIGGER g13_on_consent_withdrawal
   AFTER INSERT ON public.consent_records
   FOR EACH ROW
@@ -98,6 +102,8 @@ DECLARE
   rec RECORD;
   deleted_count INTEGER := 0;
 BEGIN
+  PERFORM set_config('storage.allow_delete_query', 'true', true);
+
   FOR rec IN
     SELECT id, bucket, object_path
     FROM app_private.consent_cleanup_queue
@@ -106,7 +112,6 @@ BEGIN
     ORDER BY queued_at
     FOR UPDATE SKIP LOCKED
   LOOP
-    -- Remove the storage metadata row; Supabase GC handles the underlying blob.
     DELETE FROM storage.objects
     WHERE bucket_id = rec.bucket
       AND name = rec.object_path;

@@ -16,7 +16,12 @@ beforeAll(async () => {
   w = await seedWorld();
 });
 
-describe('Consent withdrawal current behavior investigation', () => {
+// Pre-G13 investigation: probes behavior WITHOUT the consent-withdrawal migration.
+// Skipped when G13 is applied to staging (which it now is via load_staging.sh).
+const g13 = () => { try { return sql(`select to_regclass('app_private.consent_withdrawal_policy') is not null`) === 't'; } catch { return false; } };
+const describeUnlessG13 = g13() ? describe.skip : describe;
+
+describeUnlessG13('Consent withdrawal current behavior investigation', () => {
   test('empirical probe of current behavior on consent withdrawal', async () => {
     const gaClient = await signIn(w.guardianA, appClient());
     const instClient = await signIn(w.instructorA, appClient());

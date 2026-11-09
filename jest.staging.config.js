@@ -7,7 +7,7 @@ module.exports = {
   testMatch: ['**/*.staging.ts'],
   testEnvironment: 'node',
   transform: { '^.+\\.[jt]sx?$': ['babel-jest', { presets: [require.resolve('babel-preset-expo', { paths: [require.resolve('expo/package.json')] })] }] },
-  moduleNameMapper: { '^@/(.*)$': '<rootDir>/src/$1', '^expo-sqlite$': '<rootDir>/integration/staging/expoSqliteStub.ts' },
+  moduleNameMapper: { '^@/(.*)$': '<rootDir>/src/$1', '^expo-sqlite$': '<rootDir>/integration/staging/expoSqliteStub.ts', '^expo-file-system/legacy$': '<rootDir>/integration/staging/expoFileSystemStub.ts', '^expo-file-system$': '<rootDir>/integration/staging/expoFileSystemStub.ts' },
   transformIgnorePatterns: ['/node_modules/(?!expo/virtual/)'],
   maxWorkers: 1,
 };

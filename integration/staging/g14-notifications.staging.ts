@@ -111,8 +111,13 @@ end;
 $$;
 
 -- 1e. Feature flag (D05: OFF)
-insert into app_feature_flags (key, enabled, value, decision_ref)
-values ('push_notifications', false, null, 'D05')
+-- Extend the key check constraint to include push_notifications
+alter table app_feature_flags drop constraint if exists app_feature_flags_key_check;
+alter table app_feature_flags add constraint app_feature_flags_key_check
+  check (key = any(array['session_roster','rank_proposals','spark_streaks','stream_entitlement',
+    'posture_analysis','attendance_accuracy_threshold_m','review_roles','push_notifications']));
+insert into app_feature_flags (key, enabled, value, decision_ref, description)
+values ('push_notifications', false, null, 'D05', 'Push notifications via Expo (D05: OFF during pilot)')
 on conflict (key) do nothing;
 `;
 
@@ -179,7 +184,7 @@ describe('G14 notification outbox with preference checking', () => {
     const userId = w.guardianA.id;
     const sourceId = randomUUID();
 
-    sql(`insert into notification_preferences (user_id, category, enabled) values ('${userId}', 'check_in', true) on conflict (user_id, category) do update set enabled = true`);
+    sql(`insert into notification_preferences (user_id, category, enabled, last_operation_id) values ('${userId}', 'check_in', true, gen_random_uuid()) on conflict (user_id, category) do update set enabled = true`);
 
     sql(`select internal_enqueue_notification('${userId}', 'check_in', 'Arrival', 'Aarav checked in', '{}', 'staff_attendance_insert', '${sourceId}')`);
 

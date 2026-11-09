@@ -21,11 +21,9 @@ let w: World;
 
 beforeAll(async () => {
   w = await seedWorld();
-  sql(fs.readFileSync(MIGRATION, 'utf8'));
-});
-
-afterAll(() => {
-  try { sql(fs.readFileSync(ROLLBACK, 'utf8')); } catch { /* already rolled back */ }
+  // Apply G13 cleanup migration if not already present
+  const hasCleanup = sql(`select to_regclass('app_private.consent_cleanup_queue') is not null`);
+  if (hasCleanup !== 't') sql(fs.readFileSync(MIGRATION, 'utf8'));
 });
 
 describe('g13 consent-cleanup', () => {
