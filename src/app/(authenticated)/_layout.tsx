@@ -2,6 +2,7 @@ import { Redirect, Stack } from 'expo-router';
 
 import { useAccess } from '@/features/identity/AccessProvider';
 import { useUpdateGate } from '@/features/identity/updateGate';
+import { useTokenRegistration } from '@/features/notifications/hooks/useTokenRegistration';
 import { useTheme } from '@/ui/theme/ThemeProvider';
 
 /**
@@ -15,6 +16,8 @@ export default function AuthenticatedLayout() {
   const { colors } = useTheme();
   // SH-12 also here, not only at boot: a deep link or notification must not open the app on a build below the minimum.
   const gate = useUpdateGate();
+  // G14: register Expo push token when the push_notifications flag is ON (D05: OFF during pilot).
+  useTokenRegistration();
   // Render nothing (not even the previous tree) unless authorized.
   if (state.phase !== 'authorized') return null;
   if (gate.decision?.kind === 'required') return <Redirect href="/update-required" />;

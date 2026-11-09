@@ -9,6 +9,7 @@ import { createSupabaseFamilyHomeRepository } from '@/features/family/data/supab
 import { createSupabaseFieldTodayRepository } from '@/features/field/data/supabaseFieldTodayRepository';
 import { createServerClock } from '@/features/field/data/serverClock';
 import { createSupabaseFieldWorkflowRepository, type DataClient } from '@/features/field/data/supabaseFieldWorkflowRepository';
+import { createNotificationServer } from '@/features/notifications/data/server';
 
 /** Server-backed repositories. Use the SAME client as the access adapter so every read and command carries that session. */
 export function createServerRepositories(client: DataClient): Repositories {
@@ -24,5 +25,6 @@ export function createServerRepositories(client: DataClient): Repositories {
     fieldApp: createFieldAppServer(client),
     fieldOps,
     billing: createBillingServer(client),
+    notifications: createNotificationServer(client),
   };
 }
