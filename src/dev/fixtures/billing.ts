@@ -440,6 +440,13 @@ export function createBillingFixtures({ latencyMs = 350, checkoutEnabled, famili
       },
       // startSetUp is absent: no mandate provider is connected (G7-D11, G7-D13).
     },
-    // invoices is absent, exactly as in the server build: no tax-invoice PDF exists yet (G7-D07).
+    invoices: {
+      async getPdf(scope, orderId) {
+        await wait();
+        const r = ownRecord(scope, orderId);
+        if (!r.invoice) throw NOT_FOUND();
+        return { url: `https://example.test/invoices/${orderId}.pdf`, expiresAt: new Date(now() + 120_000).toISOString() };
+      },
+    },
   };
 }

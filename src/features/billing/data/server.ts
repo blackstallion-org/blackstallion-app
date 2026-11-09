@@ -15,13 +15,17 @@ import {
   type BillingOrder,
   type CheckoutStatus,
 } from '../domain/orders';
+import type { CheckoutResult } from '../domain/paymentState';
 import type {
   BillingOrderRepository,
   BillingOverview,
   BillingRepositories,
   BillingScope,
   BlockedReason,
+  CheckoutGateway,
+  CheckoutSession,
   ChildMonth,
+  InvoiceDocumentRepository,
   OrderWithChild,
 } from './repositories';
 
@@ -34,6 +38,7 @@ export const BILLING_RPC = {
   listOrders: 'billing_list_orders',
   noteClientReturn: 'billing_note_client_return',
   cancelOrder: 'billing_cancel_order',
+  getInvoicePdf: 'billing_get_invoice_pdf',
 } as const;
 
 /** Page sizes: the overview reads the newest 50 (the server's cap) to find this month's orders; BI-02 pages by 20. */
@@ -50,7 +55,7 @@ const BLOCKED_BY_HINT: Record<string, BlockedReason> = {
   month_out_of_range: 'outOfRange',
 };
 
-export type BillingServerOptions = { timeoutMs?: number; now?: () => Date };
+export type BillingServerOptions = { timeoutMs?: number; now?: () => Date; checkout?: CheckoutGateway };
 
 /**
  * Billing over the G7 server draft (server/reference/g7-billing; contract in ./CONTRACT.md). Not applied to any real
@@ -59,7 +64,10 @@ export type BillingServerOptions = { timeoutMs?: number; now?: () => Date };
  * so `checkout`, `invoices` and `autopay` are absent and those actions stay unavailable. No real provider is ever called
  * from this module.
  */
-export function createBillingServer(client: DataClient, opts: BillingServerOptions = {}): BillingRepositories {
+export function createBillingServer(
+  client: DataClient & { functions?: EdgeFunctionInvoker },
+  opts: BillingServerOptions = {},
+): BillingRepositories {
   const now = opts.now ?? (() => new Date());
 
   async function call(fn: string, args: Record<string, unknown>): Promise<unknown> {
@@ -210,5 +218,78 @@ export function createBillingServer(client: DataClient, opts: BillingServerOptio
     },
   };
 
-  return { source: 'server', orders };
+  const invoices: InvoiceDocumentRepository = {
+    async getPdf(scope, orderId) {
+      family(scope);
+      if (!isBillingOrderId(orderId)) throw NOT_FOUND();
+      const json = await call(BILLING_RPC.getInvoicePdf, { p_order: orderId });
+      if (!json || typeof json !== 'object') throw shapeError('invoice_pdf');
+      const { url, expires_at } = json as Record<string, unknown>;
+      if (typeof url !== 'string' || typeof expires_at !== 'string') throw shapeError('invoice_pdf');
+      return { url, expiresAt: expires_at };
+    },
+  };
+
+  const checkout = opts.checkout ?? (client.functions ? createEdgeCheckoutGateway(client.functions) : undefined);
+
+  return { source: 'server', orders, invoices, ...(checkout ? { checkout } : {}) };
+}
+
+export type EdgeFunctionInvoker = {
+  invoke: (name: string, options: { body: unknown }) => Promise<{ data: unknown; error: unknown }>;
+};
+
+/** Parses and validates the session returned by the create-order Edge Function (E-1). */
+export function parseCheckoutSession(v: unknown): CheckoutSession | null {
+  if (!v || typeof v !== 'object') return null;
+  const o = v as Record<string, unknown>;
+  if (
+    typeof o.keyId !== 'string' || o.keyId.length === 0 ||
+    typeof o.gatewayOrderId !== 'string' || !/^order_[A-Za-z0-9]{6,40}$/.test(o.gatewayOrderId) ||
+    typeof o.amountPaise !== 'number' || !Number.isSafeInteger(o.amountPaise) || o.amountPaise < 0 ||
+    o.currency !== 'INR' ||
+    typeof o.reference !== 'string'
+  ) {
+    return null;
+  }
+  return {
+    keyId: o.keyId,
+    gatewayOrderId: o.gatewayOrderId,
+    amountPaise: o.amountPaise,
+    currency: 'INR',
+    reference: o.reference,
+  };
+}
+
+/** Creates a CheckoutGateway backed by Supabase Edge Functions. */
+export function createEdgeCheckoutGateway(
+  functions: EdgeFunctionInvoker,
+  opts: {
+    mode?: 'provider' | 'test';
+    open?: (session: CheckoutSession) => Promise<CheckoutResult>;
+  } = {},
+): CheckoutGateway {
+  return {
+    mode: opts.mode ?? 'provider',
+    async prepare(scope, orderId) {
+      if (scope.experience !== 'family') {
+        throw new BillingError('forbidden', 'Billing is only available in the Family experience.', undefined, 'SCOPE');
+      }
+      if (!isBillingOrderId(orderId)) throw NOT_FOUND();
+      let res;
+      try {
+        res = await functions.invoke('create-order', { body: { orderId } });
+      } catch (e) {
+        throw toBillingError(e);
+      }
+      if (res.error) throw toBillingError(res.error);
+      const session = parseCheckoutSession(res.data);
+      if (!session) throw shapeError('checkout_session');
+      return session;
+    },
+    async open(session) {
+      if (opts.open) return opts.open(session);
+      throw new BillingError('unavailable', 'Payment provider checkout UI is not available in this build.', 'no_ui');
+    },
+  };
 }
